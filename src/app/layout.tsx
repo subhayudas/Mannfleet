@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
+import LogoIntro from "@/components/LogoIntro";
+import ContentReveal from "@/components/ContentReveal";
 
 export const metadata: Metadata = {
   title: "MANN — Premium Car Rental",
@@ -20,7 +22,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>{children}</ThemeProvider>
+        <LogoIntro />
+        <ContentReveal>
+          <ThemeProvider>{children}</ThemeProvider>
+        </ContentReveal>
       </body>
     </html>
   );

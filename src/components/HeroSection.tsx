@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
-import { useTheme } from "@/lib/theme";
+import Navbar from "@/components/Navbar";
 
 /* ── Icons ───────────────────────────────────────────────── */
 function ArrowUpRight({ size = 16 }: { size?: number }) {
@@ -29,32 +28,6 @@ function CheckIcon({ size = 14 }: { size?: number }) {
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
       stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
       <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
-function SunIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="4" />
-      <line x1="12" y1="2" x2="12" y2="4" />
-      <line x1="12" y1="20" x2="12" y2="22" />
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-      <line x1="2" y1="12" x2="4" y2="12" />
-      <line x1="20" y1="12" x2="22" y2="12" />
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-    </svg>
-  );
-}
-
-function MoonIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
     </svg>
   );
 }
@@ -95,7 +68,6 @@ function StatCard({ value, label, sub }: { value: string; label: string; sub: st
 
 /* ── Main Component ──────────────────────────────────────── */
 export default function HeroSection() {
-  const { theme, toggle } = useTheme();
   const sectionRef   = useRef<HTMLElement>(null);
   const navRef       = useRef<HTMLDivElement>(null);
   const badgeRef     = useRef<HTMLDivElement>(null);
@@ -108,59 +80,74 @@ export default function HeroSection() {
   const statsRef     = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    let ctx: ReturnType<typeof gsap.context>;
 
-      // Nav slides down from above
-      tl.fromTo(navRef.current,
-        { y: -28, opacity: 0, filter: "blur(8px)" },
-        { y: 0,   opacity: 1, filter: "blur(0px)", duration: 0.8 },
-      );
+    const runAnimation = () => {
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Badge fades up
-      tl.fromTo(badgeRef.current,
-        { y: 20, opacity: 0, filter: "blur(6px)" },
-        { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.65 },
-        "-=0.4",
-      );
+        // Nav slides down from above
+        tl.fromTo(navRef.current,
+          { y: -28, opacity: 0, filter: "blur(8px)" },
+          { y: 0,   opacity: 1, filter: "blur(0px)", duration: 0.8 },
+        );
 
-      // Headline lines stagger up
-      tl.fromTo([line1Ref.current, line2Ref.current, line3Ref.current],
-        { y: 36, opacity: 0, filter: "blur(10px)" },
-        { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.75, stagger: 0.13 },
-        "-=0.3",
-      );
+        // Badge fades up
+        tl.fromTo(badgeRef.current,
+          { y: 20, opacity: 0, filter: "blur(6px)" },
+          { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.65 },
+          "-=0.4",
+        );
 
-      // Subtitle
-      tl.fromTo(subtitleRef.current,
-        { y: 18, opacity: 0 },
-        { y: 0,  opacity: 1, duration: 0.55 },
-        "-=0.35",
-      );
+        // Headline lines stagger up
+        tl.fromTo([line1Ref.current, line2Ref.current, line3Ref.current],
+          { y: 36, opacity: 0, filter: "blur(10px)" },
+          { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.75, stagger: 0.13 },
+          "-=0.3",
+        );
 
-      // Bullets
-      tl.fromTo(bulletsRef.current,
-        { y: 14, opacity: 0 },
-        { y: 0,  opacity: 1, duration: 0.45 },
-        "-=0.3",
-      );
+        // Subtitle
+        tl.fromTo(subtitleRef.current,
+          { y: 18, opacity: 0 },
+          { y: 0,  opacity: 1, duration: 0.55 },
+          "-=0.35",
+        );
 
-      // CTAs
-      tl.fromTo(ctasRef.current,
-        { y: 18, opacity: 0 },
-        { y: 0,  opacity: 1, duration: 0.5 },
-        "-=0.25",
-      );
+        // Bullets
+        tl.fromTo(bulletsRef.current,
+          { y: 14, opacity: 0 },
+          { y: 0,  opacity: 1, duration: 0.45 },
+          "-=0.3",
+        );
 
-      // Stats strip slides up from bottom
-      tl.fromTo(statsRef.current,
-        { y: 32, opacity: 0, filter: "blur(8px)" },
-        { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.65 },
-        "-=0.4",
-      );
-    }, sectionRef);
+        // CTAs
+        tl.fromTo(ctasRef.current,
+          { y: 18, opacity: 0 },
+          { y: 0,  opacity: 1, duration: 0.5 },
+          "-=0.25",
+        );
 
-    return () => ctx.revert();
+        // Stats strip slides up from bottom
+        tl.fromTo(statsRef.current,
+          { y: 32, opacity: 0, filter: "blur(8px)" },
+          { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.65 },
+          "-=0.4",
+        );
+      }, sectionRef);
+    };
+
+    // If intro was already seen this session, animate immediately.
+    // Otherwise wait for the intro overlay to finish.
+    if (sessionStorage.getItem("mannfleet_intro_seen")) {
+      runAnimation();
+    } else {
+      window.addEventListener("intro:done", runAnimation, { once: true });
+    }
+
+    return () => {
+      window.removeEventListener("intro:done", runAnimation);
+      ctx?.revert();
+    };
   }, []);
 
   return (
@@ -188,92 +175,7 @@ export default function HeroSection() {
       }} />
 
       {/* ── Navigation ── */}
-      <div ref={navRef} className="relative shrink-0 px-5 lg:px-10 pt-4 pb-4" style={{ zIndex: 20, opacity: 0 }}>
-        <nav className="glass-nav flex items-center justify-between px-5 lg:px-8 py-3.5" style={{ borderRadius: "9999px" }}>
-          {/* Logo */}
-          <Image
-            src="/mannlogo.webp"
-            alt="MANN"
-            width={100}
-            height={36}
-            className="select-none"
-            style={{ objectFit: "contain" }}
-            priority
-          />
-
-          {/* Center nav links — font-sans, uppercase */}
-          <ul className="hidden md:flex items-center gap-8">
-            {["About", "Fleet", "Pricing", "Contact"].map((link) => (
-              <li key={link}>
-                <a
-                  href="#"
-                  className={cn("font-sans uppercase text-xs font-semibold tracking-widest transition-colors duration-200")}
-                  style={{
-                    color: theme === "dark" ? "rgba(255,255,255,0.60)" : "rgba(44,36,22,0.65)",
-                    letterSpacing: "0.10em",
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = theme === "dark" ? "#ffffff" : "#2C2416"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = theme === "dark" ? "rgba(255,255,255,0.60)" : "rgba(44,36,22,0.65)"; }}
-                >
-                  {link}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {/* Right side */}
-          <div className="hidden md:flex items-center gap-3">
-            <a
-              href="#"
-              className={cn("font-sans uppercase text-xs font-semibold tracking-widest px-4 py-2 rounded-full transition-colors duration-200")}
-              style={{
-                color: theme === "dark" ? "rgba(255,255,255,0.60)" : "rgba(44,36,22,0.65)",
-                letterSpacing: "0.10em",
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = theme === "dark" ? "#ffffff" : "#2C2416"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = theme === "dark" ? "rgba(255,255,255,0.60)" : "rgba(44,36,22,0.65)"; }}
-            >
-              Log in
-            </a>
-
-            {/* Theme toggle */}
-            <button
-              onClick={toggle}
-              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "2.25rem",
-                height: "2.25rem",
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.10)",
-                border: "1px solid rgba(255,255,255,0.22)",
-                color: "rgba(255,255,255,0.75)",
-                cursor: "pointer",
-                backdropFilter: "blur(12px)",
-                WebkitBackdropFilter: "blur(12px)",
-                transition: "all 0.2s ease",
-                flexShrink: 0,
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.20)";
-                (e.currentTarget as HTMLButtonElement).style.color = "#ffffff";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.10)";
-                (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.75)";
-              }}
-            >
-              {theme === "dark" ? <SunIcon size={16} /> : <MoonIcon size={16} />}
-            </button>
-
-            <button className="btn-primary text-sm">
-              Book Now
-            </button>
-          </div>
-        </nav>
-      </div>
+      <Navbar overlay wrapperRef={navRef} initialOpacity={0} />
 
       {/* ── Hero Content ── */}
       <div className="relative flex-1 flex flex-col justify-center px-6 lg:px-20 pb-52 lg:pb-56 pt-4 lg:pt-6" style={{ zIndex: 10 }}>
