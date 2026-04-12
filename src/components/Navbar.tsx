@@ -135,7 +135,7 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
     if (!img) return;
     logoTweenRef.current?.kill();
     logoTweenRef.current = gsap.to(img, { opacity: 0.7, duration: 0.15, ease, overwrite: "auto",
-      onComplete: () => gsap.to(img, { opacity: 1, duration: 0.15, ease }) });
+      onComplete: () => { gsap.to(img, { opacity: 1, duration: 0.15, ease }); } });
   };
 
   const toggleMobile = () => {
