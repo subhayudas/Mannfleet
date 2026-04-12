@@ -31,7 +31,7 @@ function MoonIcon({ size = 16 }: { size?: number }) {
 }
 
 const NAV_LINKS = [
-  { label: "About", href: "#" },
+  { label: "About", href: "/about" },
   { label: "Fleet", href: "/fleet" },
   { label: "Pricing", href: "#" },
   { label: "Contact", href: "#" },
