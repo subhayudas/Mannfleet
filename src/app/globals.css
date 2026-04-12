@@ -1,3 +1,10 @@
+/* ── Ribbons cursor overlay — desktop only ──────────────────── */
+@media (hover: none), (pointer: coarse) {
+  .ribbons-overlay {
+    display: none;
+  }
+}
+
 /* ── Fonts ─────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 @import '@fontsource-variable/geist';
