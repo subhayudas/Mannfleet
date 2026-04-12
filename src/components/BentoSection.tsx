@@ -6,103 +6,7 @@ import { useEffect, useState, useRef } from "react";
    BentoSection — animated USP bento grid
 ───────────────────────────────────────────────────────────────*/
 
-/* ── CSS keyframes injected once ──────────────────────────── */
-const KEYFRAMES = `
-  @keyframes b-pulse-dot {
-    0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.7); opacity:1; }
-    60%      { box-shadow: 0 0 0 8px rgba(74,222,128,0); opacity:0.8; }
-  }
-  @keyframes b-ping {
-    0%   { transform:scale(0.9); opacity:0.9; }
-    100% { transform:scale(2.8); opacity:0; }
-  }
-  @keyframes b-car-move {
-    0%   { left:4%; }
-    75%  { left:74%; }
-    85%  { left:74%; }
-    100% { left:4%; }
-  }
-  @keyframes b-progress {
-    0%   { width:6%; }
-    75%  { width:74%; }
-    85%  { width:74%; }
-    100% { width:6%; }
-  }
-  @keyframes b-wave {
-    0%,100% { transform:scaleY(0.25); }
-    50%     { transform:scaleY(1); }
-  }
-  @keyframes b-shine {
-    0%   { transform:translateX(-220%) skewX(-20deg); opacity:0; }
-    15%  { opacity:1; }
-    85%  { opacity:1; }
-    100% { transform:translateX(320%) skewX(-20deg); opacity:0; }
-  }
-  @keyframes b-float-up {
-    0%   { transform:translateY(0) scale(1); opacity:0.6; }
-    100% { transform:translateY(-70px) scale(0.3); opacity:0; }
-  }
-  @keyframes b-slide-r {
-    from { opacity:0; transform:translateX(-18px); }
-    to   { opacity:1; transform:translateX(0); }
-  }
-  @keyframes b-slide-l {
-    from { opacity:0; transform:translateX(18px); }
-    to   { opacity:1; transform:translateX(0); }
-  }
-  @keyframes b-blink {
-    0%,100% { opacity:1; }
-    50%     { opacity:0.15; }
-  }
-  @keyframes b-shield-spin {
-    from { stroke-dashoffset:220; }
-    to   { stroke-dashoffset:0; }
-  }
-  @keyframes b-check-draw {
-    from { stroke-dashoffset:30; opacity:0; }
-    to   { stroke-dashoffset:0;  opacity:1; }
-  }
-  @keyframes b-badge-pop {
-    0%  { transform:scale(0) rotate(-8deg); opacity:0; }
-    65% { transform:scale(1.12) rotate(2deg); opacity:1; }
-    100%{ transform:scale(1) rotate(0deg); opacity:1; }
-  }
-  @keyframes b-notif-in {
-    0%  { opacity:0; transform:scale(0.92) translateY(-10px); }
-    60% { transform:scale(1.02) translateY(2px); }
-    100%{ opacity:1; transform:scale(1) translateY(0); }
-  }
-  @keyframes b-wifi-1 {
-    0%,35%,100%  { opacity:0.25; }
-    40%,90% { opacity:1; }
-  }
-  @keyframes b-wifi-2 {
-    0%,45%,100%  { opacity:0.25; }
-    50%,90% { opacity:1; }
-  }
-  @keyframes b-wifi-3 {
-    0%,55%,100%  { opacity:0.25; }
-    60%,90% { opacity:1; }
-  }
-  @keyframes b-ripple {
-    0%   { transform:scale(1); opacity:0.7; }
-    100% { transform:scale(3.5); opacity:0; }
-  }
-  @keyframes b-count-pop {
-    from { transform:scale(0.7) translateY(8px); opacity:0; }
-    to   { transform:scale(1) translateY(0); opacity:1; }
-  }
-  @keyframes b-pill-active {
-    0%,100% { box-shadow: 0 0 0 0 rgba(44,36,22,0.3); }
-    50%     { box-shadow: 0 0 0 5px rgba(44,36,22,0); }
-  }
-  @keyframes b-scan {
-    0%   { top:-4px; opacity:0; }
-    8%   { opacity:0.9; }
-    92%  { opacity:0.9; }
-    100% { top:100%; opacity:0; }
-  }
-`;
+/* Keyframes are defined in globals.css */
 
 /* ── background video ─────────────────────────────────────── */
 function BgVideo({ src }: { src: string }) {
@@ -411,7 +315,7 @@ function TrackingCard() {
   return (
     <div style={{
       gridArea:"tracking",
-      background:"rgba(244,239,230,0.86)",
+      background:"var(--glass-surface-86)",
       backdropFilter:"blur(28px) saturate(150%)", WebkitBackdropFilter:"blur(28px) saturate(150%)",
       borderRadius:24, border:"1px solid var(--border-mid)",
       boxShadow:"inset 0 1px 0 rgba(255,255,255,0.72), 0 6px 24px rgba(100,80,50,0.14)",
@@ -695,7 +599,7 @@ function PickupCard() {
         </div>
         <span style={{
           padding:"3px 10px", borderRadius:9999,
-          background:"rgba(44,36,22,0.07)", border:"1px solid var(--border-subtle)",
+          background:"var(--map-badge-bg)", border:"1px solid var(--border-subtle)",
           fontSize:"0.66rem", fontWeight:600, color:"var(--text-muted)",
           letterSpacing:"0.04em",
         }}>UK-WIDE</span>
@@ -707,8 +611,8 @@ function PickupCard() {
           {/* UK outline */}
           <path
             d={UK_PATH}
-            fill="rgba(44,36,22,0.06)"
-            stroke="rgba(44,36,22,0.18)"
+            fill="var(--map-fill)"
+            stroke="var(--map-stroke)"
             strokeWidth="1.2"
             strokeLinejoin="round"
           />
@@ -720,7 +624,7 @@ function PickupCard() {
             return (
               <line key={i}
                 x1={pin.cx} y1={pin.cy} x2={next.cx} y2={next.cy}
-                stroke="rgba(44,36,22,0.10)" strokeWidth="0.8" strokeDasharray="2 3"
+                stroke="var(--map-line)" strokeWidth="0.8" strokeDasharray="2 3"
               />
             );
           })}
@@ -776,7 +680,7 @@ function PillsCard() {
   return (
     <div style={{
       gridArea:"pills",
-      background:"rgba(244,239,230,0.70)",
+      background:"var(--glass-surface-70)",
       backdropFilter:"blur(20px) saturate(140%)", WebkitBackdropFilter:"blur(20px) saturate(140%)",
       borderRadius:24, border:"1px solid var(--border-subtle)",
       boxShadow:"inset 0 1px 0 rgba(255,255,255,0.68), 0 6px 20px rgba(100,80,50,0.12)",
@@ -789,7 +693,7 @@ function PillsCard() {
           alignSelf: i % 2 === 0 ? "flex-start" : "flex-end",
           padding:"0.38rem 1rem",
           borderRadius:9999,
-          background: active === i ? "var(--accent)" : (i === 2 ? "#fff" : "rgba(44,36,22,0.07)"),
+          background: active === i ? "var(--accent)" : (i === 2 ? "#fff" : "var(--map-badge-bg)"),
           border:`1px solid ${active === i ? "var(--accent-dark)" : (i === 2 ? "var(--border-mid)" : "var(--border-subtle)")}`,
           fontSize:"0.78rem", fontWeight:600,
           color: active === i ? "#fff" : "var(--text-primary)",
@@ -819,7 +723,6 @@ function PillsCard() {
 export default function BentoSection() {
   return (
     <>
-      <style>{KEYFRAMES}</style>
       <section
         className="scene-bg px-8 lg:px-16 pb-20 pt-16"
         style={{ fontFamily:"'Poppins', sans-serif" }}
@@ -835,7 +738,7 @@ export default function BentoSection() {
             letterSpacing: "0.10em",
             textTransform: "uppercase",
             color: "var(--text-secondary)",
-            background: "rgba(44,36,22,0.07)",
+            background: "var(--map-badge-bg)",
             border: "1px solid var(--border-subtle)",
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.60)",
             marginBottom: 12,

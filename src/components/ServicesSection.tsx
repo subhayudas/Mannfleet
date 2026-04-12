@@ -155,7 +155,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
       style={{
         position: "relative",
         overflow: "hidden",
-        borderTop: isFirst ? "none" : "1px solid rgba(180,160,130,0.30)",
+        borderTop: isFirst ? "none" : "1px solid var(--border-mid)",
         opacity: inView ? 1 : 0,
         transform: inView ? "translateX(0)" : "translateX(-28px)",
         transition: `opacity 700ms ${index * 90 + 80}ms cubic-bezier(0.16,1,0.3,1),
@@ -185,7 +185,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
               fontVariantNumeric: "tabular-nums",
               fontSize: "0.72rem",
               fontWeight: 600,
-              color: "rgba(44,36,22,0.30)",
+              color: "var(--text-30)",
               letterSpacing: "0.06em",
               minWidth: "1.6rem",
             }}
@@ -199,7 +199,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
               style={{
                 fontSize: "clamp(1.5rem, 3.5vw, 2.8rem)",
                 fontWeight: 600,
-                color: hovered ? "#2C2416" : "rgba(44,36,22,0.82)",
+                color: hovered ? "var(--text-primary)" : "var(--text-82)",
                 letterSpacing: "-0.02em",
                 lineHeight: 1,
                 display: "block",
@@ -212,7 +212,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
             <p
               style={{
                 fontSize: "0.82rem",
-                color: "rgba(44,36,22,0.45)",
+                color: "var(--text-45)",
                 marginTop: "0.35rem",
                 maxWidth: "420px",
                 lineHeight: 1.5,
@@ -236,7 +236,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
               style={{
                 fontSize: "1.35rem",
                 fontWeight: 700,
-                color: "#2C2416",
+                color: "var(--text-primary)",
                 lineHeight: 1,
                 opacity: hovered ? 0 : 1,
                 transition: "opacity 0.2s ease",
@@ -244,7 +244,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
             >
               {service.stat}
             </p>
-            <p style={{ fontSize: "0.7rem", color: "rgba(44,36,22,0.40)", marginTop: "0.2rem" }}>
+            <p style={{ fontSize: "0.7rem", color: "var(--text-40)", marginTop: "0.2rem" }}>
               {service.statLabel}
             </p>
           </div>
@@ -255,7 +255,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
             style={{
               width: "2.4rem",
               height: "2.4rem",
-              color: "#2C2416",
+              color: "var(--text-primary)",
               transform: hovered ? "rotate(45deg) scale(1.1)" : "none",
               transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1)",
             }}
@@ -277,12 +277,11 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
           overflow: "hidden",
           pointerEvents: "none",
           transform: "translate3d(0, 101%, 0)",
-          /* Warm glass surface — skeuomorphic */
-          background: "rgba(244,239,230,0.88)",
+          background: "var(--glass-surface-88)",
           backdropFilter: "blur(24px) saturate(160%)",
           WebkitBackdropFilter: "blur(24px) saturate(160%)",
           borderTop: "1px solid rgba(255,255,255,0.60)",
-          borderBottom: "1px solid rgba(180,160,130,0.35)",
+          borderBottom: "1px solid var(--border-mid)",
           boxShadow:
             "inset 0 1px 0 rgba(255,255,255,0.70), inset 0 -1px 0 rgba(60,40,20,0.08)",
           zIndex: 2,
@@ -329,7 +328,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
                     fontWeight: 700,
                     fontSize: "clamp(1.4rem, 3.2vw, 2.6rem)",
                     letterSpacing: "-0.01em",
-                    color: "#2C2416",
+                    color: "var(--text-primary)",
                     padding: "0 2vw",
                   }}
                 >
@@ -347,8 +346,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
                     backgroundSize: "cover",
                     backgroundPosition: "50% 50%",
                     flexShrink: 0,
-                    /* glass frame around image */
-                    border: "1.5px solid rgba(180,160,130,0.45)",
+                    border: "1.5px solid var(--border-mid)",
                     boxShadow:
                       "inset 0 1px 0 rgba(255,255,255,0.45), 0 3px 10px rgba(60,40,20,0.18)",
                   }}
@@ -360,7 +358,7 @@ function ServiceRow({ service, isFirst, index, inView, speed, repetitions }: Ite
                     width: "6px",
                     height: "6px",
                     borderRadius: "50%",
-                    background: "rgba(44,36,22,0.28)",
+                    background: "var(--text-28)",
                     flexShrink: 0,
                     margin: "0 1vw",
                   }}
@@ -432,7 +430,7 @@ export default function ServicesSection() {
             style={{
               fontSize: "clamp(1.9rem, 4vw, 3rem)",
               fontWeight: 600,
-              color: "#2C2416",
+              color: "var(--text-primary)",
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
               margin: 0,
@@ -440,9 +438,9 @@ export default function ServicesSection() {
           >
             Everything you need,
             <br />
-            <span style={{ color: "rgba(44,36,22,0.45)" }}>wherever you go.</span>
+            <span style={{ color: "var(--text-45)" }}>wherever you go.</span>
           </h2>
-          <p style={{ fontSize: "0.85rem", color: "rgba(44,36,22,0.50)", maxWidth: "340px", lineHeight: 1.6, margin: 0 }}>
+          <p style={{ fontSize: "0.85rem", color: "var(--text-50)", maxWidth: "340px", lineHeight: 1.6, margin: 0 }}>
             Hover each service to explore. MANN delivers a full spectrum of
             mobility solutions — enterprise to bespoke.
           </p>
@@ -453,7 +451,7 @@ export default function ServicesSection() {
       <div
         style={{
           height: "1px",
-          background: "rgba(180,160,130,0.30)",
+          background: "var(--border-mid)",
           marginBottom: 0,
         }}
       />
@@ -480,7 +478,7 @@ export default function ServicesSection() {
       </div>
 
       {/* ── Divider bottom ── */}
-      <div style={{ height: "1px", background: "rgba(180,160,130,0.30)" }} />
+      <div style={{ height: "1px", background: "var(--border-mid)" }} />
 
       {/* ── Bottom CTA strip ── */}
       <div
@@ -501,11 +499,11 @@ export default function ServicesSection() {
         <div>
           <p
             className="text-emboss"
-            style={{ fontSize: "1rem", fontWeight: 600, color: "#2C2416", margin: 0 }}
+            style={{ fontSize: "1rem", fontWeight: 600, color: "var(--text-primary)", margin: 0 }}
           >
             Not sure which service fits?
           </p>
-          <p style={{ fontSize: "0.82rem", color: "rgba(44,36,22,0.50)", marginTop: "0.3rem" }}>
+          <p style={{ fontSize: "0.82rem", color: "var(--text-50)", marginTop: "0.3rem" }}>
             Our team will find the perfect solution for you.
           </p>
         </div>

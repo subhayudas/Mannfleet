@@ -25,7 +25,7 @@ function FooterLink({ label, href }: { label: string; href: string }) {
         display: "block",
         fontSize: "0.875rem",
         fontWeight: 400,
-        color: hovered ? "rgba(44,36,22,0.90)" : "rgba(44,36,22,0.48)",
+        color: hovered ? "var(--text-90)" : "var(--text-48)",
         textDecoration: "none",
         transition: "color 0.18s ease",
         lineHeight: 1,
@@ -247,6 +247,7 @@ export default function Footer() {
               alt="MANN"
               width={104}
               height={38}
+              className="footer-logo"
               style={{ objectFit: "contain", marginBottom: "1.5rem" }}
             />
 
@@ -254,7 +255,7 @@ export default function Footer() {
             <address style={{
               fontStyle: "normal",
               fontSize: "0.82rem",
-              color: "rgba(44,36,22,0.46)",
+              color: "var(--text-46)",
               lineHeight: 1.8,
               marginBottom: "1.5rem",
             }}>
@@ -266,31 +267,31 @@ export default function Footer() {
             {/* Phone + Email */}
             <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
               <div>
-                <p style={{ fontSize: "0.72rem", color: "rgba(44,36,22,0.35)", margin: "0 0 0.3rem", fontWeight: 500 }}>
+                <p style={{ fontSize: "0.72rem", color: "var(--text-35)", margin: "0 0 0.3rem", fontWeight: 500 }}>
                   Phone number
                 </p>
                 <a href="tel:+18002626227" style={{
                   fontSize: "0.85rem", fontWeight: 600,
-                  color: "rgba(44,36,22,0.80)", textDecoration: "none",
+                  color: "var(--text-80)", textDecoration: "none",
                   transition: "color 0.2s ease",
                 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = "#2C2416"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(44,36,22,0.80)"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
                 >
                   +971 4 000 0000
                 </a>
               </div>
               <div>
-                <p style={{ fontSize: "0.72rem", color: "rgba(44,36,22,0.35)", margin: "0 0 0.3rem", fontWeight: 500 }}>
+                <p style={{ fontSize: "0.72rem", color: "var(--text-35)", margin: "0 0 0.3rem", fontWeight: 500 }}>
                   Email
                 </p>
                 <a href="mailto:info@manntours.com" style={{
                   fontSize: "0.85rem", fontWeight: 600,
-                  color: "rgba(44,36,22,0.80)", textDecoration: "none",
+                  color: "var(--text-80)", textDecoration: "none",
                   transition: "color 0.2s ease",
                 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = "#2C2416"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(44,36,22,0.80)"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
                 >
                   info@manntours.com
                 </a>
@@ -310,7 +311,7 @@ export default function Footer() {
             <div>
               <p style={{
                 fontSize: "0.78rem", fontWeight: 600,
-                color: "rgba(44,36,22,0.55)",
+                color: "var(--text-55)",
                 margin: "0 0 1.25rem",
                 letterSpacing: "0.01em",
               }}>
@@ -327,7 +328,7 @@ export default function Footer() {
             <div>
               <p style={{
                 fontSize: "0.78rem", fontWeight: 600,
-                color: "rgba(44,36,22,0.55)",
+                color: "var(--text-55)",
                 margin: "0 0 1.25rem",
                 letterSpacing: "0.01em",
               }}>
@@ -344,7 +345,7 @@ export default function Footer() {
             <div>
               <p style={{
                 fontSize: "0.78rem", fontWeight: 600,
-                color: "rgba(44,36,22,0.55)",
+                color: "var(--text-55)",
                 margin: "0 0 1.25rem",
                 letterSpacing: "0.01em",
               }}>
@@ -363,7 +364,7 @@ export default function Footer() {
         {/* ── Divider ── */}
         <div style={{
           height: "1px",
-          background: "rgba(180,160,130,0.25)",
+          background: "var(--border-subtle)",
           margin: "2.5rem 0 1.5rem",
         }} />
 
@@ -371,7 +372,7 @@ export default function Footer() {
         <p style={{
           textAlign: "center",
           fontSize: "0.78rem",
-          color: "rgba(44,36,22,0.35)",
+          color: "var(--text-35)",
           margin: 0,
         }}>
           © {new Date().getFullYear()} MANN Fleet Services. All rights reserved.

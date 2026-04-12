@@ -2,39 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import Hls from "hls.js";
-
-const HLS_STREAMS = [
-  "https://pikaso.cdnpk.net/private/production/3833482841/358ed799-396d-45b3-b7b9-263484f13e53-0.mp4?token=exp=1775520000~hmac=fd31be526d2bf0c0d9e575aa853c8169bc4aba5af56f18bd146707430eb2d440",
-  "https://stream.mux.com/t1TbTB8M1VYHkhxBuap4A8Vm1x015HTHyuQxqchDBago.m3u8",
-  "https://stream.mux.com/6yvj9SR5bjmXq9N3ak7gy427RwUs8R2ZoH4ndA7Q1018.m3u8",
-];
-
-/* ── HLS Video ───────────────────────────────────────────── */
-function HlsVideo({ src, className }: { src: string; className?: string }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = src;
-    } else if (Hls.isSupported()) {
-      const hls = new Hls({ enableWorker: false });
-      hls.loadSource(src);
-      hls.attachMedia(video);
-      return () => hls.destroy();
-    }
-  }, [src]);
-
-  return (
-    <video
-      ref={videoRef}
-      autoPlay muted loop playsInline preload="auto"
-      className={className}
-    />
-  );
-}
+import gsap from "gsap";
+import { cn } from "@/lib/utils";
+import { useTheme } from "@/lib/theme";
 
 /* ── Icons ───────────────────────────────────────────────── */
 function ArrowUpRight({ size = 16 }: { size?: number }) {
@@ -54,352 +24,467 @@ function PlayIcon({ size = 13 }: { size?: number }) {
   );
 }
 
+function CheckIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
+function SunIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="4" />
+      <line x1="12" y1="2" x2="12" y2="4" />
+      <line x1="12" y1="20" x2="12" y2="22" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="2" y1="12" x2="4" y2="12" />
+      <line x1="20" y1="12" x2="22" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+  );
+}
+
+function MoonIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  );
+}
+
+/* ── Stat Card ───────────────────────────────────────────── */
+function StatCard({ value, label, sub }: { value: string; label: string; sub: string }) {
+  return (
+    <div style={{
+      background: "rgba(255,255,255,0.10)",
+      backdropFilter: "blur(24px) saturate(160%)",
+      WebkitBackdropFilter: "blur(24px) saturate(160%)",
+      border: "1px solid rgba(255,255,255,0.18)",
+      borderRadius: "1.25rem",
+      padding: "1.1rem 1.5rem",
+      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22), 0 8px 32px rgba(0,0,0,0.28)",
+      minWidth: 155,
+      flex: "1 1 155px",
+    }}>
+      {/* value uses serif + uppercase */}
+      <p className="font-serif uppercase" style={{
+        fontSize: "1.75rem", fontWeight: 400, color: "#ffffff",
+        lineHeight: 1, marginBottom: "0.25rem", letterSpacing: "0.02em",
+      }}>
+        {value}
+      </p>
+      <p className="font-sans uppercase" style={{
+        fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.12em",
+        color: "rgba(255,255,255,0.80)", marginBottom: "0.18rem",
+      }}>
+        {label}
+      </p>
+      <p className="font-sans" style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.48)" }}>
+        {sub}
+      </p>
+    </div>
+  );
+}
+
 /* ── Main Component ──────────────────────────────────────── */
 export default function HeroSection() {
+  const { theme, toggle } = useTheme();
+  const sectionRef   = useRef<HTMLElement>(null);
+  const navRef       = useRef<HTMLDivElement>(null);
+  const badgeRef     = useRef<HTMLDivElement>(null);
+  const line1Ref     = useRef<HTMLSpanElement>(null);
+  const line2Ref     = useRef<HTMLSpanElement>(null);
+  const line3Ref     = useRef<HTMLSpanElement>(null);
+  const subtitleRef  = useRef<HTMLParagraphElement>(null);
+  const bulletsRef   = useRef<HTMLDivElement>(null);
+  const ctasRef      = useRef<HTMLDivElement>(null);
+  const statsRef     = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      // Nav slides down from above
+      tl.fromTo(navRef.current,
+        { y: -28, opacity: 0, filter: "blur(8px)" },
+        { y: 0,   opacity: 1, filter: "blur(0px)", duration: 0.8 },
+      );
+
+      // Badge fades up
+      tl.fromTo(badgeRef.current,
+        { y: 20, opacity: 0, filter: "blur(6px)" },
+        { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.65 },
+        "-=0.4",
+      );
+
+      // Headline lines stagger up
+      tl.fromTo([line1Ref.current, line2Ref.current, line3Ref.current],
+        { y: 36, opacity: 0, filter: "blur(10px)" },
+        { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.75, stagger: 0.13 },
+        "-=0.3",
+      );
+
+      // Subtitle
+      tl.fromTo(subtitleRef.current,
+        { y: 18, opacity: 0 },
+        { y: 0,  opacity: 1, duration: 0.55 },
+        "-=0.35",
+      );
+
+      // Bullets
+      tl.fromTo(bulletsRef.current,
+        { y: 14, opacity: 0 },
+        { y: 0,  opacity: 1, duration: 0.45 },
+        "-=0.3",
+      );
+
+      // CTAs
+      tl.fromTo(ctasRef.current,
+        { y: 18, opacity: 0 },
+        { y: 0,  opacity: 1, duration: 0.5 },
+        "-=0.25",
+      );
+
+      // Stats strip slides up from bottom
+      tl.fromTo(statsRef.current,
+        { y: 32, opacity: 0, filter: "blur(8px)" },
+        { y: 0,  opacity: 1, filter: "blur(0px)", duration: 0.65 },
+        "-=0.4",
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
+    /* Outer wrapper — font-sans (Geist) */
     <section
-      className="scene-bg relative flex flex-col min-h-screen lg:h-screen lg:overflow-hidden"
-      style={{ fontFamily: "'Poppins', sans-serif" }}
+      ref={sectionRef}
+      className={cn("font-sans relative flex flex-col min-h-screen overflow-hidden")}
     >
+      {/* ── Background Video ── */}
+      <video
+        src="/Maanherovideo.mp4"
+        autoPlay muted loop playsInline preload="auto"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ zIndex: 0 }}
+      />
+
+      {/* ── Overlay layers ── */}
+      <div className="absolute inset-0" style={{
+        zIndex: 1,
+        background: "linear-gradient(105deg, rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.60) 45%, rgba(0,0,0,0.22) 100%)",
+      }} />
+      <div className="absolute inset-0" style={{
+        zIndex: 1,
+        background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 44%)",
+      }} />
+
       {/* ── Navigation ── */}
-      <div className="relative z-20 shrink-0 px-5 lg:px-10 pt-4 pb-4">
-      <nav className="glass-nav flex items-center justify-between px-5 lg:px-8 py-3.5" style={{ borderRadius: "9999px" }}>
-        {/* Logo */}
-        <Image
-          src="/mannlogo.webp"
-          alt="MANN"
-          width={100}
-          height={36}
-          className="select-none"
-          style={{ objectFit: "contain" }}
-          priority
-        />
+      <div ref={navRef} className="relative shrink-0 px-5 lg:px-10 pt-4 pb-4" style={{ zIndex: 20, opacity: 0 }}>
+        <nav className="glass-nav flex items-center justify-between px-5 lg:px-8 py-3.5" style={{ borderRadius: "9999px" }}>
+          {/* Logo */}
+          <Image
+            src="/mannlogo.webp"
+            alt="MANN"
+            width={100}
+            height={36}
+            className="select-none"
+            style={{ objectFit: "contain" }}
+            priority
+          />
 
-        {/* Center nav links */}
-        <ul className="hidden md:flex items-center gap-8">
-          {["About", "Fleet", "Pricing", "Contact"].map((link) => (
-            <li key={link}>
-              <a
-                href="#"
-                className="text-sm font-medium transition-colors duration-200"
-                style={{ color: "rgba(44, 36, 22, 0.55)" }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "#2C2416"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(44, 36, 22, 0.55)"; }}
-              >
-                {link}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Right side */}
-        <div className="hidden md:flex items-center gap-3">
-          <a
-            href="#"
-            className="text-sm font-medium px-4 py-2 rounded-full transition-colors duration-200"
-            style={{ color: "rgba(44, 36, 22, 0.55)" }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = "#2C2416"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(44, 36, 22, 0.55)"; }}
-          >
-            Log in
-          </a>
-          <button className="btn-primary text-sm">
-            Book Now
-          </button>
-        </div>
-      </nav>
-      </div>
-
-      {/* ── Content area ── */}
-      <div className="relative z-10 flex-1 px-5 lg:px-16 pb-8 lg:pb-16 flex flex-col">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch flex-1">
-
-          {/* ═══════════════════════════════════
-              LEFT COLUMN
-          ═══════════════════════════════════ */}
-          <div className="flex flex-col justify-between animate-fade-up">
-            <div className="pt-6 lg:pt-10">
-
-              {/* H1 headline */}
-              <h1
-                className="text-[2.1rem] sm:text-5xl lg:text-[3.4rem] xl:text-[4.2rem] font-semibold tracking-tight leading-[1.07]"
-                style={{ color: "#2C2416" }}
-              >
-                {/* Line 1: avatar pill + "Premium" */}
-                <span className="flex items-center gap-3 flex-wrap">
-                  <span
-                    className="glass-card inline-block shrink-0"
-                    style={{
-                      width: "5rem",
-                      height: "2.6rem",
-                      borderRadius: "9999px",
-                      backgroundImage:
-                        "url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=200&q=80')",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                    aria-hidden="true"
-                  />
-                  <span className="text-emboss">Premium</span>
-                </span>
-
-                {/* Line 2 */}
-                <span className="block text-emboss" style={{ color: "rgba(44,36,22,0.75)" }}>
-                  vehicles for
-                </span>
-
-                {/* Line 3: "every journey" + play pill */}
-                <span className="flex items-center gap-3 flex-wrap">
-                  <span style={{ color: "#2C2416" }} className="text-emboss">
-                    every journey
-                  </span>
-                  <button className="btn-outline-skeu">
-                    <PlayIcon size={12} />
-                    <span>How it works</span>
-                  </button>
-                </span>
-
-                {/* Line 4 */}
-                <span className="block text-emboss" style={{ color: "rgba(44,36,22,0.75)" }}>
-                  with MANN
-                </span>
-              </h1>
-
-              {/* CTAs */}
-              <div className="flex items-center gap-4 pt-8 flex-wrap">
-                <button className="btn-primary">
-                  Browse Fleet
-                  <ArrowUpRight size={15} />
-                </button>
+          {/* Center nav links — font-sans, uppercase */}
+          <ul className="hidden md:flex items-center gap-8">
+            {["About", "Fleet", "Pricing", "Contact"].map((link) => (
+              <li key={link}>
                 <a
                   href="#"
-                  className="text-sm font-semibold transition-colors duration-200"
+                  className={cn("font-sans uppercase text-xs font-semibold tracking-widest transition-colors duration-200")}
                   style={{
-                    color: "rgba(44,36,22,0.55)",
-                    textDecoration: "underline",
-                    textUnderlineOffset: "3px",
-                    textDecorationColor: "rgba(44,36,22,0.28)",
+                    color: theme === "dark" ? "rgba(255,255,255,0.60)" : "rgba(44,36,22,0.65)",
+                    letterSpacing: "0.10em",
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#2C2416";
-                    e.currentTarget.style.textDecorationColor = "rgba(44,36,22,0.55)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "rgba(44,36,22,0.55)";
-                    e.currentTarget.style.textDecorationColor = "rgba(44,36,22,0.28)";
-                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = theme === "dark" ? "#ffffff" : "#2C2416"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = theme === "dark" ? "rgba(255,255,255,0.60)" : "rgba(44,36,22,0.65)"; }}
                 >
-                  Book a ride
+                  {link}
                 </a>
-              </div>
-            </div>
+              </li>
+            ))}
+          </ul>
 
-            {/* Bottom group — desktop only */}
-            <div className="hidden lg:block mt-8 animate-fade-up-delay-2">
-              <hr className="rule-glass mb-6" />
-              <p className="text-sm max-w-[380px] leading-relaxed" style={{ color: "rgba(44,36,22,0.52)" }}>
-                From city commutes to cross-country road trips, MANN delivers
-                an exceptional fleet of vehicles with seamless booking and
-                world-class customer service.
-              </p>
-              <div className="flex flex-wrap items-center gap-6 mt-6">
-                {["Audi", "BMW", "Mercedes", "Tesla"].map((brand) => (
-                  <span
-                    key={brand}
-                    className="font-bold text-xl tracking-tight"
-                    style={{ color: "rgba(44,36,22,0.22)", cursor: "default", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(44,36,22,0.50)"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(44,36,22,0.22)"; }}
-                  >
-                    {brand}
-                  </span>
-                ))}
-              </div>
-            </div>
+          {/* Right side */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href="#"
+              className={cn("font-sans uppercase text-xs font-semibold tracking-widest px-4 py-2 rounded-full transition-colors duration-200")}
+              style={{
+                color: theme === "dark" ? "rgba(255,255,255,0.60)" : "rgba(44,36,22,0.65)",
+                letterSpacing: "0.10em",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = theme === "dark" ? "#ffffff" : "#2C2416"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = theme === "dark" ? "rgba(255,255,255,0.60)" : "rgba(44,36,22,0.65)"; }}
+            >
+              Log in
+            </a>
+
+            {/* Theme toggle */}
+            <button
+              onClick={toggle}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "2.25rem",
+                height: "2.25rem",
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.10)",
+                border: "1px solid rgba(255,255,255,0.22)",
+                color: "rgba(255,255,255,0.75)",
+                cursor: "pointer",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                transition: "all 0.2s ease",
+                flexShrink: 0,
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.20)";
+                (e.currentTarget as HTMLButtonElement).style.color = "#ffffff";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.10)";
+                (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.75)";
+              }}
+            >
+              {theme === "dark" ? <SunIcon size={16} /> : <MoonIcon size={16} />}
+            </button>
+
+            <button className="btn-primary text-sm">
+              Book Now
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* ── Hero Content ── */}
+      <div className="relative flex-1 flex flex-col justify-center px-6 lg:px-20 pb-52 lg:pb-56 pt-4 lg:pt-6" style={{ zIndex: 10 }}>
+        <div className="max-w-3xl">
+
+          {/* Label badge — font-sans, uppercase */}
+          <div
+            ref={badgeRef}
+            className="font-sans uppercase"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.3rem 1rem",
+              borderRadius: "9999px",
+              background: "rgba(255,255,255,0.10)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.22)",
+              marginBottom: "1.6rem",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20), 0 2px 8px rgba(0,0,0,0.22)",
+              opacity: 0,
+            }}
+          >
+            <span style={{
+              width: 6, height: 6, borderRadius: "50%", background: "#4ade80",
+              boxShadow: "0 0 0 3px rgba(74,222,128,0.28)", flexShrink: 0,
+            }} />
+            <span style={{
+              fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.14em",
+              color: "rgba(255,255,255,0.82)",
+            }}>
+              India&apos;s Premium Fleet
+            </span>
           </div>
 
-          {/* ═══════════════════════════════════
-              RIGHT COLUMN — Glass Cards
-          ═══════════════════════════════════ */}
-          <div className="flex flex-col gap-4 animate-fade-up-delay">
+          {/* H1 — font-serif, uppercase */}
+          <h1 className="font-serif uppercase" style={{
+            fontSize: "clamp(2.8rem, 7vw, 6rem)",
+            fontWeight: 400,
+            lineHeight: 1.02,
+            letterSpacing: "0.01em",
+            color: "#ffffff",
+            textShadow: "0 2px 24px rgba(0,0,0,0.45)",
+            margin: 0,
+          }}>
+            <span ref={line1Ref} style={{ display: "block", opacity: 0 }}>
+              Premium
+            </span>
+            <span ref={line2Ref} style={{ display: "block", color: "rgba(255,255,255,0.72)", opacity: 0 }}>
+              vehicles for
+            </span>
+            <span ref={line3Ref} className="italic" style={{
+              display: "block",
+              color: "rgba(255,255,255,0.48)",
+              fontSize: "0.78em",
+              opacity: 0,
+            }}>
+              every journey with MANN.
+            </span>
+          </h1>
 
-            {/* ── Card 1 — large ── */}
-            <div className="glass-card relative rounded-[2rem] overflow-hidden flex-1 min-h-[220px]">
-              <HlsVideo
-                src={HLS_STREAMS[0]}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.42)" }} />
+          {/* Subtitle — font-sans */}
+          <p
+            ref={subtitleRef}
+            className="font-sans"
+            style={{
+              marginTop: "1.6rem",
+              fontSize: "0.96rem",
+              lineHeight: 1.75,
+              color: "rgba(255,255,255,0.58)",
+              maxWidth: 430,
+              opacity: 0,
+            }}
+          >
+            From city commutes to cross-country road trips, MANN delivers an exceptional
+            fleet with seamless booking and world-class service.
+          </p>
 
-              <div className="relative z-10 h-full flex flex-col justify-between p-7 lg:p-8">
-                <div />
-                <div>
-                  <h2
-                    className="text-white text-xl lg:text-2xl font-semibold leading-snug mb-3"
-                    style={{ textShadow: "0 1px 3px rgba(0,0,0,0.55)" }}
-                  >
-                    Ready to hit the road?
-                    Let&apos;s find your perfect car.
-                  </h2>
-                  <div className="flex items-end justify-between gap-4">
-                    <p className="text-sm leading-relaxed max-w-[260px]" style={{ color: "rgba(255,255,255,0.72)" }}>
-                      Book online in minutes. Pick up at your location or one
-                      of our conveniently placed depots.
-                    </p>
-                    <button className="btn-disc" aria-label="Get in touch">
-                      <ArrowUpRight size={17} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* ── Cards 2 & 3 — bottom row ── */}
-            <div className="grid grid-cols-2 gap-3 lg:gap-4 flex-1">
-
-              {/* Card 2 */}
-              <div className="glass-card relative rounded-[1.75rem] overflow-hidden min-h-[190px]">
-                <div className="absolute inset-0 overflow-hidden">
-                  <video
-                    src="/6886022_Famous_Place_Tourism_1280x720.mp4"
-                    autoPlay muted loop playsInline preload="auto"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[150%] min-h-[150%] object-cover"
-                  />
-                </div>
-                <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.46)" }} />
-
-                <div className="relative z-10 h-full flex flex-col justify-between p-5 lg:p-6">
-                  <div className="flex items-start justify-between">
-                    <span className="glass-badge">fleet</span>
-                    <button className="btn-disc" style={{ width: "2rem", height: "2rem" }} aria-label="View locations">
-                      <ArrowUpRight size={13} />
-                    </button>
-                  </div>
-                  <div>
-                    <h3
-                      className="text-white text-base lg:text-xl font-semibold leading-tight mb-1"
-                      style={{ textShadow: "0 1px 3px rgba(0,0,0,0.60)" }}
-                    >
-                      200+ premium vehicles
-                    </h3>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.62)" }}>
-                      SUVs, sedans, sports & luxury.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 3 — IATA Approved */}
-              <style>{`
-                @keyframes iata-shimmer { 0%{transform:translateX(-160%) skewX(-16deg);opacity:0} 20%{opacity:1} 80%{opacity:1} 100%{transform:translateX(260%) skewX(-16deg);opacity:0} }
-                @keyframes iata-glow    { 0%,100%{opacity:0} 50%{opacity:1} }
-                @keyframes iata-stamp   { 0%{transform:scale(0.88);opacity:0} 70%{transform:scale(1.02)} 100%{transform:scale(1);opacity:1} }
-                @keyframes iata-ring    { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.06);opacity:0.9} }
-              `}</style>
-
-              <div className="relative rounded-[1.75rem] overflow-hidden min-h-[190px]" style={{
-                background: "#ffffff",
-                boxShadow: "0 0 0 1px rgba(180,160,130,0.30), 0 10px 32px rgba(100,80,50,0.14), inset 0 1px 0 rgba(255,255,255,1), inset 0 -2px 0 rgba(100,80,50,0.08)",
+          {/* Trust bullets — font-sans, uppercase */}
+          <div
+            ref={bulletsRef}
+            className="font-sans uppercase"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.65rem 1.5rem",
+              marginTop: "1.25rem",
+              opacity: 0,
+            }}
+          >
+            {["Instant online booking", "24/7 support", "No hidden fees"].map((item) => (
+              <span key={item} style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.10em",
+                color: "rgba(255,255,255,0.60)",
               }}>
-
-                {/* skeuomorphic top gloss */}
-                <div style={{
-                  position:"absolute", top:0, left:0, right:0, height:"55%",
-                  background:"linear-gradient(to bottom, rgba(255,255,255,0.80) 0%, transparent 100%)",
-                  borderRadius:"1.75rem 1.75rem 0 0", pointerEvents:"none", zIndex:1,
-                }} />
-
-                {/* IATA logo — full bleed, almost fills the entire card */}
-                <div style={{
-                  position:"absolute", inset:"10px 10px 44px 10px",
-                  borderRadius:16, overflow:"hidden",
-                  animation:"iata-stamp 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.1s both",
-                }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/IATA.jpg"
-                    alt="IATA"
-                    style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", display:"block" }}
-                  />
-                  {/* shimmer sweep */}
-                  <div style={{
-                    position:"absolute", inset:0, width:"45%",
-                    background:"linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%)",
-                    animation:"iata-shimmer 4s ease-in-out infinite",
-                    animationDelay:"1s", pointerEvents:"none",
-                  }} />
-                  {/* subtle vignette on edges */}
-                  <div style={{
-                    position:"absolute", inset:0, borderRadius:16,
-                    boxShadow:"inset 0 0 20px rgba(244,239,230,0.35)",
-                    pointerEvents:"none",
-                  }} />
-                </div>
-
-                {/* floating top-left badge */}
-                <div style={{
-                  position:"absolute", top:16, left:16, zIndex:3,
-                  background:"rgba(255,255,255,0.82)",
-                  backdropFilter:"blur(12px)", WebkitBackdropFilter:"blur(12px)",
-                  border:"1px solid rgba(180,160,130,0.30)",
-                  borderRadius:9999,
-                  padding:"3px 10px",
-                  fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.08em",
-                  color:"rgba(44,36,22,0.55)",
-                  boxShadow:"inset 0 1px 0 rgba(255,255,255,0.90), 0 2px 8px rgba(100,80,50,0.12)",
-                }}>ACCREDITATION</div>
-
-                {/* floating top-right certified tick */}
-                <div style={{
-                  position:"absolute", top:14, right:14, zIndex:3,
-                  width:26, height:26, borderRadius:"50%",
-                  background:"var(--accent)",
-                  display:"flex", alignItems:"center", justifyContent:"center",
-                  boxShadow:"inset 0 1px 0 rgba(255,255,255,0.30), 0 2px 8px rgba(30,80,160,0.40)",
-                  animation:"iata-ring 2.5s ease-in-out infinite",
-                }}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke="white" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                </div>
-
-                {/* bottom frosted strip */}
-                <div style={{
-                  position:"absolute", bottom:0, left:0, right:0, height:44, zIndex:3,
-                  background:"rgba(255,255,255,0.82)",
-                  backdropFilter:"blur(16px)", WebkitBackdropFilter:"blur(16px)",
-                  borderTop:"1px solid rgba(180,160,130,0.20)",
-                  display:"flex", alignItems:"center", justifyContent:"space-between",
-                  padding:"0 14px",
-                  boxShadow:"inset 0 1px 0 rgba(255,255,255,0.90)",
-                }}>
-                  <div>
-                    <p style={{ fontWeight:700, fontSize:"0.78rem", color:"var(--text-primary)", lineHeight:1, marginBottom:2 }}>
-                      IATA Approved
-                    </p>
-                    <p style={{ fontSize:"0.62rem", color:"var(--text-muted)", lineHeight:1 }}>
-                      Globally recognised
-                    </p>
-                  </div>
-                  {/* pulsing glow dot */}
-                  <div style={{ display:"flex", alignItems:"center", gap:5 }}>
-                    <div style={{
-                      width:6, height:6, borderRadius:"50%", background:"#4ade80",
-                      boxShadow:"0 0 0 3px rgba(74,222,128,0.25)",
-                      animation:"iata-ring 2s ease-in-out infinite",
-                    }} />
-                    <span style={{ fontSize:"0.60rem", fontWeight:700, color:"rgba(44,36,22,0.40)", letterSpacing:"0.05em" }}>LIVE</span>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
+                <span style={{ color: "#4ade80" }}><CheckIcon size={12} /></span>
+                {item}
+              </span>
+            ))}
           </div>
 
+          {/* CTAs */}
+          <div ref={ctasRef} className="flex items-center gap-4 flex-wrap" style={{ marginTop: "2.4rem", opacity: 0 }}>
+            <button className="btn-primary" style={{ fontSize: "0.78rem", padding: "0.82rem 1.8rem" }}>
+              Browse Fleet
+              <ArrowUpRight size={14} />
+            </button>
+
+            {/* Ghost white button — font-sans, uppercase */}
+            <button
+              className="font-sans uppercase"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.80rem 1.5rem",
+                borderRadius: "9999px",
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                letterSpacing: "0.10em",
+                color: "#ffffff",
+                background: "rgba(255,255,255,0.10)",
+                backdropFilter: "blur(14px)",
+                WebkitBackdropFilter: "blur(14px)",
+                border: "1px solid rgba(255,255,255,0.26)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20), 0 2px 12px rgba(0,0,0,0.20)",
+                cursor: "pointer",
+                transition: "all 0.15s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.18)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.42)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.10)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.26)";
+              }}
+            >
+              <PlayIcon size={11} />
+              How it works
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* ── Bottom Stats Strip ── */}
+      <div
+        ref={statsRef}
+        className="absolute bottom-0 left-0 right-0"
+        style={{ zIndex: 10, padding: "0 1.5rem 1.75rem", opacity: 0 }}
+      >
+        {/* Divider */}
+        <div style={{
+          height: 1,
+          background: "rgba(255,255,255,0.10)",
+          marginBottom: "1.2rem",
+          marginLeft: 4,
+          marginRight: 4,
+        }} />
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.85rem", alignItems: "stretch" }}>
+          <StatCard value="200+" label="Premium Vehicles" sub="SUVs, sedans, sports & luxury" />
+          <StatCard value="IATA" label="Approved & Accredited" sub="Globally recognised standard" />
+          <StatCard value="500+" label="Trusted Clients" sub="Corporates, embassies & VIPs" />
+
+          {/* Brands panel — font-serif for brand names, uppercase */}
+          <div style={{
+            flex: "2 1 260px",
+            background: "rgba(255,255,255,0.07)",
+            backdropFilter: "blur(24px) saturate(160%)",
+            WebkitBackdropFilter: "blur(24px) saturate(160%)",
+            border: "1px solid rgba(255,255,255,0.13)",
+            borderRadius: "1.25rem",
+            padding: "1.1rem 1.5rem",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.16), 0 8px 32px rgba(0,0,0,0.24)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}>
+            <p className="font-sans uppercase" style={{
+              fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.13em",
+              color: "rgba(255,255,255,0.38)", marginBottom: "0.8rem",
+            }}>
+              Our Fleet Brands
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem 1.1rem", alignItems: "center" }}>
+              {["Audi", "BMW", "Mercedes", "Tesla", "Jaguar", "Range Rover"].map((brand) => (
+                <span
+                  key={brand}
+                  className="font-serif uppercase"
+                  style={{
+                    fontSize: "0.95rem", fontWeight: 400, letterSpacing: "0.05em",
+                    color: "rgba(255,255,255,0.26)", cursor: "default", transition: "color 0.2s",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLSpanElement).style.color = "rgba(255,255,255,0.72)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLSpanElement).style.color = "rgba(255,255,255,0.26)"; }}
+                >
+                  {brand}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }

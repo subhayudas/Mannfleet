@@ -178,7 +178,7 @@ export default function PartnersMarquee() {
                 margin: "0 1.25rem",
                 padding: "1.2rem 2.4rem",
                 borderRadius: "1.4rem",
-                background: "rgba(255,252,245,0.62)",
+                background: "var(--glass-partner-bg)",
                 backdropFilter: "blur(18px) saturate(150%)",
                 WebkitBackdropFilter: "blur(18px) saturate(150%)",
                 border: "1px solid rgba(180,160,130,0.30)",
