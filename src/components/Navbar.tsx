@@ -166,7 +166,7 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
       } else {
         gsap.to(menu, {
           opacity: 0, y: 8, duration: 0.2, ease, transformOrigin: "top center",
-          onComplete: () => gsap.set(menu, { visibility: "hidden" })
+          onComplete: () => { gsap.set(menu, { visibility: "hidden" }); }
         });
       }
     }
