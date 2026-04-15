@@ -90,10 +90,8 @@ const PARTNERS = [
   { src: "/Partners/Samsung-Logo-1.webp",              alt: "Samsung" },
   { src: "/Partners/afc-logo-600x226.webp",            alt: "AFC" },
   { src: "/Partners/F1-Logo-600x338.webp",             alt: "Formula 1" },
-  { src: "/Partners/mumbai-indian-logo-600x378.webp",  alt: "Mumbai Indians" },
   { src: "/Partners/us-ambessy-logo.webp",             alt: "US Embassy" },
   { src: "/Partners/bosch-logo-removebg-preview.webp", alt: "Bosch" },
-  { src: "/Partners/KKR-Logo-1.webp",                  alt: "KKR" },
   { src: "/Partners/300x300.webp",                     alt: "Partner" },
 ];
 

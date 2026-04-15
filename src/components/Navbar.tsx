@@ -33,9 +33,9 @@ function MoonIcon({ size = 14 }: { size?: number }) {
 }
 
 const NAV_LINKS = [
-  { label: "About",   href: "/about" },
-  { label: "Fleet",   href: "/fleet" },
-  { label: "Pricing", href: "#" },
+  { label: "About", href: "/about" },
+  { label: "Fleet", href: "/fleet" },
+  { label: "Meet our Team", href: "/meet-the-team" },
   { label: "Contact", href: "#" },
 ];
 
@@ -49,15 +49,15 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
   const { theme, toggle } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const circleRefs   = useRef<Array<HTMLSpanElement | null>>([]);
-  const tlRefs       = useRef<Array<gsap.core.Timeline | null>>([]);
+  const circleRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const tlRefs = useRef<Array<gsap.core.Timeline | null>>([]);
   const activeTweens = useRef<Array<gsap.core.Tween | null>>([]);
-  const logoImgRef   = useRef<HTMLImageElement | null>(null);
+  const logoImgRef = useRef<HTMLImageElement | null>(null);
   const logoTweenRef = useRef<gsap.core.Tween | null>(null);
   const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
-  const navItemsRef  = useRef<HTMLDivElement | null>(null);
-  const logoRef      = useRef<HTMLAnchorElement | null>(null);
+  const navItemsRef = useRef<HTMLDivElement | null>(null);
+  const logoRef = useRef<HTMLAnchorElement | null>(null);
 
   const ease = "power3.out";
 
@@ -72,7 +72,7 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
         const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
         const originY = D - delta;
 
-        circle.style.width  = `${D}px`;
+        circle.style.width = `${D}px`;
         circle.style.height = `${D}px`;
         circle.style.bottom = `-${delta}px`;
 
@@ -97,7 +97,7 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
 
     layout();
     window.addEventListener("resize", layout);
-    document.fonts?.ready?.then(layout).catch(() => {});
+    document.fonts?.ready?.then(layout).catch(() => { });
 
     // Init mobile menu hidden
     const menu = mobileMenuRef.current;
@@ -134,21 +134,23 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
     const img = logoImgRef.current;
     if (!img) return;
     logoTweenRef.current?.kill();
-    logoTweenRef.current = gsap.to(img, { opacity: 0.7, duration: 0.15, ease, overwrite: "auto",
-      onComplete: () => { gsap.to(img, { opacity: 1, duration: 0.15, ease }); } });
+    logoTweenRef.current = gsap.to(img, {
+      opacity: 0.7, duration: 0.15, ease, overwrite: "auto",
+      onComplete: () => { gsap.to(img, { opacity: 1, duration: 0.15, ease }); }
+    });
   };
 
   const toggleMobile = () => {
     const next = !mobileOpen;
     setMobileOpen(next);
 
-    const btn  = hamburgerRef.current;
+    const btn = hamburgerRef.current;
     const menu = mobileMenuRef.current;
 
     if (btn) {
       const lines = btn.querySelectorAll<HTMLElement>(".hamburger-line");
       if (next) {
-        gsap.to(lines[0], { rotation: 45,  y:  3, duration: 0.3, ease });
+        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
         gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
       } else {
         gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });

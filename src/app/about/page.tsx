@@ -172,6 +172,12 @@ export default function AboutPage() {
   const globalHeadRef    = useRef<HTMLHeadingElement>(null);
   const globalBadgesRef  = useRef<HTMLDivElement>(null);
 
+  /* ── Awards & Appreciations refs ── */
+  const awardsSectionRef = useRef<HTMLElement>(null);
+  const awardsHeadRef    = useRef<HTMLDivElement>(null);
+  const awardsGridRef    = useRef<HTMLDivElement>(null);
+  const apprecListRef    = useRef<HTMLDivElement>(null);
+
   /* ── CTA refs ── */
   const ctaSectionRef   = useRef<HTMLElement>(null);
   const ctaWrapRef      = useRef<HTMLDivElement>(null);
@@ -474,6 +480,31 @@ export default function AboutPage() {
         {
           scaleX: 1, duration: 1.1, delay: 0.2, ease: "power2.out",
           scrollTrigger: { trigger: ctaSectionRef.current, start: "top 75%" },
+        }
+      );
+
+      /* ────────────────────────────────────────────────
+         AWARDS & APPRECIATIONS
+      ──────────────────────────────────────────────── */
+      gsap.fromTo(awardsHeadRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.7, ease: "power3.out",
+          scrollTrigger: { trigger: awardsSectionRef.current, start: "top 78%" },
+        }
+      );
+      gsap.fromTo(awardsGridRef.current!.children,
+        { y: 60, opacity: 0, scale: 0.94 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 0.65, stagger: 0.12, ease: "power3.out",
+          scrollTrigger: { trigger: awardsGridRef.current, start: "top 82%" },
+        }
+      );
+      gsap.fromTo(apprecListRef.current!.children,
+        { x: -40, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 0.5, stagger: 0.07, ease: "power3.out",
+          scrollTrigger: { trigger: apprecListRef.current, start: "top 82%" },
         }
       );
     }, pageRef);
@@ -1470,7 +1501,191 @@ export default function AboutPage() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          8. CLOSING CTA
+          8. AWARDS & APPRECIATIONS
+      ══════════════════════════════════════════════ */}
+      <section ref={awardsSectionRef} style={{
+        background: "var(--bg-surface)",
+        padding: "clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)",
+        overflow: "hidden",
+      }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+
+          {/* Section heading */}
+          <div ref={awardsHeadRef} style={{ textAlign: "center", marginBottom: "4.5rem", opacity: 0 }}>
+            <span className="glass-badge" style={{ marginBottom: "1rem", display: "inline-block" }}>
+              Recognition
+            </span>
+            <h2 className="font-serif" style={{
+              fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
+              fontWeight: 400,
+              color: "var(--text-primary)",
+              margin: "0 0 0.75rem",
+              lineHeight: 1.1,
+            }}>
+              Awards &amp; <span className="italic" style={{ color: "var(--text-secondary)" }}>Appreciations</span>
+            </h2>
+            <p className="font-sans" style={{
+              fontSize: "0.9rem",
+              color: "var(--text-muted)",
+              maxWidth: 520,
+              margin: "0 auto",
+              lineHeight: 1.7,
+            }}>
+              Recognised by governments, global institutions, and industry leaders across four decades of excellence.
+            </p>
+          </div>
+
+          {/* ── AWARDS RECEIVED ── */}
+          <div style={{ marginBottom: "4rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}>
+              <div style={{ width: 28, height: 2, background: "var(--accent)", borderRadius: 2 }} />
+              <span className="font-sans" style={{
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "var(--text-muted)",
+              }}>Awards Received</span>
+            </div>
+
+            <div ref={awardsGridRef} style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+              gap: "1.25rem",
+            }}>
+              {[
+                { title: "National Tourism Award", year: "2016–2017", issuer: "Ministry of Tourism, Govt. of India" },
+                { title: "National Tourism Award", year: "2017–2018", issuer: "Ministry of Tourism, Govt. of India" },
+                { title: "National Tourism Award", year: "2018–2019", issuer: "Ministry of Tourism, Govt. of India" },
+                { title: "Zee Business Award – Best Private Transport Service Provider", year: "2019", issuer: "Zee TV" },
+                { title: "TV Leaders of Road Transport", year: "2022", issuer: "TV 9 Network" },
+                { title: "Travel Enablers – Luxury Car Rentals", year: "—", issuer: "VFS Global Times Travel Awards" },
+                { title: "Global Tourism Awards", year: "—", issuer: "—" },
+              ].map(({ title, year, issuer }) => (
+                <div key={title + year} className="glass-card" style={{
+                  padding: "1.75rem",
+                  borderRadius: "1.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  opacity: 0,
+                }}>
+                  <div style={{
+                    width: 48, height: 48,
+                    borderRadius: "12px",
+                    background: "var(--glass-light)",
+                    border: "1px solid var(--border-subtle)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "var(--accent)",
+                    flexShrink: 0,
+                  }}>
+                    <IconNational />
+                  </div>
+                  <div>
+                    <h3 className="font-sans" style={{
+                      fontSize: "0.925rem",
+                      fontWeight: 600,
+                      color: "var(--text-primary)",
+                      margin: "0 0 0.5rem",
+                      lineHeight: 1.4,
+                    }}>{title}</h3>
+                    <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", alignItems: "center" }}>
+                      {year !== "—" && (
+                        <span className="glass-badge" style={{ fontSize: "0.6rem" }}>{year}</span>
+                      )}
+                      {issuer !== "—" && (
+                        <span className="font-sans" style={{
+                          fontSize: "0.72rem",
+                          color: "var(--text-muted)",
+                          lineHeight: 1.4,
+                        }}>{issuer}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── APPRECIATIONS RECEIVED ── */}
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}>
+              <div style={{ width: 28, height: 2, background: "var(--text-muted)", borderRadius: 2 }} />
+              <span className="font-sans" style={{
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "var(--text-muted)",
+              }}>Appreciations Received</span>
+            </div>
+
+            <div ref={apprecListRef} style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              {[
+                { num: "01", title: "Appreciation for handling Young President Organization (YPO) Meet at Jamnagar, Gujarat", date: "19 Mar 2008", issuer: "Reliance Industries Limited" },
+                { num: "02", title: "Appreciation for providing services to Hon'ble Barack Obama, President, USA", date: "21 Apr 2011", issuer: "American Embassy, USA" },
+                { num: "03", title: "Appreciation for providing services to Hon'ble Joseph R. Biden, Vice President, USA", date: "14 Nov 2013", issuer: "Vice President, USA" },
+                { num: "04", title: "Certificate of Appreciation", date: "—", issuer: "Tamarind Global" },
+                { num: "05", title: "Token of Appreciation", date: "—", issuer: "United States Mission" },
+                { num: "06", title: "Token of Appreciation", date: "—", issuer: "White House, USA" },
+                { num: "07", title: "AFC Women's Asian Cup", date: "28 Feb 2022", issuer: "Asian Football Confederation (AFC)" },
+                { num: "08", title: "Letter of Appreciation", date: "25 Jul 2022", issuer: "Kolkata Knight Riders – IPL Team" },
+                { num: "09", title: "Letter of Appreciation", date: "28 Jul 2022", issuer: "Chennai Super Kings – IPL Team" },
+                { num: "10", title: "Appreciation for handling G20 Event", date: "29 May 2023", issuer: "G20 Secretariat, Ministry of External Affairs, Govt. of India" },
+                { num: "11", title: "Appreciation for handling National Conference of 1350 Employees", date: "27 Sep 2023", issuer: "Pernod Ricard" },
+                { num: "12", title: "Appreciation for Handling Town Hall Meet", date: "18 Oct 2023", issuer: "Indigo Airlines" },
+                { num: "13", title: "Appreciation for handling VIP Guests", date: "11 Jan 2024", issuer: "Indigo Paints" },
+                { num: "14", title: "Certificate of Appreciation (GST)", date: "2023–24", issuer: "Ministry of Finance, Govt. of India" },
+                { num: "15", title: "Appreciation for Handling IBM Board", date: "07 Nov 2024", issuer: "Abercrombie & Kent India" },
+                { num: "16", title: "Appreciation for handling Jet on Wheels Event", date: "22 Nov 2024", issuer: "Urban Provider" },
+              ].map(({ num, title, date, issuer }) => (
+                <div key={num} className="glass-panel" style={{
+                  padding: "1rem 1.5rem",
+                  borderRadius: "0.875rem",
+                  display: "grid",
+                  gridTemplateColumns: "2.5rem 1fr auto",
+                  gap: "1rem",
+                  alignItems: "center",
+                  opacity: 0,
+                }}>
+                  <span className="font-serif" style={{
+                    fontSize: "0.95rem",
+                    fontWeight: 400,
+                    color: "var(--text-muted)",
+                    lineHeight: 1,
+                  }}>{num}</span>
+                  <div>
+                    <p className="font-sans" style={{
+                      fontSize: "0.875rem",
+                      fontWeight: 500,
+                      color: "var(--text-primary)",
+                      margin: 0,
+                      lineHeight: 1.4,
+                    }}>{title}</p>
+                    <p className="font-sans" style={{
+                      fontSize: "0.72rem",
+                      color: "var(--text-muted)",
+                      margin: "0.2rem 0 0",
+                      lineHeight: 1.3,
+                    }}>{issuer}</p>
+                  </div>
+                  {date !== "—" && (
+                    <span className="glass-badge" style={{ fontSize: "0.58rem", whiteSpace: "nowrap", flexShrink: 0 }}>
+                      {date}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          9. CLOSING CTA
       ══════════════════════════════════════════════ */}
       <section ref={ctaSectionRef} style={{
         background: "#100E0B",
