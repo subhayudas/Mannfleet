@@ -13,11 +13,11 @@ gsap.registerPlugin(ScrollTrigger);
 /* ─────────────────────────────────────────────────────────────
    TYPES
 ───────────────────────────────────────────────────────────── */
-type Category = "ECONOMY" | "PREMIUM" | "LUXURY" | "SUPER LUXURY";
-type VehicleType = "Sedans" | "SUVs" | "Vans" | "Coaches";
+type Category = "ECONOMY" | "PREMIUM" | "LUXURY" | "SUPER LUXURY" | "SELF DRIVING" | "LONG TERM LEASING";
+type VehicleType = "Sedans" | "SUVs" | "Vans" | "Coaches" | "Self Driving" | "Long Term Leasing";
 
-const CATEGORY_ORDER: Category[] = ["ECONOMY", "PREMIUM", "LUXURY", "SUPER LUXURY"];
-const VEHICLE_TYPES: VehicleType[] = ["Sedans", "SUVs", "Vans", "Coaches"];
+const CATEGORY_ORDER: Category[] = ["ECONOMY", "PREMIUM", "LUXURY", "SUPER LUXURY", "SELF DRIVING", "LONG TERM LEASING"];
+const VEHICLE_TYPES: VehicleType[] = ["Sedans", "SUVs", "Vans", "Coaches", "Self Driving", "Long Term Leasing"];
 
 interface Vehicle {
   id: string;
@@ -255,16 +255,82 @@ const VEHICLES: Vehicle[] = [
     seating: "21 Full Recliners", luggage: "Maximum — 13.5m wheelbase, largest under-floor storage",
     image: "/Mann%20car%20pictures/Volvo%20jet%20on%20wheels.jpeg",
   },
+
+  /* ── SELF DRIVING ────────────────────────────────────────── */
+  {
+    id: "sd-dzire", name: "Maruti Suzuki Dzire (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    seating: "5 Seater", luggage: "382 Litres",
+    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=700&q=80",
+  },
+  {
+    id: "sd-city", name: "Honda City (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    seating: "5 Seater", luggage: "506 Litres",
+    image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=700&q=80",
+  },
+  {
+    id: "sd-creta", name: "Hyundai Creta (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    seating: "5 Seater", luggage: "433 Litres",
+    image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=700&q=80",
+  },
+  {
+    id: "sd-crysta", name: "Toyota Innova Crysta (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    seating: "7–8 Seater", luggage: "300L (all rows) / 758L (3rd row folded)",
+    image: "/Mann%20car%20pictures/CRYSTA.png",
+  },
+  {
+    id: "sd-camry", name: "Toyota Camry Hybrid (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    seating: "5 Seater", luggage: "524 Litres",
+    image: "/Mann%20car%20pictures/Camry.png",
+  },
+  {
+    id: "sd-fortuner", name: "Toyota Fortuner (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    seating: "7 Seater", luggage: "296L (all rows) / 716L (3rd row folded)",
+    image: "/Mann%20car%20pictures/Fortuner.png",
+  },
+
+  /* ── LONG TERM LEASING ───────────────────────────────────── */
+  {
+    id: "lt-dzire", name: "Maruti Suzuki Dzire (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "5 Seater", luggage: "382 Litres",
+    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=700&q=80",
+  },
+  {
+    id: "lt-hycross", name: "Toyota Innova Hycross (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "7–8 Seater", luggage: "300L / 991L (3rd row folded)",
+    image: "/Mann%20car%20pictures/HYCROSS.png",
+  },
+  {
+    id: "lt-crysta", name: "Toyota Innova Crysta (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "7–8 Seater", luggage: "300L / 758L (3rd row folded)",
+    image: "/Mann%20car%20pictures/CRYSTA.png",
+  },
+  {
+    id: "lt-e-class", name: "Mercedes-Benz E-Class (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "5 Seater", luggage: "540 Litres",
+    image: "/Mann%20car%20pictures/E%20class2026-04-12%20at%201.40.11%20PM.png",
+  },
+  {
+    id: "lt-s-class", name: "Mercedes-Benz S-Class (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "4–5 Seater", luggage: "550 Litres",
+    image: "/Mann%20car%20pictures/S%20class.png",
+  },
+  {
+    id: "lt-gls", name: "Mercedes-Benz GLS 400 (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "7 Seater", luggage: "355L / 890L (3rd row folded)",
+    image: "/Mann%20car%20pictures/GLS.png",
+  },
 ];
 
 /* ─────────────────────────────────────────────────────────────
    CATEGORY STYLING
 ───────────────────────────────────────────────────────────── */
 const CATEGORY_CONFIG: Record<Category, { color: string; bg: string; border: string }> = {
-  "ECONOMY":       { color: "#4ade80", bg: "rgba(74,222,128,0.12)", border: "rgba(74,222,128,0.30)" },
-  "PREMIUM":       { color: "#60a5fa", bg: "rgba(96,165,250,0.12)", border: "rgba(96,165,250,0.30)" },
-  "LUXURY":        { color: "#f59e0b", bg: "rgba(245,158,11,0.12)",  border: "rgba(245,158,11,0.30)"  },
-  "SUPER LUXURY":  { color: "#e879f9", bg: "rgba(232,121,249,0.12)", border: "rgba(232,121,249,0.30)" },
+  "ECONOMY":           { color: "#4ade80", bg: "rgba(74,222,128,0.12)", border: "rgba(74,222,128,0.30)" },
+  "PREMIUM":           { color: "#60a5fa", bg: "rgba(96,165,250,0.12)", border: "rgba(96,165,250,0.30)" },
+  "LUXURY":            { color: "#f59e0b", bg: "rgba(245,158,11,0.12)",  border: "rgba(245,158,11,0.30)"  },
+  "SUPER LUXURY":      { color: "#e879f9", bg: "rgba(232,121,249,0.12)", border: "rgba(232,121,249,0.30)" },
+  "SELF DRIVING":      { color: "#34d399", bg: "rgba(52,211,153,0.12)",  border: "rgba(52,211,153,0.30)" },
+  "LONG TERM LEASING": { color: "#fb923c", bg: "rgba(251,146,60,0.12)",  border: "rgba(251,146,60,0.30)" },
 };
 
 /* ─────────────────────────────────────────────────────────────

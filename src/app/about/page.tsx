@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
@@ -110,10 +111,172 @@ function ArrowUpRight({ size = 14 }: { size?: number }) {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   PDF CERTIFICATE MODAL
+══════════════════════════════════════════════════════════════ */
+interface CertEntry { title: string; issuer: string; year?: string; pdf: string }
+
+function CertModal({ entry, onClose }: { entry: CertEntry; onClose: () => void }) {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const panelRef   = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power2.out" });
+    gsap.fromTo(panelRef.current,
+      { opacity: 0, scale: 0.93, y: 32 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.38, ease: "back.out(1.5)" }
+    );
+  }, [mounted]);
+
+  const handleClose = useCallback(() => {
+    gsap.to(panelRef.current,   { opacity: 0, scale: 0.94, y: 16, duration: 0.2, ease: "power2.in" });
+    gsap.to(overlayRef.current, { opacity: 0, duration: 0.26, ease: "power2.in", onComplete: onClose });
+  }, [onClose]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") handleClose(); };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [handleClose]);
+
+  if (!mounted) return null;
+  return createPortal(
+    <div
+      ref={overlayRef}
+      onClick={(e) => { if (e.target === overlayRef.current) handleClose(); }}
+      style={{
+        position: "fixed", inset: 0, zIndex: 1200,
+        background: "rgba(0,0,0,0.72)",
+        backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "1.25rem",
+      }}
+    >
+      <div ref={panelRef} style={{
+        width: "100%", maxWidth: 760,
+        maxHeight: "92vh",
+        borderRadius: "1.75rem",
+        overflow: "hidden",
+        background: "var(--bg-surface)",
+        border: "1px solid var(--border-mid)",
+        boxShadow: "0 32px 80px rgba(0,0,0,0.55), inset 0 1px 0 var(--inner-light)",
+        display: "flex",
+        flexDirection: "column",
+      }}>
+        {/* Header */}
+        <div style={{
+          padding: "1.5rem 1.75rem 1.25rem",
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          gap: "1rem",
+          borderBottom: "1px solid var(--border-subtle)",
+          background: "var(--glass-ultra)",
+          backdropFilter: "blur(20px)",
+          flexShrink: 0,
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            {/* Trophy illustration */}
+            <div style={{
+              width: 52, height: 52, borderRadius: "14px",
+              background: "linear-gradient(135deg, rgba(200,40,40,0.18) 0%, rgba(200,40,40,0.06) 100%)",
+              border: "1px solid rgba(200,40,40,0.28)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0,
+              boxShadow: "0 4px 16px rgba(200,40,40,0.12), inset 0 1px 0 rgba(255,255,255,0.06)",
+            }}>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+                stroke="var(--accent)" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M8 21h8M12 17v4" />
+                <path d="M7 4H4a2 2 0 0 0-2 2v1c0 3.31 2.69 6 6 6" />
+                <path d="M17 4h3a2 2 0 0 1 2 2v1c0 3.31-2.69 6-6 6" />
+                <path d="M12 17c-3.87 0-7-3.13-7-7V4h14v6c0 3.87-3.13 7-7 7z" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-sans" style={{
+                fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.14em",
+                textTransform: "uppercase", color: "var(--accent)", margin: "0 0 0.25rem",
+              }}>Certificate of Recognition</p>
+              <h3 className="font-sans" style={{
+                fontSize: "0.95rem", fontWeight: 700,
+                color: "var(--text-primary)", margin: "0 0 0.2rem", lineHeight: 1.3,
+              }}>{entry.title}</h3>
+              <p className="font-sans" style={{
+                fontSize: "0.72rem", color: "var(--text-muted)", margin: 0,
+              }}>
+                {entry.issuer}{entry.year ? ` · ${entry.year}` : ""}
+              </p>
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
+            <a
+              href={entry.pdf} download
+              className="btn-ghost font-sans"
+              style={{ fontSize: "0.68rem", padding: "0.42rem 0.9rem", display: "inline-flex", alignItems: "center", gap: "0.35rem", textDecoration: "none" }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download
+            </a>
+            <button
+              onClick={handleClose}
+              style={{
+                width: 34, height: 34, borderRadius: "50%",
+                background: "var(--glass-mid)", border: "1px solid var(--border-subtle)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                cursor: "pointer", color: "var(--text-muted)",
+                flexShrink: 0,
+              }}
+              aria-label="Close"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* PDF iframe */}
+        <div style={{ flex: 1, minHeight: 0, position: "relative", background: "#1a1714" }}>
+          {/* Decorative corner marks */}
+          {["topLeft","topRight","bottomLeft","bottomRight"].map((pos) => (
+            <div key={pos} style={{
+              position: "absolute", zIndex: 2,
+              width: 20, height: 20,
+              ...(pos.includes("top")    ? { top: 10 }    : { bottom: 10 }),
+              ...(pos.includes("Left")   ? { left: 10 }   : { right: 10 }),
+              borderTop:    pos.includes("top")   ? "2px solid rgba(200,40,40,0.35)" : "none",
+              borderBottom: pos.includes("bottom")? "2px solid rgba(200,40,40,0.35)" : "none",
+              borderLeft:   pos.includes("Left")  ? "2px solid rgba(200,40,40,0.35)" : "none",
+              borderRight:  pos.includes("Right") ? "2px solid rgba(200,40,40,0.35)" : "none",
+              pointerEvents: "none",
+            }} />
+          ))}
+          <iframe
+            src={`${entry.pdf}#toolbar=0&view=FitH`}
+            title={entry.title}
+            style={{ width: "100%", height: "100%", minHeight: 480, border: "none", display: "block" }}
+          />
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════
    MAIN PAGE
 ══════════════════════════════════════════════════════════════ */
 export default function AboutPage() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const [openCert, setOpenCert] = useState<CertEntry | null>(null);
 
   /* ── Hero refs ── */
   const heroBadgeRef    = useRef<HTMLDivElement>(null);
@@ -123,6 +286,11 @@ export default function AboutPage() {
   const heroYearRef     = useRef<HTMLDivElement>(null);
   const heroSublineRef  = useRef<HTMLParagraphElement>(null);
   const heroScrollRef   = useRef<HTMLDivElement>(null);
+
+  /* ── OUR USPs refs ── */
+  const uspSectionRef  = useRef<HTMLElement>(null);
+  const uspHeadRef     = useRef<HTMLDivElement>(null);
+  const uspCardsRef    = useRef<HTMLDivElement>(null);
 
   /* ── What We Are refs ── */
   const wareSectionRef  = useRef<HTMLElement>(null);
@@ -223,6 +391,24 @@ export default function AboutPage() {
       gsap.to(heroScrollRef.current, {
         y: 10, duration: 1.1, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 1.2,
       });
+
+      /* ────────────────────────────────────────────────
+         OUR USPs — scroll-triggered
+      ──────────────────────────────────────────────── */
+      gsap.fromTo(uspHeadRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.7, ease: "power3.out",
+          scrollTrigger: { trigger: uspSectionRef.current, start: "top 78%" },
+        }
+      );
+      gsap.fromTo(uspCardsRef.current!.children,
+        { y: 60, opacity: 0, scale: 0.94 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 0.65, stagger: 0.14, ease: "power3.out",
+          scrollTrigger: { trigger: uspCardsRef.current, start: "top 82%" },
+        }
+      );
 
       /* ────────────────────────────────────────────────
          WHAT WE ARE — scroll-triggered
@@ -517,6 +703,7 @@ export default function AboutPage() {
   ════════════════════════════════════════════════════════════ */
   return (
     <div ref={pageRef}>
+      {openCert && <CertModal entry={openCert} onClose={() => setOpenCert(null)} />}
       <Navbar />
 
       {/* ══════════════════════════════════════════════
@@ -691,7 +878,212 @@ export default function AboutPage() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          2. WHAT WE ARE
+          2. OUR USPs
+      ══════════════════════════════════════════════ */}
+      <section ref={uspSectionRef} style={{
+        background: "var(--bg-deep)",
+        padding: "clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)",
+        overflow: "hidden",
+      }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <div ref={uspHeadRef} style={{ textAlign: "center", marginBottom: "3.5rem", opacity: 0 }}>
+            <span className="glass-badge" style={{ marginBottom: "1rem", display: "inline-block" }}>Our USPs</span>
+            <h2 className="font-serif" style={{
+              fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
+              fontWeight: 400,
+              lineHeight: 1.1,
+              color: "var(--text-primary)",
+              margin: "0 0 1rem",
+            }}>
+              Why Choose<br />
+              <span className="italic" style={{ color: "var(--text-secondary)" }}>Mann Fleet Partners</span>
+            </h2>
+            <p className="font-sans" style={{
+              fontSize: "0.95rem",
+              lineHeight: 1.8,
+              color: "var(--text-secondary)",
+              maxWidth: 520,
+              margin: "0 auto",
+            }}>
+              Four decades of unmatched excellence — the reasons the world's most demanding clients trust us above all others.
+            </p>
+          </div>
+
+          <div ref={uspCardsRef} style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+            gap: "1.25rem",
+          }}>
+            {[
+              {
+                icon: "🏆",
+                title: "40+ Years of Expertise",
+                desc: "Four decades of industry leadership since 1986. We have set the gold standard for luxury ground transportation — twice incorporated, always ahead.",
+              },
+              {
+                icon: "🌐",
+                title: "Fortune 500 Clientele",
+                desc: "Trusted by the world's most prestigious corporations, diplomatic embassies, and high-net-worth individuals across India and global markets.",
+              },
+              {
+                icon: "🥇",
+                title: "3× National Award Winners",
+                desc: "Consecutive National Tourism Awards (2016–2019) from the Ministry of Tourism, Government of India — the highest recognition in our industry.",
+              },
+              {
+                icon: "🤝",
+                title: "Diplomatic Trust",
+                desc: "Managed the last four US Presidential Visits (2011, 2014, 2020, 2023). Trusted partners to the Embassies of UAE, Qatar, Canada, and Finland.",
+              },
+              {
+                icon: "📍",
+                title: "Pan-India Reach",
+                desc: "Seamless operations across 85+ cities in India — from metro hubs to tier-2 cities — with a single point of contact and consistent service quality.",
+              },
+              {
+                icon: "✈️",
+                title: "4 Global Hubs",
+                desc: "Beyond India, we operate in UAE (Dubai & Abu Dhabi), Saudi Arabia (Riyadh & Jeddah), and England (London & surrounds) — delivering world-class service wherever you are.",
+              },
+            ].map(({ icon, title, desc }) => (
+              <div key={title} className="glass-card" style={{
+                padding: "2rem",
+                borderRadius: "1.5rem",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+                opacity: 0,
+              }}>
+                <div style={{
+                  width: 52, height: 52,
+                  borderRadius: "14px",
+                  background: "var(--glass-mid)",
+                  border: "1px solid var(--border-subtle)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "1.5rem",
+                  boxShadow: "inset 0 1px 0 var(--inner-light)",
+                }}>
+                  {icon}
+                </div>
+                <div>
+                  <h3 className="font-sans" style={{
+                    fontSize: "1rem", fontWeight: 700,
+                    color: "var(--text-primary)", margin: "0 0 0.5rem",
+                    lineHeight: 1.3,
+                  }}>{title}</h3>
+                  <p className="font-sans" style={{
+                    fontSize: "0.875rem", lineHeight: 1.7,
+                    color: "var(--text-secondary)", margin: 0,
+                  }}>{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          3. WHAT WE DO (moved here from section 4)
+      ══════════════════════════════════════════════ */}
+      <section ref={wdoSectionRef} style={{
+        background: "var(--bg-base)",
+        padding: "clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)",
+        overflow: "hidden",
+      }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <div style={{ maxWidth: 700, marginBottom: "3.5rem" }}>
+            <span className="glass-badge" style={{ marginBottom: "1rem", display: "inline-block" }}>What We Do</span>
+            <h2 ref={wdoHeadRef} className="font-serif" style={{
+              fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
+              fontWeight: 400,
+              lineHeight: 1.1,
+              color: "var(--text-primary)",
+              margin: "0 0 1.5rem",
+              opacity: 0,
+            }}>
+              Full-Stack<br />
+              <span className="italic" style={{ color: "var(--text-secondary)" }}>Chauffeured Services</span>
+            </h2>
+            <p ref={wdoParaRef} className="font-sans" style={{
+              fontSize: "1rem",
+              lineHeight: 1.8,
+              color: "var(--text-secondary)",
+              margin: 0,
+              opacity: 0,
+            }}>
+              From ultra-luxury sedans to high-capacity premium coaches, we deliver seamless end-to-end mobility. Technology-enabled fleet management meets a relentless commitment to safety and punctuality.
+            </p>
+          </div>
+
+          <div ref={wdoCardsRef} style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+            gap: "1.25rem",
+          }}>
+            {[
+              {
+                icon: <IconCar />,
+                title: "Corporate Car Rentals",
+                badge: "CCR",
+                desc: "Mission-critical, technology-enabled fleet management for Fortune 500 corporates, embassies, and institutional clients. Seamless, on-demand, always punctual.",
+              },
+              {
+                icon: <IconEvent />,
+                title: "Event Transportation",
+                badge: "Bespoke",
+                desc: "End-to-end mobility for world-class events — from G20 summits to landmark VVIP weddings. We flawlessly execute the most complex logistical requirements.",
+              },
+              {
+                icon: <IconBespoke />,
+                title: "Retail Solutions",
+                badge: "Premium",
+                desc: "Bespoke retail transport solutions for high-net-worth individuals and discerning travellers. Ultra-luxury vehicles, curated for perfection.",
+              },
+            ].map(({ icon, title, badge, desc }) => (
+              <div key={title} className="glass-card" style={{
+                padding: "2rem",
+                borderRadius: "1.5rem",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1.25rem",
+                opacity: 0,
+              }}>
+                <div style={{
+                  width: 52, height: 52,
+                  borderRadius: "14px",
+                  background: "var(--glass-mid)",
+                  border: "1px solid var(--border-subtle)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--text-primary)",
+                  boxShadow: "inset 0 1px 0 var(--inner-light)",
+                }}>
+                  {icon}
+                </div>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.6rem" }}>
+                    <h3 className="font-sans" style={{
+                      fontSize: "1rem", fontWeight: 600,
+                      color: "var(--text-primary)", margin: 0,
+                    }}>{title}</h3>
+                    <span className="glass-badge" style={{ fontSize: "0.58rem" }}>{badge}</span>
+                  </div>
+                  <p className="font-sans" style={{
+                    fontSize: "0.875rem", lineHeight: 1.7,
+                    color: "var(--text-secondary)", margin: 0,
+                  }}>{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          4. WHAT WE ARE
       ══════════════════════════════════════════════ */}
       <section ref={wareSectionRef} style={{
         position: "relative",
@@ -765,7 +1157,7 @@ export default function AboutPage() {
                 {[
                   { val: "40+",  label: "Years of industry leadership" },
                   { val: "F500", label: "Fortune 500 clientele" },
-                  { val: "4",    label: "Global hubs — UAE, KSA, England, India" },
+                  { val: "85+",  label: "Cities across India & 4 global hubs — UAE, KSA, England" },
                 ].map(({ val, label }) => (
                   <div key={label} className="glass-panel" style={{
                     display: "flex",
@@ -993,104 +1385,6 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════
-          4. WHAT WE DO
-      ══════════════════════════════════════════════ */}
-      <section ref={wdoSectionRef} style={{
-        background: "var(--bg-base)",
-        padding: "clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)",
-        overflow: "hidden",
-      }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ maxWidth: 700, marginBottom: "3.5rem" }}>
-            <span className="glass-badge" style={{ marginBottom: "1rem", display: "inline-block" }}>What We Do</span>
-            <h2 ref={wdoHeadRef} className="font-serif" style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-              fontWeight: 400,
-              lineHeight: 1.1,
-              color: "var(--text-primary)",
-              margin: "0 0 1.5rem",
-              opacity: 0,
-            }}>
-              Full-Stack<br />
-              <span className="italic" style={{ color: "var(--text-secondary)" }}>Chauffeured Services</span>
-            </h2>
-            <p ref={wdoParaRef} className="font-sans" style={{
-              fontSize: "1rem",
-              lineHeight: 1.8,
-              color: "var(--text-secondary)",
-              margin: 0,
-              opacity: 0,
-            }}>
-              From ultra-luxury sedans to high-capacity premium coaches, we deliver seamless end-to-end mobility. Technology-enabled fleet management meets a relentless commitment to safety and punctuality.
-            </p>
-          </div>
-
-          <div ref={wdoCardsRef} style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-            gap: "1.25rem",
-          }}>
-            {[
-              {
-                icon: <IconCar />,
-                title: "Corporate Car Rentals",
-                badge: "CCR",
-                desc: "Mission-critical, technology-enabled fleet management for Fortune 500 corporates, embassies, and institutional clients. Seamless, on-demand, always punctual.",
-              },
-              {
-                icon: <IconEvent />,
-                title: "Event Transportation",
-                badge: "Bespoke",
-                desc: "End-to-end mobility for world-class events — from G20 summits to landmark VVIP weddings. We flawlessly execute the most complex logistical requirements.",
-              },
-              {
-                icon: <IconBespoke />,
-                title: "Retail Solutions",
-                badge: "Premium",
-                desc: "Bespoke retail transport solutions for high-net-worth individuals and discerning travellers. Ultra-luxury vehicles, curated for perfection.",
-              },
-            ].map(({ icon, title, badge, desc }) => (
-              <div key={title} className="glass-card" style={{
-                padding: "2rem",
-                borderRadius: "1.5rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1.25rem",
-                opacity: 0,
-              }}>
-                <div style={{
-                  width: 52, height: 52,
-                  borderRadius: "14px",
-                  background: "var(--glass-mid)",
-                  border: "1px solid var(--border-subtle)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "var(--text-primary)",
-                  boxShadow: "inset 0 1px 0 var(--inner-light)",
-                }}>
-                  {icon}
-                </div>
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.6rem" }}>
-                    <h3 className="font-sans" style={{
-                      fontSize: "1rem", fontWeight: 600,
-                      color: "var(--text-primary)", margin: 0,
-                    }}>{title}</h3>
-                    <span className="glass-badge" style={{ fontSize: "0.58rem" }}>{badge}</span>
-                  </div>
-                  <p className="font-sans" style={{
-                    fontSize: "0.875rem", lineHeight: 1.7,
-                    color: "var(--text-secondary)", margin: 0,
-                  }}>{desc}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -1463,7 +1757,7 @@ export default function AboutPage() {
             justifyContent: "center",
           }}>
             {[
-              { region: "India", sub: "Primary Hub · Pan-India", primary: true },
+              { region: "India", sub: "85+ cities · Pan-India Operations", primary: true },
               { region: "UAE", sub: "Dubai & Abu Dhabi", primary: false },
               { region: "Saudi Arabia", sub: "Riyadh & Jeddah", primary: false },
               { region: "England", sub: "London & surrounds", primary: false },
@@ -1553,35 +1847,68 @@ export default function AboutPage() {
               gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
               gap: "1.25rem",
             }}>
-              {[
-                { title: "National Tourism Award", year: "2016–2017", issuer: "Ministry of Tourism, Govt. of India" },
-                { title: "National Tourism Award", year: "2017–2018", issuer: "Ministry of Tourism, Govt. of India" },
-                { title: "National Tourism Award", year: "2018–2019", issuer: "Ministry of Tourism, Govt. of India" },
-                { title: "Zee Business Award – Best Private Transport Service Provider", year: "2019", issuer: "Zee TV" },
-                { title: "TV Leaders of Road Transport", year: "2022", issuer: "TV 9 Network" },
-                { title: "Travel Enablers – Luxury Car Rentals", year: "—", issuer: "VFS Global Times Travel Awards" },
-                { title: "Global Tourism Awards", year: "—", issuer: "—" },
-              ].map(({ title, year, issuer }) => (
-                <div key={title + year} className="glass-card" style={{
-                  padding: "1.75rem",
-                  borderRadius: "1.5rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                  opacity: 0,
-                }}>
-                  <div style={{
-                    width: 48, height: 48,
-                    borderRadius: "12px",
-                    background: "var(--glass-light)",
-                    border: "1px solid var(--border-subtle)",
+              {([
+                { title: "National Tourism Award", year: "2016–2017", issuer: "Ministry of Tourism, Govt. of India", pdf: "/awards/National Tourism Award_2016-17.pdf" },
+                { title: "National Tourism Award", year: "2017–2018", issuer: "Ministry of Tourism, Govt. of India", pdf: "/awards/National Tourism Award_2017-18.pdf" },
+                { title: "National Tourism Award", year: "2018–2019", issuer: "Ministry of Tourism, Govt. of India", pdf: "/awards/National Tourism Award_2018-19.pdf" },
+                { title: "Zee Business Award – Best Private Transport Service Provider", year: "2019", issuer: "Zee TV", pdf: "/awards/Award_Maruti Suzuki.pdf" },
+                { title: "TV Leaders of Road Transport", year: "2022", issuer: "TV 9 Network", pdf: "/awards/Award_TV 9 Network.pdf" },
+                { title: "Travel Enablers – Luxury Car Rentals", year: "—", issuer: "VFS Global Times Travel Awards", pdf: "/awards/Award_Times Travel.pdf" },
+                { title: "Global Tourism Awards", year: "—", issuer: "—", pdf: "/awards/Global Tourism Awards.pdf" },
+              ] as (CertEntry & { year: string })[]).map(({ title, year, issuer, pdf }) => (
+                <div
+                  key={title + year}
+                  className="glass-card"
+                  onClick={() => setOpenCert({ title, issuer, year: year !== "—" ? year : undefined, pdf })}
+                  style={{
+                    padding: "1.75rem",
+                    borderRadius: "1.5rem",
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "var(--accent)",
-                    flexShrink: 0,
-                  }}>
-                    <IconNational />
+                    flexDirection: "column",
+                    gap: "1rem",
+                    opacity: 0,
+                    cursor: "pointer",
+                    transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(200,40,40,0.35)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 0 1px rgba(200,40,40,0.20), 0 8px 24px rgba(0,0,0,0.22)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = "";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "";
+                  }}
+                >
+                  {/* Icon + "View" pill row */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                    <div style={{
+                      width: 48, height: 48,
+                      borderRadius: "12px",
+                      background: "linear-gradient(135deg, rgba(200,40,40,0.16) 0%, rgba(200,40,40,0.05) 100%)",
+                      border: "1px solid rgba(200,40,40,0.24)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--accent)",
+                      flexShrink: 0,
+                      boxShadow: "0 4px 12px rgba(200,40,40,0.10)",
+                    }}>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M8 21h8M12 17v4"/>
+                        <path d="M7 4H4a2 2 0 0 0-2 2v1c0 3.31 2.69 6 6 6"/>
+                        <path d="M17 4h3a2 2 0 0 1 2 2v1c0 3.31-2.69 6-6 6"/>
+                        <path d="M12 17c-3.87 0-7-3.13-7-7V4h14v6c0 3.87-3.13 7-7 7z"/>
+                      </svg>
+                    </div>
+                    <span className="font-sans" style={{
+                      fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.12em",
+                      textTransform: "uppercase", color: "var(--accent)",
+                      padding: "0.22rem 0.7rem", borderRadius: 9999,
+                      background: "rgba(200,40,40,0.10)", border: "1px solid rgba(200,40,40,0.22)",
+                    }}>
+                      View Certificate
+                    </span>
                   </div>
                   <div>
                     <h3 className="font-sans" style={{
@@ -1623,33 +1950,47 @@ export default function AboutPage() {
             </div>
 
             <div ref={apprecListRef} style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              {[
-                { num: "01", title: "Appreciation for handling Young President Organization (YPO) Meet at Jamnagar, Gujarat", date: "19 Mar 2008", issuer: "Reliance Industries Limited" },
-                { num: "02", title: "Appreciation for providing services to Hon'ble Barack Obama, President, USA", date: "21 Apr 2011", issuer: "American Embassy, USA" },
-                { num: "03", title: "Appreciation for providing services to Hon'ble Joseph R. Biden, Vice President, USA", date: "14 Nov 2013", issuer: "Vice President, USA" },
-                { num: "04", title: "Certificate of Appreciation", date: "—", issuer: "Tamarind Global" },
-                { num: "05", title: "Token of Appreciation", date: "—", issuer: "United States Mission" },
-                { num: "06", title: "Token of Appreciation", date: "—", issuer: "White House, USA" },
-                { num: "07", title: "AFC Women's Asian Cup", date: "28 Feb 2022", issuer: "Asian Football Confederation (AFC)" },
-                { num: "08", title: "Letter of Appreciation", date: "25 Jul 2022", issuer: "Kolkata Knight Riders – IPL Team" },
-                { num: "09", title: "Letter of Appreciation", date: "28 Jul 2022", issuer: "Chennai Super Kings – IPL Team" },
-                { num: "10", title: "Appreciation for handling G20 Event", date: "29 May 2023", issuer: "G20 Secretariat, Ministry of External Affairs, Govt. of India" },
-                { num: "11", title: "Appreciation for handling National Conference of 1350 Employees", date: "27 Sep 2023", issuer: "Pernod Ricard" },
-                { num: "12", title: "Appreciation for Handling Town Hall Meet", date: "18 Oct 2023", issuer: "Indigo Airlines" },
-                { num: "13", title: "Appreciation for handling VIP Guests", date: "11 Jan 2024", issuer: "Indigo Paints" },
-                { num: "14", title: "Certificate of Appreciation (GST)", date: "2023–24", issuer: "Ministry of Finance, Govt. of India" },
-                { num: "15", title: "Appreciation for Handling IBM Board", date: "07 Nov 2024", issuer: "Abercrombie & Kent India" },
-                { num: "16", title: "Appreciation for handling Jet on Wheels Event", date: "22 Nov 2024", issuer: "Urban Provider" },
-              ].map(({ num, title, date, issuer }) => (
-                <div key={num} className="glass-panel" style={{
-                  padding: "1rem 1.5rem",
-                  borderRadius: "0.875rem",
-                  display: "grid",
-                  gridTemplateColumns: "2.5rem 1fr auto",
-                  gap: "1rem",
-                  alignItems: "center",
-                  opacity: 0,
-                }}>
+              {([
+                { num: "01", title: "Appreciation for handling Young President Organization (YPO) Meet at Jamnagar, Gujarat", date: "19 Mar 2008", issuer: "Reliance Industries Limited", pdf: "/Appreciation/Appreciation_Reliance.pdf" },
+                { num: "02", title: "Appreciation for providing services to Hon'ble Barack Obama, President, USA", date: "21 Apr 2011", issuer: "American Embassy, USA", pdf: "/awards/Appreciation_Embassy_USA.pdf" },
+                { num: "03", title: "Appreciation for providing services to Hon'ble Joseph R. Biden, Vice President, USA", date: "14 Nov 2013", issuer: "Vice President, USA", pdf: "/awards/Appreciation_Joe Biden_Vice President_USA.pdf" },
+                { num: "04", title: "Certificate of Appreciation", date: "—", issuer: "Tamarind Global", pdf: "/awards/Appreciation_Tamarind Global.pdf" },
+                { num: "05", title: "Token of Appreciation", date: "—", issuer: "United States Mission", pdf: "/awards/Token_Appreciation_US Mission.pdf" },
+                { num: "06", title: "Token of Appreciation", date: "—", issuer: "White House, USA", pdf: "/Appreciation/Token_Appreciation_White House_USA.pdf" },
+                { num: "07", title: "AFC Women's Asian Cup", date: "28 Feb 2022", issuer: "Asian Football Confederation (AFC)", pdf: "/Appreciation/Appreciation_AFC_Women Cup.pdf" },
+                { num: "08", title: "Letter of Appreciation", date: "25 Jul 2022", issuer: "Kolkata Knight Riders – IPL Team", pdf: null },
+                { num: "09", title: "Letter of Appreciation", date: "28 Jul 2022", issuer: "Chennai Super Kings – IPL Team", pdf: null },
+                { num: "10", title: "Appreciation for handling G20 Event", date: "29 May 2023", issuer: "G20 Secretariat, Ministry of External Affairs, Govt. of India", pdf: "/Appreciation/Appreciation_G20 Event.pdf" },
+                { num: "11", title: "Appreciation for handling National Conference of 1350 Employees", date: "27 Sep 2023", issuer: "Pernod Ricard", pdf: "/Appreciation/Appreciation_Pernord Ricard.pdf" },
+                { num: "12", title: "Appreciation for Handling Town Hall Meet", date: "18 Oct 2023", issuer: "Indigo Airlines", pdf: "/Appreciation/Appreciation_Indigo Airlines.pdf" },
+                { num: "13", title: "Appreciation for handling VIP Guests", date: "11 Jan 2024", issuer: "Indigo Paints", pdf: "/Appreciation/Appreciation_Indigo Paints.pdf" },
+                { num: "14", title: "Certificate of Appreciation (GST)", date: "2023–24", issuer: "Ministry of Finance, Govt. of India", pdf: "/Appreciation/Appreciation_GST Department.pdf" },
+                { num: "15", title: "Appreciation for Handling IBM Board", date: "07 Nov 2024", issuer: "Abercrombie & Kent India", pdf: "/Appreciation/Appreciation_IBM_BOD.pdf" },
+                { num: "16", title: "Appreciation for handling Jet on Wheels Event", date: "22 Nov 2024", issuer: "Urban Provider", pdf: "/Appreciation/Appreciation_Jet on Wheels_Urban Provider.pdf" },
+              ] as { num: string; title: string; date: string; issuer: string; pdf: string | null }[]).map(({ num, title, date, issuer, pdf }) => (
+                <div
+                  key={num}
+                  className="glass-panel"
+                  onClick={() => pdf && setOpenCert({ title, issuer, year: date !== "—" ? date : undefined, pdf })}
+                  style={{
+                    padding: "1rem 1.5rem",
+                    borderRadius: "0.875rem",
+                    display: "grid",
+                    gridTemplateColumns: "2.5rem 1fr auto",
+                    gap: "1rem",
+                    alignItems: "center",
+                    opacity: 0,
+                    cursor: pdf ? "pointer" : "default",
+                    transition: "border-color 0.18s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!pdf) return;
+                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.14)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = "";
+                  }}
+                >
                   <span className="font-serif" style={{
                     fontSize: "0.95rem",
                     fontWeight: 400,
@@ -1671,11 +2012,30 @@ export default function AboutPage() {
                       lineHeight: 1.3,
                     }}>{issuer}</p>
                   </div>
-                  {date !== "—" && (
-                    <span className="glass-badge" style={{ fontSize: "0.58rem", whiteSpace: "nowrap", flexShrink: 0 }}>
-                      {date}
-                    </span>
-                  )}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.4rem", flexShrink: 0 }}>
+                    {date !== "—" && (
+                      <span className="glass-badge" style={{ fontSize: "0.58rem", whiteSpace: "nowrap" }}>
+                        {date}
+                      </span>
+                    )}
+                    {pdf && (
+                      <span style={{
+                        display: "inline-flex", alignItems: "center", gap: "0.28rem",
+                        fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.1em",
+                        textTransform: "uppercase", color: "var(--accent)",
+                        padding: "0.18rem 0.6rem", borderRadius: 9999,
+                        background: "rgba(200,40,40,0.08)", border: "1px solid rgba(200,40,40,0.18)",
+                        whiteSpace: "nowrap",
+                      }}>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                          <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        View
+                      </span>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>

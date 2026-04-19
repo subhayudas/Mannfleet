@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
@@ -285,10 +286,10 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <div ref={ctasRef} className="flex items-center gap-4 flex-wrap" style={{ marginTop: "2.4rem", opacity: 0 }}>
-            <button className="btn-primary" style={{ fontSize: "0.78rem", padding: "0.82rem 1.8rem" }}>
+            <Link href="/fleet" className="btn-primary" style={{ fontSize: "0.78rem", padding: "0.82rem 1.8rem", display: "inline-flex", alignItems: "center", gap: "0.4rem", textDecoration: "none" }}>
               Browse Fleet
               <ArrowUpRight size={14} />
-            </button>
+            </Link>
 
             {/* Ghost white button — font-sans, uppercase */}
             <button

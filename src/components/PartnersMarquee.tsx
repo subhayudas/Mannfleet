@@ -83,16 +83,26 @@ function NoiseOverlay({
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Partners data
+   Clients data
 ───────────────────────────────────────────────────────────── */
 const PARTNERS = [
-  { src: "/Partners/g20-logo-600x330.webp",           alt: "G20" },
-  { src: "/Partners/Samsung-Logo-1.webp",              alt: "Samsung" },
-  { src: "/Partners/afc-logo-600x226.webp",            alt: "AFC" },
-  { src: "/Partners/F1-Logo-600x338.webp",             alt: "Formula 1" },
-  { src: "/Partners/us-ambessy-logo.webp",             alt: "US Embassy" },
-  { src: "/Partners/bosch-logo-removebg-preview.webp", alt: "Bosch" },
-  { src: "/Partners/300x300.webp",                     alt: "Partner" },
+  { src: "/cleints/PHOTO-2026-04-18-17-41-48.jpg",                          alt: "Client 1" },
+  { src: "/cleints/PHOTO-2026-04-18-17-52-11.jpg",                          alt: "Client 2" },
+  { src: "/cleints/PHOTO-2026-04-18-17-52-59.jpg",                          alt: "Client 3" },
+  { src: "/cleints/PHOTO-2026-04-18-17-53-20.jpg",                          alt: "Client 4" },
+  { src: "/cleints/PHOTO-2026-04-18-17-54-00.jpg",                          alt: "Client 5" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2017.54.39.jpeg",     alt: "Client 6" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2017.55.03.jpeg",     alt: "Client 7" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2017.56.05.jpeg",     alt: "Client 8" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2017.56.52.jpeg",     alt: "Client 9" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2017.58.06.jpeg",     alt: "Client 10" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2017.58.23.jpeg",     alt: "Client 11" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2017.59.29.jpeg",     alt: "Client 12" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2017.59.36.jpeg",     alt: "Client 13" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2018.00.09.jpeg",     alt: "Client 14" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2018.00.46.jpeg",     alt: "Client 15" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2018.01.19.jpeg",     alt: "Client 16" },
+  { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2018.01.27.jpeg",     alt: "Client 17" },
 ];
 
 const TRACK = [...PARTNERS, ...PARTNERS];
@@ -124,7 +134,7 @@ export default function PartnersMarquee() {
           className="text-2xl sm:text-3xl font-semibold text-emboss"
           style={{ color: "var(--text-primary)" }}
         >
-          Our Partners
+          Our Clients
         </h2>
         <div
           className="mx-auto mt-4"
