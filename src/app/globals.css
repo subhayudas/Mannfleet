@@ -415,11 +415,11 @@ body {
 ═══════════════════════════════════════════════════════════ */
 .glass-badge {
   display: inline-block;
-  padding: 0.18rem 0.78rem;
+  padding: 0.28rem 1.1rem;
   border-radius: 9999px;
-  font-size: 0.70rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-primary);
   background: rgba(255, 252, 245, 0.70);

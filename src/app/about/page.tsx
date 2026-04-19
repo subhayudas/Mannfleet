@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
@@ -355,6 +356,15 @@ export default function AboutPage() {
   const ctaLineLeftRef  = useRef<HTMLDivElement>(null);
   const ctaLineRightRef = useRef<HTMLDivElement>(null);
 
+  /* ── Cinematic reel refs ── */
+  const reelSectionRef  = useRef<HTMLElement>(null);
+  const reelOverlayRef  = useRef<HTMLDivElement>(null);
+  const reelQuoteRef    = useRef<HTMLDivElement>(null);
+
+  /* ── Awards photos ref ── */
+  const awardsPhotoRef  = useRef<HTMLDivElement>(null);
+
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       /* ────────────────────────────────────────────────
@@ -693,6 +703,44 @@ export default function AboutPage() {
           scrollTrigger: { trigger: apprecListRef.current, start: "top 82%" },
         }
       );
+      /* ────────────────────────────────────────────────
+         CINEMATIC REEL
+      ──────────────────────────────────────────────── */
+      gsap.fromTo(reelOverlayRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1, duration: 1.2, ease: "power2.out",
+          scrollTrigger: { trigger: reelSectionRef.current, start: "top 75%" },
+        }
+      );
+      gsap.fromTo(reelQuoteRef.current,
+        { y: 40, opacity: 0, filter: "blur(8px)" },
+        {
+          y: 0, opacity: 1, filter: "blur(0px)", duration: 1, ease: "power3.out",
+          scrollTrigger: { trigger: reelSectionRef.current, start: "top 72%" },
+        }
+      );
+
+      /* ────────────────────────────────────────────────
+         AWARDS PHOTOS
+      ──────────────────────────────────────────────── */
+      if (awardsPhotoRef.current) {
+        gsap.fromTo(awardsPhotoRef.current.children[0],
+          { x: -60, opacity: 0 },
+          {
+            x: 0, opacity: 1, duration: 0.85, ease: "power3.out",
+            scrollTrigger: { trigger: awardsPhotoRef.current, start: "top 82%" },
+          }
+        );
+        gsap.fromTo(awardsPhotoRef.current.children[1],
+          { x: 60, opacity: 0 },
+          {
+            x: 0, opacity: 1, duration: 0.85, ease: "power3.out",
+            scrollTrigger: { trigger: awardsPhotoRef.current, start: "top 82%" },
+          }
+        );
+      }
+
     }, pageRef);
 
     return () => ctx.revert();
@@ -719,6 +767,27 @@ export default function AboutPage() {
         overflow: "hidden",
         background: "#100E0B",
       }}>
+        {/* Background video */}
+        <video
+          autoPlay muted loop playsInline
+          style={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover",
+            opacity: 0.22,
+            zIndex: 0,
+          }}
+        >
+          <source src="/Maanherovideo.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark gradient over video */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(to bottom, rgba(16,14,11,0.55) 0%, rgba(16,14,11,0.30) 50%, rgba(16,14,11,0.75) 100%)",
+          zIndex: 1, pointerEvents: "none",
+        }} />
+
         {/* Faint watermark */}
         <div style={{
           position: "absolute",
@@ -728,7 +797,7 @@ export default function AboutPage() {
           justifyContent: "center",
           pointerEvents: "none",
           userSelect: "none",
-          zIndex: 0,
+          zIndex: 2,
         }}>
           <span className="font-serif" style={{
             fontSize: "clamp(8rem, 26vw, 22rem)",
@@ -752,7 +821,7 @@ export default function AboutPage() {
           borderRadius: "50%",
           background: "radial-gradient(ellipse, rgba(160,30,30,0.09) 0%, transparent 70%)",
           pointerEvents: "none",
-          zIndex: 0,
+          zIndex: 3,
         }} />
 
         {/* Content */}
@@ -867,7 +936,7 @@ export default function AboutPage() {
           gap: "0.4rem",
           opacity: 0,
           color: "rgba(255,255,255,0.28)",
-          zIndex: 10,
+          zIndex: 11,
         }}>
           <span className="font-sans" style={{
             fontSize: "0.58rem", fontWeight: 700,
@@ -881,105 +950,343 @@ export default function AboutPage() {
           2. OUR USPs
       ══════════════════════════════════════════════ */}
       <section ref={uspSectionRef} style={{
-        background: "var(--bg-deep)",
+        background: "var(--bg-base)",
         padding: "clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)",
         overflow: "hidden",
       }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <div ref={uspHeadRef} style={{ textAlign: "center", marginBottom: "3.5rem", opacity: 0 }}>
-            <span className="glass-badge" style={{ marginBottom: "1rem", display: "inline-block" }}>Our USPs</span>
-            <h2 className="font-serif" style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-              fontWeight: 400,
-              lineHeight: 1.1,
-              color: "var(--text-primary)",
-              margin: "0 0 1rem",
+
+          {/* ── Neobrutalist header ── */}
+          <div ref={uspHeadRef} style={{ marginBottom: "3.5rem", opacity: 0 }}>
+            <div style={{
+              borderTop: "4px solid var(--text-primary)",
+              paddingTop: "1.25rem",
+              marginBottom: "1.25rem",
+              display: "flex",
+              alignItems: "baseline",
+              gap: "1.5rem",
             }}>
-              Why Choose<br />
-              <span className="italic" style={{ color: "var(--text-secondary)" }}>Mann Fleet Partners</span>
+              <span className="font-sans" style={{
+                fontSize: "clamp(0.65rem, 1.2vw, 0.75rem)",
+                fontWeight: 800,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--text-muted)",
+              }}>02 / Our Advantages</span>
+            </div>
+            <h2 className="font-serif" style={{
+              fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)",
+              fontWeight: 400,
+              lineHeight: 1.05,
+              color: "var(--text-primary)",
+              margin: "0 0 1.25rem",
+            }}>
+              Why the world&apos;s most<br />
+              <span className="italic">demanding clients choose us.</span>
             </h2>
             <p className="font-sans" style={{
               fontSize: "0.95rem",
               lineHeight: 1.8,
               color: "var(--text-secondary)",
-              maxWidth: 520,
-              margin: "0 auto",
+              maxWidth: 560,
+              margin: 0,
             }}>
-              Four decades of unmatched excellence — the reasons the world's most demanding clients trust us above all others.
+              Four decades of unmatched excellence — six reasons that set Mann Fleet apart from every alternative.
             </p>
           </div>
 
+          {/* ── Neobrutalist card grid ── */}
           <div ref={uspCardsRef} style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-            gap: "1.25rem",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "0",
           }}>
-            {[
-              {
-                icon: "🏆",
-                title: "40+ Years of Expertise",
-                desc: "Four decades of industry leadership since 1986. We have set the gold standard for luxury ground transportation — twice incorporated, always ahead.",
-              },
-              {
-                icon: "🌐",
-                title: "Fortune 500 Clientele",
-                desc: "Trusted by the world's most prestigious corporations, diplomatic embassies, and high-net-worth individuals across India and global markets.",
-              },
-              {
-                icon: "🥇",
-                title: "3× National Award Winners",
-                desc: "Consecutive National Tourism Awards (2016–2019) from the Ministry of Tourism, Government of India — the highest recognition in our industry.",
-              },
-              {
-                icon: "🤝",
-                title: "Diplomatic Trust",
-                desc: "Managed the last four US Presidential Visits (2011, 2014, 2020, 2023). Trusted partners to the Embassies of UAE, Qatar, Canada, and Finland.",
-              },
-              {
-                icon: "📍",
-                title: "Pan-India Reach",
-                desc: "Seamless operations across 85+ cities in India — from metro hubs to tier-2 cities — with a single point of contact and consistent service quality.",
-              },
-              {
-                icon: "✈️",
-                title: "4 Global Hubs",
-                desc: "Beyond India, we operate in UAE (Dubai & Abu Dhabi), Saudi Arabia (Riyadh & Jeddah), and England (London & surrounds) — delivering world-class service wherever you are.",
-              },
-            ].map(({ icon, title, desc }) => (
-              <div key={title} className="glass-card" style={{
-                padding: "2rem",
-                borderRadius: "1.5rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                opacity: 0,
-              }}>
+
+            {/* Card 1 — 40+ Years (span 2, red) */}
+            <div style={{
+              gridColumn: "span 2",
+              background: "var(--accent)",
+              border: "3px solid var(--text-primary)",
+              borderRight: "1.5px solid var(--text-primary)",
+              borderBottom: "1.5px solid var(--text-primary)",
+              padding: "2.25rem 2.5rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              minHeight: 280,
+              opacity: 0,
+            }}>
+              <div style={{
+                fontSize: "clamp(4rem, 8vw, 7rem)",
+                fontWeight: 900,
+                lineHeight: 1,
+                color: "rgba(255,255,255,0.18)",
+                fontFamily: "var(--font-geist-sans, sans-serif)",
+                userSelect: "none",
+              }}>01</div>
+              <div>
                 <div style={{
-                  width: 52, height: 52,
-                  borderRadius: "14px",
-                  background: "var(--glass-mid)",
-                  border: "1px solid var(--border-subtle)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1.5rem",
-                  boxShadow: "inset 0 1px 0 var(--inner-light)",
+                  height: "1px",
+                  background: "rgba(255,255,255,0.35)",
+                  marginBottom: "1rem",
+                }} />
+                <h3 className="font-sans" style={{
+                  fontSize: "1.05rem",
+                  fontWeight: 800,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "#ffffff",
+                  margin: "0 0 0.6rem",
+                }}>40+ Years of Expertise</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem",
+                  lineHeight: 1.7,
+                  color: "rgba(255,255,255,0.82)",
+                  margin: 0,
+                  maxWidth: 480,
                 }}>
-                  {icon}
-                </div>
-                <div>
-                  <h3 className="font-sans" style={{
-                    fontSize: "1rem", fontWeight: 700,
-                    color: "var(--text-primary)", margin: "0 0 0.5rem",
-                    lineHeight: 1.3,
-                  }}>{title}</h3>
-                  <p className="font-sans" style={{
-                    fontSize: "0.875rem", lineHeight: 1.7,
-                    color: "var(--text-secondary)", margin: 0,
-                  }}>{desc}</p>
-                </div>
+                  Four decades of industry leadership since 1986. We have set the gold standard for luxury ground transportation — twice incorporated, always ahead.
+                </p>
               </div>
-            ))}
+            </div>
+
+            {/* Card 2 — Fortune 500 */}
+            <div style={{
+              background: "var(--bg-surface)",
+              border: "3px solid var(--text-primary)",
+              borderLeft: "1.5px solid var(--text-primary)",
+              borderBottom: "1.5px solid var(--text-primary)",
+              padding: "2.25rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              opacity: 0,
+            }}>
+              <div style={{
+                fontSize: "clamp(3rem, 5vw, 5rem)",
+                fontWeight: 900,
+                lineHeight: 1,
+                color: "var(--text-primary)",
+                opacity: 0.10,
+                fontFamily: "var(--font-geist-sans, sans-serif)",
+                userSelect: "none",
+              }}>02</div>
+              <div>
+                <div style={{
+                  height: "2px",
+                  background: "var(--text-primary)",
+                  marginBottom: "1rem",
+                }} />
+                <h3 className="font-sans" style={{
+                  fontSize: "1.05rem",
+                  fontWeight: 800,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--text-primary)",
+                  margin: "0 0 0.6rem",
+                }}>Fortune 500 Clientele</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem",
+                  lineHeight: 1.7,
+                  color: "var(--text-secondary)",
+                  margin: 0,
+                }}>
+                  Trusted by the world&apos;s most prestigious corporations, diplomatic embassies, and high-net-worth individuals across India and global markets.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3 — Awards (deep beige) */}
+            <div style={{
+              background: "var(--bg-deep)",
+              border: "3px solid var(--text-primary)",
+              borderTop: "1.5px solid var(--text-primary)",
+              borderRight: "1.5px solid var(--text-primary)",
+              padding: "2.25rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              opacity: 0,
+            }}>
+              <div style={{
+                fontSize: "clamp(3rem, 5vw, 5rem)",
+                fontWeight: 900,
+                lineHeight: 1,
+                color: "var(--text-primary)",
+                opacity: 0.10,
+                fontFamily: "var(--font-geist-sans, sans-serif)",
+                userSelect: "none",
+              }}>03</div>
+              <div>
+                <div style={{
+                  height: "2px",
+                  background: "var(--text-primary)",
+                  marginBottom: "1rem",
+                }} />
+                <h3 className="font-sans" style={{
+                  fontSize: "1.05rem",
+                  fontWeight: 800,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--text-primary)",
+                  margin: "0 0 0.6rem",
+                }}>3× National Award Winners</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem",
+                  lineHeight: 1.7,
+                  color: "var(--text-secondary)",
+                  margin: 0,
+                }}>
+                  Consecutive National Tourism Awards (2016–2019) from the Ministry of Tourism, Government of India — the highest recognition in our industry.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4 — Diplomatic Trust (span 2, dark) */}
+            <div style={{
+              gridColumn: "span 2",
+              background: "var(--text-primary)",
+              border: "3px solid var(--text-primary)",
+              borderLeft: "1.5px solid var(--text-primary)",
+              borderTop: "1.5px solid var(--text-primary)",
+              padding: "2.25rem 2.5rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              minHeight: 260,
+              opacity: 0,
+            }}>
+              <div style={{
+                fontSize: "clamp(4rem, 8vw, 7rem)",
+                fontWeight: 900,
+                lineHeight: 1,
+                color: "rgba(244,239,230,0.12)",
+                fontFamily: "var(--font-geist-sans, sans-serif)",
+                userSelect: "none",
+              }}>04</div>
+              <div>
+                <div style={{
+                  height: "1px",
+                  background: "rgba(244,239,230,0.25)",
+                  marginBottom: "1rem",
+                }} />
+                <h3 className="font-sans" style={{
+                  fontSize: "1.05rem",
+                  fontWeight: 800,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--bg-base)",
+                  margin: "0 0 0.6rem",
+                }}>Diplomatic Trust</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem",
+                  lineHeight: 1.7,
+                  color: "rgba(244,239,230,0.72)",
+                  margin: 0,
+                  maxWidth: 480,
+                }}>
+                  Managed the last four US Presidential Visits (2011, 2014, 2020, 2023). Trusted partners to the Embassies of UAE, Qatar, Canada, and Finland.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 5 — Pan-India */}
+            <div style={{
+              background: "var(--bg-deep)",
+              border: "3px solid var(--text-primary)",
+              borderTop: "1.5px solid var(--text-primary)",
+              borderRight: "1.5px solid var(--text-primary)",
+              borderBottom: "none",
+              padding: "2.25rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              opacity: 0,
+            }}>
+              <div style={{
+                fontSize: "clamp(3rem, 5vw, 5rem)",
+                fontWeight: 900,
+                lineHeight: 1,
+                color: "var(--text-primary)",
+                opacity: 0.10,
+                fontFamily: "var(--font-geist-sans, sans-serif)",
+                userSelect: "none",
+              }}>05</div>
+              <div>
+                <div style={{
+                  height: "2px",
+                  background: "var(--text-primary)",
+                  marginBottom: "1rem",
+                }} />
+                <h3 className="font-sans" style={{
+                  fontSize: "1.05rem",
+                  fontWeight: 800,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--text-primary)",
+                  margin: "0 0 0.6rem",
+                }}>Pan-India Reach</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem",
+                  lineHeight: 1.7,
+                  color: "var(--text-secondary)",
+                  margin: 0,
+                }}>
+                  Seamless operations across 85+ cities in India — from metro hubs to tier-2 cities — with a single point of contact and consistent service quality.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 6 — Global Hubs (span 2) */}
+            <div style={{
+              gridColumn: "span 2",
+              background: "var(--bg-base)",
+              border: "3px solid var(--text-primary)",
+              borderLeft: "1.5px solid var(--text-primary)",
+              borderTop: "1.5px solid var(--text-primary)",
+              borderBottom: "none",
+              padding: "2.25rem 2.5rem",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "3rem",
+              opacity: 0,
+            }}>
+              <div style={{
+                fontSize: "clamp(4rem, 8vw, 7rem)",
+                fontWeight: 900,
+                lineHeight: 1,
+                color: "var(--text-primary)",
+                opacity: 0.08,
+                fontFamily: "var(--font-geist-sans, sans-serif)",
+                userSelect: "none",
+                flexShrink: 0,
+              }}>06</div>
+              <div style={{ flex: 1 }}>
+                <div style={{
+                  height: "2px",
+                  background: "var(--text-primary)",
+                  marginBottom: "1rem",
+                }} />
+                <h3 className="font-sans" style={{
+                  fontSize: "1.05rem",
+                  fontWeight: 800,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--text-primary)",
+                  margin: "0 0 0.6rem",
+                }}>4 Global Hubs</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem",
+                  lineHeight: 1.7,
+                  color: "var(--text-secondary)",
+                  margin: 0,
+                }}>
+                  Beyond India, we operate in UAE (Dubai &amp; Abu Dhabi), Saudi Arabia (Riyadh &amp; Jeddah), and England (London &amp; surrounds) — delivering world-class service wherever you are.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -1229,6 +1536,44 @@ export default function AboutPage() {
                   Three-time National Award Winners
                 </span>
               </div>
+
+              {/* Video card */}
+              <div style={{
+                marginTop: "2.5rem",
+                position: "relative",
+                borderRadius: "1.5rem",
+                overflow: "hidden",
+                border: "1px solid var(--border-mid)",
+                boxShadow: "0 16px 48px rgba(0,0,0,0.35)",
+                height: 220,
+              }}>
+                <video
+                  autoPlay muted loop playsInline
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                >
+                  <source src="/0_Car_Expensive_1280x720.mp4" type="video/mp4" />
+                </video>
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "linear-gradient(135deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.05) 100%)",
+                  pointerEvents: "none",
+                }} />
+                <div style={{
+                  position: "absolute",
+                  top: "1rem", left: "1rem",
+                }}>
+                  <span className="font-sans" style={{
+                    fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.75)",
+                    padding: "0.22rem 0.7rem",
+                    borderRadius: 9999,
+                    background: "rgba(0,0,0,0.40)",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    backdropFilter: "blur(8px)",
+                  }}>Fleet in Motion</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1386,6 +1731,78 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          4b. CINEMATIC REEL
+      ══════════════════════════════════════════════ */}
+      <section ref={reelSectionRef} style={{
+        position: "relative",
+        height: "55vh",
+        minHeight: 360,
+        overflow: "hidden",
+      }}>
+        <video
+          autoPlay muted loop playsInline
+          style={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+          }}
+        >
+          <source src="/6636153_Car_Detailing_1280x720.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay */}
+        <div ref={reelOverlayRef} style={{
+          position: "absolute", inset: 0,
+          background: "rgba(0,0,0,0.58)",
+          zIndex: 1,
+          opacity: 0,
+        }} />
+
+        {/* Quote */}
+        <div ref={reelQuoteRef} style={{
+          position: "absolute", inset: 0,
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          padding: "0 1.5rem",
+          opacity: 0,
+        }}>
+          <div style={{
+            width: 40, height: 1,
+            background: "rgba(255,255,255,0.28)",
+            marginBottom: "1.5rem",
+          }} />
+          <p className="font-serif italic" style={{
+            fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
+            fontWeight: 400,
+            color: "#ffffff",
+            lineHeight: 1.25,
+            margin: "0 0 1.5rem",
+            maxWidth: 680,
+            textShadow: "0 2px 24px rgba(0,0,0,0.6)",
+          }}>
+            &ldquo;Perfection in every mile.&rdquo;
+          </p>
+          <div style={{
+            width: 40, height: 1,
+            background: "rgba(255,255,255,0.28)",
+          }} />
+          <span className="font-sans" style={{
+            marginTop: "1.25rem",
+            fontSize: "0.65rem",
+            fontWeight: 700,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.40)",
+          }}>Mann Fleet Partners — Est. 1986</span>
         </div>
       </section>
 
@@ -1827,6 +2244,41 @@ export default function AboutPage() {
             }}>
               Recognised by governments, global institutions, and industry leaders across four decades of excellence.
             </p>
+          </div>
+
+          {/* ── AWARD CEREMONY PHOTOS ── */}
+          <div ref={awardsPhotoRef} style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "1.25rem",
+            marginBottom: "3rem",
+          }}>
+            {[
+              { src: "/Appreciation/PHOTO-2026-04-18-17-36-06.jpg", caption: "National Tourism Award Ceremony" },
+              { src: "/Appreciation/PHOTO-2026-04-18-17-36-06 2.jpg", caption: "Recognition at Govt. of India" },
+            ].map(({ src, caption }) => (
+              <div key={caption} style={{
+                position: "relative",
+                borderRadius: "1.5rem",
+                overflow: "hidden",
+                border: "1px solid var(--border-mid)",
+                height: 260,
+                opacity: 0,
+                boxShadow: "0 12px 40px rgba(0,0,0,0.30)",
+              }}>
+                <Image src={src} alt={caption} fill unoptimized style={{ objectFit: "cover" }} />
+                <div style={{
+                  position: "absolute", bottom: 0, left: 0, right: 0,
+                  padding: "1.75rem 1.25rem 1rem",
+                  background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%)",
+                }}>
+                  <span className="font-sans" style={{
+                    fontSize: "0.75rem", fontWeight: 600,
+                    color: "rgba(255,255,255,0.88)",
+                  }}>{caption}</span>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* ── AWARDS RECEIVED ── */}
