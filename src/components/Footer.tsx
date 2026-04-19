@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 /* ── Icons ─────────────────────────────────────────────────── */
@@ -17,7 +18,7 @@ function ArrowUpRight({ size = 14 }: { size?: number }) {
 function FooterLink({ label, href }: { label: string; href: string }) {
   const [hovered, setHovered] = useState(false);
   return (
-    <a
+    <Link
       href={href}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -32,7 +33,7 @@ function FooterLink({ label, href }: { label: string; href: string }) {
       }}
     >
       {label}
-    </a>
+    </Link>
   );
 }
 
@@ -54,8 +55,8 @@ const SOCIAL_LINKS = [
 ];
 
 const LEGAL_LINKS = [
-  { label: "Terms of service", href: "#" },
-  { label: "Privacy policy", href: "#" },
+  { label: "Terms of service", href: "/terms" },
+  { label: "Privacy policy", href: "/privacy" },
   { label: "Cookie policy", href: "#" },
 ];
 
