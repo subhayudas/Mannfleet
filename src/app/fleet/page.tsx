@@ -37,75 +37,75 @@ const VEHICLES: Vehicle[] = [
   // Economy
   {
     id: "honda-city", name: "Honda City", type: "Sedans", category: "ECONOMY",
-    seating: "5 Seater", luggage: "506 Litres",
+    seating: "5 Seater Including Pilot", luggage: "506 Litres",
     image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=700&q=80",
   },
   {
     id: "hyundai-aura", name: "Hyundai Aura", type: "Sedans", category: "ECONOMY",
-    seating: "5 Seater", luggage: "402 Litres",
+    seating: "5 Seater Including Pilot", luggage: "402 Litres",
     image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=700&q=80",
   },
   {
     id: "maruti-dzire", name: "Maruti Suzuki Dzire", type: "Sedans", category: "ECONOMY",
-    seating: "5 Seater", luggage: "382 Litres",
+    seating: "5 Seater Including Pilot", luggage: "382 Litres",
     image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=700&q=80",
   },
   {
     id: "toyota-etios", name: "Toyota Etios", type: "Sedans", category: "ECONOMY",
-    seating: "5 Seater", luggage: "592 Litres",
+    seating: "5 Seater Including Pilot", luggage: "592 Litres",
     image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=700&q=80",
   },
   // Premium
   {
     id: "camry-hybrid", name: "Toyota Camry Hybrid", type: "Sedans", category: "PREMIUM",
-    seating: "5 Seater", luggage: "524 Litres",
+    seating: "5 Seater Including Pilot", luggage: "524 Litres",
     image: "/Mann%20car%20pictures/Camry.png",
   },
   // Luxury
   {
     id: "mercedes-e-class", name: "Mercedes-Benz E-Class", type: "Sedans", category: "LUXURY",
-    seating: "5 Seater", luggage: "540 Litres",
+    seating: "5 Seater Including Pilot", luggage: "540 Litres",
     image: "/Mann%20car%20pictures/E%20class2026-04-12%20at%201.40.11%20PM.png",
   },
   {
     id: "bmw-3-series", name: "BMW 3 Series (Gran Limousine)", type: "Sedans", category: "LUXURY",
-    seating: "5 Seater", luggage: "480 Litres",
+    seating: "5 Seater Including Pilot", luggage: "480 Litres",
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=700&q=80",
   },
   {
     id: "audi-a6", name: "Audi A6 / A4", type: "Sedans", category: "LUXURY",
-    seating: "5 Seater", luggage: "530L (A6) / 460L (A4)",
+    seating: "5 Seater Including Pilot", luggage: "530L (A6) / 460L (A4)",
     image: "/Mann%20car%20pictures/a6.png",
   },
   {
     id: "bmw-5-series", name: "BMW 5 Series", type: "Sedans", category: "LUXURY",
-    seating: "5 Seater", luggage: "500 Litres",
+    seating: "5 Seater Including Pilot", luggage: "500 Litres",
     image: "/Mann%20car%20pictures/5%20series2026-04-12%20at%201.41.48%20PM.png",
   },
   // Super Luxury
   {
     id: "mercedes-s-class", name: "Mercedes-Benz S-Class", type: "Sedans", category: "SUPER LUXURY",
-    seating: "4–5 Seater", luggage: "550 Litres",
+    seating: "4–5 Seater Including Pilot", luggage: "550 Litres",
     image: "/Mann%20car%20pictures/S%20class.png",
   },
   {
     id: "bmw-7-series", name: "BMW 7 Series", type: "Sedans", category: "SUPER LUXURY",
-    seating: "4–5 Seater", luggage: "540 Litres",
+    seating: "4–5 Seater Including Pilot", luggage: "540 Litres",
     image: "/Mann%20car%20pictures/7%20series.png",
   },
   {
     id: "rolls-phantom", name: "Rolls-Royce Phantom", type: "Sedans", category: "SUPER LUXURY",
-    seating: "4–5 Seater", luggage: "548 Litres",
+    seating: "4–5 Seater Including Pilot", luggage: "548 Litres",
     image: "/Mann%20car%20pictures/Rolls%20royce%20ghost.jpeg",
   },
   {
     id: "rolls-ghost", name: "Rolls-Royce Ghost", type: "Sedans", category: "SUPER LUXURY",
-    seating: "4–5 Seater", luggage: "507 Litres",
+    seating: "4–5 Seater Including Pilot", luggage: "507 Litres",
     image: "/Mann%20car%20pictures/Rolls%20royce%20ghost.jpeg",
   },
   {
     id: "maybach-s", name: "Mercedes-Maybach S-Class", type: "Sedans", category: "SUPER LUXURY",
-    seating: "4 Seater", luggage: "495 Litres",
+    seating: "4 Seater Including Pilot", luggage: "495 Litres",
     image: "/Mann%20car%20pictures/S%20class.png",
   },
 
@@ -113,65 +113,80 @@ const VEHICLES: Vehicle[] = [
   // Economy
   {
     id: "fortuner", name: "Toyota Fortuner", type: "SUVs", category: "ECONOMY",
-    seating: "7 Seater", luggage: "296L (all rows) / 716L (3rd row folded)",
+    seating: "7 Seater Including Pilot", luggage: "296L (all rows) / 716L (3rd row folded)",
     image: "/Mann%20car%20pictures/Fortuner.png",
   },
   {
     id: "ertiga", name: "Maruti Suzuki Ertiga", type: "SUVs", category: "ECONOMY",
-    seating: "7 Seater", luggage: "209L (all rows) / 550L (3rd row folded)",
+    seating: "7 Seater Including Pilot", luggage: "209L (all rows) / 550L (3rd row folded)",
     image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=700&q=80",
   },
   {
-    id: "marazzo", name: "Mahindra Marazzo", type: "SUVs", category: "ECONOMY",
-    seating: "7–8 Seater", luggage: "190L (all rows) / 600L (3rd row folded)",
+    id: "marazzo-7", name: "Mahindra Marazzo", type: "SUVs", category: "ECONOMY",
+    seating: "7 Seater Including Pilot", luggage: "190L (all rows) / 600L (3rd row folded)",
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=80",
+  },
+  {
+    id: "marazzo-8", name: "Mahindra Marazzo", type: "SUVs", category: "ECONOMY",
+    seating: "8 Seater Including Pilot", luggage: "190L (all rows) / 600L (3rd row folded)",
     image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=80",
   },
   // Premium
   {
-    id: "hycross", name: "Toyota Innova Hycross (Hybrid)", type: "SUVs", category: "PREMIUM",
-    seating: "7–8 Seater", luggage: "300L (all rows) / 991L (3rd row folded)",
+    id: "hycross-7", name: "Toyota Innova Hycross (Hybrid)", type: "SUVs", category: "PREMIUM",
+    seating: "7 Seater Including Pilot", luggage: "300L (all rows) / 991L (3rd row folded)",
     image: "/Mann%20car%20pictures/HYCROSS.png",
   },
   {
-    id: "crysta", name: "Toyota Innova Crysta", type: "SUVs", category: "PREMIUM",
-    seating: "7–8 Seater", luggage: "300L (all rows) / 758L (3rd row folded)",
+    id: "hycross-8", name: "Toyota Innova Hycross (Hybrid)", type: "SUVs", category: "PREMIUM",
+    seating: "8 Seater Including Pilot", luggage: "300L (all rows) / 991L (3rd row folded)",
+    image: "/Mann%20car%20pictures/HYCROSS.png",
+  },
+  {
+    id: "crysta-7", name: "Toyota Innova Crysta", type: "SUVs", category: "PREMIUM",
+    seating: "7 Seater Including Pilot", luggage: "300L (all rows) / 758L (3rd row folded)",
+    image: "/Mann%20car%20pictures/CRYSTA.png",
+  },
+  {
+    id: "crysta-8", name: "Toyota Innova Crysta", type: "SUVs", category: "PREMIUM",
+    seating: "8 Seater Including Pilot", luggage: "300L (all rows) / 758L (3rd row folded)",
     image: "/Mann%20car%20pictures/CRYSTA.png",
   },
   {
     id: "gle-gls", name: "Mercedes-Benz GLE & GLS", type: "SUVs", category: "PREMIUM",
-    seating: "5–7 Seater", luggage: "630L (GLE) / 355–890L (GLS)",
+    seating: "5–7 Seater Including Pilot", luggage: "630L (GLE) / 355–890L (GLS)",
     image: "/Mann%20car%20pictures/GLS.png",
   },
   // Luxury
   {
     id: "gle-ml", name: "Mercedes-Benz GLE / ML Class", type: "SUVs", category: "LUXURY",
-    seating: "5 Seater", luggage: "630 Litres",
+    seating: "5 Seater Including Pilot", luggage: "630 Litres",
     image: "/Mann%20car%20pictures/GLS.png",
   },
   {
     id: "audi-q7", name: "Audi Q7", type: "SUVs", category: "LUXURY",
-    seating: "7 Seater", luggage: "295L (all rows) / 770L (3rd row folded)",
+    seating: "7 Seater Including Pilot", luggage: "295L (all rows) / 770L (3rd row folded)",
     image: "/Mann%20car%20pictures/Q7.png",
   },
   {
     id: "bmw-x5", name: "BMW X5", type: "SUVs", category: "LUXURY",
-    seating: "5 Seater", luggage: "650 Litres",
+    seating: "5 Seater Including Pilot", luggage: "650 Litres",
     image: "/Mann%20car%20pictures/X7.jpeg",
   },
   {
     id: "volvo-xc90", name: "Volvo XC90", type: "SUVs", category: "LUXURY",
-    seating: "7 Seater", luggage: "302L (all rows) / 680L (3rd row folded)",
+    seating: "7 Seater Including Pilot", luggage: "302L (all rows) / 680L (3rd row folded)",
     image: "https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=700&q=80",
   },
   // Super Luxury
   {
     id: "gls-450", name: "Mercedes-Benz GLS 400 / 450", type: "SUVs", category: "SUPER LUXURY",
-    seating: "7 Seater", luggage: "355L (all rows) / 890L (3rd row folded)",
+    seating: "7 Seater Including Pilot", luggage: "355L (all rows) / 890L (3rd row folded)",
     image: "/Mann%20car%20pictures/GLS.png",
   },
   {
     id: "range-rover", name: "Range Rover (Vogue / Autobiography / LWB)", type: "SUVs", category: "SUPER LUXURY",
-    seating: "4–5 Seater", luggage: "725–900 Litres",
+    seating: "4–5 Seater Including Pilot", luggage: "725–900 Litres",
     image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=700&q=80",
   },
 
@@ -185,33 +200,33 @@ const VEHICLES: Vehicle[] = [
   // Premium
   {
     id: "tempo-traveller", name: "Tempo Traveller", type: "Vans", category: "PREMIUM",
-    seating: "9 / 12 / 16 Seater", luggage: "Limited rear boot + Roof Carrier for bulk",
+    seating: "9 / 12 / 16 Seater Including Pilot", luggage: "Limited rear boot + Roof Carrier for bulk",
     image: "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=700&q=80",
   },
   {
     id: "urbania-std", name: "Force Urbania (Standard)", type: "Vans", category: "PREMIUM",
-    seating: "10 / 13 / 17 Seater", luggage: "Small dedicated rear boot",
+    seating: "10 / 13 / 17 Seater Including Pilot", luggage: "Small dedicated rear boot",
     image: "/Mann%20car%20pictures/Force%20Urbania.jpeg",
   },
   // Luxury
   {
     id: "sprinter", name: "Mercedes-Benz Sprinter", type: "Vans", category: "LUXURY",
-    seating: "9 / 12 Seater", luggage: "Generous — fits 8–10 large suitcases",
+    seating: "9 / 12 Seater Including Pilot", luggage: "Generous — fits 8–10 large suitcases",
     image: "/Mann%20car%20pictures/mercedes%20sprinter.jpeg",
   },
   {
     id: "toyota-coaster", name: "Toyota Coaster (Luxury)", type: "Vans", category: "LUXURY",
-    seating: "13 / 17 / 19 / 21 Seater", luggage: "High — dedicated rear luggage compartment",
+    seating: "13 / 17 / 19 / 21 Seater Including Pilot", luggage: "High — dedicated rear luggage compartment",
     image: "/Mann%20car%20pictures/toyota%20commuter.jpeg",
   },
   {
     id: "urbania-lux", name: "Urbania (Luxury Van)", type: "Vans", category: "LUXURY",
-    seating: "9 / 10 Seater", luggage: "Premium — configured for max legroom & luggage",
+    seating: "9 / 10 Seater Including Pilot", luggage: "Premium — configured for max legroom & luggage",
     image: "/Mann%20car%20pictures/Force%20Urbania.jpeg",
   },
   {
     id: "toyota-hiace", name: "Toyota Hiace", type: "Vans", category: "LUXURY",
-    seating: "10 / 14 Seater", luggage: "Flexible — 10-seater has significant boot space",
+    seating: "10 / 14 Seater Including Pilot", luggage: "Flexible — 10-seater has significant boot space",
     image: "/Mann%20car%20pictures/14%20seater%20toyota%20commuter.jpeg",
   },
 
@@ -219,104 +234,119 @@ const VEHICLES: Vehicle[] = [
   // Economy
   {
     id: "ac-coach", name: "Standard AC Coaches", type: "Coaches", category: "ECONOMY",
-    seating: "27 / 35 / 41 / 45 Seater", luggage: "Large under-floor boot — fits 20–30 suitcases",
+    seating: "27 / 35 / 41 / 45 Seater Including Pilot", luggage: "Large under-floor boot — fits 20–30 suitcases",
     image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=700&q=80",
   },
   // Premium
   {
     id: "isuzu", name: "Isuzu Luxury Coaches", type: "Coaches", category: "PREMIUM",
-    seating: "27–35 Seater", luggage: "High — wide under-deck storage for team gear",
+    seating: "27–35 Seater Including Pilot", luggage: "High — wide under-deck storage for team gear",
     image: "https://images.unsplash.com/photo-1581262208435-41726149a759?w=700&q=80",
   },
   {
     id: "volvo-47", name: "Volvo 47 Seater (Standard)", type: "Coaches", category: "PREMIUM",
-    seating: "47 Seater", luggage: "Maximum — full-length belly lockers",
+    seating: "47 Seater Including Pilot", luggage: "Maximum — full-length belly lockers",
     image: "/Mann%20car%20pictures/volvo%2047%2C%2051%20seater.jpeg",
   },
   {
     id: "bharat-benz", name: "Bharat Benz Coach", type: "Coaches", category: "PREMIUM",
-    seating: "21 Seater and above", luggage: "Moderate to High — 1 bag per passenger approx.",
+    seating: "21 Seater and above Including Pilot", luggage: "Moderate to High — 1 bag per passenger approx.",
     image: "/Mann%20car%20pictures/Bharat%20benz.jpeg",
   },
   // Luxury
   {
     id: "volvo-luxury", name: "Volvo Coach (Luxury)", type: "Coaches", category: "LUXURY",
-    seating: "41–45 Seater", luggage: "High — under-floor lockers + overhead bins",
+    seating: "41–45 Seater Including Pilot", luggage: "High — under-floor lockers + overhead bins",
     image: "/Mann%20car%20pictures/volvo%2039%2C%2043%20seater.jpeg",
   },
   {
     id: "volvo-washroom", name: "Volvo Coach with Washroom", type: "Coaches", category: "LUXURY",
-    seating: "41–43 Seater", luggage: "High — washroom onboard; belly storage unaffected",
+    seating: "41–43 Seater Including Pilot", luggage: "High — washroom onboard; belly storage unaffected",
     image: "/Mann%20car%20pictures/volvo%2039%2C%2043%20seater.jpeg",
   },
   // Super Luxury
   {
     id: "jet-on-wheels", name: '"Jet on Wheels" (Volvo 13.5m)', type: "Coaches", category: "SUPER LUXURY",
-    seating: "21 Full Recliners", luggage: "Maximum — 13.5m wheelbase, largest under-floor storage",
+    seating: "21 Full Recliners Including Pilot", luggage: "Maximum — 13.5m wheelbase, largest under-floor storage",
     image: "/Mann%20car%20pictures/Volvo%20jet%20on%20wheels.jpeg",
   },
 
   /* ── SELF DRIVING ────────────────────────────────────────── */
   {
     id: "sd-dzire", name: "Maruti Suzuki Dzire (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
-    seating: "5 Seater", luggage: "382 Litres",
+    seating: "5 Seater Excluding Pilot", luggage: "382 Litres",
     image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=700&q=80",
   },
   {
     id: "sd-city", name: "Honda City (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
-    seating: "5 Seater", luggage: "506 Litres",
+    seating: "5 Seater Excluding Pilot", luggage: "506 Litres",
     image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=700&q=80",
   },
   {
     id: "sd-creta", name: "Hyundai Creta (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
-    seating: "5 Seater", luggage: "433 Litres",
+    seating: "5 Seater Excluding Pilot", luggage: "433 Litres",
     image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=700&q=80",
   },
   {
-    id: "sd-crysta", name: "Toyota Innova Crysta (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
-    seating: "7–8 Seater", luggage: "300L (all rows) / 758L (3rd row folded)",
+    id: "sd-crysta-7", name: "Toyota Innova Crysta (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    seating: "7 Seater Excluding Pilot", luggage: "300L (all rows) / 758L (3rd row folded)",
+    image: "/Mann%20car%20pictures/CRYSTA.png",
+  },
+  {
+    id: "sd-crysta-8", name: "Toyota Innova Crysta (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    seating: "8 Seater Excluding Pilot", luggage: "300L (all rows) / 758L (3rd row folded)",
     image: "/Mann%20car%20pictures/CRYSTA.png",
   },
   {
     id: "sd-camry", name: "Toyota Camry Hybrid (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
-    seating: "5 Seater", luggage: "524 Litres",
+    seating: "5 Seater Excluding Pilot", luggage: "524 Litres",
     image: "/Mann%20car%20pictures/Camry.png",
   },
   {
     id: "sd-fortuner", name: "Toyota Fortuner (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
-    seating: "7 Seater", luggage: "296L (all rows) / 716L (3rd row folded)",
+    seating: "7 Seater Excluding Pilot", luggage: "296L (all rows) / 716L (3rd row folded)",
     image: "/Mann%20car%20pictures/Fortuner.png",
   },
 
   /* ── LONG TERM LEASING ───────────────────────────────────── */
   {
     id: "lt-dzire", name: "Maruti Suzuki Dzire (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
-    seating: "5 Seater", luggage: "382 Litres",
+    seating: "5 Seater Including Pilot", luggage: "382 Litres",
     image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=700&q=80",
   },
   {
-    id: "lt-hycross", name: "Toyota Innova Hycross (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
-    seating: "7–8 Seater", luggage: "300L / 991L (3rd row folded)",
+    id: "lt-hycross-7", name: "Toyota Innova Hycross (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "7 Seater Including Pilot", luggage: "300L / 991L (3rd row folded)",
     image: "/Mann%20car%20pictures/HYCROSS.png",
   },
   {
-    id: "lt-crysta", name: "Toyota Innova Crysta (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
-    seating: "7–8 Seater", luggage: "300L / 758L (3rd row folded)",
+    id: "lt-hycross-8", name: "Toyota Innova Hycross (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "8 Seater Including Pilot", luggage: "300L / 991L (3rd row folded)",
+    image: "/Mann%20car%20pictures/HYCROSS.png",
+  },
+  {
+    id: "lt-crysta-7", name: "Toyota Innova Crysta (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "7 Seater Including Pilot", luggage: "300L / 758L (3rd row folded)",
+    image: "/Mann%20car%20pictures/CRYSTA.png",
+  },
+  {
+    id: "lt-crysta-8", name: "Toyota Innova Crysta (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    seating: "8 Seater Including Pilot", luggage: "300L / 758L (3rd row folded)",
     image: "/Mann%20car%20pictures/CRYSTA.png",
   },
   {
     id: "lt-e-class", name: "Mercedes-Benz E-Class (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
-    seating: "5 Seater", luggage: "540 Litres",
+    seating: "5 Seater Including Pilot", luggage: "540 Litres",
     image: "/Mann%20car%20pictures/E%20class2026-04-12%20at%201.40.11%20PM.png",
   },
   {
     id: "lt-s-class", name: "Mercedes-Benz S-Class (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
-    seating: "4–5 Seater", luggage: "550 Litres",
+    seating: "4–5 Seater Including Pilot", luggage: "550 Litres",
     image: "/Mann%20car%20pictures/S%20class.png",
   },
   {
     id: "lt-gls", name: "Mercedes-Benz GLS 400 (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
-    seating: "7 Seater", luggage: "355L / 890L (3rd row folded)",
+    seating: "7 Seater Including Pilot", luggage: "355L / 890L (3rd row folded)",
     image: "/Mann%20car%20pictures/GLS.png",
   },
 ];
