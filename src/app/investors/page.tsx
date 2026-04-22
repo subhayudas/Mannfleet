@@ -542,7 +542,7 @@ export default function InvestorsPage() {
             marginTop: 18, marginBottom: 20,
             borderRadius: 2,
             transformOrigin: "left center",
-            scaleX: 0,
+            transform: "scaleX(0)",
           }}
         />
         <p
@@ -677,11 +677,13 @@ function DirectorCard({ director, onClick }: { director: Director; onClick: () =
 
   const handleEnter = () => {
     gsap.to(cardRef.current, { y: -6, scale: 1.02, duration: 0.3, ease: "power2.out" });
-    gsap.to(cardRef.current?.querySelector(".dir-overlay"), { opacity: 1, duration: 0.25 });
+    const overlay = cardRef.current?.querySelector(".dir-overlay");
+    if (overlay) gsap.to(overlay, { opacity: 1, duration: 0.25 });
   };
   const handleLeave = () => {
     gsap.to(cardRef.current, { y: 0, scale: 1, duration: 0.3, ease: "power2.out" });
-    gsap.to(cardRef.current?.querySelector(".dir-overlay"), { opacity: 0, duration: 0.25 });
+    const overlay = cardRef.current?.querySelector(".dir-overlay");
+    if (overlay) gsap.to(overlay, { opacity: 0, duration: 0.25 });
   };
 
   return (
