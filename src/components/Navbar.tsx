@@ -36,6 +36,7 @@ const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Fleet", href: "/fleet" },
   { label: "Meet our Team", href: "/meet-the-team" },
+  { label: "Investors", href: "/investors" },
   { label: "Contact", href: "#" },
 ];
 
