@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, useCallback } from "react";
+import Link from "next/link";
 import { gsap } from "gsap";
 
 /* ── Service Data ─────────────────────────────────────────── */
@@ -402,7 +403,7 @@ export default function ServicesSection() {
       style={{
         fontFamily: "'Poppins', sans-serif",
         background: "var(--bg-base)",
-        padding: "5rem 0 4rem",
+        padding: "3.5rem 0 2.5rem",
         overflow: "hidden",
       }}
     >
@@ -438,9 +439,9 @@ export default function ServicesSection() {
           >
             Everything you need,
             <br />
-            <span style={{ color: "var(--text-45)" }}>wherever you go.</span>
+            <span style={{ color: "var(--text-72)" }}>wherever you go.</span>
           </h2>
-          <p style={{ fontSize: "0.85rem", color: "var(--text-50)", maxWidth: "340px", lineHeight: 1.6, margin: 0 }}>
+          <p style={{ fontSize: "0.88rem", color: "var(--text-65)", maxWidth: "340px", lineHeight: 1.6, margin: 0 }}>
             Hover each service to explore. MANN delivers a full spectrum of
             mobility solutions — enterprise to bespoke.
           </p>
@@ -507,10 +508,10 @@ export default function ServicesSection() {
             Our team will find the perfect solution for you.
           </p>
         </div>
-        <button className="btn-primary">
+        <Link href="/contact" className="btn-primary" style={{ textDecoration: "none" }}>
           Talk to us
           <ArrowUpRight size={15} />
-        </button>
+        </Link>
       </div>
     </section>
   );

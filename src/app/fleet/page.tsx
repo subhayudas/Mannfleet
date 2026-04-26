@@ -593,10 +593,16 @@ function VehicleModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: () => v
           </div>
 
           {/* CTA */}
-          <button className="btn-primary font-sans" style={{ width: "100%", justifyContent: "center", fontSize: "0.8rem" }}>
+          <a
+            href={`https://wa.me/919990222999?text=I'm%20interested%20in%20booking%20the%20${encodeURIComponent(vehicle.name)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary font-sans"
+            style={{ width: "100%", justifyContent: "center", fontSize: "0.8rem", display: "inline-flex", alignItems: "center", gap: "0.5rem", textDecoration: "none" }}
+          >
             Book This Vehicle
             <IconArrow size={13} />
-          </button>
+          </a>
         </div>
       </div>
     </div>,
@@ -635,9 +641,9 @@ function VehicleCard({ vehicle, onSelect }: { vehicle: Vehicle; onSelect: (v: Ve
         <div style={{ position: "absolute", top: "0.75rem", left: "0.75rem" }}>
           <span style={{
             display: "inline-block",
-            padding: "0.18rem 0.65rem",
+            padding: "0.25rem 0.85rem",
             borderRadius: 9999,
-            fontSize: "0.58rem",
+            fontSize: "0.70rem",
             fontWeight: 700,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
@@ -738,11 +744,11 @@ function CategorySection({ category, vehicles }: { category: Category; vehicles:
           <div style={{ height: 1, width: 32, background: cfg.color, opacity: 0.5 }} />
           <span style={{
             display: "inline-block",
-            padding: "0.18rem 0.78rem",
+            padding: "0.32rem 1.1rem",
             borderRadius: 9999,
-            fontSize: "0.65rem",
+            fontSize: "0.84rem",
             fontWeight: 700,
-            letterSpacing: "0.1em",
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
             color: cfg.color,
             background: cfg.bg,

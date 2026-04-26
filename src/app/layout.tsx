@@ -36,11 +36,11 @@ export default function RootLayout({
             colors={['#ff2020', '#ff5a5a', '#ff0000']}
             baseSpring={0.03}
             baseFriction={0.9}
-            baseThickness={30}
-            offsetFactor={0.05}
-            maxAge={500}
-            pointCount={50}
-            speedMultiplier={0.6}
+            baseThickness={14}
+            offsetFactor={0.02}
+            maxAge={200}
+            pointCount={25}
+            speedMultiplier={0.3}
             enableFade={true}
             backgroundColor={[0, 0, 0, 0]}
           />

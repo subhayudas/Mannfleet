@@ -35,9 +35,10 @@ function MoonIcon({ size = 14 }: { size?: number }) {
 const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Fleet", href: "/fleet" },
+  { label: "Awards", href: "/awards" },
   { label: "Meet our Team", href: "/meet-the-team" },
   { label: "Investors", href: "/investors" },
-  { label: "Contact", href: "#" },
+  { label: "Contact", href: "/contact" },
 ];
 
 interface NavbarProps {
@@ -241,7 +242,7 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
           >
             {theme === "dark" ? <SunIcon size={14} /> : <MoonIcon size={14} />}
           </button>
-          <button className="pill-book-btn">Book Now</button>
+          <Link href="/contact" className="pill-book-btn" style={{ textDecoration: "none" }}>Book Now</Link>
         </div>
 
         {/* Hamburger (mobile) */}

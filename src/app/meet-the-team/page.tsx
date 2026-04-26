@@ -46,7 +46,7 @@ const LEADERS: Leader[] = [
     name: "Parmjeet Mann",
     title: "Executive Director & Head of HR",
     email: "parmjeet@manntours.com",
-    photo: "/parmjeet.webp",
+    photo: null,
     teaser:
       "Executive Director and Head of Human Resources, instrumental in securing high-value contracts with embassies, MNCs and prestigious events since 2005.",
     bio: "Parmjeet Mann is the Promoter, Executive Director and Head of Human Resources Department of our Company. She has completed diploma in Fashion Design from JD Institute of Fashion Technology in the year 2001–02 and also completed her PG Diploma in microbiology and food technology from Punjabi University in the year 1994. She has also done Bachelor of Science (Honors) in Botany from Panjab University in the year 1993. She has been associated with our Company from August 2005. She has played a crucial role in driving the Company's growth. She has been instrumental in securing high-value contracts with embassies, multinational corporations and prestigious events. She has also developed and trained a team of 15 sales professionals, ensuring consistent business growth and client retention. Additionally, as Head of Human Resources, she manages a workforce of our employees, including chauffeurs and office staffs, streamlining business functions and ensuring operational efficiency.",
@@ -66,7 +66,7 @@ const LEADERS: Leader[] = [
     name: "Robin Singh Mann",
     title: "Executive Director & Head of Marketing",
     email: "robin@faze.in",
-    photo: "/robin.webp",
+    photo: null,
     teaser:
       "Columbia University honours graduate and former Evercore Investment Banking Analyst, now leading growth and marketing strategy at Mann Fleet.",
     bio: "Robin Singh Mann is a Promoter, Executive Director of our Company. He completed his Bachelor of Arts at Columbia University in the City of New York and graduated with honours in May 2020. Prior to joining our Company, he was associated with Evercore's PCA division in NYC, USA in the capacity of Investment Banking Senior Analyst and Citigroup in NYC. At our Company, he leads the growth and scalability of the business as Head of Marketing. As a part of this role, he creates and deploys various marketing and social media strategies that aim to improve Mann's position and market share. Robin also supports the Sales team on marquee projects, pitches, and clients. Additionally, he also leads one of our Group Company namely, Leap Green Infra Private Limited, leveraging his experience to target and generate new clientele, contract structures and revenue stacks.",
@@ -148,7 +148,7 @@ const SALES_TEAM: SalesMember[] = [
 /* ══════════════════════════════════════════════════════════════
    AVATAR PLACEHOLDER
 ══════════════════════════════════════════════════════════════ */
-function AvatarPlaceholder({ name, size = 120 }: { name: string; size?: number }) {
+function AvatarPlaceholder({ name, size = 160 }: { name: string; size?: number }) {
   const initials = name
     .split(" ")
     .filter((w) => /^[A-Z]/.test(w))
@@ -175,6 +175,77 @@ function AvatarPlaceholder({ name, size = 120 }: { name: string; size?: number }
     >
       {initials || "M"}
     </div>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PHOTO LIGHTBOX
+══════════════════════════════════════════════════════════════ */
+function PhotoLightbox({
+  src,
+  name,
+  onClose,
+}: {
+  src: string | null;
+  name: string;
+  onClose: () => void;
+}) {
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const bd = backdropRef.current;
+    const ct = contentRef.current;
+    if (!bd || !ct) return;
+
+    gsap.fromTo(bd, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" });
+    gsap.fromTo(ct, { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.4)" });
+
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      ref={backdropRef}
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 2000,
+        background: "rgba(5,3,1,0.88)",
+        backdropFilter: "blur(10px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "24px",
+      }}
+    >
+      <div ref={contentRef} onClick={(e) => e.stopPropagation()}>
+        {src ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={src}
+            alt={name}
+            style={{
+              maxWidth: "90vw",
+              maxHeight: "90vh",
+              objectFit: "contain",
+              borderRadius: 12,
+              boxShadow: "0 24px 80px rgba(0,0,0,0.7)",
+            }}
+          />
+        ) : (
+          <AvatarPlaceholder name={name} size={280} />
+        )}
+      </div>
+    </div>,
+    document.body
   );
 }
 
@@ -285,8 +356,8 @@ function TeamModal({
               src={leader.photo}
               alt={leader.name}
               style={{
-                width: 90,
-                height: 90,
+                width: 120,
+                height: 120,
                 borderRadius: "50%",
                 objectFit: "cover",
                 flexShrink: 0,
@@ -297,7 +368,7 @@ function TeamModal({
               }}
             />
           ) : (
-            <AvatarPlaceholder name={leader.name} size={90} />
+            <AvatarPlaceholder name={leader.name} size={120} />
           )}
           <div>
             <p style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 4 }}>
@@ -382,6 +453,7 @@ function LeaderCard({
 }) {
   const innerRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = innerRef.current;
@@ -427,19 +499,22 @@ function LeaderCard({
         <div ref={glowRef} style={{ position: "absolute", inset: -1, borderRadius: 18, border: "1.5px solid var(--accent)", opacity: 0, pointerEvents: "none", boxShadow: "0 0 28px rgba(220,38,38,0.25)" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "var(--accent)", borderRadius: "18px 18px 0 0" }} />
 
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+        <div
+          style={{ display: "flex", justifyContent: "center", marginBottom: 24, cursor: "zoom-in" }}
+          onClick={() => setLightboxOpen(true)}
+        >
           {leader.photo ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={leader.photo}
               alt={leader.name}
-              style={{ width: 100, height: 100, borderRadius: "50%", objectFit: "cover", border: "2px solid var(--border-mid)", filter: "grayscale(40%)", transition: "filter 0.4s ease" }}
+              style={{ width: 160, height: 160, borderRadius: "50%", objectFit: "cover", border: "2px solid var(--border-mid)", filter: "grayscale(40%)", transition: "filter 0.4s ease" }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLImageElement).style.filter = "grayscale(0%)")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLImageElement).style.filter = "grayscale(40%)")}
               onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
             />
           ) : (
-            <AvatarPlaceholder name={leader.name} size={100} />
+            <AvatarPlaceholder name={leader.name} size={160} />
           )}
         </div>
 
@@ -495,6 +570,10 @@ function LeaderCard({
           </svg>
         </button>
       </div>
+
+      {lightboxOpen && (
+        <PhotoLightbox src={leader.photo} name={leader.name} onClose={() => setLightboxOpen(false)} />
+      )}
     </div>
   );
 }
@@ -511,6 +590,7 @@ function DirectorCard({
 }) {
   const innerRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const handleMouseLeave = () => {
     const card = innerRef.current;
@@ -550,12 +630,15 @@ function DirectorCard({
         <div ref={glowRef} style={{ position: "absolute", inset: -1, borderRadius: 18, border: "1.5px solid var(--accent)", opacity: 0, pointerEvents: "none", boxShadow: "0 0 24px rgba(220,38,38,0.2)" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(90deg, transparent, var(--accent), transparent)", borderRadius: "18px 18px 0 0" }} />
 
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 22 }}>
+        <div
+          style={{ display: "flex", justifyContent: "center", marginBottom: 22, cursor: "zoom-in" }}
+          onClick={() => setLightboxOpen(true)}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={director.photo}
             alt={director.name}
-            style={{ width: 96, height: 96, borderRadius: "50%", objectFit: "cover", border: "2px solid var(--border-mid)", filter: "grayscale(30%)", transition: "filter 0.4s ease" }}
+            style={{ width: 160, height: 160, borderRadius: "50%", objectFit: "cover", border: "2px solid var(--border-mid)", filter: "grayscale(30%)", transition: "filter 0.4s ease" }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLImageElement).style.filter = "grayscale(0%)")}
             onMouseLeave={(e) => ((e.currentTarget as HTMLImageElement).style.filter = "grayscale(30%)")}
             onError={(e) => {
@@ -572,6 +655,10 @@ function DirectorCard({
           {director.name}
         </h3>
       </div>
+
+      {lightboxOpen && (
+        <PhotoLightbox src={director.photo} name={director.name} onClose={() => setLightboxOpen(false)} />
+      )}
     </div>
   );
 }
@@ -588,6 +675,7 @@ function SalesCard({
 }) {
   const innerRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = innerRef.current;
@@ -627,14 +715,16 @@ function SalesCard({
         <div ref={glowRef} style={{ position: "absolute", inset: -1, borderRadius: 18, border: "1.5px solid var(--accent)", opacity: 0, pointerEvents: "none", boxShadow: "0 0 28px rgba(220,38,38,0.25)" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "var(--accent)", borderRadius: "18px 18px 0 0" }} />
 
-        {/* Photo */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 22 }}>
+        <div
+          style={{ display: "flex", justifyContent: "center", marginBottom: 22, cursor: "zoom-in" }}
+          onClick={() => setLightboxOpen(true)}
+        >
           {member.photo ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={member.photo}
               alt={member.name}
-              style={{ width: 100, height: 100, borderRadius: "50%", objectFit: "cover", border: "2px solid var(--border-mid)", filter: "grayscale(30%)", transition: "filter 0.4s ease" }}
+              style={{ width: 160, height: 160, borderRadius: "50%", objectFit: "cover", border: "2px solid var(--border-mid)", filter: "grayscale(30%)", transition: "filter 0.4s ease" }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLImageElement).style.filter = "grayscale(0%)")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLImageElement).style.filter = "grayscale(30%)")}
               onError={(e) => {
@@ -643,30 +733,27 @@ function SalesCard({
                 if (parent) {
                   img.style.display = "none";
                   const div = document.createElement("div");
-                  div.style.cssText = `width:100px;height:100px;borderRadius:50%;background:var(--accent);display:flex;alignItems:center;justifyContent:center;fontSize:32px;fontFamily:"Instrument Serif",serif;color:#fff`;
+                  div.style.cssText = `width:160px;height:160px;borderRadius:50%;background:var(--accent);display:flex;alignItems:center;justifyContent:center;fontSize:52px;fontFamily:"Instrument Serif",serif;color:#fff`;
                   div.textContent = member.name.split(" ").filter((w) => /^[A-Z]/.test(w)).slice(0, 2).map((w) => w[0]).join("");
                   parent.appendChild(div);
                 }
               }}
             />
           ) : (
-            <AvatarPlaceholder name={member.name} size={100} />
+            <AvatarPlaceholder name={member.name} size={160} />
           )}
         </div>
 
-        {/* Title */}
         <p style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 8 }}>
           {member.title}
         </p>
 
-        {/* Name */}
         <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)", color: "var(--text-primary)", lineHeight: 1.25, marginBottom: 20 }}>
           {member.name}
         </h3>
 
         <div style={{ height: 1, background: "var(--border-subtle)", marginBottom: 20 }} />
 
-        {/* Contact rows */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <a
             href={`tel:${member.phone.replace(/\s/g, "")}`}
@@ -693,6 +780,10 @@ function SalesCard({
           </a>
         </div>
       </div>
+
+      {lightboxOpen && (
+        <PhotoLightbox src={member.photo} name={member.name} onClose={() => setLightboxOpen(false)} />
+      )}
     </div>
   );
 }

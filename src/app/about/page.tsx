@@ -309,9 +309,17 @@ export default function AboutPage() {
   const timelineCard1Ref   = useRef<HTMLDivElement>(null);
   const timelineCard2Ref   = useRef<HTMLDivElement>(null);
   const timelineCard3Ref   = useRef<HTMLDivElement>(null);
+  const timelineCard4Ref   = useRef<HTMLDivElement>(null);
+  const timelineCard5Ref   = useRef<HTMLDivElement>(null);
+  const timelineCard6Ref   = useRef<HTMLDivElement>(null);
+  const timelineCard7Ref   = useRef<HTMLDivElement>(null);
   const dot1Ref            = useRef<HTMLDivElement>(null);
   const dot2Ref            = useRef<HTMLDivElement>(null);
   const dot3Ref            = useRef<HTMLDivElement>(null);
+  const dot4Ref            = useRef<HTMLDivElement>(null);
+  const dot5Ref            = useRef<HTMLDivElement>(null);
+  const dot6Ref            = useRef<HTMLDivElement>(null);
+  const dot7Ref            = useRef<HTMLDivElement>(null);
 
   /* ── What We Do refs ── */
   const wdoSectionRef  = useRef<HTMLElement>(null);
@@ -498,6 +506,10 @@ export default function AboutPage() {
         { card: timelineCard1Ref.current, dot: dot1Ref.current, x: -90 },
         { card: timelineCard2Ref.current, dot: dot2Ref.current, x: 90 },
         { card: timelineCard3Ref.current, dot: dot3Ref.current, x: -90 },
+        { card: timelineCard4Ref.current, dot: dot4Ref.current, x: 90 },
+        { card: timelineCard5Ref.current, dot: dot5Ref.current, x: -90 },
+        { card: timelineCard6Ref.current, dot: dot6Ref.current, x: 90 },
+        { card: timelineCard7Ref.current, dot: dot7Ref.current, x: -90 },
       ];
       timelineItems.forEach(({ card, dot, x }) => {
         gsap.fromTo(card,
@@ -995,7 +1007,7 @@ export default function AboutPage() {
               margin: "0 0 1.25rem",
             }}>
               Why the world&apos;s most<br />
-              <span className="italic">demanding clients choose us.</span>
+              <span className="italic">prestigious clients choose us.</span>
             </h2>
             <p className="font-sans" style={{
               fontSize: "0.95rem",
@@ -1309,7 +1321,7 @@ export default function AboutPage() {
       ══════════════════════════════════════════════ */}
       <section ref={wdoSectionRef} style={{
         background: "var(--bg-base)",
-        padding: "clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)",
+        padding: "clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 6vw, 6rem)",
         overflow: "hidden",
       }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
@@ -1348,53 +1360,87 @@ export default function AboutPage() {
                 title: "Corporate Car Rentals",
                 badge: "CCR",
                 desc: "Mission-critical, technology-enabled fleet management for Fortune 500 corporates, embassies, and institutional clients. Seamless, on-demand, always punctual.",
+                video: "/0_Car_Expensive_1280x720.mp4",
               },
               {
                 icon: <IconEvent />,
                 title: "Event Transportation",
                 badge: "Bespoke",
                 desc: "End-to-end mobility for world-class events — from G20 summits to landmark VVIP weddings. We flawlessly execute the most complex logistical requirements.",
+                video: "/6886022_Famous_Place_Tourism_1280x720.mp4",
               },
               {
                 icon: <IconBespoke />,
                 title: "Retail Solutions",
                 badge: "Premium",
                 desc: "Bespoke retail transport solutions for high-net-worth individuals and discerning travellers. Ultra-luxury vehicles, curated for perfection.",
+                video: "/0_Car_Night_1280x720.mp4",
               },
-            ].map(({ icon, title, badge, desc }) => (
-              <div key={title} className="glass-card" style={{
-                padding: "2rem",
+            ].map(({ icon, title, badge, desc, video }) => (
+              <div key={title} style={{
+                position: "relative",
                 borderRadius: "1.5rem",
+                overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
                 gap: "1.25rem",
                 opacity: 0,
+                minHeight: 320,
+                border: "1px solid rgba(255,255,255,0.10)",
+                boxShadow: "0 12px 40px rgba(0,0,0,0.30)",
               }}>
+                {/* Background video */}
+                <video
+                  src={video}
+                  autoPlay muted loop playsInline
+                  style={{
+                    position: "absolute", inset: 0, width: "100%", height: "100%",
+                    objectFit: "cover", zIndex: 0, pointerEvents: "none",
+                  }}
+                />
+                {/* Dark overlay */}
                 <div style={{
-                  width: 52, height: 52,
-                  borderRadius: "14px",
-                  background: "var(--glass-mid)",
-                  border: "1px solid var(--border-subtle)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "var(--text-primary)",
-                  boxShadow: "inset 0 1px 0 var(--inner-light)",
-                }}>
-                  {icon}
-                </div>
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.6rem" }}>
-                    <h3 className="font-sans" style={{
-                      fontSize: "1rem", fontWeight: 600,
-                      color: "var(--text-primary)", margin: 0,
-                    }}>{title}</h3>
-                    <span className="glass-badge" style={{ fontSize: "0.58rem" }}>{badge}</span>
+                  position: "absolute", inset: 0, zIndex: 1,
+                  background: "linear-gradient(to top, rgba(10,6,2,0.90) 0%, rgba(10,6,2,0.55) 55%, rgba(10,6,2,0.30) 100%)",
+                  pointerEvents: "none",
+                }} />
+                {/* Content */}
+                <div style={{ position: "relative", zIndex: 2, padding: "2rem", display: "flex", flexDirection: "column", gap: "1.25rem", height: "100%" }}>
+                  <div style={{
+                    width: 52, height: 52,
+                    borderRadius: "14px",
+                    background: "rgba(255,255,255,0.12)",
+                    border: "1px solid rgba(255,255,255,0.22)",
+                    backdropFilter: "blur(10px)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#ffffff",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20)",
+                  }}>
+                    {icon}
                   </div>
-                  <p className="font-sans" style={{
-                    fontSize: "0.875rem", lineHeight: 1.7,
-                    color: "var(--text-secondary)", margin: 0,
-                  }}>{desc}</p>
+                  <div style={{ marginTop: "auto" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.6rem" }}>
+                      <h3 className="font-sans" style={{
+                        fontSize: "1rem", fontWeight: 600,
+                        color: "#ffffff", margin: 0,
+                      }}>{title}</h3>
+                      <span style={{
+                        fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        padding: "0.18rem 0.6rem", borderRadius: 9999,
+                        background: "rgba(255,255,255,0.14)",
+                        border: "1px solid rgba(255,255,255,0.22)",
+                        color: "rgba(255,255,255,0.80)",
+                        backdropFilter: "blur(8px)",
+                      }}>{badge}</span>
+                    </div>
+                    <p className="font-sans" style={{
+                      fontSize: "0.875rem", lineHeight: 1.7,
+                      color: "rgba(255,255,255,0.68)", margin: 0,
+                    }}>{desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -1478,6 +1524,7 @@ export default function AboutPage() {
                   { val: "40+",  label: "Years of industry leadership" },
                   { val: "F500", label: "Fortune 500 clientele" },
                   { val: "85+",  label: "Cities across India & 4 global hubs — UAE, KSA, England" },
+                  { val: "3×",   label: "Consecutive National Tourism Award winners (2016–2019)" },
                 ].map(({ val, label }) => (
                   <div key={label} className="glass-panel" style={{
                     display: "flex",
@@ -1597,7 +1644,7 @@ export default function AboutPage() {
       ══════════════════════════════════════════════ */}
       <section ref={timelineSectionRef} style={{
         background: "var(--bg-surface)",
-        padding: "clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)",
+        padding: "clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 6vw, 6rem)",
         overflow: "hidden",
       }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
@@ -1736,9 +1783,87 @@ export default function AboutPage() {
               display: "flex",
               justifyContent: "flex-end",
               paddingRight: "calc(50% + 2.5rem)",
+              marginBottom: "3.5rem",
               position: "relative",
             }}>
               <div ref={dot3Ref} style={{
+                position: "absolute",
+                right: "calc(50% - 7px)",
+                top: "1.2rem",
+                width: 14, height: 14,
+                borderRadius: "50%",
+                background: "var(--text-primary)",
+                border: "2px solid var(--bg-surface)",
+                scale: 0,
+              }} />
+              <div ref={timelineCard3Ref} className="glass-panel" style={{
+                padding: "1.5rem 1.75rem",
+                borderRadius: "1.25rem",
+                maxWidth: 380,
+                opacity: 0,
+              }}>
+                <span className="glass-badge" style={{ marginBottom: "0.8rem", display: "inline-block" }}>2000s</span>
+                <h3 className="font-serif" style={{
+                  fontSize: "1.4rem", fontWeight: 400,
+                  color: "var(--text-primary)", margin: "0 0 0.6rem",
+                }}>National Footprint</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem", lineHeight: 1.7,
+                  color: "var(--text-secondary)", margin: 0,
+                }}>
+                  Expanded operations across 85+ cities in India, establishing a full-service network for corporate and diplomatic clients. Became the trusted transport partner for Fortune 500 companies and government institutions.
+                </p>
+              </div>
+            </div>
+
+            {/* Milestone 4 — RIGHT */}
+            <div style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "calc(50% + 2.5rem)",
+              marginBottom: "3.5rem",
+              position: "relative",
+            }}>
+              <div ref={dot4Ref} style={{
+                position: "absolute",
+                left: "calc(50% - 7px)",
+                top: "1.2rem",
+                width: 14, height: 14,
+                borderRadius: "50%",
+                background: "var(--accent)",
+                border: "2px solid var(--bg-surface)",
+                boxShadow: "0 0 0 3px rgba(200,40,40,0.18)",
+                scale: 0,
+              }} />
+              <div ref={timelineCard4Ref} className="glass-panel" style={{
+                padding: "1.5rem 1.75rem",
+                borderRadius: "1.25rem",
+                maxWidth: 380,
+                opacity: 0,
+              }}>
+                <span className="glass-badge" style={{ marginBottom: "0.8rem", display: "inline-block" }}>2008–2015</span>
+                <h3 className="font-serif" style={{
+                  fontSize: "1.4rem", fontWeight: 400,
+                  color: "var(--text-primary)", margin: "0 0 0.6rem",
+                }}>Diplomatic &amp; Government Mandates</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem", lineHeight: 1.7,
+                  color: "var(--text-secondary)", margin: 0,
+                }}>
+                  Appointed as the preferred ground transport provider for foreign embassies including the United States Mission in India. Served the Kabaddi World Cup, AFC Women&apos;s Cup, and major national sporting events.
+                </p>
+              </div>
+            </div>
+
+            {/* Milestone 5 — LEFT */}
+            <div style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              paddingRight: "calc(50% + 2.5rem)",
+              marginBottom: "3.5rem",
+              position: "relative",
+            }}>
+              <div ref={dot5Ref} style={{
                 position: "absolute",
                 right: "calc(50% - 7px)",
                 top: "1.2rem",
@@ -1749,7 +1874,83 @@ export default function AboutPage() {
                 boxShadow: "0 0 0 3px rgba(200,40,40,0.18)",
                 scale: 0,
               }} />
-              <div ref={timelineCard3Ref} className="glass-panel" style={{
+              <div ref={timelineCard5Ref} className="glass-panel" style={{
+                padding: "1.5rem 1.75rem",
+                borderRadius: "1.25rem",
+                maxWidth: 380,
+                opacity: 0,
+              }}>
+                <span className="glass-badge" style={{ marginBottom: "0.8rem", display: "inline-block" }}>2016–2019</span>
+                <h3 className="font-serif" style={{
+                  fontSize: "1.4rem", fontWeight: 400,
+                  color: "var(--text-primary)", margin: "0 0 0.6rem",
+                }}>Triple National Tourism Award</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem", lineHeight: 1.7,
+                  color: "var(--text-secondary)", margin: 0,
+                }}>
+                  Awarded the National Tourism Award by the Ministry of Tourism, Government of India for three consecutive years (2016–17, 2017–18, 2018–19) — the highest recognition in India&apos;s tourism industry.
+                </p>
+              </div>
+            </div>
+
+            {/* Milestone 6 — RIGHT */}
+            <div style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "calc(50% + 2.5rem)",
+              marginBottom: "3.5rem",
+              position: "relative",
+            }}>
+              <div ref={dot6Ref} style={{
+                position: "absolute",
+                left: "calc(50% - 7px)",
+                top: "1.2rem",
+                width: 14, height: 14,
+                borderRadius: "50%",
+                background: "var(--text-primary)",
+                border: "2px solid var(--bg-surface)",
+                scale: 0,
+              }} />
+              <div ref={timelineCard6Ref} className="glass-panel" style={{
+                padding: "1.5rem 1.75rem",
+                borderRadius: "1.25rem",
+                maxWidth: 380,
+                opacity: 0,
+              }}>
+                <span className="glass-badge" style={{ marginBottom: "0.8rem", display: "inline-block" }}>2019–2022</span>
+                <h3 className="font-serif" style={{
+                  fontSize: "1.4rem", fontWeight: 400,
+                  color: "var(--text-primary)", margin: "0 0 0.6rem",
+                }}>Industry &amp; Media Recognition</h3>
+                <p className="font-sans" style={{
+                  fontSize: "0.875rem", lineHeight: 1.7,
+                  color: "var(--text-secondary)", margin: 0,
+                }}>
+                  Received the Zee Business Award for Best Private Transport Service Provider (2019) and was named &apos;Leaders of Road Transport&apos; by TV9 Network (2022). Expanded global footprint to UAE, Saudi Arabia, and England.
+                </p>
+              </div>
+            </div>
+
+            {/* Milestone 7 — LEFT */}
+            <div style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              paddingRight: "calc(50% + 2.5rem)",
+              position: "relative",
+            }}>
+              <div ref={dot7Ref} style={{
+                position: "absolute",
+                right: "calc(50% - 7px)",
+                top: "1.2rem",
+                width: 14, height: 14,
+                borderRadius: "50%",
+                background: "var(--accent)",
+                border: "2px solid var(--bg-surface)",
+                boxShadow: "0 0 0 3px rgba(200,40,40,0.18)",
+                scale: 0,
+              }} />
+              <div ref={timelineCard7Ref} className="glass-panel" style={{
                 padding: "1.5rem 1.75rem",
                 borderRadius: "1.25rem",
                 maxWidth: 380,
@@ -1759,12 +1960,12 @@ export default function AboutPage() {
                 <h3 className="font-serif" style={{
                   fontSize: "1.4rem", fontWeight: 400,
                   color: "var(--text-primary)", margin: "0 0 0.6rem",
-                }}>Industry Powerhouse</h3>
+                }}>Global Powerhouse</h3>
                 <p className="font-sans" style={{
                   fontSize: "0.875rem", lineHeight: 1.7,
                   color: "var(--text-secondary)", margin: 0,
                 }}>
-                  Mann Fleet Partners Limited — an award-winning, globally recognised mobility powerhouse. The gold standard in luxury ground transport.
+                  Mann Fleet Partners Limited — an award-winning, globally recognised mobility powerhouse. Serving the G20 Presidency, VVIP events, and Fortune 500 clients across India, UAE, Saudi Arabia, and England.
                 </p>
               </div>
             </div>
@@ -1845,12 +2046,164 @@ export default function AboutPage() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          5. TRACK RECORD
+          5. FLAGSHIP PROJECT — NOIDA INTERNATIONAL AIRPORT
+      ══════════════════════════════════════════════ */}
+      <section style={{
+        position: "relative",
+        background: "var(--bg-base)",
+        padding: "clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 6vw, 6rem)",
+        overflow: "hidden",
+      }}>
+        {/* Subtle background gradient */}
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(220,38,38,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto" }}>
+
+          {/* Section label + heading */}
+          <div style={{ marginBottom: "clamp(2rem, 4vw, 3rem)" }}>
+            <span style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--accent)", display: "block", marginBottom: 14 }}>
+              FLAGSHIP PROJECT
+            </span>
+            <h2 style={{
+              fontFamily: "'Instrument Serif', serif",
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontWeight: 400,
+              color: "var(--text-primary)",
+              lineHeight: 1.1,
+              marginBottom: 14,
+            }}>
+              Noida International Airport
+              <span style={{ display: "block", fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)", color: "var(--accent)", marginTop: 6 }}>(NIA)</span>
+            </h2>
+            <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.15rem)", color: "var(--text-secondary)", maxWidth: 640, lineHeight: 1.65 }}>
+              Redefining Ground Mobility at India&apos;s Newest Aviation Hub
+            </p>
+          </div>
+
+          {/* Intro card */}
+          <div style={{
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border-subtle)",
+            borderLeft: "3px solid var(--accent)",
+            borderRadius: 16,
+            padding: "28px 32px",
+            marginBottom: 32,
+          }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.8, color: "var(--text-secondary)", margin: 0 }}>
+              Mann Fleet Partners Limited has been appointed as the <strong style={{ color: "var(--text-primary)" }}>official mobility services partner for Noida International Airport</strong> — one of India&apos;s most ambitious infrastructure developments. As the airport prepares to commence operations, Mann Fleet is leading the design and execution of a fully integrated, premium ground transportation ecosystem, ensuring seamless connectivity for both passengers and airport personnel.
+            </p>
+          </div>
+
+          {/* Our Mandate + Stats row */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 32 }}>
+
+            {/* Mandate cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <p style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: 4 }}>Our Mandate</p>
+
+              {[
+                { title: "Curated Rental Mobility", body: "Exclusive fleet of premium vehicles with dedicated kerbside access at arrivals and departures — minimal walking, maximum convenience." },
+                { title: "Intra-Airport Shuttle Network", body: "Seamless movement within the airport campus with professionally managed, high-frequency shuttle operations." },
+                { title: "City Connectivity Solutions", body: "Direct links to Pari Chowk · Botanical Garden · Greater Noida West · GBU Campus — designed for both passenger and workforce mobility." },
+              ].map((item) => (
+                <div key={item.title} style={{
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border-subtle)",
+                  borderRadius: 14,
+                  padding: "20px 24px",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent)", flexShrink: 0 }} />
+                    <p style={{ fontFamily: "'Instrument Serif', serif", fontSize: "1rem", color: "var(--text-primary)", fontWeight: 400, margin: 0 }}>{item.title}</p>
+                  </div>
+                  <p style={{ fontSize: "0.84rem", color: "var(--text-secondary)", lineHeight: 1.65, margin: 0, paddingLeft: 16 }}>{item.body}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Right column: stats + advantage */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+
+              {/* Scale stats */}
+              <div style={{
+                background: "var(--bg-surface)",
+                border: "1px solid var(--border-subtle)",
+                borderRadius: 14,
+                padding: "24px",
+              }}>
+                <p style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: 18 }}>Built for Scale</p>
+                <div style={{ display: "flex", justifyContent: "space-around", gap: 12, marginBottom: 16 }}>
+                  {[
+                    { val: "12M", label: "Initial passenger capacity" },
+                    { val: "70M+", label: "Long-term capacity" },
+                    { val: "40 Yrs", label: "Concession term" },
+                  ].map((stat) => (
+                    <div key={stat.val} style={{ textAlign: "center" }}>
+                      <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "var(--accent)", lineHeight: 1 }}>{stat.val}</div>
+                      <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: 4, lineHeight: 1.3 }}>{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", lineHeight: 1.55, borderTop: "1px solid var(--border-subtle)", paddingTop: 14, margin: 0 }}>
+                  Developed by Yamuna International Airport Private Limited, a subsidiary of Zurich Airport International AG. Our mobility systems are engineered to scale in parallel with this growth.
+                </p>
+              </div>
+
+              {/* Mann Fleet Advantage */}
+              <div style={{
+                background: "var(--bg-surface)",
+                border: "1px solid var(--border-subtle)",
+                borderRadius: 14,
+                padding: "24px",
+                flex: 1,
+              }}>
+                <p style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: 16 }}>The Mann Fleet Advantage</p>
+                <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+                  {[
+                    "38+ years of industry leadership",
+                    "Expertise in large-scale, high-stakes mobility operations",
+                    "Trusted by global corporations, embassies, and government delegations",
+                    "Proven track record managing complex, high-security transport requirements",
+                  ].map((point) => (
+                    <li key={point} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                      <span style={{ color: "var(--accent)", fontSize: 14, lineHeight: 1.6, flexShrink: 0 }}>›</span>
+                      <span style={{ fontSize: "0.88rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Closing statement */}
+          <div style={{
+            textAlign: "center",
+            padding: "32px 24px",
+            borderTop: "1px solid var(--border-subtle)",
+          }}>
+            <p style={{
+              fontFamily: "'Instrument Serif', serif",
+              fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)",
+              fontStyle: "italic",
+              color: "var(--text-primary)",
+              lineHeight: 1.5,
+              maxWidth: 720,
+              margin: "0 auto",
+            }}>
+              &ldquo;At Noida International Airport, Mann Fleet is setting a new benchmark for integrated, passenger-centric ground transportation in India.&rdquo;
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          6. TRACK RECORD
       ══════════════════════════════════════════════ */}
       <section ref={trackSectionRef} style={{
         position: "relative",
         background: "var(--bg-deep)",
-        padding: "clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)",
+        padding: "clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 6vw, 6rem)",
         overflow: "hidden",
       }}>
         {/* Parallax watermark */}
