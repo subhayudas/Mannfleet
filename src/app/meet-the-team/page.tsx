@@ -30,7 +30,7 @@ const LEADERS: Leader[] = [
     name: "Mr. Amrit Pal Singh Mann",
     title: "Managing Director",
     email: "amrit@manntours.com",
-    photo: null,
+    photo: "/teams/amrit%20pal.jpeg",
     teaser:
       "Pioneer in shifting the Indian Tourism Industry to premium luxury vehicles since 1986 — driving business expansion and service excellence for four decades.",
     bio: "Amrit Pal Singh Mann is the Promoter and Managing Director of the Company. He has also passed his first year of Bachelor of Commerce in 1985 from University of Delhi. He has been pioneered in shifting the Indian Tourism Industry from all types of smart to premium luxury vehicles since 1986. He has been a key leader, driving business expansion and service excellence in all tourist transport segments. With extensive experience in managing high-profile events, corporate delegations and provided services to embassies, he has played a crucial role in strengthening our Company's market presence. He is known for his disciplined and client-centric approach, ensuring the highest standards of service delivery. He has been at the forefront of adopting the latest transport technology and luxury vehicles, reinforcing Mann Fleet Partners Limited position as in luxury passenger transport in India. His strategic vision continues to propel our Company's growth. He spearheads the rollout of the entire premier fleet.",
@@ -46,7 +46,7 @@ const LEADERS: Leader[] = [
     name: "Parmjeet Mann",
     title: "Executive Director & Head of HR",
     email: "parmjeet@manntours.com",
-    photo: null,
+    photo: "/teams/parmjeet%20mann.jpeg",
     teaser:
       "Executive Director and Head of Human Resources, instrumental in securing high-value contracts with embassies, MNCs and prestigious events since 2005.",
     bio: "Parmjeet Mann is the Promoter, Executive Director and Head of Human Resources Department of our Company. She has completed diploma in Fashion Design from JD Institute of Fashion Technology in the year 2001–02 and also completed her PG Diploma in microbiology and food technology from Punjabi University in the year 1994. She has also done Bachelor of Science (Honors) in Botany from Panjab University in the year 1993. She has been associated with our Company from August 2005. She has played a crucial role in driving the Company's growth. She has been instrumental in securing high-value contracts with embassies, multinational corporations and prestigious events. She has also developed and trained a team of 15 sales professionals, ensuring consistent business growth and client retention. Additionally, as Head of Human Resources, she manages a workforce of our employees, including chauffeurs and office staffs, streamlining business functions and ensuring operational efficiency.",
@@ -66,7 +66,7 @@ const LEADERS: Leader[] = [
     name: "Robin Singh Mann",
     title: "Executive Director & Head of Marketing",
     email: "robin@faze.in",
-    photo: null,
+    photo: "/teams/Robin%20Mann%20Sir%20photo.png",
     teaser:
       "Columbia University honours graduate and former Evercore Investment Banking Analyst, now leading growth and marketing strategy at Mann Fleet.",
     bio: "Robin Singh Mann is a Promoter, Executive Director of our Company. He completed his Bachelor of Arts at Columbia University in the City of New York and graduated with honours in May 2020. Prior to joining our Company, he was associated with Evercore's PCA division in NYC, USA in the capacity of Investment Banking Senior Analyst and Citigroup in NYC. At our Company, he leads the growth and scalability of the business as Head of Marketing. As a part of this role, he creates and deploys various marketing and social media strategies that aim to improve Mann's position and market share. Robin also supports the Sales team on marquee projects, pitches, and clients. Additionally, he also leads one of our Group Company namely, Leap Green Infra Private Limited, leveraging his experience to target and generate new clientele, contract structures and revenue stacks.",
@@ -141,7 +141,7 @@ const SALES_TEAM: SalesMember[] = [
     title: "Asst. Manager — Sales",
     phone: "+91-9891398914",
     email: "ashwani@manntours.com",
-    photo: null,
+    photo: "/teams/Mr.%20Ashwani%20Kumar%20Picture.png",
   },
 ];
 
