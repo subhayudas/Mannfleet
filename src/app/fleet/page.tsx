@@ -84,7 +84,7 @@ const VEHICLES: Vehicle[] = [
     id: "bmw-5-series", name: "BMW 5 Series", type: "Sedans", category: "LUXURY",
     seating: "5 Seater Including Pilot", luggage: "500 Litres",
     imageObjectFit: "cover",
-    image: ["/Mann car pictures/BMW 5 Series/BMW 5 series front.jpeg", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_52_22%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_49_04%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_46_45%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_48_21%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2002_48_20%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2002_56_01%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2012_39_45%20AM.png"],
+    image: ["/Mann%20car%20pictures/BMW%205%20Series/BMW%205%20series%20front.jpeg", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_52_22%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_49_04%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_46_45%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_48_21%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2002_48_20%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2002_56_01%20PM.png", "/Mann%20car%20pictures/BMW%205%20Series/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2012_39_45%20AM.png"],
   },
   // Super Luxury
   {
@@ -296,7 +296,7 @@ const VEHICLES: Vehicle[] = [
   {
     id: "jet-on-wheels", name: '"Jet on Wheels" (Volvo 13.5m)', type: "Coaches", category: "SUPER LUXURY",
     seating: "23 Full Recliners Including Pilot", luggage: "Fits 40–50 large suitcases",
-    imageObjectFit: "contain",
+    imageObjectFit: "cover",
     image: ["/Mann car pictures/Jet on wheels/jet on wheels front.jpeg", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_00_26%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_13_32%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_16_03%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_17_48%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_19_14%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_21_13%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_23_04%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_24_34%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_25_33%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_26_51%20PM.png"],
   },
 
