@@ -43,15 +43,6 @@ const SERVICES = [
     statLabel: "vehicles available",
   },
   {
-    id: "event",
-    text: "Event Transportation",
-    badge: "bespoke",
-    description: "Customised transport for weddings, conferences, delegations, and large-scale events.",
-    image: "/Mann car pictures/Vellfire/ChatGPT Image Apr 30, 2026, 07_39_48 PM.png",
-    stat: "500+",
-    statLabel: "events handled",
-  },
-  {
     id: "pan-india-mobility",
     text: "Corporate's Pan India Mobility",
     badge: "corporate",
@@ -106,15 +97,6 @@ const SERVICES = [
     statLabel: "service",
   },
   {
-    id: "board-meetings",
-    text: "Board Meetings",
-    badge: "corporate",
-    description: "Punctual and reliable transportation for executive board meetings.",
-    image: "/Mann car pictures/7 series.png",
-    stat: "On-time",
-    statLabel: "guarantee",
-  },
-  {
     id: "agm-board-meets",
     text: "AGM & Board Meets",
     badge: "corporate",
@@ -140,15 +122,6 @@ const SERVICES = [
     image: "/Mann car pictures/7 series.png",
     stat: "Bespoke",
     statLabel: "luxury",
-  },
-  {
-    id: "town-hall-meetings",
-    text: "Town Hall Meetings",
-    badge: "corporate",
-    description: "Efficient group transport for corporate town hall meetings.",
-    image: "/Mann car pictures/volvo 39, 43 seater.jpeg",
-    stat: "Group",
-    statLabel: "transport",
   },
   {
     id: "tourism",

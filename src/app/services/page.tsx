@@ -43,15 +43,6 @@ const SERVICES = [
     statLabel: "vehicles available",
   },
   {
-    id: "event",
-    text: "Event Transportation",
-    badge: "bespoke",
-    description: "Customised transport for weddings, conferences, delegations, and large-scale events.",
-    image: "/Mann car pictures/Vellfire/ChatGPT Image Apr 30, 2026, 07_39_48 PM.png",
-    stat: "500+",
-    statLabel: "events handled",
-  },
-  {
     id: "pan-india-mobility",
     text: "Corporate's Pan India Mobility",
     badge: "corporate",
@@ -106,15 +97,6 @@ const SERVICES = [
     statLabel: "service",
   },
   {
-    id: "board-meetings",
-    text: "Board Meetings",
-    badge: "corporate",
-    description: "Punctual and reliable transportation for executive board meetings.",
-    image: "/Mann car pictures/BMW 7 Series/ChatGPT Image Apr 28, 2026, 08_35_37 PM.png",
-    stat: "On-time",
-    statLabel: "guarantee",
-  },
-  {
     id: "agm-board-meets",
     text: "AGM & Board Meets",
     badge: "corporate",
@@ -140,15 +122,6 @@ const SERVICES = [
     image: "/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 01_14_32 PM.png",
     stat: "Bespoke",
     statLabel: "luxury",
-  },
-  {
-    id: "town-hall-meetings",
-    text: "Town Hall Meetings",
-    badge: "corporate",
-    description: "Efficient group transport for corporate town hall meetings.",
-    image: "/Mann car pictures/Mercedes-Benz V-Class/ChatGPT Image Apr 26, 2026, 01_04_00 AM.png",
-    stat: "Group",
-    statLabel: "transport",
   },
   {
     id: "tourism",
@@ -372,7 +345,7 @@ export default function ServicesPage() {
               }}>
                 From daily corporate commutes to state-level delegations — Mann Fleet Partners delivers a full spectrum of mobility solutions across India.
               </p>
-              <span className="glass-badge">17 service categories</span>
+              <span className="glass-badge">{SERVICES.length} service categories</span>
             </div>
           </div>
         </section>

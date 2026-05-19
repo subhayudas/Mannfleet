@@ -119,7 +119,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Pan-India",
     statLabel: "coverage",
-    image: "/Mann car pictures/Mercedes-Benz S-Class/ChatGPT Image Apr 29, 2026, 11_07_15 PM.png",
+    image: "/Mann car pictures/Toyota fortuner/Toyota fortuner front.jpeg",
   },
   "film-shoots-concerts": {
     title: "Film Shoots & Concerts",
