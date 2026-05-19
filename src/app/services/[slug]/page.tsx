@@ -87,7 +87,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "200+",
     statLabel: "vehicles available",
-    image: "/Mann car pictures/Hyundai Creta/ChatGPT Image May 6, 2026, 04_03_13 PM.png",
+    image: "/Mann car pictures/Toyota camry hybrid/toyota camry hybrid front.jpeg",
   },
   "event": {
     title: "Event Transportation",
@@ -119,7 +119,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Pan-India",
     statLabel: "coverage",
-    image: "/Mann car pictures/BMW X7/ChatGPT Image Apr 28, 2026, 08_23_47 PM.png",
+    image: "/Mann car pictures/Mercedes-Benz S-Class/ChatGPT Image Apr 29, 2026, 11_07_15 PM.png",
   },
   "film-shoots-concerts": {
     title: "Film Shoots & Concerts",
@@ -143,7 +143,7 @@ const SERVICE_DATA: Record<string, {
     description: "High-security, luxury fleet services for global leaders and celebrity visits. From advance route planning to real-time coordination, we ensure every movement is smooth, safe, and seamless.",
     features: [
       "Advance security coordination",
-      "Armoured & luxury vehicles available",
+      "Protected & luxury vehicles available",
       "Trained chauffeurs with background checks",
       "Real-time route monitoring",
       "Confidential guest management",
@@ -151,7 +151,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "VIP",
     statLabel: "security",
-    image: "/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 12_55_48 PM.png",
+    image: "/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 01_10_24 PM.png",
   },
   "conventions-exhibitions": {
     title: "Conventions & Exhibitions",
@@ -190,7 +190,7 @@ const SERVICE_DATA: Record<string, {
     subtitle: "Executive Fleet Services",
     description: "Executive fleet services tailored for high-profile delegations. We provide luxury vehicles, trained chauffeurs, and end-to-end coordination to ensure a dignified and secure experience.",
     features: [
-      "Luxury & armoured vehicle options",
+      "Luxury & Protected vehicle options",
       "Protocol-trained chauffeurs",
       "Advance route planning",
       "Real-time communication",

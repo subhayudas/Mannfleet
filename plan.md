@@ -104,7 +104,7 @@ These services are high-value and could warrant a dedicated static page (overrid
 | `events-weddings` | Image gallery — Kia Carnival Limousine + Rolls Royce decorated images; testimonial placeholder |
 | `tourism` | Landmark images (`/Taj mahal.jpeg`), curated route list |
 | `pan-india-mobility` | Embed `IndiaMapLeaflet` component showing city coverage |
-| `global-leaders-celebrities` | Security protocol list; emphasis on armoured vehicle options |
+| `global-leaders-celebrities` | Security protocol list; emphasis on Protected vehicle options |
 | `film-shoots-concerts` | Behind-the-scenes logistics breakdown |
 
 Create as `src/app/services/events-weddings/page.tsx` etc. — Next.js gives static routes priority over `[slug]`, so the generic template stays for all others.
