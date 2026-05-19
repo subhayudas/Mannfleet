@@ -199,7 +199,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Premium",
     statLabel: "service",
-    image: "/Mann car pictures/Mercedes-Benz S-Class/ChatGPT Image Apr 29, 2026, 11_07_15 PM.png",
+    image: "/Mann car pictures/Toyota fortuner/Toyota fortuner front.jpeg",
   },
   "board-meetings": {
     title: "Board Meetings",
