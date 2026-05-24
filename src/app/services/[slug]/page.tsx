@@ -23,6 +23,7 @@ const SERVICE_DATA: Record<string, {
   statLabel: string;
   image: string;
   imageObjectPosition?: string;
+  imageObjectFit?: string;
 }> = {
   "long-term": {
     title: "Long-Term Rentals",
@@ -39,7 +40,7 @@ const SERVICE_DATA: Record<string, {
     stat: "12+ months",
     statLabel: "minimum contract",
     image: "/Mann car pictures/Mercedes-Benz E-Class/ChatGPT Image Apr 28, 2026, 06_32_56 PM.png",
-    imageObjectPosition: "center 80%",
+    imageObjectPosition: "center 50%",
   },
   "spot": {
     title: "Spot Rentals",
@@ -167,7 +168,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Scale",
     statLabel: "capacity",
-    image: "/Mann car pictures/Toyota Coaster New Generation/ChatGPT Image May 4, 2026, 12_38_26 PM.png",
+    image: "/Mann car pictures/Toyota Coaster New Generation/ChatGPT Image May 4, 2026, 12_38_05 PM.png",
   },
   "leasing": {
     title: "Leasing",
@@ -232,6 +233,7 @@ const SERVICE_DATA: Record<string, {
     stat: "Seamless",
     statLabel: "experience",
     image: "/Mann car pictures/BMW 7 Series/ChatGPT Image Apr 28, 2026, 08_33_02 PM.png",
+    imageObjectPosition: "center 40%",
   },
   "leagues-tournaments": {
     title: "Leagues & Tournaments",
@@ -248,6 +250,7 @@ const SERVICE_DATA: Record<string, {
     stat: "Team",
     statLabel: "logistics",
     image: "/Mann car pictures/Tempo traveller/ChatGPT Image May 15, 2026, 11_18_13 PM.png",
+    imageObjectFit: "contain",
   },
   "events-weddings": {
     title: "Events & Weddings",
@@ -419,12 +422,13 @@ export default function ServicePage() {
             overflow: "hidden",
             height: "clamp(220px, 40vw, 500px)",
             border: "1px solid var(--border-subtle)",
+            background: service.imageObjectFit === "contain" ? "var(--bg-deeper)" : undefined,
           }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={service.image}
               alt={service.title}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: service.imageObjectPosition || "center" }}
+              style={{ width: "100%", height: "100%", objectFit: (service.imageObjectFit || "cover") as React.CSSProperties["objectFit"], objectPosition: service.imageObjectPosition || "center" }}
             />
           </div>
         </section>
