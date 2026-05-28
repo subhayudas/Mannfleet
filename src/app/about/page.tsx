@@ -286,7 +286,6 @@ export default function AboutPage() {
   const heroLine3Ref = useRef<HTMLSpanElement>(null);
   const heroYearRef = useRef<HTMLDivElement>(null);
   const heroSublineRef = useRef<HTMLParagraphElement>(null);
-  const heroScrollRef = useRef<HTMLDivElement>(null);
 
   /* ── What We Are refs ── */
   const wareSectionRef = useRef<HTMLElement>(null);
@@ -400,16 +399,6 @@ export default function AboutPage() {
         { y: 0, opacity: 1, duration: 0.55 },
         "-=0.35"
       );
-      tl.fromTo(heroScrollRef.current,
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.5 },
-        "-=0.2"
-      );
-      // Scroll indicator infinite float
-      gsap.to(heroScrollRef.current, {
-        y: 10, duration: 1.1, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 1.2,
-      });
-
       /* ────────────────────────────────────────────────
          WHAT WE ARE — scroll-triggered
       ──────────────────────────────────────────────── */
@@ -934,26 +923,6 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Scroll indicator */}
-        <div ref={heroScrollRef} style={{
-          position: "absolute",
-          bottom: "2.5rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.4rem",
-          opacity: 0,
-          color: "rgba(255,255,255,0.28)",
-          zIndex: 11,
-        }}>
-          <span className="font-sans" style={{
-            fontSize: "0.58rem", fontWeight: 700,
-            letterSpacing: "0.16em", textTransform: "uppercase",
-          }}>Scroll</span>
-          <ArrowDown size={16} />
-        </div>
       </section>
 
       {/* ══════════════════════════════════════════════
@@ -1149,13 +1118,13 @@ export default function AboutPage() {
               }}>
                 <span className="italic" style={{ color: "var(--text-secondary)" }}>Founded</span>
                 <br />
-                <span>1986.</span>
+                <span style={{ color: "var(--text-secondary)" }}>1986</span>
                 <br />
                 <span className="italic" style={{
                   fontSize: "0.55em",
                   color: "var(--text-muted)",
                   letterSpacing: "0.02em",
-                }}>Incorporated 1992.</span>
+                }}>Incorporated 1992</span>
               </h2>
 
               {/* Stat pills */}
@@ -1163,7 +1132,7 @@ export default function AboutPage() {
                 {[
                   { val: "40+", label: "Years of industry leadership" },
                   { val: "F500", label: "Fortune 500 clientele" },
-                  { val: "85+", label: "Cities across India & 4 global hubs — UAE, USA, England" },
+                  { val: "85+", label: "Cities across India & 4 global hubs — UAE, USA, Saudi Arabia, England" },
                   { val: "3×", label: "National Tourism Award winners (2016–2019). Official transport for G20 & last 4 US Presidential Visits." },
                 ].map(({ val, label }) => (
                   <div key={label} className="glass-panel" style={{
@@ -1433,7 +1402,7 @@ export default function AboutPage() {
                   fontSize: "0.875rem", lineHeight: 1.7,
                   color: "var(--text-secondary)", margin: 0,
                 }}>
-                  Mann Tourist Transport Service Private Limited incorporated on August 7, 1992 — a pivotal moment that scaled our operations nationally.
+                  Mann Tourist Transport Service Private Limited incorporated on August 7, 1992 — a pivotal moment that scaled our operations nationally. Formerly known as Mann Tourist, today operating as Mann Fleet.
                 </p>
               </div>
             </div>
@@ -2219,10 +2188,10 @@ export default function AboutPage() {
                 fontSize: "0.875rem", lineHeight: 1.7,
                 color: "var(--text-secondary)", margin: "0 0 1.25rem",
               }}>
-                Managed the last four US Presidential Visits (2011, 2014, 2020, 2023). Trusted partner to the Embassies of UAE, Qatar, Canada, and Finland.
+                Trusted partner for US Presidential Visits since 2011 — an enduring relationship that continues to this day. Trusted partner to the Embassies of UAE, Qatar, Canada, and Finland.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                {["2011", "2014", "2020", "2023"].map((yr) => (
+                {["2011", "2014", "2020", "2023", "Ongoing"].map((yr) => (
                   <span key={yr} className="glass-badge" style={{ fontSize: "0.65rem" }}>{yr}</span>
                 ))}
               </div>
@@ -2404,7 +2373,7 @@ export default function AboutPage() {
               initVal: "0",
               suffix: " Presidential Visits",
               label: "US Diplomatic Trust",
-              sub: "2011 · 2014 · 2020 · 2023",
+              sub: "2011 · 2014 · 2020 · 2023 · Ongoing",
             },
             {
               numRef: statsNum4Ref,

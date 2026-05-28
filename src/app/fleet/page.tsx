@@ -42,7 +42,7 @@ const VEHICLES: Vehicle[] = [
   {
     id: "hyundai-aura", name: "Hyundai Aura", type: "Sedans", category: "ECONOMY",
     seating: "5 Seater Including Pilot", luggage: "402 Litres",
-    imageObjectFit: "cover",
+    imageObjectFit: "contain",
     image: ["/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_33%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_57%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_39%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_50%20PM.png", "/Mann%20car%20pictures/Hyundai%20Aura/ChatGPT%20Image%20May%208%2C%202026%2C%2011_31_16%20AM.png", "/Mann%20car%20pictures/Hyundai%20Aura/ChatGPT%20Image%20May%208%2C%202026%2C%2011_31_20%20AM.png", "/Mann%20car%20pictures/Hyundai%20Aura/ChatGPT%20Image%20May%208%2C%202026%2C%2011_31_11%20AM.png"],
   },
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -146,6 +147,8 @@ const TESTIMONIALS = [
 ];
 
 export default function AwardsPage() {
+  const [lightbox, setLightbox] = useState<{ src: string; label: string } | null>(null);
+
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", minHeight: "100vh", background: "var(--bg-base)" }}>
       <Navbar />
@@ -312,11 +315,9 @@ export default function AwardsPage() {
             gap: "1rem",
           }}>
             {APPRECIATIONS.map(({ label, file }) => (
-              <a
+              <button
                 key={label}
-                href={file}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => setLightbox({ src: file, label })}
                 className="glass-card"
                 style={{
                   borderRadius: "1.25rem",
@@ -325,13 +326,18 @@ export default function AwardsPage() {
                   overflow: "hidden",
                   textDecoration: "none",
                   transition: "border-color 0.18s ease",
+                  cursor: "pointer",
+                  background: "none",
+                  border: "1px solid var(--border-subtle)",
+                  padding: 0,
+                  textAlign: "left",
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(200,40,40,0.30)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = ""; }}
               >
-                <div style={{ height: 130, overflow: "hidden", background: "var(--bg-deep)", flexShrink: 0 }}>
+                <div style={{ overflow: "hidden", background: "var(--bg-deep)", flexShrink: 0 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={file} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src={file} alt={label} style={{ width: "100%", height: "auto", display: "block" }} />
                 </div>
                 <div style={{ padding: "0.75rem 1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span className="font-sans" style={{ fontSize: "0.78rem", fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.4, flex: 1 }}>
@@ -339,7 +345,7 @@ export default function AwardsPage() {
                   </span>
                   <span style={{ color: "var(--text-40)", flexShrink: 0 }}><ArrowUpRight size={12} /></span>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </section>
@@ -413,6 +419,48 @@ export default function AwardsPage() {
       </main>
 
       <Footer />
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          onClick={() => setLightbox(null)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 9999,
+            background: "rgba(0,0,0,0.88)",
+            display: "flex", flexDirection: "column",
+            alignItems: "center", justifyContent: "center",
+            padding: "2rem",
+          }}
+        >
+          <button
+            onClick={() => setLightbox(null)}
+            style={{
+              position: "absolute", top: "1.25rem", right: "1.5rem",
+              background: "rgba(255,255,255,0.12)", border: "none",
+              color: "white", borderRadius: "50%",
+              width: 36, height: 36, fontSize: "1.1rem", cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >✕</button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={lightbox.src}
+            alt={lightbox.label}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: "min(90vw, 900px)",
+              maxHeight: "82vh",
+              objectFit: "contain",
+              borderRadius: "0.75rem",
+              boxShadow: "0 24px 80px rgba(0,0,0,0.6)",
+            }}
+          />
+          <p style={{
+            marginTop: "1rem", color: "rgba(255,255,255,0.7)",
+            fontSize: "0.85rem", fontWeight: 500, textAlign: "center",
+          }}>{lightbox.label}</p>
+        </div>
+      )}
     </div>
   );
 }

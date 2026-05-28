@@ -319,15 +319,25 @@ export default function Footer() {
                 <p style={{ fontSize: "0.72rem", color: "var(--text-35)", margin: "0 0 0.3rem", fontWeight: 500 }}>
                   Phone number
                 </p>
-                <a href="tel:+18002626227" style={{
+                <a href="tel:+911146202122" style={{
                   fontSize: "0.85rem", fontWeight: 600,
                   color: "var(--text-80)", textDecoration: "none",
-                  transition: "color 0.2s ease",
+                  transition: "color 0.2s ease", display: "block",
                 }}
                   onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
                 >
-                  +91-1147202122
+                  +91 11 46202122
+                </a>
+                <a href="tel:+911147202122" style={{
+                  fontSize: "0.85rem", fontWeight: 600,
+                  color: "var(--text-80)", textDecoration: "none",
+                  transition: "color 0.2s ease", display: "block", marginTop: "0.2rem",
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
+                >
+                  +91 11 47202122
                 </a>
               </div>
               <div>
