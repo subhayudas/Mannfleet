@@ -92,8 +92,12 @@ const AWARDS = [
   },
 ];
 
+const FEATURED_PAIR = {
+  gst: { label: "GST Department Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_37%20PM(govenment).png" },
+  tamarind: { label: "Tamarind Global Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_59%20PM.png" },
+};
+
 const APPRECIATIONS = [
-  { label: "GST Department Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_37%20PM(govenment).png" },
   { label: "G20 Event Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_44_18%20PM.png" },
   { label: "US Embassy Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_48%20PM.png" },
   { label: "Joe Biden — Vice President, USA", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_53%20PM.png" },
@@ -101,7 +105,6 @@ const APPRECIATIONS = [
   { label: "IATA Accreditation", file: "/Appreciation/Appreciation Letter_IATA.jpg" },
   { label: "Reliance Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_40%20PM.png" },
   { label: "Pernod Ricard Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_53%20PM.png" },
-  { label: "Tamarind Global Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_59%20PM.png" },
   { label: "AFC Women's Cup Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_56%20PM.png" },
   { label: "JCB Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_02%20PM.png" },
 ];
@@ -306,6 +309,103 @@ export default function AwardsPage() {
               fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.16em",
               textTransform: "uppercase", color: "var(--text-muted)",
             }}>Letters of Appreciation</span>
+          </div>
+
+          {/* Featured bento: GST + Tamarind */}
+          <div
+            className="featured-appreciation-bento"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1.4fr 1fr",
+              gap: "1rem",
+              marginBottom: "1.25rem",
+              minHeight: "clamp(320px, 50vw, 520px)",
+            }}
+          >
+            {/* Left column: GST stacked (top large, bottom narrow band) */}
+            <div style={{ display: "grid", gridTemplateRows: "1.6fr 1fr", gap: "1rem" }}>
+              <button
+                onClick={() => setLightbox({ src: FEATURED_PAIR.gst.file, label: FEATURED_PAIR.gst.label })}
+                className="glass-card"
+                style={{
+                  borderRadius: "1.25rem",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  background: "none",
+                  border: "1px solid var(--border-subtle)",
+                  padding: 0,
+                  textAlign: "left",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "border-color 0.18s ease",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(200,40,40,0.30)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = ""; }}
+              >
+                <div style={{ flex: 1, overflow: "hidden", background: "var(--bg-deep)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={FEATURED_PAIR.gst.file} alt={FEATURED_PAIR.gst.label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                </div>
+                <div style={{ padding: "0.85rem 1.1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span className="font-sans" style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-primary)", flex: 1 }}>
+                    {FEATURED_PAIR.gst.label}
+                  </span>
+                  <span style={{ color: "var(--text-40)" }}><ArrowUpRight size={12} /></span>
+                </div>
+              </button>
+              <div
+                className="glass-card"
+                style={{
+                  borderRadius: "1.25rem",
+                  padding: "1.1rem 1.4rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  gap: "0.4rem",
+                  border: "1px solid var(--border-subtle)",
+                  background: "linear-gradient(135deg, rgba(200,40,40,0.10) 0%, rgba(200,40,40,0.02) 100%)",
+                }}
+              >
+                <span className="font-sans" style={{
+                  fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.16em",
+                  textTransform: "uppercase", color: "var(--accent)",
+                }}>Featured Recognition</span>
+                <p className="font-sans" style={{ fontSize: "0.85rem", color: "var(--text-secondary)", lineHeight: 1.5, margin: 0 }}>
+                  Trusted by government bodies and global travel houses for seamless, large-scale operations.
+                </p>
+              </div>
+            </div>
+
+            {/* Right column: Tamarind tall */}
+            <button
+              onClick={() => setLightbox({ src: FEATURED_PAIR.tamarind.file, label: FEATURED_PAIR.tamarind.label })}
+              className="glass-card"
+              style={{
+                borderRadius: "1.25rem",
+                overflow: "hidden",
+                cursor: "pointer",
+                background: "none",
+                border: "1px solid var(--border-subtle)",
+                padding: 0,
+                textAlign: "left",
+                display: "flex",
+                flexDirection: "column",
+                transition: "border-color 0.18s ease",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(200,40,40,0.30)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = ""; }}
+            >
+              <div style={{ flex: 1, overflow: "hidden", background: "var(--bg-deep)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={FEATURED_PAIR.tamarind.file} alt={FEATURED_PAIR.tamarind.label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              </div>
+              <div style={{ padding: "0.85rem 1.1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span className="font-sans" style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-primary)", flex: 1 }}>
+                  {FEATURED_PAIR.tamarind.label}
+                </span>
+                <span style={{ color: "var(--text-40)" }}><ArrowUpRight size={12} /></span>
+              </div>
+            </button>
           </div>
 
           <div style={{

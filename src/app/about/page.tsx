@@ -1402,7 +1402,7 @@ export default function AboutPage() {
                   fontSize: "0.875rem", lineHeight: 1.7,
                   color: "var(--text-secondary)", margin: 0,
                 }}>
-                  Mann Tourist Transport Service Private Limited incorporated on August 7, 1992 — a pivotal moment that scaled our operations nationally. Formerly known as Mann Tourist, today operating as Mann Fleet.
+                  Mann Tourist Transport Service Private Limited incorporated on August 7, 1992 — a pivotal moment that scaled our operations nationally. Formerly known as Mann Tourist Transport, today operating as Mann Fleet Partners Limited.
                 </p>
               </div>
             </div>

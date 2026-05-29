@@ -100,7 +100,7 @@ const QUICK_LINKS = [
 
 const SOCIAL_LINKS = [
   { label: "Instagram", href: "https://www.instagram.com/mannfleetpartners?igsh=MWFzNGdwcGQ4MmZwOQ==", icon: <IgIcon /> },
-  { label: "WhatsApp", href: "https://wa.me/919990222999", icon: <WhatsAppIcon /> },
+  { label: "WhatsApp", href: "https://wa.me/919810008008", icon: <WhatsAppIcon /> },
   { label: "Twitter / X", href: "https://share.google/3Ly9Pl00vaDYBs7ly", icon: <TwitterIcon /> },
   { label: "Facebook", href: "https://www.facebook.com/people/Mann-Fleet-Partners/61574887744774/?ref=1", icon: <FacebookIcon /> },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/107323097/admin/page-posts/published/", icon: <LinkedinIcon /> },
@@ -338,6 +338,26 @@ export default function Footer() {
                   onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
                 >
                   +91 11 47202122
+                </a>
+                <a href="tel:+919540222888" style={{
+                  fontSize: "0.85rem", fontWeight: 600,
+                  color: "var(--text-80)", textDecoration: "none",
+                  transition: "color 0.2s ease", display: "block", marginTop: "0.2rem",
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
+                >
+                  +91 95402 22888
+                </a>
+                <a href="tel:+919891398914" style={{
+                  fontSize: "0.85rem", fontWeight: 600,
+                  color: "var(--text-80)", textDecoration: "none",
+                  transition: "color 0.2s ease", display: "block", marginTop: "0.2rem",
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
+                >
+                  +91 98913 98914
                 </a>
               </div>
               <div>
