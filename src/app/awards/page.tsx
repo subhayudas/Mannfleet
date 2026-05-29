@@ -201,12 +201,10 @@ export default function AwardsPage() {
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
             gap: "1.25rem",
           }}>
-            {AWARDS.map(({ title, year, issuer, pdf, image, highlight }) => (
-              <a
+            {AWARDS.map(({ title, year, issuer, image, highlight }) => (
+              <button
                 key={title + year}
-                href={pdf}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => setLightbox({ src: image, label: `${title}${year !== "—" ? ` — ${year}` : ""}` })}
                 className="glass-card"
                 style={{
                   padding: 0,
@@ -216,6 +214,8 @@ export default function AwardsPage() {
                   overflow: "hidden",
                   textDecoration: "none",
                   cursor: "pointer",
+                  background: "none",
+                  textAlign: "left",
                   transition: "border-color 0.2s ease, box-shadow 0.2s ease",
                 }}
                 onMouseEnter={(e) => {
@@ -266,7 +266,7 @@ export default function AwardsPage() {
                       padding: "0.2rem 0.6rem", borderRadius: 9999,
                       background: "var(--glass-mid)", border: "1px solid var(--border-subtle)",
                     }}>
-                      View PDF
+                      View
                     </span>
                   </div>
                   <div>
@@ -289,7 +289,7 @@ export default function AwardsPage() {
                     )}
                   </div>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </section>
