@@ -99,7 +99,6 @@ const APPRECIATIONS = [
   { label: "Joe Biden — Vice President, USA", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_53%20PM.png" },
   { label: "US Mission Token of Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_50_56%20PM.png" },
   { label: "IATA Accreditation", file: "/Appreciation/Appreciation Letter_IATA.jpg" },
-  { label: "IATA AGM and World Air Transport Summit 2025", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_50%20PM.png" },
   { label: "Reliance Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_40%20PM.png" },
   { label: "Pernod Ricard Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_53%20PM.png" },
   { label: "Tamarind Global Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_59%20PM.png" },
