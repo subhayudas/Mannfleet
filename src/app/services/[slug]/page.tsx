@@ -72,7 +72,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "80+",
     statLabel: "cities covered",
-    image: "/Mann car pictures/Force Urbania/ChatGPT Image Apr 30, 2026, 01_24_25 AM.png",
+    image: "/serviceimages/PHOTO-2026-05-28-12-58-09.jpg",
   },
   "self-drive": {
     title: "Self-Drive Leasing",
@@ -88,7 +88,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "200+",
     statLabel: "vehicles available",
-    image: "/Mann car pictures/Toyota camry hybrid/toyota camry hybrid front.jpeg",
+    image: "/serviceimages/PHOTO-2026-05-28-13-08-52.jpg",
   },
   "event": {
     title: "Event Transportation",
@@ -200,7 +200,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Premium",
     statLabel: "service",
-    image: "/Mann car pictures/Toyota fortuner/Toyota fortuner front.jpeg",
+    image: "/serviceimages/PHOTO-2026-05-28-12-10-37.jpg",
   },
   "board-meetings": {
     title: "Board Meetings",
@@ -232,8 +232,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Seamless",
     statLabel: "experience",
-    image: "/Mann car pictures/BMW 7 Series/ChatGPT Image Apr 28, 2026, 08_33_02 PM.png",
-    imageObjectPosition: "center 40%",
+    image: "/serviceimages/PHOTO-2026-05-28-12-36-09.jpg",
   },
   "leagues-tournaments": {
     title: "Leagues & Tournaments",
@@ -249,8 +248,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Team",
     statLabel: "logistics",
-    image: "/Mann car pictures/Tempo traveller/ChatGPT Image May 15, 2026, 11_18_13 PM.png",
-    imageObjectFit: "contain",
+    image: "/serviceimages/PHOTO-2026-05-28-12-34-07.jpg",
   },
   "events-weddings": {
     title: "Events & Weddings",

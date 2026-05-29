@@ -102,8 +102,8 @@ export default function TourismPage() {
         <section style={{ padding: "3rem clamp(1.25rem, 5vw, 4rem)", maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ borderRadius: "2rem", overflow: "hidden", height: "clamp(240px, 42vw, 520px)", border: "1px solid var(--border-subtle)", position: "relative" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Taj mahal.jpeg" alt="Taj Mahal — Agra, India"
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 60%" }} />
+            <img src="/serviceimages/PHOTO-2026-05-28-13-02-22.jpg" alt="Tourism — Heritage India"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(28,24,20,0.55) 0%, transparent 55%)" }} />
             <div style={{ position: "absolute", bottom: "1.75rem", left: "2rem" }}>
               <p className="font-sans" style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", margin: "0 0 0.3rem" }}>Signature Destination</p>

@@ -112,7 +112,7 @@ export default function FilmShootsConcertsPage() {
         <section style={{ padding: "3rem clamp(1.25rem, 5vw, 4rem)", maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ borderRadius: "2rem", overflow: "hidden", height: "clamp(220px, 40vw, 500px)", border: "1px solid var(--border-subtle)" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Mann car pictures/range rover sport/ChatGPT Image May 6, 2026, 03_38_44 PM.png" alt="Film Shoots & Concerts"
+            <img src="/serviceimages/PHOTO-2026-05-28-11-59-58.jpg" alt="Film Shoots & Concerts"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
           </div>
         </section>

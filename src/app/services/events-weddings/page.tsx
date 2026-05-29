@@ -92,7 +92,7 @@ export default function EventsWeddingsPage() {
         <section style={{ padding: "3rem clamp(1.25rem, 5vw, 4rem)", maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ borderRadius: "2rem", overflow: "hidden", height: "clamp(220px, 40vw, 500px)", border: "1px solid var(--border-subtle)" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 01_14_32 PM.png" alt="Events & Weddings"
+            <img src="/serviceimages/PHOTO-2026-05-28-13-08-06.jpg" alt="Events & Weddings"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
           </div>
         </section>
