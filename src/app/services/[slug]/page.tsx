@@ -72,7 +72,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "80+",
     statLabel: "cities covered",
-    image: "/serviceimages/PHOTO-2026-05-28-12-58-09.jpg",
+    image: "/serviceimages/PHOTO-2026-05-28-13-08-52.jpg",
   },
   "self-drive": {
     title: "Self-Drive Leasing",
@@ -88,7 +88,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "200+",
     statLabel: "vehicles available",
-    image: "/serviceimages/PHOTO-2026-05-28-13-08-52.jpg",
+    image: "/serviceimages/PHOTO-2026-05-28-13-08-06.jpg",
   },
   "event": {
     title: "Event Transportation",
@@ -264,7 +264,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Bespoke",
     statLabel: "luxury",
-    image: "/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 01_14_32 PM.png",
+    image: "/serviceimages/PHOTO-2026-05-28-13-02-22.jpg",
   },
   "town-hall-meetings": {
     title: "Town Hall Meetings",
