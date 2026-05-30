@@ -39,8 +39,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "12+ months",
     statLabel: "minimum contract",
-    image: "/Mann car pictures/Mercedes-Benz E-Class/ChatGPT Image Apr 28, 2026, 06_32_56 PM.png",
-    imageObjectPosition: "center 50%",
+    image: "/serviceimages/PHOTO-2026-05-29-23-04-07.jpg",
   },
   "spot": {
     title: "Spot Rentals",
@@ -56,7 +55,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "24/7",
     statLabel: "availability",
-    image: "/Mann car pictures/Toyota fortuner/ChatGPT Image May 4, 2026, 12_35_18 PM.png",
+    image: "/serviceimages/PHOTO-2026-05-29-23-15-05.jpg",
   },
   "shuttle": {
     title: "Shuttle Service",
@@ -168,7 +167,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Scale",
     statLabel: "capacity",
-    image: "/Mann car pictures/Toyota Coaster New Generation/ChatGPT Image May 4, 2026, 12_38_05 PM.png",
+    image: "/serviceimages/PHOTO-2026-05-29-22-50-49.jpg",
   },
   "leasing": {
     title: "Leasing",
@@ -184,7 +183,7 @@ const SERVICE_DATA: Record<string, {
     ],
     stat: "Flexible",
     statLabel: "terms",
-    image: "/Mann car pictures/Toyota fortuner/Toyota fortuner front.jpeg",
+    image: "/serviceimages/PHOTO-2026-05-30-00-49-07.jpg",
   },
   "high-profile-delegation": {
     title: "High Profile Delegation",
