@@ -13,11 +13,11 @@ gsap.registerPlugin(ScrollTrigger);
 /* ─────────────────────────────────────────────────────────────
    TYPES
 ───────────────────────────────────────────────────────────── */
-type Category = "ECONOMY" | "ECONOMY PLUS" | "PREMIUM" | "PREMIUM PLUS" | "LUXURY" | "SUPER LUXURY" | "ROLLS ROYCE" | "RANGE ROVER" | "CHAUFFEUR LEASING" | "LONG TERM LEASING";
-type VehicleType = "Sedans" | "SUVs" | "Vanity van" | "Coaches" | "Chauffeur Leasing" | "Long Term Leasing";
+type Category = "ECONOMY" | "ECONOMY PLUS" | "PREMIUM" | "PREMIUM PLUS" | "LUXURY" | "SUPER LUXURY" | "ROLLS ROYCE" | "RANGE ROVER" | "CHAUFFEUR LEASING" | "LONG TERM RENTAL";
+type VehicleType = "Sedans" | "SUVs" | "Vanity van" | "Coaches" | "Chauffeur Leasing" | "Long Term Rental";
 
-const CATEGORY_ORDER: Category[] = ["ECONOMY", "ECONOMY PLUS", "PREMIUM", "PREMIUM PLUS", "LUXURY", "SUPER LUXURY", "ROLLS ROYCE", "RANGE ROVER", "CHAUFFEUR LEASING", "LONG TERM LEASING"];
-const VEHICLE_TYPES: VehicleType[] = ["Sedans", "SUVs", "Vanity van", "Coaches", "Chauffeur Leasing", "Long Term Leasing"];
+const CATEGORY_ORDER: Category[] = ["ECONOMY", "ECONOMY PLUS", "PREMIUM", "PREMIUM PLUS", "LUXURY", "SUPER LUXURY", "ROLLS ROYCE", "RANGE ROVER", "CHAUFFEUR LEASING", "LONG TERM RENTAL"];
+const VEHICLE_TYPES: VehicleType[] = ["Sedans", "SUVs", "Vanity van", "Coaches", "Chauffeur Leasing", "Long Term Rental"];
 
 interface Vehicle {
   id: string;
@@ -330,45 +330,45 @@ const VEHICLES: Vehicle[] = [
     image: ["/Mann car pictures/Toyota fortuner/Toyota fortuner front.jpeg", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2001_03_01%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_30_47%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_30_20%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_30_51%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_30_29%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_35_18%20PM.png"],
   },
 
-  /* ── LONG TERM LEASING ───────────────────────────────────── */
+  /* ── LONG TERM RENTAL ───────────────────────────────────── */
 
   {
-    id: "lt-hycross-7", name: "Toyota Innova Hycross (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    id: "lt-hycross-7", name: "Toyota Innova Hycross (Monthly Lease)", type: "Long Term Rental", category: "LONG TERM RENTAL",
     seating: "7 Seater Including Pilot", luggage: "300L / 991L (3rd row folded)",
     imageObjectPosition: "center 80%",
     image: ["/Mann%20car%20pictures/Toyota%20Innova%20Hycross/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2012_51_24%20AM.png", "/Mann%20car%20pictures/Toyota%20Innova%20Hycross/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2001_09_48%20AM.png", "/Mann%20car%20pictures/Toyota%20Innova%20Hycross/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2001_05_09%20AM.png", "/Mann%20car%20pictures/Toyota%20Innova%20Hycross/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2012_53_47%20AM.png"],
   },
   {
-    id: "lt-hycross-8", name: "Toyota Innova Hycross (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    id: "lt-hycross-8", name: "Toyota Innova Hycross (Monthly Lease)", type: "Long Term Rental", category: "LONG TERM RENTAL",
     seating: "8 Seater Including Pilot", luggage: "300L / 991L (3rd row folded)",
     imageObjectPosition: "center 80%",
     image: ["/Mann%20car%20pictures/Toyota%20Innova%20Hycross/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2012_51_24%20AM.png", "/Mann%20car%20pictures/Toyota%20Innova%20Hycross/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2001_09_48%20AM.png", "/Mann%20car%20pictures/Toyota%20Innova%20Hycross/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2001_05_09%20AM.png", "/Mann%20car%20pictures/Toyota%20Innova%20Hycross/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2012_53_47%20AM.png"],
   },
   {
-    id: "lt-crysta-7", name: "Toyota Innova Crysta (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    id: "lt-crysta-7", name: "Toyota Innova Crysta (Monthly Lease)", type: "Long Term Rental", category: "LONG TERM RENTAL",
     seating: "7 Seater Including Pilot", luggage: "300L / 758L (3rd row folded)",
     image: ["/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_58_07%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_19%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_23%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_36%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_28%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_41%20AM.png"],
   },
   {
-    id: "lt-crysta-8", name: "Toyota Innova Crysta (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    id: "lt-crysta-8", name: "Toyota Innova Crysta (Monthly Lease)", type: "Long Term Rental", category: "LONG TERM RENTAL",
     seating: "8 Seater Including Pilot", luggage: "300L / 758L (3rd row folded)",
     image: ["/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_58_07%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_19%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_23%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_36%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_28%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_41%20AM.png"],
   },
   {
-    id: "lt-e-class", name: "Mercedes-Benz E-Class (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    id: "lt-e-class", name: "Mercedes-Benz E-Class (Monthly Lease)", type: "Long Term Rental", category: "LONG TERM RENTAL",
     seating: "5 Seater Including Pilot", luggage: "540 Litres",
     imageObjectPosition: "center bottom",
     imageIndexObjectPositions: ["center 70%", undefined, "center 70%"],
     image: ["/Mann%20car%20pictures/Mercedes-Benz%20E-Class/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_32_23%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20E-Class/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_32_56%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20E-Class/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_31_52%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20E-Class/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_36_12%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20E-Class/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_39_28%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20E-Class/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_41_21%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20E-Class/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_41_47%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20E-Class/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_42_37%20PM.png"],
   },
   {
-    id: "lt-s-class", name: "Mercedes-Benz S-Class (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    id: "lt-s-class", name: "Mercedes-Benz S-Class (Monthly Lease)", type: "Long Term Rental", category: "LONG TERM RENTAL",
     seating: "4–5 Seater Including Pilot", luggage: "550 Litres",
     imageObjectFit: "cover",
     image: ["/Mann%20car%20pictures/Mercedes-Benz%20S-Class/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2011_07_15%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20S-Class/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2011_09_09%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20S-Class/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2011_10_15%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20S-Class/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2011_10_31%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20S-Class/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2011_11_02%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20S-Class/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2011_11_23%20PM.png", "/Mann%20car%20pictures/Mercedes-Benz%20S-Class/ChatGPT%20Image%20Apr%2029%2C%202026%2C%2011_12_17%20PM.png"],
   },
   {
-    id: "lt-gls", name: "Mercedes-Benz GLS 400 (Monthly Lease)", type: "Long Term Leasing", category: "LONG TERM LEASING",
+    id: "lt-gls", name: "Mercedes-Benz GLS 400 (Monthly Lease)", type: "Long Term Rental", category: "LONG TERM RENTAL",
     seating: "7 Seater Including Pilot", luggage: "355L / 890L (3rd row folded)",
     image: ["/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_52%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_43%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_47%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_38%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_31%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_21%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_57_18%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_17%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_27%20AM.png", "/Mann%20car%20pictures/GLS%20400/ChatGPT%20Image%20May%204%2C%202026%2C%2011_53_35%20AM.png"],
   },
@@ -387,7 +387,7 @@ const CATEGORY_CONFIG: Record<Category, { color: string; bg: string; border: str
   "ROLLS ROYCE": { color: "#fbbf24", bg: "rgba(251,191,36,0.12)", border: "rgba(251,191,36,0.30)" },
   "RANGE ROVER": { color: "#a3e635", bg: "rgba(163,230,53,0.12)", border: "rgba(163,230,53,0.30)" },
   "CHAUFFEUR LEASING": { color: "#34d399", bg: "rgba(52,211,153,0.12)", border: "rgba(52,211,153,0.30)" },
-  "LONG TERM LEASING": { color: "#fb923c", bg: "rgba(251,146,60,0.12)", border: "rgba(251,146,60,0.30)" },
+  "LONG TERM RENTAL": { color: "#fb923c", bg: "rgba(251,146,60,0.12)", border: "rgba(251,146,60,0.30)" },
 };
 
 /* ─────────────────────────────────────────────────────────────

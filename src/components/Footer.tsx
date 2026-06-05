@@ -364,16 +364,20 @@ export default function Footer() {
                 <p style={{ fontSize: "0.72rem", color: "var(--text-35)", margin: "0 0 0.3rem", fontWeight: 500 }}>
                   Email
                 </p>
-                <a href="mailto:info@mannfleetpartners.com" style={{
-                  fontSize: "0.85rem", fontWeight: 600,
-                  color: "var(--text-80)", textDecoration: "none",
-                  transition: "color 0.2s ease",
-                }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
-                >
-                  info@mannfleetpartners.com
-                </a>
+                {["info@mannfleetpartners.com", "support@mannfleetpartners.com"].map((email) => (
+                  <a key={email} href={`mailto:${email}`} style={{
+                    display: "block",
+                    fontSize: "0.85rem", fontWeight: 600,
+                    color: "var(--text-80)", textDecoration: "none",
+                    transition: "color 0.2s ease",
+                    marginBottom: "0.2rem",
+                  }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
+                  >
+                    {email}
+                  </a>
+                ))}
               </div>
             </div>
           </div>

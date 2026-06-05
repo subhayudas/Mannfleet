@@ -56,7 +56,7 @@ const LEADERS: Leader[] = [
   },
   {
     id: "robin",
-    name: "Robin Singh Mann",
+    name: "Mr. Robin Singh Mann",
     title: "Executive Director and Head of Marketing",
     email: "robin@faze.in",
     photo: "/teams/Robin%20Mann%20Sir%20photo.png",

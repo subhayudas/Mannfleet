@@ -1990,7 +1990,7 @@ export default function AboutPage() {
                   { title: "Discipline", desc: "Strong habits and clear structure define how we operate, allowing us to maintain focus, efficiency, and high standards in everything we do." },
                   { title: "Accountability", desc: "We take full ownership of our actions and outcomes, holding ourselves responsible and learning from every situation to continuously improve." },
                   { title: "Consistency", desc: "We show up with the same intent, focus, and standard in every situation, creating a level of reliability that people can depend on without question." },
-                  { title: "Willpower", desc: "Through hard work, we stay committed to excellence, pushing through challenges and maintaining our standards even under pressure." },
+                  { title: "Will Power", desc: "Through hard work, we stay committed to excellence, pushing through challenges and maintaining our standards even under pressure." },
                 ].map(({ title, desc }) => (
                   <div key={title} className="glass-panel" style={{
                     padding: "1.1rem 1.4rem",

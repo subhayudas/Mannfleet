@@ -66,14 +66,14 @@ const LEADERS: Leader[] = [
   },
   {
     id: "robin",
-    name: "Robin Singh Mann",
+    name: "Mr. Robin Singh Mann",
     title: "Executive Director and Head of Marketing",
     email: "robin@faze.in",
     photo: "/teams/Robin%20Mann%20Sir%20photo.png",
     objectPosition: "top",
     teaser:
       "Columbia University honours graduate and former Evercore Investment Banking Analyst, now leading growth and marketing strategy at Mann Fleet.",
-    bio: "Robin Singh Mann is a Promoter, Executive Director of our Company. He completed his Bachelor of Arts at Columbia University in the City of New York and graduated with honours in May 2020. Prior to joining our Company, he was associated with Evercore's PCA division in NYC, USA in the capacity of Investment Banking Senior Analyst and Citigroup in NYC. At our Company, he leads the growth and scalability of the business as Head of Marketing. As a part of this role, he creates and deploys various marketing and social media strategies that aim to improve Mann's position and market share. Robin also supports the Sales team on marquee projects, pitches, and clients. Additionally, he also leads one of our Group Company namely, Leap Green Infra Private Limited, leveraging his experience to target and generate new clientele, contract structures and revenue stacks.",
+    bio: "Mr. Robin Singh Mann is a Promoter, Executive Director of our Company. He completed his Bachelor of Arts at Columbia University in the City of New York and graduated with honours in May 2020. Prior to joining our Company, he was associated with Evercore's PCA division in NYC, USA in the capacity of Investment Banking Senior Analyst and Citigroup in NYC. At our Company, he leads the growth and scalability of the business as Head of Marketing. As a part of this role, he creates and deploys various marketing and social media strategies that aim to improve Mann's position and market share. Robin also supports the Sales team on marquee projects, pitches, and clients. Additionally, he also leads one of our Group Company namely, Leap Green Infra Private Limited, leveraging his experience to target and generate new clientele, contract structures and revenue stacks.",
     education: [
       "BA (Honours) — Columbia University, New York, May 2020",
     ],

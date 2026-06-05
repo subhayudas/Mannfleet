@@ -450,7 +450,7 @@ export default function WeCarePage() {
             color: "var(--text-secondary)",
             margin: "0 0 1.5rem",
           }}>
-            People. Planet. Purpose.
+            People. Progress. Performance.
           </p>
           <p className="anim-hero" style={{
             fontSize: "1rem",
