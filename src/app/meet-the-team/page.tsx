@@ -30,7 +30,7 @@ const LEADERS: Leader[] = [
     id: "amrit",
     name: "Amrit Pal Singh Mann",
     title: "Managing Director",
-    email: "[EMAIL_ADDRESS]",
+    email: "amrit@manntours.com",
     photo: "/teams/amrit%20pal.jpeg",
     objectPosition: "top",
     teaser:
@@ -1359,7 +1359,7 @@ export default function MeetTheTeamPage() {
           labelRef={leadLabelRef}
           divRef={leadDivRef}
           label="Leadership"
-          heading="The Executive Directors"
+          heading="The Leadership"
           sub="Decades of combined experience shaping the future of luxury passenger transport in India."
         />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28, marginTop: 52 }}>

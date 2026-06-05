@@ -13,11 +13,11 @@ gsap.registerPlugin(ScrollTrigger);
 /* ─────────────────────────────────────────────────────────────
    TYPES
 ───────────────────────────────────────────────────────────── */
-type Category = "ECONOMY" | "ECONOMY PLUS" | "PREMIUM" | "PREMIUM PLUS" | "LUXURY" | "SUPER LUXURY" | "ROLLS ROYCE" | "RANGE ROVER" | "SELF DRIVING" | "LONG TERM LEASING";
-type VehicleType = "Sedans" | "SUVs" | "Vanity van" | "Coaches" | "Self Driving" | "Long Term Leasing";
+type Category = "ECONOMY" | "ECONOMY PLUS" | "PREMIUM" | "PREMIUM PLUS" | "LUXURY" | "SUPER LUXURY" | "ROLLS ROYCE" | "RANGE ROVER" | "CHAUFFEUR LEASING" | "LONG TERM LEASING";
+type VehicleType = "Sedans" | "SUVs" | "Vanity van" | "Coaches" | "Chauffeur Leasing" | "Long Term Leasing";
 
-const CATEGORY_ORDER: Category[] = ["ECONOMY", "ECONOMY PLUS", "PREMIUM", "PREMIUM PLUS", "LUXURY", "SUPER LUXURY", "ROLLS ROYCE", "RANGE ROVER", "SELF DRIVING", "LONG TERM LEASING"];
-const VEHICLE_TYPES: VehicleType[] = ["Sedans", "SUVs", "Vanity van", "Coaches", "Self Driving", "Long Term Leasing"];
+const CATEGORY_ORDER: Category[] = ["ECONOMY", "ECONOMY PLUS", "PREMIUM", "PREMIUM PLUS", "LUXURY", "SUPER LUXURY", "ROLLS ROYCE", "RANGE ROVER", "CHAUFFEUR LEASING", "LONG TERM LEASING"];
+const VEHICLE_TYPES: VehicleType[] = ["Sedans", "SUVs", "Vanity van", "Coaches", "Chauffeur Leasing", "Long Term Leasing"];
 
 interface Vehicle {
   id: string;
@@ -303,28 +303,28 @@ const VEHICLES: Vehicle[] = [
   /* ── SELF DRIVING ────────────────────────────────────────── */
 
   {
-    id: "sd-city", name: "Honda City (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    id: "sd-city", name: "Honda City", type: "Chauffeur Leasing", category: "CHAUFFEUR LEASING",
     seating: "5 Seater Excluding Pilot", luggage: "506 Litres",
     image: ["/Mann car pictures/Honda%20City/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_24_20%20PM.png", "/Mann car pictures/Honda%20City/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_26_03%20PM.png", "/Mann car pictures/Honda%20City/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_27_55%20PM.png", "/Mann car pictures/Honda%20City/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_28_55%20PM.png", "/Mann car pictures/Honda%20City/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2006_29_57%20PM.png"],
   },
   {
-    id: "sd-crysta-7", name: "Toyota Innova Crysta (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    id: "sd-crysta-7", name: "Toyota Innova Crysta", type: "Chauffeur Leasing", category: "CHAUFFEUR LEASING",
     seating: "7 Seater Excluding Pilot", luggage: "300L (all rows) / 758L (3rd row folded)",
     image: ["/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_58_07%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_19%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_23%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_36%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_28%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_41%20AM.png"],
   },
   {
-    id: "sd-crysta-8", name: "Toyota Innova Crysta (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    id: "sd-crysta-8", name: "Toyota Innova Crysta", type: "Chauffeur Leasing", category: "CHAUFFEUR LEASING",
     seating: "8 Seater Excluding Pilot", luggage: "300L (all rows) / 758L (3rd row folded)",
     image: ["/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_58_07%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_19%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_23%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_36%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_28%20AM.png", "/Mann%20car%20pictures/Innova%20Crysta/ChatGPT%20Image%20May%204%2C%202026%2C%2011_50_41%20AM.png"],
   },
   {
-    id: "sd-camry", name: "Toyota Camry Hybrid (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    id: "sd-camry", name: "Toyota Camry Hybrid", type: "Chauffeur Leasing", category: "CHAUFFEUR LEASING",
     seating: "5 Seater Excluding Pilot", luggage: "524 Litres",
     imageObjectFit: "cover",
     image: ["/Mann car pictures/Toyota%20camry%20hybrid/toyota%20camry%20hybrid%20front.jpeg", "/Mann car pictures/Toyota%20camry%20hybrid/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2007_50_45%20PM.png", "/Mann car pictures/Toyota%20camry%20hybrid/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2007_54_11%20PM.png", "/Mann car pictures/Toyota%20camry%20hybrid/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2007_57_29%20PM.png", "/Mann car pictures/Toyota%20camry%20hybrid/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2008_02_08%20PM.png", "/Mann car pictures/Toyota%20camry%20hybrid/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2008_03_19%20PM.png"],
   },
   {
-    id: "sd-fortuner", name: "Toyota Fortuner (Self Drive)", type: "Self Driving", category: "SELF DRIVING",
+    id: "sd-fortuner", name: "Toyota Fortuner", type: "Chauffeur Leasing", category: "CHAUFFEUR LEASING",
     seating: "7 Seater Excluding Pilot", luggage: "296L (all rows) / 716L (3rd row folded)",
     imageObjectFit: "cover",
     image: ["/Mann car pictures/Toyota fortuner/Toyota fortuner front.jpeg", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2001_03_01%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_30_47%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_30_20%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_30_51%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_30_29%20PM.png", "/Mann%20car%20pictures/Toyota%20fortuner/ChatGPT%20Image%20May%204%2C%202026%2C%2012_35_18%20PM.png"],
@@ -386,7 +386,7 @@ const CATEGORY_CONFIG: Record<Category, { color: string; bg: string; border: str
   "SUPER LUXURY": { color: "#e879f9", bg: "rgba(232,121,249,0.12)", border: "rgba(232,121,249,0.30)" },
   "ROLLS ROYCE": { color: "#fbbf24", bg: "rgba(251,191,36,0.12)", border: "rgba(251,191,36,0.30)" },
   "RANGE ROVER": { color: "#a3e635", bg: "rgba(163,230,53,0.12)", border: "rgba(163,230,53,0.30)" },
-  "SELF DRIVING": { color: "#34d399", bg: "rgba(52,211,153,0.12)", border: "rgba(52,211,153,0.30)" },
+  "CHAUFFEUR LEASING": { color: "#34d399", bg: "rgba(52,211,153,0.12)", border: "rgba(52,211,153,0.30)" },
   "LONG TERM LEASING": { color: "#fb923c", bg: "rgba(251,146,60,0.12)", border: "rgba(251,146,60,0.30)" },
 };
 

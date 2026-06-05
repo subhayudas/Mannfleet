@@ -93,20 +93,20 @@ const AWARDS = [
 ];
 
 const FEATURED_PAIR = {
-  gst: { label: "GST Department Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_37%20PM(govenment).png" },
-  tamarind: { label: "Tamarind Global Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_59%20PM.png" },
+  gst: { label: "GST Department Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_37%20PM(govenment).png", pdf: "/awards/Appreciation_GST Department.pdf" },
+  tamarind: { label: "Tamarind Global Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_59%20PM.png", pdf: "/Appreciation/Appreciation_Tamarind Global.pdf" },
 };
 
 const APPRECIATIONS = [
-  { label: "G20 Event Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_44_18%20PM.png" },
-  { label: "US Embassy Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_48%20PM.png" },
-  { label: "Joe Biden — Vice President, USA", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_53%20PM.png" },
-  { label: "US Mission Token of Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_50_56%20PM.png" },
-  { label: "IATA Accreditation", file: "/Appreciation/Appreciation Letter_IATA.jpg" },
-  { label: "Reliance Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_40%20PM.png" },
-  { label: "Pernod Ricard Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_53%20PM.png" },
-  { label: "AFC Women's Cup Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_56%20PM.png" },
-  { label: "JCB Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_02%20PM.png" },
+  { label: "G20 Event Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_44_18%20PM.png", pdf: "/Appreciation/Appreciation_G20 Event.pdf" },
+  { label: "US Embassy Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_48%20PM.png", pdf: "/Appreciation/Appreciation_Embassy_USA.pdf" },
+  { label: "Joe Biden — Vice President, USA", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_53%20PM.png", pdf: "/Appreciation/Appreciation_Joe Biden_Vice President_USA.pdf" },
+  { label: "US Mission Token of Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_50_56%20PM.png", pdf: "/Appreciation/Token_Appreciation_US Mission.pdf" },
+  { label: "IATA Accreditation", file: "/Appreciation/Appreciation Letter_IATA.jpg", pdf: "/Appreciation/Appreciation Letter_IATA.pdf" },
+  { label: "Reliance Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_40%20PM.png", pdf: "/Appreciation/Appreciation_Reliance.pdf" },
+  { label: "Pernod Ricard Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_53%20PM.png", pdf: "/Appreciation/Appreciation_Pernord Ricard.pdf" },
+  { label: "AFC Women's Cup Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_36_56%20PM.png", pdf: "/Appreciation/Appreciation_AFC_Women Cup.pdf" },
+  { label: "JCB Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_02%20PM.png", pdf: "/Appreciation/Appreciation_JCB.pdf" },
 ];
 
 const TESTIMONIALS = [
@@ -350,7 +350,7 @@ export default function AwardsPage() {
                   <span className="font-sans" style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-primary)", flex: 1 }}>
                     {FEATURED_PAIR.gst.label}
                   </span>
-                  <span style={{ color: "var(--text-40)" }}><ArrowUpRight size={12} /></span>
+                  <a href={FEATURED_PAIR.gst.pdf} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", padding: "0.25rem 0.6rem", borderRadius: 6, background: "var(--glass-mid)", border: "1px solid var(--border-subtle)", color: "var(--text-primary)", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", flexShrink: 0 }}>VIEW PDF</a>
                 </div>
               </button>
               <div
@@ -403,7 +403,7 @@ export default function AwardsPage() {
                 <span className="font-sans" style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-primary)", flex: 1 }}>
                   {FEATURED_PAIR.tamarind.label}
                 </span>
-                <span style={{ color: "var(--text-40)" }}><ArrowUpRight size={12} /></span>
+                <a href={FEATURED_PAIR.tamarind.pdf} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", padding: "0.25rem 0.6rem", borderRadius: 6, background: "var(--glass-mid)", border: "1px solid var(--border-subtle)", color: "var(--text-primary)", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", flexShrink: 0 }}>VIEW PDF</a>
               </div>
             </button>
           </div>
@@ -413,38 +413,61 @@ export default function AwardsPage() {
             gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
             gap: "1rem",
           }}>
-            {APPRECIATIONS.map(({ label, file }) => (
-              <button
+            {APPRECIATIONS.map(({ label, file, pdf }) => (
+              <div
                 key={label}
-                onClick={() => setLightbox({ src: file, label })}
                 className="glass-card"
                 style={{
                   borderRadius: "1.25rem",
                   display: "flex",
                   flexDirection: "column",
                   overflow: "hidden",
-                  textDecoration: "none",
-                  transition: "border-color 0.18s ease",
-                  cursor: "pointer",
-                  background: "none",
                   border: "1px solid var(--border-subtle)",
-                  padding: 0,
-                  textAlign: "left",
+                  transition: "border-color 0.18s ease",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(200,40,40,0.30)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = ""; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(200,40,40,0.30)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = ""; }}
               >
-                <div style={{ overflow: "hidden", background: "var(--bg-deep)", flexShrink: 0 }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={file} alt={label} style={{ width: "100%", height: "auto", display: "block" }} />
-                </div>
+                <button
+                  onClick={() => setLightbox({ src: file, label })}
+                  style={{ background: "none", border: "none", padding: 0, cursor: "pointer", textAlign: "left" }}
+                >
+                  <div style={{ overflow: "hidden", background: "var(--bg-deep)", flexShrink: 0 }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={file} alt={label} style={{ width: "100%", height: "auto", display: "block" }} />
+                  </div>
+                </button>
                 <div style={{ padding: "0.75rem 1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span className="font-sans" style={{ fontSize: "0.78rem", fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.4, flex: 1 }}>
                     {label}
                   </span>
-                  <span style={{ color: "var(--text-40)", flexShrink: 0 }}><ArrowUpRight size={12} /></span>
+                  {pdf && (
+                    <a
+                      href={pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        display: "inline-flex", alignItems: "center", gap: "0.3rem",
+                        padding: "0.25rem 0.6rem",
+                        borderRadius: 6,
+                        background: "var(--glass-mid)",
+                        border: "1px solid var(--border-subtle)",
+                        color: "var(--text-primary)",
+                        fontSize: "0.6rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        textDecoration: "none",
+                        flexShrink: 0,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      VIEW PDF
+                    </a>
+                  )}
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         </section>
@@ -472,7 +495,6 @@ export default function AwardsPage() {
             {TESTIMONIALS.map(({ quote, author }, idx) => (
               <div
                 key={idx}
-                className="glass-card"
                 style={{
                   breakInside: "avoid",
                   marginBottom: "1.5rem",
@@ -481,13 +503,14 @@ export default function AwardsPage() {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1.25rem",
-                  background: "var(--glass-base)",
-                  border: "1px solid var(--border-subtle)",
+                  background: "#ffffff",
+                  border: "1px solid #e5e5e5",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
                   position: "relative",
                   overflow: "hidden",
                 }}
               >
-                <div style={{ position: "absolute", top: "1rem", right: "1.5rem", opacity: 0.05, pointerEvents: "none" }}>
+                <div style={{ position: "absolute", top: "1rem", right: "1.5rem", opacity: 0.08, pointerEvents: "none", color: "#222" }}>
                   <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
@@ -495,13 +518,13 @@ export default function AwardsPage() {
                 <p className="font-sans" style={{
                   fontSize: "0.9rem",
                   lineHeight: 1.7,
-                  color: "var(--text-secondary)",
+                  color: "#333333",
                   margin: 0,
                   position: "relative",
                 }}>
                   {quote}
                 </p>
-                <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1rem" }}>
+                <div style={{ borderTop: "1px solid #e5e5e5", paddingTop: "1rem" }}>
                   <p className="font-sans" style={{
                     fontSize: "0.8rem",
                     fontWeight: 700,

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -13,6 +14,62 @@ gsap.registerPlugin(ScrollTrigger);
 /* ══════════════════════════════════════════════════════════════
    DATA
 ══════════════════════════════════════════════════════════════ */
+interface Leader {
+  id: string;
+  name: string;
+  title: string;
+  email: string;
+  photo: string | null;
+  objectPosition?: string;
+  teaser: string;
+  accolades: string[];
+}
+
+const LEADERS: Leader[] = [
+  {
+    id: "amrit",
+    name: "Amrit Pal Singh Mann",
+    title: "Managing Director",
+    email: "amrit@manntours.com",
+    photo: "/teams/amrit%20pal.jpeg",
+    objectPosition: "top",
+    teaser: "Pioneer in shifting the Indian tourism industry to premium luxury vehicles since 1986 — driving business expansion and service excellence for four decades.",
+    accolades: [
+      "Pioneer in luxury vehicle transition since 1986",
+      "High-profile events and embassy delegations",
+      "Spearheads the entire premier fleet rollout",
+    ],
+  },
+  {
+    id: "parmjeet",
+    name: "Parmjeet Mann",
+    title: "Executive Director and Head of HR",
+    email: "parmjeet@manntours.com",
+    photo: "/teams/parmjeet%20mann.jpeg",
+    objectPosition: "top",
+    teaser: "Executive Director and Head of Human Resources, instrumental in securing high-value contracts with embassies, MNCs, and prestigious events since 2005.",
+    accolades: [
+      "Associated with the Company since August 2005",
+      "Secured high-value embassy and MNC contracts",
+      "Developed & trained 15 sales professionals",
+    ],
+  },
+  {
+    id: "robin",
+    name: "Robin Singh Mann",
+    title: "Executive Director and Head of Marketing",
+    email: "robin@faze.in",
+    photo: "/teams/Robin%20Mann%20Sir%20photo.png",
+    objectPosition: "top",
+    teaser: "Columbia University honours graduate and former Evercore Investment Banking Analyst, now leading growth and marketing strategy at Mann Fleet.",
+    accolades: [
+      "Investment Banking Senior Analyst — Evercore PCA, NYC",
+      "Experience at Citigroup, NYC",
+      "Leads Leap Green Infra Private Limited",
+    ],
+  },
+];
+
 interface Director {
   id: string;
   name: string;
@@ -454,6 +511,7 @@ function PdfCard({ doc, onClick }: { doc: PdfDoc; onClick: () => void }) {
    PAGE
 ══════════════════════════════════════════════════════════════ */
 export default function InvestorsPage() {
+  const [activeTab, setActiveTab] = useState<"corporate" | "team">("corporate");
   const [activeDirector, setActiveDirector] = useState<Director | null>(null);
   const [activePdf, setActivePdf] = useState<PdfDoc | null>(null);
 
@@ -578,6 +636,97 @@ export default function InvestorsPage() {
         </p>
       </section>
 
+      {/* ── TABS ─────────────────────────────────────────────── */}
+      <div style={{ padding: "0 5% 48px", maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ display: "flex", gap: "0.5rem", borderBottom: "1px solid var(--border-subtle)", paddingBottom: 0 }}>
+          {(["corporate", "team"] as const).map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              style={{
+                padding: "0.7rem 1.4rem",
+                border: "none",
+                background: "none",
+                cursor: "pointer",
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: activeTab === tab ? "var(--text-primary)" : "var(--text-muted)",
+                borderBottom: activeTab === tab ? "2px solid var(--accent)" : "2px solid transparent",
+                marginBottom: -1,
+                transition: "color 0.2s, border-color 0.2s",
+              }}
+            >
+              {tab === "corporate" ? "Corporate Info" : "Meet Our Team"}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {activeTab === "team" && (
+        <section style={{ padding: "0 5% 80px", maxWidth: 1200, margin: "0 auto" }}>
+          <SectionLabel>The Leadership</SectionLabel>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 28, marginTop: 32 }}>
+            {LEADERS.map(leader => (
+              <div key={leader.id} style={{
+                background: "var(--glass-mid)",
+                border: "1px solid var(--border-subtle)",
+                borderRadius: 20,
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+              }}>
+                <div style={{ position: "relative", width: "100%", paddingTop: "100%", background: "var(--bg-deep)" }}>
+                  {leader.photo && (
+                    <Image
+                      src={leader.photo}
+                      alt={leader.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      style={{ objectFit: "cover", objectPosition: leader.objectPosition ?? "center" }}
+                      unoptimized
+                    />
+                  )}
+                </div>
+                <div style={{ padding: "1.25rem 1.4rem", flex: 1, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <p style={{ fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--accent)", margin: 0 }}>
+                    {leader.title}
+                  </p>
+                  <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: "1.25rem", color: "var(--text-primary)", margin: 0, fontWeight: 400 }}>
+                    {leader.name}
+                  </h3>
+                  <p style={{ fontSize: "0.82rem", color: "var(--text-secondary)", lineHeight: 1.6, margin: 0 }}>
+                    {leader.teaser}
+                  </p>
+                  <a href={`mailto:${leader.email}`} style={{ fontSize: "0.78rem", color: "var(--accent)", marginTop: "0.25rem", textDecoration: "none" }}>
+                    {leader.email}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 48, textAlign: "center" }}>
+            <Link href="/meet-the-team" style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "0.75rem 2rem",
+              background: "var(--accent)",
+              color: "#fff",
+              borderRadius: 999,
+              fontSize: "0.82rem",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+            }}>
+              View Full Team →
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {activeTab === "corporate" && (
+      <>
       {/* ── INDEPENDENT DIRECTORS ────────────────────────────── */}
       <section style={{
         padding: "0 5% 80px",
@@ -651,6 +800,8 @@ export default function InvestorsPage() {
           ))}
         </div>
       </section>
+      </>
+      )}
 
       <Footer />
 

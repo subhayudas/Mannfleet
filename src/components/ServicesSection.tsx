@@ -34,10 +34,10 @@ const SERVICES = [
     statLabel: "cities covered",
   },
   {
-    id: "self-drive",
-    text: "Self-Drive Leasing",
+    id: "chauffeur-leasing",
+    text: "Chauffeur Leasing",
     badge: "flexible",
-    description: "Flexible self-drive vehicle leasing options for individuals and professionals.",
+    description: "Premium chauffeur-driven vehicle leasing for individuals, corporates, and professionals.",
     image: "/Mann car pictures/Hyundai Creta/ChatGPT Image May 6, 2026, 04_03_13 PM.png",
     stat: "200+",
     statLabel: "vehicles available",

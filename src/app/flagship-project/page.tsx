@@ -784,7 +784,7 @@ export default function FlagshipProjectPage() {
               }}>
                 <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 4 }}>Hub</div>
                 <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: "clamp(1rem, 2.5vw, 1.5rem)", fontWeight: 400 }}>Noida International Airport</div>
-                <div style={{ fontSize: "0.72rem", opacity: 0.75, marginTop: 2 }}>Jewar, Gautam Budh Nagar</div>
+                <div style={{ fontSize: "0.72rem", opacity: 0.75, marginTop: 2 }}>Gautam Budh Nagar, UP</div>
               </div>
 
               {/* Connecting lines visual — horizontal spoke pattern */}
@@ -859,22 +859,26 @@ export default function FlagshipProjectPage() {
             <span style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--accent)", display: "block", marginBottom: 14 }}>
               Noida International Airport Inauguration
             </span>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(1rem, 2vw, 1.5rem)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "clamp(0.75rem, 1.5vw, 1.25rem)" }}>
               {[
                 "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.46%20PM.jpeg",
                 "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.43%20PM%20(4).jpeg",
+                "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.43%20PM%20(1).jpeg",
+                "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.43%20PM%20(2).jpeg",
+                "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.43%20PM%20(3).jpeg",
+                "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.44%20PM%20(1).jpeg",
+                "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.44%20PM%20(2).jpeg",
+                "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.46%20PM%20(1).jpeg",
+                "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.47%20PM%20(1).jpeg",
+                "/photo%20to%20choose%20from/WhatsApp%20Image%202026-05-05%20at%204.31.47%20PM%20(2).jpeg",
               ].map((src, i) => (
-                <div key={i} style={{ position: "relative", width: "100%", aspectRatio: "16/9", borderRadius: 16, overflow: "hidden", border: "1px solid var(--border-subtle)" }}>
+                <div key={i} style={{ position: "relative", width: "100%", aspectRatio: "4/3", borderRadius: 14, overflow: "hidden", border: "1px solid var(--border-subtle)" }}>
                   <Image
                     src={src}
                     alt={`NIA Inauguration ${i + 1}`}
                     fill
-                    style={{
-                      objectFit: "cover",
-                      transform: i === 1 ? "scale(1.4)" : "none",
-                      objectPosition: i === 1 ? "center 40%" : "center"
-                    }}
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                     unoptimized
                   />
                 </div>
@@ -899,8 +903,8 @@ export default function FlagshipProjectPage() {
               }}>
                 The Noida International Airport App
               </h2>
-              <p style={{ fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)", color: "var(--text-secondary)", lineHeight: 1.75, marginBottom: "1.5rem" }}>
-                Experience seamless travel right from your smartphone. The official Noida International Airport (NIA) application brings your entire journey to your fingertips.
+              <p style={{ fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)", color: "var(--text-secondary)", lineHeight: 1.75, marginBottom: "1rem" }}>
+                Specially designed for Noida International Airport (NIA) — your dedicated travel companion for seamless ground mobility at India&apos;s newest aviation hub. The official NIA application brings your entire journey to your fingertips.
               </p>
               <p style={{ fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)", color: "var(--text-secondary)", lineHeight: 1.75, marginBottom: "1.5rem" }}>
                 Book premium cabs, track terminal shuttles, access exclusive mobility services from Mann Fleet Partners, and stay updated with real-time real-time flight status updates — all in one unified digital experience.
