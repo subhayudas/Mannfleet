@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
 import LogoIntro from "@/components/LogoIntro";
 import ContentReveal from "@/components/ContentReveal";
+import ChatWidget from "@/components/ChatWidget";
 export const metadata: Metadata = {
   title: "Mann Fleet Partners — Premium Car Rental",
   description: "Drive in style with Mann Fleet Partners. Premium vehicles for every journey.",
@@ -28,6 +29,7 @@ export default function RootLayout({
         <ContentReveal>
           <ThemeProvider>{children}</ThemeProvider>
         </ContentReveal>
+        <ChatWidget />
       </body>
     </html>
   );
