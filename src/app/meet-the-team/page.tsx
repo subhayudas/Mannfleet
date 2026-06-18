@@ -48,7 +48,7 @@ const LEADERS: Leader[] = [
     name: "Parmjeet Mann",
     title: "Executive Director and Head of HR",
     email: "parmjeet@manntours.com",
-    photo: "/teams/parmjeet%20mann.jpeg",
+    photo: "/teams/parmjeet-mann-new.jpeg",
     objectPosition: "top",
     teaser:
       "Executive Director and Head of Human Resources, instrumental in securing high-value contracts with embassies, MNCs, and prestigious events since 2005.",

@@ -102,6 +102,7 @@ const PARTNERS = [
   { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2018.00.46.jpeg",                             alt: "Client 14" },
   { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2018.01.19.jpeg",                             alt: "Client 15" },
   { src: "/cleints/WhatsApp%20Image%202026-04-18%20at%2018.01.27.jpeg",                             alt: "Client 16" },
+  { src: "/cleints/PHOTO-2026-06-10-20-59-07.jpg",                                                alt: "Client 17" },
   { src: "/New%20Logos%20to%20be%20added-%20MANN/Archaeological%20Survey%20of%20India%20LOGO.jpg", alt: "Archaeological Survey of India" },
   { src: "/New%20Logos%20to%20be%20added-%20MANN/bosch%20logo.png",                                alt: "Bosch" },
   { src: "/New%20Logos%20to%20be%20added-%20MANN/GE%20Power%20India%20Limited.jpg",                alt: "GE Power India" },

@@ -425,14 +425,14 @@ export default function FlagshipProjectPage() {
               </div>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem", minWidth: 0 }}>
               {/* Taj Mahal card */}
               <div style={{
                 borderRadius: 20,
                 overflow: "hidden",
                 border: "1px solid var(--border-subtle)",
                 boxShadow: "0 12px 32px rgba(0,0,0,0.18)",
-                height: 220,
+                aspectRatio: "16 / 9",
                 position: "relative",
               }}>
                 <Image

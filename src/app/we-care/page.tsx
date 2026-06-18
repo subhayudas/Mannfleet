@@ -580,7 +580,7 @@ export default function WeCarePage() {
               gap: "1.25rem",
             }}>
               {[
-                { icon: <IconHeart />, title: "Healthcare", desc: "Improving access to medical care and supporting community health institutions.", image: "/We care/WhatsApp Image 2026-05-04 at 10.07.13.jpeg", imagePosition: "left center" },
+                { icon: <IconHeart />, title: "Healthcare", desc: "Improving access to medical care and supporting community health institutions.", image: "/We care/healthcare-new.jpeg", imagePosition: "center center" },
                 { icon: <IconUsers />, title: "Community Well-being", desc: "Strengthening the social fabric and uplifting underserved populations.", image: "/We care/WhatsApp Image 2026-05-04 at 10.07.14 (1).jpeg", imagePosition: "center center" },
                 { icon: <IconLeaf />, title: "Sustainable Development", desc: "Investing in initiatives that create lasting, positive environmental and social outcomes.", image: "/We care/WhatsApp Image 2026-05-04 at 10.07.15.jpeg", imagePosition: "center center" },
               ].map((item) => (
@@ -667,12 +667,12 @@ export default function WeCarePage() {
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: "1.5rem", position: "relative", height: "clamp(200px, 25vw, 300px)", borderRadius: 12, overflow: "hidden" }}>
-              <Image src="/We care/WhatsApp Image 2026-05-04 at 10.07.14 (1).jpeg" alt="Healthcare CSR" fill style={{ objectFit: "cover" }} />
-            </div>
-            <div style={{ marginTop: "1.25rem", borderRadius: 12, overflow: "hidden", border: "1px solid var(--border-subtle)" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/We care/WhatsApp Image 2026-05-13 at 17.01.27.jpeg" alt="Hospital Donation Receipt" style={{ width: "100%", display: "block", objectFit: "contain" }} />
+
+            <div style={{ marginTop: "1.25rem", display: "flex", justifyContent: "center" }}>
+              <div style={{ borderRadius: 12, overflow: "hidden", border: "1px solid var(--border-subtle)", maxWidth: 480, width: "100%" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/We care/WhatsApp Image 2026-05-13 at 17.01.27.jpeg" alt="Hospital Donation Receipt" style={{ width: "100%", display: "block", objectFit: "contain" }} />
+              </div>
             </div>
           </AccordionItem>
 
@@ -970,7 +970,7 @@ export default function WeCarePage() {
             {[
               { icon: <IconTarget />, title: "Sustainable Social Impact", desc: "Programmes designed for lasting, measurable change rather than short-term relief.", image: "/We care/WhatsApp Image 2026-05-04 at 10.07.14 (2).jpeg", imagePosition: "center center" },
               { icon: <IconUsers />, title: "Stronger Communities", desc: "Building resilient communities through healthcare, education, and skill development.", image: "/We care/WhatsApp Image 2026-05-04 at 10.07.14.jpeg", imagePosition: "center center" },
-              { icon: <IconStar />, title: "Responsibility · Integrity · Excellence", desc: "Our three core values guide every CSR decision and partnership we make.", image: "/We care/WhatsApp Image 2026-05-04 at 10.07.13.jpeg", imagePosition: "left center" },
+              { icon: <IconStar />, title: "Responsibility · Integrity · Excellence", desc: "Our three core values guide every CSR decision and partnership we make.", image: "/We care/responsibility-card.jpeg", imagePosition: "center center" },
             ].map((item) => (
               <div key={item.title} className="vision-card" style={{
                 ...glassCard,
