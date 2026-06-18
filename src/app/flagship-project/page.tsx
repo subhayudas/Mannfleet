@@ -432,7 +432,7 @@ export default function FlagshipProjectPage() {
                 overflow: "hidden",
                 border: "1px solid var(--border-subtle)",
                 boxShadow: "0 12px 32px rgba(0,0,0,0.18)",
-                aspectRatio: "16 / 9",
+                aspectRatio: "4 / 3",
                 position: "relative",
               }}>
                 <Image
@@ -440,7 +440,7 @@ export default function FlagshipProjectPage() {
                   alt="Taj Mahal, Agra"
                   fill
                   unoptimized
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "cover", objectPosition: "center top" }}
                 />
                 <div style={{
                   position: "absolute",

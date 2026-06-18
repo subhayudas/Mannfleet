@@ -503,9 +503,9 @@ export default function AwardsPage() {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1.25rem",
-                  background: "#ffffff",
-                  border: "1px solid #e5e5e5",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border-subtle)",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.12)",
                   position: "relative",
                   overflow: "hidden",
                 }}
@@ -518,13 +518,13 @@ export default function AwardsPage() {
                 <p className="font-sans" style={{
                   fontSize: "0.9rem",
                   lineHeight: 1.7,
-                  color: "#333333",
+                  color: "var(--text-secondary)",
                   margin: 0,
                   position: "relative",
                 }}>
                   {quote}
                 </p>
-                <div style={{ borderTop: "1px solid #e5e5e5", paddingTop: "1rem" }}>
+                <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1rem" }}>
                   <p className="font-sans" style={{
                     fontSize: "0.8rem",
                     fontWeight: 700,
