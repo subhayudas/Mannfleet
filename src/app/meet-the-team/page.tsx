@@ -146,7 +146,7 @@ const SALES_TEAM: SalesMember[] = [
     name: "Jagdeep Singh Mann",
     title: "President-Sales",
     email: "jagdeep@manntours.com",
-    photo: "/teams/PHOTO-2026-04-20-18-02-49 2.jpg",
+    photo: "/teams/jagdeep-mann.jpeg",
     objectPosition: "top",
     bio: "Mr. Jagdeep Singh Mann has approximately 12 years of experience in sales, marketing, and operations, currently serves as President — Sales at Mann Fleet Partners Limited. His journey with the company began as a dedicated Management Trainee in Marketing and Sales. Demonstrating exceptional aptitude and commitment during this initial period, he was deservedly retained as a permanent employee, progressively expanding his expertise across critical business functions. Academically, Mr. Mann is a distinguished alumnus of Maharshi Dayanand University, Rohtak, where he earned a Bachelor of Business Administration (Industry Integrated).",
   },

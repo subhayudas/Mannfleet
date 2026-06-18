@@ -346,7 +346,7 @@ export default function FlagshipProjectPage() {
           boxShadow: "0 20px 40px -10px rgba(0,0,0,0.15)",
         }}>
           <Image
-            src="/jewar_airport.jpg"
+            src="/flagship-hero.jpg"
             alt="Noida International Airport"
             fill
             style={{
@@ -366,14 +366,6 @@ export default function FlagshipProjectPage() {
             bottom: "clamp(1.5rem, 3vw, 2.5rem)",
             left: "clamp(1.5rem, 3vw, 2.5rem)",
           }}>
-            <p style={{
-              fontSize: "0.7rem",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--accent)",
-              fontWeight: 600,
-              marginBottom: "0.4rem"
-            }}>Project Vision</p>
             <h3 className="font-serif" style={{
               fontFamily: "'Instrument Serif', serif",
               fontSize: "clamp(1.5rem, 4vw, 2.8rem)",
@@ -524,7 +516,7 @@ export default function FlagshipProjectPage() {
               {
                 Icon: IconRoute,
                 title: "City Connectivity Solutions",
-                body: "Direct links to Pari Chowk · Botanical Garden · Greater Noida West · GBU Campus — designed for both passenger mobility and daily workforce commutes.",
+                body: "Direct links to Pari Chowk · Botanical Garden · Greater Noida West · Jewar R&R Colony — designed for both passenger mobility and daily workforce commutes.",
                 tags: ["4 city nodes", "Passenger and workforce", "Scheduled routes"],
               },
             ].map(({ Icon, title, body, tags }, i) => (
@@ -802,7 +794,7 @@ export default function FlagshipProjectPage() {
                 { name: "Pari Chowk", desc: "Greater Noida central hub, major transit interchange", dist: "~12 km", featured: false },
                 { name: "Botanical Garden", desc: "Noida Metro interchange, connecting Delhi NCR", dist: "~35 km", featured: false },
                 { name: "Greater Noida West", desc: "Emerging residential and commercial corridor", dist: "~18 km", featured: false },
-                { name: "GBU Campus", desc: "Gautam Buddha University, student and faculty mobility", dist: "~8 km", featured: false },
+                { name: "Jewar R&R Colony", desc: "Resettlement & Rehabilitation Colony, resident mobility", dist: "~8 km", featured: false },
               ].map(({ name, desc, dist, featured }) => (
                 <div key={name} style={{
                   background: featured ? "rgba(220,38,38,0.06)" : "var(--bg-base)",
