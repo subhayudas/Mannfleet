@@ -435,32 +435,60 @@ export default function Footer() {
               }}>
                 Download App
               </p>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.user.mannfleet"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  padding: "0.6rem 1rem",
-                  background: "var(--glass-light)",
-                  border: "1px solid var(--border-subtle)",
-                  borderRadius: 10,
-                  textDecoration: "none",
-                  transition: "border-color 0.2s ease",
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--text-50)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border-subtle)"; }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ color: "var(--text-55)" }}>
-                  <path d="M3.18 23.76A1.5 1.5 0 0 1 2 22.29V1.71A1.5 1.5 0 0 1 3.18.24L14.45 12 3.18 23.76zm2.3-1.1L16.3 12 5.48 1.34 4.5 2.54v18.92l.98 1.2zm8.35-5.42L8.24 21l7.38 1.38c.8.15 1.38-.38 1.38-1.18v-.44l-3.17-3.52zm0-10.48L17.23 4 9.65 1.08 8.64 2.7 13.83 7V6.76zm3.88 10.86L22 14.94v-5.88L17.71 6.3l-3.88 5.7 3.88 5.62z" />
-                </svg>
-                <div>
-                  <p style={{ fontSize: "0.6rem", color: "var(--text-35)", margin: 0, lineHeight: 1 }}>GET IT ON</p>
-                  <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--text-80)", margin: 0, lineHeight: 1.3 }}>Google Play</p>
-                </div>
-              </a>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.user.mannfleet"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    padding: "0.6rem 1rem",
+                    background: "var(--glass-light)",
+                    border: "1px solid var(--border-subtle)",
+                    borderRadius: 10,
+                    textDecoration: "none",
+                    transition: "border-color 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--text-50)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border-subtle)"; }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ color: "var(--text-55)" }}>
+                    <path d="M3.18 23.76A1.5 1.5 0 0 1 2 22.29V1.71A1.5 1.5 0 0 1 3.18.24L14.45 12 3.18 23.76zm2.3-1.1L16.3 12 5.48 1.34 4.5 2.54v18.92l.98 1.2zm8.35-5.42L8.24 21l7.38 1.38c.8.15 1.38-.38 1.38-1.18v-.44l-3.17-3.52zm0-10.48L17.23 4 9.65 1.08 8.64 2.7 13.83 7V6.76zm3.88 10.86L22 14.94v-5.88L17.71 6.3l-3.88 5.7 3.88 5.62z" />
+                  </svg>
+                  <div>
+                    <p style={{ fontSize: "0.6rem", color: "var(--text-35)", margin: 0, lineHeight: 1 }}>GET IT ON</p>
+                    <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--text-80)", margin: 0, lineHeight: 1.3 }}>Google Play</p>
+                  </div>
+                </a>
+                <a
+                  href="https://apps.apple.com/app/mannfleet"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    padding: "0.6rem 1rem",
+                    background: "var(--glass-light)",
+                    border: "1px solid var(--border-subtle)",
+                    borderRadius: 10,
+                    textDecoration: "none",
+                    transition: "border-color 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--text-50)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border-subtle)"; }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ color: "var(--text-55)" }}>
+                    <path d="M17.05 12.54c-.03-2.5 2.04-3.7 2.13-3.76-1.16-1.7-2.97-1.93-3.61-1.96-1.54-.16-3 .9-3.78.9-.78 0-1.98-.88-3.25-.86-1.67.03-3.21.97-4.07 2.46-1.74 3.02-.44 7.49 1.24 9.94.82 1.2 1.8 2.55 3.08 2.5 1.24-.05 1.7-.8 3.2-.8 1.49 0 1.91.8 3.21.78 1.33-.03 2.17-1.22 2.98-2.43.94-1.39 1.33-2.74 1.35-2.81-.03-.01-2.59-1-2.61-3.95zM14.6 4.97c.68-.83 1.14-1.98 1.01-3.13-.98.04-2.17.65-2.88 1.47-.63.73-1.19 1.9-1.04 3.02 1.1.09 2.22-.55 2.91-1.36z" />
+                  </svg>
+                  <div>
+                    <p style={{ fontSize: "0.6rem", color: "var(--text-35)", margin: 0, lineHeight: 1 }}>DOWNLOAD ON THE</p>
+                    <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--text-80)", margin: 0, lineHeight: 1.3 }}>App Store</p>
+                  </div>
+                </a>
+              </div>
             </div>
 
           </div>

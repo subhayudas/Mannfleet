@@ -109,7 +109,7 @@ const KMP_TEAM: Leader[] = [
     name: "Bhupin Khanna",
     title: "Company Secretary & Compliance Officer",
     email: "bhupin.khanna@mannfleetpartners.com",
-    photo: null,
+    photo: "/teams/PHOTO-2026-06-25-14-35-00.jpg",
     teaser: "Company Secretary and Compliance Officer ensuring managerial, secretarial and regulatory compliances, with 4+ years of experience in the field.",
     bio: "Bhupin Khanna is our Company Secretary and Compliance Officer and is responsible for ensuring managerial, secretarial and regulatory compliances of our Company. He has been associated with our Company since November 25, 2024. He is an Associate Member of The Institute of Company Secretaries of India since May 17, 2022. He has done Bachelor's degree in Commerce from University of Delhi in the year 2014 and also done Master of Commerce from Indira Gandhi National Open University in the year 2020. Prior to joining our Company, he was associated with Akira Pharma Private Limited, Subhlakshmi Finance Private Limited, A.K. Singh and Associates, and Ranjeet Kumar & Associates. He has over 4 years of experience in secretarial and regulatory compliances.",
     education: [
