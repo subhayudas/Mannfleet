@@ -118,17 +118,6 @@ const BASE = "/investors/";
 
 const PDF_CATEGORIES: PdfCategory[] = [
   {
-    id: "ipo",
-    title: "IPO / DRHP",
-    icon: "📄",
-    docs: [
-      { label: "DRHP — Mann Fleet Partners Limited", file: "DRHP_Mann-Fleet-Partners-Limited.pdf" },
-      { label: "DRHP Newspaper — Financial Express", file: "DRHP-Newspaper-Publication_Financial-Express.pdf" },
-      { label: "DRHP Newspaper — Jansatta", file: "DRHP-Newspaper-Publication_Jansatta.pdf" },
-      { label: "DRHP Newspaper — Pratahkiran", file: "DRHP-Newspaper-Publication_Pratahkiran.pdf" },
-    ],
-  },
-  {
     id: "constitution",
     title: "Constitutive Documents",
     icon: "🏛️",

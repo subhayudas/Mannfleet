@@ -294,8 +294,8 @@ export default function FlagshipProjectPage() {
                 marginBottom: 24,
               }}>
                 <p style={{ fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)", lineHeight: 1.85, color: "var(--text-secondary)", margin: 0 }}>
-                  Christoph Schnellmann, former CEO of Noida International Airport (NIA), recently announced a partnership with Mann Fleet Partners Limited, led by{" "}
-                  <strong style={{ color: "var(--text-primary)" }}>Mr. Robin Singh Mann</strong>, to provide comprehensive ground mobility solutions, including rental cars, terminal shuttles, and city connectivity to locations such as Pari Chowk. This initiative aims to ensure smooth and reliable passenger transport ahead of the airport&apos;s operational launch.
+                  Mann Fleet Partners Limited, led by{" "}
+                  <strong style={{ color: "var(--text-primary)" }}>Mr. Robin Singh Mann</strong>, has been selected to provide comprehensive ground mobility solutions at Noida International Airport — including rental cars, terminal shuttles, and city connectivity to locations such as Pari Chowk. This initiative ensures smooth and reliable passenger transport as part of the airport&apos;s operational launch.
                 </p>
               </div>
 

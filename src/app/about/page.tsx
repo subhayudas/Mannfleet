@@ -1132,7 +1132,7 @@ export default function AboutPage() {
                 {[
                   { val: "40+", label: "Years of industry leadership" },
                   { val: "F500", label: "Fortune 500 clientele" },
-                  { val: "85+", label: "Cities across India & 4 global hubs — UAE, USA, Saudi Arabia, England" },
+                  { val: "80+", label: "Cities across India & 4 global hubs — UAE, USA, Saudi Arabia, England" },
                   { val: "3×", label: "National Tourism Award winners (2016–2019). Official transport for G20 & last 4 US Presidential Visits." },
                 ].map(({ val, label }) => (
                   <div key={label} className="glass-panel" style={{
@@ -1279,7 +1279,7 @@ export default function AboutPage() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           {/* Section label */}
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <span className="glass-badge">Our Journey</span>
+            <span className="glass-badge">Company History</span>
             <h2 className="font-serif" style={{
               fontSize: "clamp(2rem, 4vw, 3.2rem)",
               fontWeight: 400,
@@ -1364,7 +1364,7 @@ export default function AboutPage() {
                   fontSize: "0.875rem", lineHeight: 1.7,
                   color: "var(--text-secondary)", margin: 0,
                 }}>
-                  Established as a dedicated sole proprietorship, laying the foundation for India&apos;s premier ground transportation service.
+                  Established in 1986, laying the foundation for India&apos;s premier ground transportation service.
                 </p>
               </div>
             </div>
@@ -1440,7 +1440,7 @@ export default function AboutPage() {
                   fontSize: "0.875rem", lineHeight: 1.7,
                   color: "var(--text-secondary)", margin: 0,
                 }}>
-                  Expanded operations across 85+ cities in India, establishing a full-service network for corporate and diplomatic clients. Became the trusted transport partner for Fortune 500 companies and government institutions.
+                  Expanded operations across 80 cities in India, establishing a full-service network for corporate and diplomatic clients. Became the trusted transport partner for Fortune 500 companies and government institutions.
                 </p>
               </div>
             </div>
@@ -1865,7 +1865,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <span className="glass-badge" style={{ marginBottom: "0.75rem", display: "inline-block", fontSize: "0.65rem" }}>
-                      85+ Cities
+                      80 Cities
                     </span>
                     <h3 className="font-sans" style={{
                       fontSize: "1.15rem", fontWeight: 700,
@@ -1875,7 +1875,7 @@ export default function AboutPage() {
                       fontSize: "0.875rem", lineHeight: 1.7,
                       color: "var(--text-secondary)", margin: 0,
                     }}>
-                      Seamless operations across 85+ Indian cities, with international presence in UAE, USA, Saudi Arabia, and England. One partner, one standard, everywhere your journey takes you.
+                      Seamless operations across 80 cities in India, with international presence in UAE, USA, Saudi Arabia, and England. One partner, one standard, everywhere your journey takes you.
                     </p>
                   </div>
                 </div>
@@ -2456,7 +2456,7 @@ export default function AboutPage() {
             justifyContent: "center",
           }}>
             {[
-              { region: "India", sub: "85+ cities · Pan-India Operations", primary: true },
+              { region: "India", sub: "80 cities · Pan-India Operations", primary: true },
               { region: "USA", sub: "United States of America", primary: false },
               { region: "Nepal", sub: "Kathmandu & surrounds", primary: false },
               { region: "Sri Lanka", sub: "Colombo & surrounds", primary: false },
@@ -2569,7 +2569,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Leading Events ── */}
+      {/* ── Major Events and Milestones ── */}
       <section style={{
         background: "var(--bg-surface)",
         padding: "clamp(3rem, 7vw, 5rem) clamp(1.5rem, 6vw, 6rem)",
@@ -2579,44 +2579,118 @@ export default function AboutPage() {
           <span style={{
             fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase",
             color: "var(--accent)", display: "block", marginBottom: 14, fontWeight: 700,
-          }}>Our Track Record</span>
+          }}>Our History</span>
           <h2 style={{
             fontFamily: "'Instrument Serif', serif",
             fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
             fontWeight: 400,
             color: "var(--text-primary)",
             lineHeight: 1.15,
-            margin: "0 0 1.5rem",
-          }}>Leading Events Handled by Us</h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
-            gap: "0.75rem",
-          }}>
-            {[
-              "G20 North and East India",
-              "Nita Ambani Cultural Center launch",
-              "Global Investors Summit (Lucknow)",
-              "IPL since 2010 till date — Mumbai Indians, Kolkata Knight Riders, CSK, Gujarat Titans",
-              "All US Presidents visits to India since 2010 — Honorable Mr. Barack Obama and Mr. Donald Trump",
-              "AFC Women's Asian Cup 2022 India",
-              "ISL since the launch in 2013",
-              "Champions League in 2011–2013 through BCCI",
-              "Montblanc Luxury event",
-              "Bosch Global Board event",
-              "Nestle Global Chief Visit event",
-              "Indian Mobile Congress – 150 plus delegates",
-              "ONGC J&K and Leh event",
-              "India Mobile Congress 1st–4th Oct 2022",
-            ].map((event) => (
-              <div key={event} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                <span style={{
-                  width: 6, height: 6, borderRadius: "50%",
-                  background: "var(--accent)", flexShrink: 0, marginTop: "0.5rem",
-                }} />
-                <p style={{ fontSize: "0.88rem", color: "var(--text-secondary)", lineHeight: 1.6, margin: 0 }}>{event}</p>
-              </div>
-            ))}
+            margin: "0 0 2rem",
+          }}>Major Events and Milestones</h2>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.88rem" }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid var(--border-mid)" }}>
+                  <th style={{ textAlign: "left", padding: "10px 16px", color: "var(--accent)", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", fontSize: "0.75rem", whiteSpace: "nowrap", width: "80px" }}>Year</th>
+                  <th style={{ textAlign: "left", padding: "10px 16px", color: "var(--accent)", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", fontSize: "0.75rem" }}>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { year: "2011", detail: "Provided transport support for the Kabaddi World Cup in Punjab." },
+                  { year: "2015", detail: "Provided chauffeur services to a reputed organisation governing and promoting cricket in India." },
+                  { year: "2015", detail: "Opened a branch office in Mumbai." },
+                  { year: "2015", detail: "Opened a branch office in Noida." },
+                  { year: "2016", detail: "Provided premium transport support to several well-known teams participating in a leading international cricket league in India." },
+                  { year: "2018", detail: "Opened a branch office in Gurugram." },
+                  { year: "2023", detail: "Provided transport support to G20 Secretariat, Ministry of External Affairs during the 3rd Tourism Working Group Meeting." },
+                  { year: "2025", detail: "Opened a branch office in Ahmedabad." },
+                  { year: "2025", detail: "Opened a branch office in Chennai." },
+                  { year: "2025", detail: "Provided transport services to MY Bharat during the Sardar @150 Road Journey Programme." },
+                  { year: "2025", detail: "Entered into an agreement with a Singapore based Company to provide transport support during DP World India Championship." },
+                  { year: "2026", detail: "Provided transport services to the Parliament during the 28th Conference of Speakers and Presiding Officers of the Commonwealth." },
+                  { year: "2026", detail: "Provided transport support during JIO AI Summit." },
+                  { year: "2026", detail: "Provided transport support during India Energy Week held in Goa." },
+                  { year: "2026", detail: "Selected to act as a mobility transport partner at the Noida International Airport, Jewar, Uttar Pradesh — providing transport services to passengers, employee transportation, and inter-terminal shuttle services." },
+                  { year: "2026", detail: "Launch of mobile application, namely, Mann Fleet, allowing customers to make bookings and avail services directly." },
+                ].map((row, i) => (
+                  <tr key={i} style={{ borderBottom: "1px solid var(--border-subtle)", background: i % 2 === 0 ? "transparent" : "var(--glass-light)" }}>
+                    <td style={{ padding: "12px 16px", color: "var(--accent)", fontWeight: 700, whiteSpace: "nowrap", verticalAlign: "top" }}>{row.year}</td>
+                    <td style={{ padding: "12px 16px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{row.detail}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Key Awards ── */}
+      <section style={{
+        background: "var(--bg-base)",
+        padding: "clamp(3rem, 7vw, 5rem) clamp(1.5rem, 6vw, 6rem)",
+        borderTop: "1px solid var(--border-subtle)",
+      }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <span style={{
+            fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase",
+            color: "var(--accent)", display: "block", marginBottom: 14, fontWeight: 700,
+          }}>Recognition</span>
+          <h2 style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+            fontWeight: 400,
+            color: "var(--text-primary)",
+            lineHeight: 1.15,
+            margin: "0 0 2rem",
+          }}>Key Awards, Accreditations &amp; Recognitions</h2>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.88rem" }}>
+              <thead>
+                <tr style={{ borderBottom: "2px solid var(--border-mid)" }}>
+                  <th style={{ textAlign: "left", padding: "10px 16px", color: "var(--accent)", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", fontSize: "0.75rem", whiteSpace: "nowrap", width: "80px" }}>Year</th>
+                  <th style={{ textAlign: "left", padding: "10px 16px", color: "var(--accent)", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", fontSize: "0.75rem" }}>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { year: "2007", detail: "Received a letter of appreciation from the Embassy of the Philippines." },
+                  { year: "2008", detail: "Received a letter of appreciation from Reliance Industries Limited for handling the Young President Organisation's (YPO) Meet held at Jamnagar, Gujarat." },
+                  { year: "2011", detail: "Received an appreciation from the Embassy of the United States of America for providing transport services to the President of United States of America during his visit to India in November, 2010." },
+                  { year: "2011", detail: "Received a letter of appreciation for providing transport services at the Grand Prix by Formula One World Travel." },
+                  { year: "2011", detail: "Received an appreciation letter from the Royal Thai Embassy." },
+                  { year: "2012", detail: "Received a letter of appreciation from the Office of the Chief Commissioner of Income Tax for providing transport services at the 4th ITD Conference on Tax and Inequality." },
+                  { year: "2012", detail: "Appointed as the official travel partner for the Golden Jubilee Congress of the Asia Pacific Orthopaedic Association (APOA) and the 7th Congress of the Asia Pacific Knee Society (APKS)." },
+                  { year: "2013", detail: "Received a letter of appreciation for providing transport services to the Vice President of the United States of America, Hon'ble Joseph R. Biden, Jr., during his visit to New Delhi." },
+                  { year: "2013", detail: "Received a letter of appreciation for providing services by the World Bank Group, International Bank for Reconstruction and Development." },
+                  { year: "2017", detail: "Awarded Second Prize in the 'Tourist Transport Operators — Category II' segment at the National Tourism Award for the year 2016–2017, conferred by the Ministry of Tourism, Government of India." },
+                  { year: "2018", detail: "Awarded Second Prize in the 'Tourist Transport Operators — Category II' segment at the National Tourism Award for the year 2017–2018, conferred by the Ministry of Tourism, Government of India." },
+                  { year: "2019", detail: "Awarded Second Prize in the 'Tourist Transport Operators — Category 2' segment at the National Tourism Award for the year 2018–2019, conferred by the Ministry of Tourism, Government of India." },
+                  { year: "2020", detail: "Provided transport services to the American Embassy." },
+                  { year: "2022", detail: "Received a letter of appreciation from Knight Riders Sports Private Limited (Kolkata Knight Riders)." },
+                  { year: "2022", detail: "Received a letter of appreciation from Chennai Super Kings Cricket Limited." },
+                  { year: "2022", detail: "Received a letter from Asian Football Confederation (AFC) appreciating the hospitality extended during AFC Women's Asian Cup India 2022." },
+                  { year: "2023", detail: "Received appreciation from the G20 Secretariat, Ministry of External Affairs, Government of India, for handling the G20 event." },
+                  { year: "2023", detail: "Received a letter of appreciation from Pernod Ricard India Private Limited for providing services during the National Conference." },
+                  { year: "2023", detail: "Received appreciation from Indigo Airlines for providing transport services during Indigo event 'Town Hall Meet'." },
+                  { year: "2024", detail: "Received an appreciation email from Indigo Paints Limited for handling VIP guests." },
+                  { year: "2024", detail: "Received a certificate of appreciation from the Central Board of Indirect Taxes and Customs for prompt filing of returns and payments of Goods and Services Tax during the financial year 2023-24." },
+                  { year: "2024", detail: "Received appreciation from Abercrombie & Kent India for providing transport services." },
+                  { year: "2024", detail: "Received appreciation from Urban Provider for handling the Jet on Wheels Event." },
+                  { year: "2024", detail: "Received award for the Best Luxury Transport Provider at the Global Tourism Awards 2024." },
+                  { year: "2025", detail: "Received appreciation from the Embassy of the United States of America for providing transport services to the Vice President, JD Vance during his visit to India." },
+                  { year: "2025", detail: "Appointed as the official transportation company for the IATA Annual General Meeting and World Air Transport Summit 2025 by the International Air Transport Association (IATA)." },
+                  { year: "2025", detail: "Received Best Luxury Transport Provider award at the Global Tourism Awards 2025." },
+                  { year: "2025", detail: "Received an award of Best Luxury Fleet Operating Company at International Wedding Summit & Awards 2025." },
+                ].map((row, i) => (
+                  <tr key={i} style={{ borderBottom: "1px solid var(--border-subtle)", background: i % 2 === 0 ? "transparent" : "var(--glass-light)" }}>
+                    <td style={{ padding: "12px 16px", color: "var(--accent)", fontWeight: 700, whiteSpace: "nowrap", verticalAlign: "top" }}>{row.year}</td>
+                    <td style={{ padding: "12px 16px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{row.detail}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

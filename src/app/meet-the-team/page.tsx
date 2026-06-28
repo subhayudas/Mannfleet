@@ -34,13 +34,13 @@ const LEADERS: Leader[] = [
     photo: "/teams/amrit%20pal.jpeg",
     objectPosition: "top",
     teaser:
-      "Pioneer in shifting the Indian tourism industry to premium luxury vehicles since 1986 — driving business expansion and service excellence for four decades.",
-    bio: "Amrit Pal Singh Mann is the Promoter and Managing Director of the Company. He has also passed his first year of Bachelor of Commerce in 1985 from University of Delhi. He has been pioneered in shifting the Indian tourism industry from all types of smart to premium luxury vehicles since 1986. He has been a key leader, driving business expansion and service excellence in all tourist transport segments. With extensive experience in managing high-profile events, corporate delegations and provided services to embassies, he has played a crucial role in strengthening our Company's market presence. He is known for his disciplined and client-centric approach, ensuring the highest standards of service delivery. He has been at the forefront of adopting the latest transport technology and luxury vehicles, reinforcing Mann Fleet Partners Limited position as in luxury passenger transport in India. His strategic vision continues to propel our Company's growth. He spearheads the rollout of the entire premier fleet.",
+      "Promoter and Managing Director with over 33 years of experience — driving business expansion and service excellence with a disciplined, client-centric approach.",
+    bio: "Amrit Pal Singh Mann is the Promoter and Managing Director of our Company. He has also passed his first year of Bachelor of Commerce in 1985 from University of Delhi. He has been associated with the Company since August 07, 1992. He has over 33 years of experience in this sector. He has been a key leader, driving business expansion and service excellence. With extensive experience in managing high-profile events, corporate delegations and provided services to embassies, he has played a crucial role in strengthening our Company's market presence. He is known for his disciplined and client-centric approach, ensuring the highest standards of service delivery. He has been at the forefront of adopting the latest transport technology and luxury vehicles, reinforcing our Company's position as in luxury passenger transport in India. His strategic vision continues to propel our Company's growth.",
     education: ["Bachelor of Commerce (First Year) — University of Delhi, 1985"],
     accolades: [
-      "Pioneer in luxury vehicle transition since 1986",
+      "Associated with the Company since August 07, 1992",
+      "33+ years of experience in the sector",
       "High-profile events and embassy delegations",
-      "Spearheads the entire premier fleet rollout",
     ],
   },
   {
@@ -68,7 +68,7 @@ const LEADERS: Leader[] = [
     id: "robin",
     name: "Mr. Robin Singh Mann",
     title: "Executive Director and Head of Marketing",
-    email: "robin@faze.in",
+    email: "robin@mannfleetpartners.com",
     photo: "/teams/Robin%20Mann%20Sir%20photo.png",
     objectPosition: "top",
     teaser:
@@ -81,6 +81,46 @@ const LEADERS: Leader[] = [
       "Investment Banking Senior Analyst — Evercore PCA, NYC",
       "Experience at Citigroup, NYC",
       "Leads Leap Green Infra Private Limited",
+    ],
+  },
+];
+
+const KMP_TEAM: Leader[] = [
+  {
+    id: "sanjay",
+    name: "Sanjay Arora",
+    title: "Chief Financial Officer",
+    email: "sanjay.arora@mannfleetpartners.com",
+    photo: null,
+    teaser: "Chartered Accountant with over 20 years of experience in finance and taxation, overseeing financial strategy, reporting, and operations.",
+    bio: "Sanjay Arora is our Chief Financial Officer and is responsible for overseeing financial strategy, reporting, operations and tax matters. He has been associated with our Company since April 15, 2026. He is an Associate Member of The Institute of Chartered Accountants of India since February 28, 2007. He has also done Bachelor's of Law from Chaudhary Charan Singh University in the year 2022. Prior to joining our Company, he was associated with Carzonrent as Head-Finance & Taxation. He has over 20 years of experience in accounts, finance & taxation matters.",
+    education: [
+      "Associate Member — Institute of Chartered Accountants of India, 2007",
+      "Bachelor's of Law — Chaudhary Charan Singh University, 2022",
+    ],
+    accolades: [
+      "Associated with the Company since April 15, 2026",
+      "20+ years in accounts, finance & taxation",
+      "Former Head-Finance & Taxation at Carzonrent",
+    ],
+  },
+  {
+    id: "bhupin",
+    name: "Bhupin Khanna",
+    title: "Company Secretary & Compliance Officer",
+    email: "bhupin.khanna@mannfleetpartners.com",
+    photo: null,
+    teaser: "Company Secretary and Compliance Officer ensuring managerial, secretarial and regulatory compliances, with 4+ years of experience in the field.",
+    bio: "Bhupin Khanna is our Company Secretary and Compliance Officer and is responsible for ensuring managerial, secretarial and regulatory compliances of our Company. He has been associated with our Company since November 25, 2024. He is an Associate Member of The Institute of Company Secretaries of India since May 17, 2022. He has done Bachelor's degree in Commerce from University of Delhi in the year 2014 and also done Master of Commerce from Indira Gandhi National Open University in the year 2020. Prior to joining our Company, he was associated with Akira Pharma Private Limited, Subhlakshmi Finance Private Limited, A.K. Singh and Associates, and Ranjeet Kumar & Associates. He has over 4 years of experience in secretarial and regulatory compliances.",
+    education: [
+      "BCom — University of Delhi, 2014",
+      "MCom — Indira Gandhi National Open University, 2020",
+      "Associate Member — Institute of Company Secretaries of India, 2022",
+    ],
+    accolades: [
+      "Associated with the Company since November 25, 2024",
+      "4+ years in secretarial & regulatory compliances",
+      "Experience across pharma, finance, and legal sectors",
     ],
   },
 ];
@@ -139,25 +179,16 @@ const SALES_TEAM: SalesMember[] = [
     email: "amarjeet@manntours.com",
     photo: "/teams/PHOTO-2026-04-20-18-02-49.jpg",
     objectPosition: "top",
-    bio: "Ms. Amarjeet Mann has more than 30 years of experiences in Sales and Marketing and is currently the President — Marketing at Mann Fleet Partners Limited since October 2022, focusing on revenue strategies and managing high-profile corporate events and international delegations. Previously, she was a Team Lead at Disney Star from January to September 2022, driving revenue for Star Maa in Delhi. Ms. Mann boasts over two decades at The Times of India Group, holding diverse roles including General Manager — Delhi Head for Consumer Durable Vertical & Telecom. A Luxury and Lifestyle Specialist, she launched India's first luxury summit and played a key role in organizing events like Femina Miss India. She holds a Post Graduate Diploma in Marketing from Apeejay School of Marketing and a Graduation from Lady Irwin College. Her continuous professional development includes certifications in Digital Marketing and Analytics from ISB. Ms. Mann's key skills encompass persuasive communication, key account management, and strategic thinking.",
+    bio: "Amarjeet Mann has been the President of Marketing Department of our Company since October 01, 2022. She has completed Bachelor's of Science (Home Science) from University of Delhi in the year 1993 and her Post Graduation Diploma in Business Management from Apeejay School of Marketing, New Delhi in the year 1995. She has been associated with our Company since October 01, 2022, as the President – Marketing. With over 25 years of experience as a General Manager in Response Department of Bennet, Coleman & Co. Ltd., she plays a key role in formulating sales strategies, driving business growth, and ensuring seamless coordination between sales and other departments.",
   },
   {
     id: "jagdeep",
-    name: "Jagdeep Singh Mann",
+    name: "Jagdeep Singh",
     title: "President-Sales",
     email: "jagdeep@manntours.com",
     photo: "/teams/jagdeep-mann.jpeg",
     objectPosition: "top",
-    bio: "Mr. Jagdeep Singh Mann has approximately 12 years of experience in sales, marketing, and operations, currently serves as President — Sales at Mann Fleet Partners Limited. His journey with the company began as a dedicated Management Trainee in Marketing and Sales. Demonstrating exceptional aptitude and commitment during this initial period, he was deservedly retained as a permanent employee, progressively expanding his expertise across critical business functions. Academically, Mr. Mann is a distinguished alumnus of Maharshi Dayanand University, Rohtak, where he earned a Bachelor of Business Administration (Industry Integrated).",
-  },
-  {
-    id: "ashwani",
-    name: "Ashwani Kumar",
-    title: "Asst. Manager — Sales",
-    email: "ashwani@manntours.com",
-    photo: "/teams/Mr.%20Ashwani%20Kumar%20Picture.png",
-    objectPosition: "top",
-    bio: "Mr. Ashwani Kumar is a professional with over 11 years of diverse experience in sales, marketing, operations, MICE and management. He has been a key part of Mann Fleet Partners Limited since 2017, currently serving as Assistant Sales Manager. Known for his strong client handling, business development skills, and operational efficiency, he has consistently contributed to driving growth and delivering high-quality service experiences.",
+    bio: "Jagdeep Singh is the President of Sales Department of our Company. He has completed Bachelor of Business Administration (Industry Integrated) from the Maharishi Dayanand University, 2014. He has been associated with our Company as the Sales Manager since October 08, 2013. He has an experience of over 13 years in marketing and sales.",
   },
 ];
 
@@ -1227,19 +1258,25 @@ export default function MeetTheTeamPage() {
   const dir1Ref = useRef<HTMLDivElement>(null);
   const dir2Ref = useRef<HTMLDivElement>(null);
 
+  const kmpSecRef = useRef<HTMLElement>(null);
+  const kmpLabelRef = useRef<HTMLDivElement>(null);
+  const kmpDivRef = useRef<HTMLDivElement>(null);
+  const kmp0Ref = useRef<HTMLDivElement>(null);
+  const kmp1Ref = useRef<HTMLDivElement>(null);
+
   const salesSecRef = useRef<HTMLElement>(null);
   const salesLabelRef = useRef<HTMLDivElement>(null);
   const salesDivRef = useRef<HTMLDivElement>(null);
   const sales0Ref = useRef<HTMLDivElement>(null);
   const sales1Ref = useRef<HTMLDivElement>(null);
-  const sales2Ref = useRef<HTMLDivElement>(null);
 
   const ctaSecRef = useRef<HTMLElement>(null);
   const ctaTextRef = useRef<HTMLDivElement>(null);
 
   const cardRefs = [card0Ref, card1Ref, card2Ref];
   const dirRefs = [dir0Ref, dir1Ref, dir2Ref];
-  const salesRefs = [sales0Ref, sales1Ref, sales2Ref];
+  const kmpRefs = [kmp0Ref, kmp1Ref];
+  const salesRefs = [sales0Ref, sales1Ref];
 
   useEffect(() => {
     const ease = "power3.out";
@@ -1283,13 +1320,23 @@ export default function MeetTheTeamPage() {
       if (dirEls.length)
         gsap.from(dirEls, { y: 60, opacity: 0, duration: 0.8, ease, stagger: 0.15, scrollTrigger: { trigger: dirSecRef.current, start: "top 72%" } });
 
+      /* ── KMP ── */
+      if (kmpLabelRef.current)
+        gsap.from(kmpLabelRef.current, { y: 30, opacity: 0, duration: 0.7, ease, scrollTrigger: { trigger: kmpLabelRef.current, start: "top 85%" } });
+      if (kmpDivRef.current)
+        gsap.from(kmpDivRef.current, { scaleX: 0, transformOrigin: "left center", duration: 0.9, ease, scrollTrigger: { trigger: kmpDivRef.current, start: "top 85%" } });
+
+      const kmpEls = [kmp0Ref.current, kmp1Ref.current].filter(Boolean);
+      if (kmpEls.length)
+        gsap.from(kmpEls, { y: 60, opacity: 0, duration: 0.8, ease, stagger: 0.15, scrollTrigger: { trigger: kmpSecRef.current, start: "top 72%" } });
+
       /* ── SALES ── */
       if (salesLabelRef.current)
         gsap.from(salesLabelRef.current, { y: 30, opacity: 0, duration: 0.7, ease, scrollTrigger: { trigger: salesLabelRef.current, start: "top 85%" } });
       if (salesDivRef.current)
         gsap.from(salesDivRef.current, { scaleX: 0, transformOrigin: "left center", duration: 0.9, ease, scrollTrigger: { trigger: salesDivRef.current, start: "top 85%" } });
 
-      const salesEls = [sales0Ref.current, sales1Ref.current, sales2Ref.current].filter(Boolean);
+      const salesEls = [sales0Ref.current, sales1Ref.current].filter(Boolean);
       if (salesEls.length)
         gsap.from(salesEls, { y: 60, opacity: 0, duration: 0.8, ease, stagger: 0.15, scrollTrigger: { trigger: salesSecRef.current, start: "top 72%" } });
 
@@ -1384,6 +1431,25 @@ export default function MeetTheTeamPage() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 28, marginTop: 52 }}>
           {INDEPENDENT_DIRECTORS.map((dir, i) => (
             <DirectorCard key={dir.id} director={dir} cardRef={dirRefs[i]} />
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ KEY MANAGERIAL PERSONNEL ═══ */}
+      <section
+        ref={kmpSecRef}
+        style={{ padding: "0 24px 100px", maxWidth: 1200, margin: "0 auto" }}
+      >
+        <SectionHeader
+          labelRef={kmpLabelRef}
+          divRef={kmpDivRef}
+          label="Key Managerial Personnel"
+          heading="Key Managerial Personnel"
+          sub="The professionals responsible for financial strategy, compliance, and regulatory governance."
+        />
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28, marginTop: 52 }}>
+          {KMP_TEAM.map((kmp, i) => (
+            <LeaderCard key={kmp.id} leader={kmp} onOpen={() => setActiveLeader(kmp)} cardRef={kmpRefs[i]} />
           ))}
         </div>
       </section>
