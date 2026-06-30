@@ -46,50 +46,82 @@ function getSuggestedActions(userText: string, assistantText: string): ChatActio
   return actions.slice(0, 3);
 }
 
+const IMAGE_LIBRARY = {
+  fleet: [
+    "/Mann car pictures/Mercedes-Benz S-Class/ChatGPT Image Apr 29, 2026, 11_07_15 PM.png",
+    "/Mann car pictures/BMW 7 Series/ChatGPT Image Apr 28, 2026, 08_35_37 PM.png",
+    "/Mann car pictures/Toyota camry hybrid/ChatGPT Image Apr 30, 2026, 07_50_45 PM.png",
+    "/Mann car pictures/volvo xc90/ChatGPT Image May 6, 2026, 03_34_31 PM.png",
+    "/Mann car pictures/Volvo 39 seater/ChatGPT Image Apr 28, 2026, 03_55_20 PM.png",
+    "/Mann car pictures/Mercedes-Benz Sprinter/ChatGPT Image Apr 29, 2026, 10_47_18 PM.png",
+    "/Mann car pictures/vellfire.jpeg",
+    "/Mann car pictures/Volvo jet on wheels.jpeg",
+  ],
+  events: [
+    "/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 01_10_24 PM.png",
+    "/Mann car pictures/Kia Carnival Limousine/ChatGPT Image May 8, 2026, 11_09_23 AM.png",
+    "/Mann car pictures/Volvo jet on wheels.jpeg",
+    "/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 01_14_32 PM.png",
+  ],
+  awards: [
+    "/Mann awards images edited/ChatGPT Image May 4, 2026, 07_37_26 PM(govenment).png",
+    "/Mann awards images edited/ChatGPT Image May 4, 2026, 07_44_22 PM.png",
+    "/Mann awards images edited/ChatGPT Image May 4, 2026, 07_37_09 PM.png",
+    "/Mann awards images edited/ChatGPT Image May 4, 2026, 07_50_56 PM.png",
+  ],
+  care: [
+    "/We care/WhatsApp Image 2026-05-04 at 10.07.14.jpeg",
+    "/We care/WhatsApp Image 2026-05-04 at 10.07.14 (1).jpeg",
+    "/We care/WhatsApp Image 2026-05-04 at 10.07.14 (2).jpeg",
+    "/We care/WhatsApp Image 2026-05-04 at 10.07.15.jpeg",
+  ],
+  services: [
+    "/serviceimages/PHOTO-2026-05-28-12-10-37.jpg",
+    "/serviceimages/PHOTO-2026-05-28-12-36-09.jpg",
+    "/serviceimages/PHOTO-2026-05-28-13-08-52.jpg",
+    "/serviceimages/PHOTO-2026-05-29-23-15-05.jpg",
+  ],
+  team: [
+    "/teams/parmjeet-mann-new.jpeg",
+    "/teams/amrit pal.jpeg",
+    "/teams/jagdeep-mann.jpeg",
+    "/teams/PHOTO-2026-06-25-14-35-00.jpg",
+  ],
+  general: [
+    "/flagship-hero.jpg",
+    "/footer car.jpg",
+    "/Taj mahal.jpeg",
+    "/ChatGPT Image May 9, 2026, 03_12_32 PM.png",
+  ],
+} as const;
+
 function getSuggestedAttachment(userText: string, assistantText: string): ChatAttachment | null {
   const combined = `${userText} ${assistantText}`.toLowerCase();
 
+  let category: keyof typeof IMAGE_LIBRARY = "general";
   if (/wedding|event|party|ceremony|celebration/i.test(combined)) {
-    return {
-      type: "image",
-      src: "/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 01_10_24 PM.png",
-      alt: "Luxury event vehicle",
-    };
+    category = "events";
+  } else if (/fleet|vehicle|car|model|sedan|suv|luxury|ride/i.test(combined)) {
+    category = "fleet";
+  } else if (/award|recognition|certificate|testimonial|review|client/i.test(combined)) {
+    category = "awards";
+  } else if (/csr|care|sustainability|community|road safety/i.test(combined)) {
+    category = "care";
+  } else if (/service|corporate|long-term|spot|self-drive|tour|shuttle|pan-india/i.test(combined)) {
+    category = "services";
+  } else if (/team|leadership|director|founder|meet/i.test(combined)) {
+    category = "team";
   }
 
-  if (/fleet|vehicle|car|model|sedan|suv|luxury|ride/i.test(combined)) {
-    return {
-      type: "image",
-      src: "/Mann car pictures/Mercedes-Benz S-Class/ChatGPT Image Apr 29, 2026, 11_07_15 PM.png",
-      alt: "Luxury MANN vehicle",
-    };
-  }
+  const candidates = IMAGE_LIBRARY[category];
+  const hash = Array.from(combined).reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) % 1000003, 0);
+  const index = (hash + Math.floor(Date.now() / 1000) + combined.length) % candidates.length;
 
-  if (/award|recognition|certificate|testimonial|review|client/i.test(combined)) {
-    return {
-      type: "image",
-      src: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204,%202026,%2007_37_26%20PM(govenment).png",
-      alt: "MANN recognition and award showcase",
-    };
-  }
-
-  if (/csr|care|sustainability|community|road safety/i.test(combined)) {
-    return {
-      type: "image",
-      src: "/We care/WhatsApp Image 2026-05-04 at 10.07.14.jpeg",
-      alt: "MANN community care initiative",
-    };
-  }
-
-  if (/service|corporate|long-term|spot|self-drive|tour|shuttle|pan-india/i.test(combined)) {
-    return {
-      type: "image",
-      src: "/Mann car pictures/BMW 7 Series/ChatGPT Image Apr 28, 2026, 08_35_37 PM.png",
-      alt: "Premium MANN service fleet",
-    };
-  }
-
-  return null;
+  return {
+    type: "image",
+    src: candidates[index],
+    alt: `${category} showcase image`,
+  };
 }
 
 export default function ChatWidget() {
