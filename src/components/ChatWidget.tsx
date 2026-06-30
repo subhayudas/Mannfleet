@@ -2,10 +2,13 @@
 
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 
 type Role = "user" | "assistant";
-type Message = { role: Role; content: string };
+type ChatAction = { label: string; href: string };
+type ChatAttachment = { type: "image"; src: string; alt: string };
+type Message = { role: Role; content: string; actions?: ChatAction[]; attachments?: ChatAttachment[] };
 
 const SUGGESTIONS = [
   "Show me the fleet",
@@ -13,6 +16,81 @@ const SUGGESTIONS = [
   "Wedding services",
   "Contact the team",
 ];
+
+function getSuggestedActions(userText: string, assistantText: string): ChatAction[] {
+  const combined = `${userText} ${assistantText}`.toLowerCase();
+  const actions: ChatAction[] = [];
+
+  if (/fleet|vehicle|car|model|sedan|suv|luxury|ride/i.test(combined)) {
+    actions.push({ label: "Browse fleet", href: "/fleet" });
+  }
+  if (/book|reserve|booking|chauffeur|hire|rent|trip/i.test(combined)) {
+    actions.push({ label: "Reserve now", href: "/reservation" });
+  }
+  if (/wedding|event|party|ceremony|celebration/i.test(combined)) {
+    actions.push({ label: "Event services", href: "/services/events-weddings" });
+  }
+  if (/contact|team|support|office|call|email|location|help/i.test(combined)) {
+    actions.push({ label: "Talk to team", href: "/contact" });
+  }
+  if (/award|recognition|certificate|testimonial|review|client/i.test(combined)) {
+    actions.push({ label: "See accolades", href: "/awards" });
+  }
+  if (/service|corporate|long-term|spot|self-drive|tour|shuttle|pan-india/i.test(combined)) {
+    actions.push({ label: "Explore services", href: "/services" });
+  }
+  if (/csr|care|sustainability|community|road safety/i.test(combined)) {
+    actions.push({ label: "Our care mission", href: "/we-care" });
+  }
+
+  return actions.slice(0, 3);
+}
+
+function getSuggestedAttachment(userText: string, assistantText: string): ChatAttachment | null {
+  const combined = `${userText} ${assistantText}`.toLowerCase();
+
+  if (/wedding|event|party|ceremony|celebration/i.test(combined)) {
+    return {
+      type: "image",
+      src: "/Mann car pictures/Rolls royce/ChatGPT Image May 1, 2026, 01_10_24 PM.png",
+      alt: "Luxury event vehicle",
+    };
+  }
+
+  if (/fleet|vehicle|car|model|sedan|suv|luxury|ride/i.test(combined)) {
+    return {
+      type: "image",
+      src: "/Mann car pictures/Mercedes-Benz S-Class/ChatGPT Image Apr 29, 2026, 11_07_15 PM.png",
+      alt: "Luxury MANN vehicle",
+    };
+  }
+
+  if (/award|recognition|certificate|testimonial|review|client/i.test(combined)) {
+    return {
+      type: "image",
+      src: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204,%202026,%2007_37_26%20PM(govenment).png",
+      alt: "MANN recognition and award showcase",
+    };
+  }
+
+  if (/csr|care|sustainability|community|road safety/i.test(combined)) {
+    return {
+      type: "image",
+      src: "/We care/WhatsApp Image 2026-05-04 at 10.07.14.jpeg",
+      alt: "MANN community care initiative",
+    };
+  }
+
+  if (/service|corporate|long-term|spot|self-drive|tour|shuttle|pan-india/i.test(combined)) {
+    return {
+      type: "image",
+      src: "/Mann car pictures/BMW 7 Series/ChatGPT Image Apr 28, 2026, 08_35_37 PM.png",
+      alt: "Premium MANN service fleet",
+    };
+  }
+
+  return null;
+}
 
 export default function ChatWidget() {
   const [mounted, setMounted] = useState(false);
@@ -24,6 +102,7 @@ export default function ChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -62,7 +141,7 @@ export default function ChatWidget() {
     if (!content || streaming) return;
     setError(null);
     const next: Message[] = [...messages, { role: "user", content }];
-    setMessages(next);
+    setMessages([...next, { role: "assistant", content: "", actions: [] }]);
     setInput("");
     setStreaming(true);
 
@@ -79,7 +158,16 @@ export default function ChatWidget() {
 
       if (!res.ok || !res.body) {
         const errText = (await res.text().catch(() => "")) || "Something went wrong.";
-        setMessages((m) => [...m, { role: "assistant", content: errText }]);
+        setMessages((m) => {
+          const copy = m.slice();
+          copy[copy.length - 1] = {
+            role: "assistant",
+            content: errText,
+            actions: getSuggestedActions(content, errText),
+            attachments: getSuggestedAttachment(content, errText) ? [getSuggestedAttachment(content, errText)!] : [],
+          };
+          return copy;
+        });
         setStreaming(false);
         return;
       }
@@ -87,7 +175,6 @@ export default function ChatWidget() {
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let assistant = "";
-      setMessages((m) => [...m, { role: "assistant", content: "" }]);
 
       while (true) {
         const { done, value } = await reader.read();
@@ -95,7 +182,13 @@ export default function ChatWidget() {
         assistant += decoder.decode(value, { stream: true });
         setMessages((m) => {
           const copy = m.slice();
-          copy[copy.length - 1] = { role: "assistant", content: assistant };
+          const attachment = getSuggestedAttachment(content, assistant);
+          copy[copy.length - 1] = {
+            role: "assistant",
+            content: assistant,
+            actions: getSuggestedActions(content, assistant),
+            attachments: attachment ? [attachment] : [],
+          };
           return copy;
         });
       }
@@ -195,34 +288,69 @@ export default function ChatWidget() {
                 <div className={m.role === "user" ? "chat-bubble chat-bubble-user" : "chat-bubble chat-bubble-bot glass-panel"}>
                   {m.role === "assistant" ? (
                     m.content ? (
-                      <ReactMarkdown
-                        components={{
-                          a: ({ href, children }) => {
-                            const url = String(href ?? "");
-                            const internal = url.startsWith("/");
-                            return internal ? (
-                              <Link href={url} className="chat-link" onClick={() => setOpen(false)}>
-                                {children}
-                              </Link>
-                            ) : (
-                              <a href={url} className="chat-link" target="_blank" rel="noopener noreferrer">
-                                {children}
-                              </a>
-                            );
-                          },
-                          h1: ({ children }) => <h3 className="chat-md-h">{children}</h3>,
-                          h2: ({ children }) => <h3 className="chat-md-h">{children}</h3>,
-                          h3: ({ children }) => <h3 className="chat-md-h">{children}</h3>,
-                          ul: ({ children }) => <ul className="chat-md-ul">{children}</ul>,
-                          ol: ({ children }) => <ol className="chat-md-ol">{children}</ol>,
-                          li: ({ children }) => <li className="chat-md-li">{children}</li>,
-                          p: ({ children }) => <p className="chat-md-p">{children}</p>,
-                          strong: ({ children }) => <strong className="chat-md-strong">{children}</strong>,
-                          code: ({ children }) => <code className="chat-md-code">{children}</code>,
-                        }}
-                      >
-                        {m.content}
-                      </ReactMarkdown>
+                      <>
+                        <ReactMarkdown
+                          components={{
+                            a: ({ href, children }) => {
+                              const url = String(href ?? "");
+                              const internal = url.startsWith("/");
+                              return internal ? (
+                                <Link href={url} className="chat-link" onClick={() => setOpen(false)}>
+                                  {children}
+                                </Link>
+                              ) : (
+                                <a href={url} className="chat-link" target="_blank" rel="noopener noreferrer">
+                                  {children}
+                                </a>
+                              );
+                            },
+                            h1: ({ children }) => <h3 className="chat-md-h">{children}</h3>,
+                            h2: ({ children }) => <h3 className="chat-md-h">{children}</h3>,
+                            h3: ({ children }) => <h3 className="chat-md-h">{children}</h3>,
+                            ul: ({ children }) => <ul className="chat-md-ul">{children}</ul>,
+                            ol: ({ children }) => <ol className="chat-md-ol">{children}</ol>,
+                            li: ({ children }) => <li className="chat-md-li">{children}</li>,
+                            p: ({ children }) => <p className="chat-md-p">{children}</p>,
+                            strong: ({ children }) => <strong className="chat-md-strong">{children}</strong>,
+                            code: ({ children }) => <code className="chat-md-code">{children}</code>,
+                          }}
+                        >
+                          {m.content}
+                        </ReactMarkdown>
+
+                        {m.attachments?.length ? (
+                          <div className="chat-media-row">
+                            {m.attachments.map((attachment) => (
+                              <img
+                                key={`${attachment.src}-${attachment.alt}`}
+                                src={attachment.src}
+                                alt={attachment.alt}
+                                className="chat-attachment-image"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            ))}
+                          </div>
+                        ) : null}
+
+                        {m.actions?.length ? (
+                          <div className="chat-action-row">
+                            {m.actions.map((action) => (
+                              <button
+                                key={action.href}
+                                type="button"
+                                className="chat-action-btn"
+                                onClick={() => {
+                                  setOpen(false);
+                                  router.push(action.href);
+                                }}
+                              >
+                                {action.label}
+                              </button>
+                            ))}
+                          </div>
+                        ) : null}
+                      </>
                     ) : (
                       <TypingDots />
                     )
@@ -437,6 +565,45 @@ export default function ChatWidget() {
           padding: 0.05rem 0.35rem;
           border-radius: 6px;
           font-size: 0.86em;
+        }
+        .chat-media-row {
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+          margin-top: 0.6rem;
+        }
+        .chat-attachment-image {
+          width: 100%;
+          max-height: 180px;
+          object-fit: cover;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.24);
+          box-shadow: 0 10px 24px -16px rgba(0,0,0,0.45);
+        }
+        .chat-action-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.45rem;
+          margin-top: 0.6rem;
+        }
+        .chat-action-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.42rem 0.72rem;
+          border-radius: 9999px;
+          border: 1px solid rgba(255,255,255,0.24);
+          background: rgba(255,255,255,0.36);
+          color: var(--text-primary, #2C2416);
+          font-size: 0.78rem;
+          font-weight: 600;
+          text-decoration: none;
+          cursor: pointer;
+          transition: transform 0.15s ease, background 0.15s ease;
+        }
+        .chat-action-btn:hover {
+          transform: translateY(-1px);
+          background: rgba(255,255,255,0.48);
         }
         .chat-link {
           color: var(--accent, hsl(0 70% 52%));
