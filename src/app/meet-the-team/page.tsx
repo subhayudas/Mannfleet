@@ -91,7 +91,8 @@ const KMP_TEAM: Leader[] = [
     name: "Sanjay Arora",
     title: "Chief Financial Officer",
     email: "sanjay.arora@mannfleetpartners.com",
-    photo: null,
+    photo: "/teams/sanjay-arora.jpg",
+    objectPosition: "top",
     teaser: "Chartered Accountant with over 20 years of experience in finance and taxation, overseeing financial strategy, reporting, and operations.",
     bio: "Sanjay Arora is our Chief Financial Officer and is responsible for overseeing financial strategy, reporting, operations and tax matters. He has been associated with our Company since April 15, 2026. He is an Associate Member of The Institute of Chartered Accountants of India since February 28, 2007. He has also done Bachelor's of Law from Chaudhary Charan Singh University in the year 2022. Prior to joining our Company, he was associated with Carzonrent as Head-Finance & Taxation. He has over 20 years of experience in accounts, finance & taxation matters.",
     education: [
@@ -183,12 +184,12 @@ const SALES_TEAM: SalesMember[] = [
   },
   {
     id: "jagdeep",
-    name: "Jagdeep Singh",
+    name: "Mr. Jagdeep Singh Mann",
     title: "President-Sales",
     email: "jagdeep@manntours.com",
     photo: "/teams/jagdeep-mann.jpeg",
     objectPosition: "top",
-    bio: "Jagdeep Singh is the President of Sales Department of our Company. He has completed Bachelor of Business Administration (Industry Integrated) from the Maharishi Dayanand University, 2014. He has been associated with our Company as the Sales Manager since October 08, 2013. He has an experience of over 13 years in marketing and sales.",
+    bio: "Mr. Jagdeep Singh Mann is the President of Sales Department of our Company. He has completed Bachelor of Business Administration (Industry Integrated) from the Maharishi Dayanand University, 2014. He has been associated with our Company as the Sales Manager since October 08, 2013. He has an experience of over 13 years in marketing and sales.",
   },
 ];
 

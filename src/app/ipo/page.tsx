@@ -14,71 +14,22 @@ gsap.registerPlugin(ScrollTrigger);
 ══════════════════════════════════════════════════════════════ */
 interface PdfDoc {
   label: string;
+  description: string;
   file: string;
 }
 
-interface PdfCategory {
-  id: string;
-  title: string;
-  icon: string;
-  docs: PdfDoc[];
-}
+const BASE = "/ipo/";
 
-const BASE = "/investors/";
-
-const PDF_CATEGORIES: PdfCategory[] = [
+const IPO_DOCS: PdfDoc[] = [
   {
-    id: "constitution",
-    title: "Constitutive Documents",
-    icon: "🏛️",
-    docs: [
-      { label: "Articles of Association", file: "Articles-of-Association.pdf" },
-      { label: "Memorandum of Association", file: "Memorandum-of-Association.pdf" },
-    ],
+    label: "Draft Red Herring Prospectus (DRHP)",
+    description: "Mann Fleet Partners Limited — full draft offer document filed with the regulator.",
+    file: "DRHP-Mann-Fleet-Partners-Limited.pdf",
   },
   {
-    id: "conduct",
-    title: "Codes of Conduct",
-    icon: "⚖️",
-    docs: [
-      { label: "Code of Conduct — Directors and SMP", file: "Code-of-Conduct-for-Directors-and-SMP_Mann.pdf" },
-      { label: "Code of Conduct — Prevention of Insider Trading", file: "Code-of-Conduct-for-Prevention-of-Insider-Trading_Mann.pdf" },
-    ],
-  },
-  {
-    id: "policies",
-    title: "Policies",
-    icon: "📋",
-    docs: [
-      { label: "Board Diversity Policy", file: "Board-Diversity-Policy_Mann.pdf" },
-      { label: "Whistle-Blower Policy", file: "Whistle-Blower-Policy_Mann.pdf" },
-      { label: "Nomination and Remuneration Policy", file: "Nomination-Remuneration-Policy_Mann.pdf" },
-      { label: "Documents Preservation and Archival Policy", file: "Documents-Preservation-and-Archival-Policy_Mann.pdf" },
-      { label: "Policy on Related Party Transactions", file: "Policy-on-Materiality-of-Related-Party-Transaction_Mann.pdf" },
-      { label: "Policy on Material Subsidiaries", file: "Policy-for-determining-Material-Subsidiaries_Mann.pdf" },
-      { label: "Policy on Materiality of Disclosures", file: "Policy-on-Determination-of-Materiality-for-Disclosure-of-Events-Information_Mann.pdf" },
-      { label: "Succession Planning Policy", file: "Policy-on-Succession-Planning-of-Board-and-Senior-Management_Mann.pdf" },
-      { label: "Familiarisation Programme — Independent Directors", file: "Familiarisation-Programme-for-Independent-Directors_Mann.pdf" },
-    ],
-  },
-  {
-    id: "info",
-    title: "Corporate Information",
-    icon: "🏢",
-    docs: [
-      { label: "Details of Business", file: "Details-of-Business.pdf" },
-      { label: "Details of KMPs", file: "Details-of-KMPs.pdf" },
-      { label: "Contact Details — Grievance Redressal", file: "Details-of-KMPs.pdf" },
-    ],
-  },
-  {
-    id: "subsidiary-financials",
-    title: "Subsidiary Financials",
-    icon: "📊",
-    docs: [
-      { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Dec 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_December-2025.pdf" },
-      { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Oct 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_October-2025.pdf" },
-    ],
+    label: "Draft Abridged Prospectus",
+    description: "Condensed summary of the offer, key terms, and risk factors.",
+    file: "Draft-Abridged-Prospectus_Mann.pdf",
   },
 ];
 
@@ -127,6 +78,14 @@ function PdfModal({ doc, onClose }: { doc: PdfDoc; onClose: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
+  const handleClose = useCallback(() => {
+    const bd = backdropRef.current;
+    const card = cardRef.current;
+    const tl = gsap.timeline({ onComplete: onClose });
+    if (card) tl.to(card, { opacity: 0, scale: 0.92, y: 20, duration: 0.22, ease: "power2.in" }, 0);
+    if (bd) tl.to(bd, { opacity: 0, duration: 0.22, ease: "power2.in" }, 0);
+  }, [onClose]);
+
   useEffect(() => {
     if (isMobile) {
       window.open(BASE + doc.file, "_blank");
@@ -153,14 +112,6 @@ function PdfModal({ doc, onClose }: { doc: PdfDoc; onClose: () => void }) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleClose = useCallback(() => {
-    const bd = backdropRef.current;
-    const card = cardRef.current;
-    const tl = gsap.timeline({ onComplete: onClose });
-    if (card) tl.to(card, { opacity: 0, scale: 0.92, y: 20, duration: 0.22, ease: "power2.in" }, 0);
-    if (bd) tl.to(bd, { opacity: 0, duration: 0.22, ease: "power2.in" }, 0);
-  }, [onClose]);
 
   if (isMobile) return null;
 
@@ -245,13 +196,13 @@ function PdfModal({ doc, onClose }: { doc: PdfDoc; onClose: () => void }) {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   PDF CARD
+   IPO DOC CARD
 ══════════════════════════════════════════════════════════════ */
-function PdfCard({ doc, onClick }: { doc: PdfDoc; onClick: () => void }) {
+function IpoCard({ doc, onClick }: { doc: PdfDoc; onClick: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleEnter = () => {
-    gsap.to(cardRef.current, { y: -4, boxShadow: "0 12px 32px rgba(0,0,0,0.18)", duration: 0.25, ease: "power2.out" });
+    gsap.to(cardRef.current, { y: -4, boxShadow: "0 16px 40px rgba(0,0,0,0.20)", duration: 0.25, ease: "power2.out" });
   };
   const handleLeave = () => {
     gsap.to(cardRef.current, { y: 0, boxShadow: "0 2px 8px rgba(0,0,0,0.06)", duration: 0.25, ease: "power2.out" });
@@ -266,36 +217,48 @@ function PdfCard({ doc, onClick }: { doc: PdfDoc; onClick: () => void }) {
       style={{
         background: "var(--glass-mid)",
         border: "1px solid var(--border-subtle)",
-        borderRadius: 12,
-        padding: "16px 18px",
+        borderRadius: 16,
+        padding: "26px 26px 22px",
         cursor: "pointer",
         display: "flex",
-        alignItems: "flex-start",
-        gap: 12,
+        flexDirection: "column",
+        gap: 14,
         boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
         transition: "border-color 0.2s",
       }}
     >
-      <span style={{ color: "var(--accent)", flexShrink: 0, marginTop: 2 }}>
+      <span style={{
+        color: "var(--accent)",
+        width: 52, height: 52, borderRadius: 12,
+        background: "var(--glass-ultra)",
+        border: "1px solid var(--border-subtle)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
         <IconFile />
       </span>
-      <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ flex: 1 }}>
         <p style={{
-          fontSize: 13.5, fontWeight: 600, color: "var(--text-primary)",
-          margin: 0, lineHeight: 1.4,
-          overflow: "hidden", display: "-webkit-box",
-          WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
+          fontFamily: "'Instrument Serif', serif",
+          fontSize: 24, fontWeight: 400,
+          color: "var(--text-primary)",
+          margin: 0, lineHeight: 1.2,
         }}>
           {doc.label}
         </p>
-        <span style={{
-          display: "inline-flex", alignItems: "center", gap: 4,
-          marginTop: 8, fontSize: 11.5, fontWeight: 600,
-          color: "var(--accent)", textTransform: "uppercase", letterSpacing: "0.06em",
+        <p style={{
+          fontSize: 14, color: "var(--text-secondary)",
+          margin: "8px 0 0", lineHeight: 1.55,
         }}>
-          View PDF <IconExternalLink />
-        </span>
+          {doc.description}
+        </p>
       </div>
+      <span style={{
+        display: "inline-flex", alignItems: "center", gap: 5,
+        fontSize: 11.5, fontWeight: 700,
+        color: "var(--accent)", textTransform: "uppercase", letterSpacing: "0.08em",
+      }}>
+        View Document <IconExternalLink />
+      </span>
     </div>
   );
 }
@@ -303,7 +266,7 @@ function PdfCard({ doc, onClick }: { doc: PdfDoc; onClick: () => void }) {
 /* ══════════════════════════════════════════════════════════════
    PAGE
 ══════════════════════════════════════════════════════════════ */
-export default function InvestorsPage() {
+export default function IpoPage() {
   const [activePdf, setActivePdf] = useState<PdfDoc | null>(null);
 
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
@@ -314,7 +277,6 @@ export default function InvestorsPage() {
   useEffect(() => {
     const ease = "power3.out";
 
-    // Hero entrance
     if (heroTitleRef.current) {
       gsap.fromTo(heroTitleRef.current,
         { opacity: 0, y: 50 },
@@ -334,27 +296,14 @@ export default function InvestorsPage() {
       );
     }
 
-    // Doc category sections stagger
-    const catHeaders = docSectionRef.current?.querySelectorAll<HTMLElement>(".cat-header");
-    if (catHeaders?.length) {
-      gsap.fromTo(catHeaders,
-        { opacity: 0, x: -30 },
-        {
-          opacity: 1, x: 0, duration: 0.6, ease,
-          stagger: 0.1,
-          scrollTrigger: { trigger: docSectionRef.current, start: "top 75%" }
-        }
-      );
-    }
-
     const docCards = docSectionRef.current?.querySelectorAll<HTMLElement>(".doc-card-anim");
     if (docCards?.length) {
       gsap.fromTo(docCards,
         { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 0.55, ease,
-          stagger: 0.04,
-          scrollTrigger: { trigger: docSectionRef.current, start: "top 70%" }
+          opacity: 1, y: 0, duration: 0.6, ease,
+          stagger: 0.08,
+          scrollTrigger: { trigger: docSectionRef.current, start: "top 80%" }
         }
       );
     }
@@ -385,7 +334,7 @@ export default function InvestorsPage() {
             opacity: 0,
           }}
         >
-          Investors
+          IPO
         </h1>
         <div
           ref={heroDivRef}
@@ -403,19 +352,17 @@ export default function InvestorsPage() {
           style={{
             fontSize: "clamp(15px, 2vw, 18px)",
             color: "var(--text-secondary)",
-            maxWidth: 560,
+            maxWidth: 600,
             margin: 0,
             lineHeight: 1.6,
             opacity: 0,
           }}
         >
-          Corporate governance, regulatory disclosures, and board information for Mann Fleet Partners Limited
+          Offer documents for the initial public offering of Mann Fleet Partners Limited. Read the Draft Red Herring Prospectus and Abridged Prospectus below.
         </p>
       </section>
 
-      <div style={{ paddingTop: 8 }} />
-
-      {/* ── CORPORATE DOCUMENTS ──────────────────────────────── */}
+      {/* ── IPO DOCUMENTS ─────────────────────────────────────── */}
       <section
         ref={docSectionRef}
         style={{
@@ -424,46 +371,31 @@ export default function InvestorsPage() {
           margin: "0 auto",
         }}
       >
-        <SectionLabel>Corporate Documents and Disclosures</SectionLabel>
+        <SectionLabel>Offer Documents</SectionLabel>
 
-        <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 48 }}>
-          {PDF_CATEGORIES.map(cat => (
-            <div key={cat.id}>
-              <div className="cat-header" style={{
-                display: "flex", alignItems: "center", gap: 10,
-                marginBottom: 20,
-              }}>
-                <span style={{ fontSize: 22 }}>{cat.icon}</span>
-                <h2 style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: 26,
-                  fontWeight: 400,
-                  color: "var(--text-primary)",
-                  margin: 0,
-                }}>
-                  {cat.title}
-                </h2>
-                <div style={{
-                  flex: 1, height: 1,
-                  background: "var(--border-subtle)",
-                  marginLeft: 8,
-                }} />
-              </div>
-
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-                gap: 14,
-              }}>
-                {cat.docs.map(doc => (
-                  <div key={doc.file} className="doc-card-anim" style={{ opacity: 0 }}>
-                    <PdfCard doc={doc} onClick={() => setActivePdf(doc)} />
-                  </div>
-                ))}
-              </div>
+        <div style={{
+          marginTop: 32,
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+          gap: 18,
+        }}>
+          {IPO_DOCS.map(doc => (
+            <div key={doc.file} className="doc-card-anim" style={{ opacity: 0 }}>
+              <IpoCard doc={doc} onClick={() => setActivePdf(doc)} />
             </div>
           ))}
         </div>
+
+        <p style={{
+          marginTop: 28,
+          fontSize: 12.5,
+          color: "var(--text-secondary)",
+          maxWidth: 760,
+          lineHeight: 1.6,
+          opacity: 0.85,
+        }}>
+          Disclaimer: These documents are drafts filed for informational purposes and do not constitute an offer to sell or a solicitation to buy securities. Please read the risk factors carefully before making any investment decision.
+        </p>
       </section>
 
       <Footer />
