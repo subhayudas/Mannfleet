@@ -28,6 +28,15 @@ const BASE = "/investors/";
 
 const PDF_CATEGORIES: PdfCategory[] = [
   {
+    id: "ipo",
+    title: "IPO",
+    icon: "📈",
+    docs: [
+      { label: "Draft Red Herring Prospectus (DRHP)", file: "DRHP-Mann-Fleet-Partners-Limited.pdf" },
+      { label: "Draft Abridged Prospectus", file: "Draft-Abridged-Prospectus_Mann.pdf" },
+    ],
+  },
+  {
     id: "constitution",
     title: "Constitutive Documents",
     icon: "🏛️",
