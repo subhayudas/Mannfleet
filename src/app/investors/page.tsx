@@ -72,6 +72,38 @@ const PDF_CATEGORIES: PdfCategory[] = [
     ],
   },
   {
+    id: "financial-statements",
+    title: "Financial Statements",
+    icon: "📈",
+    docs: [
+      { label: "Financial Statements 2024-25 (Audited)", file: "Financial-Statements_2024-25_Audited.pdf" },
+      { label: "Financial Statements 2023-24", file: "Financial-Statements_2023-24.pdf" },
+      { label: "Financial Statements 2022-23", file: "Financial-Statements_2022-23.pdf" },
+      { label: "Financial Statements — Mann Tours 2024", file: "Financial-Statements_Mann-Tours_2024.pdf" },
+      { label: "Financial Statements — Mann Tours 2023", file: "Financial-Statements_Mann-Tours_2023.pdf" },
+      { label: "Financial Statements — Mann Tours 2022", file: "Financial-Statements_Mann-Tours_2022.pdf" },
+      { label: "Restated Financials 2024-25", file: "Restated-Financials_2024-25.pdf" },
+      { label: "Special Purpose Financials 2024-25", file: "Special-Purpose-Financials_2024-25.pdf" },
+    ],
+  },
+  {
+    id: "board-report",
+    title: "Board Report",
+    icon: "📝",
+    docs: [
+      { label: "Board's Report 2024-25", file: "Board-Report_2024-25.pdf" },
+      { label: "Board's Report 2023-24", file: "Board-Report_2023-24.pdf" },
+    ],
+  },
+  {
+    id: "annual-report",
+    title: "Annual Report",
+    icon: "📚",
+    docs: [
+      { label: "Annual Report 2024-25", file: "Annual-Report_2024-25.pdf" },
+    ],
+  },
+  {
     id: "subsidiary-financials",
     title: "Subsidiary Financials",
     icon: "📊",
@@ -433,7 +465,6 @@ export default function InvestorsPage() {
                 display: "flex", alignItems: "center", gap: 10,
                 marginBottom: 20,
               }}>
-                <span style={{ fontSize: 22 }}>{cat.icon}</span>
                 <h2 style={{
                   fontFamily: "'Instrument Serif', serif",
                   fontSize: 26,
