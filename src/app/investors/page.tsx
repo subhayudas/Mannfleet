@@ -88,9 +88,6 @@ const PDF_CATEGORIES: PdfCategory[] = [
       { label: "Financial Statements 2024-25 (Audited)", file: "Financial-Statements_2024-25_Audited.pdf" },
       { label: "Financial Statements 2023-24", file: "Financial-Statements_2023-24.pdf" },
       { label: "Financial Statements 2022-23", file: "Financial-Statements_2022-23.pdf" },
-      { label: "Financial Statements — Mann Tours 2024", file: "Financial-Statements_Mann-Tours_2024.pdf" },
-      { label: "Financial Statements — Mann Tours 2023", file: "Financial-Statements_Mann-Tours_2023.pdf" },
-      { label: "Financial Statements — Mann Tours 2022", file: "Financial-Statements_Mann-Tours_2022.pdf" },
       { label: "Restated Financials 2024-25", file: "Restated-Financials_2024-25.pdf" },
       { label: "Special Purpose Financials 2024-25", file: "Special-Purpose-Financials_2024-25.pdf" },
     ],
@@ -119,6 +116,17 @@ const PDF_CATEGORIES: PdfCategory[] = [
     docs: [
       { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Dec 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_December-2025.pdf" },
       { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Oct 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_October-2025.pdf" },
+    ],
+  },
+  {
+    id: "group-company",
+    title: "Group Company",
+    icon: "🏬",
+    docs: [
+      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2024", file: "Financial-Statements_Mann-Tours_2024.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2023", file: "Financial-Statements_Mann-Tours_2023.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2022", file: "Financial-Statements_Mann-Tours_2022.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Annual Return 2024-25", file: "Mann-Tours_Annual-Return_2024-25.pdf" },
     ],
   },
 ];
@@ -496,7 +504,7 @@ export default function InvestorsPage() {
                 gap: 14,
               }}>
                 {cat.docs.map(doc => (
-                  <div key={doc.file} className="doc-card-anim" style={{ opacity: 0 }}>
+                  <div key={doc.label} className="doc-card-anim" style={{ opacity: 0 }}>
                     <PdfCard doc={doc} onClick={() => setActivePdf(doc)} />
                   </div>
                 ))}
