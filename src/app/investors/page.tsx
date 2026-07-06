@@ -14,7 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 ══════════════════════════════════════════════════════════════ */
 interface PdfDoc {
   label: string;
-  file: string;
+  file?: string;
+  url?: string;
 }
 
 interface PdfCategory {
@@ -34,6 +35,8 @@ const PDF_CATEGORIES: PdfCategory[] = [
     docs: [
       { label: "Draft Red Herring Prospectus (DRHP)", file: "DRHP-Mann-Fleet-Partners-Limited.pdf" },
       { label: "Draft Abridged Prospectus", file: "Draft-Abridged-Prospectus_Mann.pdf" },
+      { label: "Audio/Video Recording (Hindi)", url: "https://drive.google.com/file/d/1B3Hi7qPTahf0z7_CGHYTBeQXgokYMg_a/view" },
+      { label: "Audio/Video Recording (English)", url: "https://drive.google.com/drive/folders/1k8Jl6U7-bOVepJcBHuTuzZpm6_mxIdUc" },
     ],
   },
   {
@@ -298,6 +301,7 @@ function PdfModal({ doc, onClose }: { doc: PdfDoc; onClose: () => void }) {
 ══════════════════════════════════════════════════════════════ */
 function PdfCard({ doc, onClick }: { doc: PdfDoc; onClick: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const isExternal = !!doc.url;
 
   const handleEnter = () => {
     gsap.to(cardRef.current, { y: -4, boxShadow: "0 12px 32px rgba(0,0,0,0.18)", duration: 0.25, ease: "power2.out" });
@@ -342,7 +346,7 @@ function PdfCard({ doc, onClick }: { doc: PdfDoc; onClick: () => void }) {
           marginTop: 8, fontSize: 11.5, fontWeight: 600,
           color: "var(--accent)", textTransform: "uppercase", letterSpacing: "0.06em",
         }}>
-          View PDF <IconExternalLink />
+          {isExternal ? "Watch Recording" : "View PDF"} <IconExternalLink />
         </span>
       </div>
     </div>
@@ -505,7 +509,13 @@ export default function InvestorsPage() {
               }}>
                 {cat.docs.map(doc => (
                   <div key={doc.label} className="doc-card-anim" style={{ opacity: 0 }}>
-                    <PdfCard doc={doc} onClick={() => setActivePdf(doc)} />
+                    <PdfCard
+                      doc={doc}
+                      onClick={() => {
+                        if (doc.url) window.open(doc.url, "_blank", "noopener,noreferrer");
+                        else setActivePdf(doc);
+                      }}
+                    />
                   </div>
                 ))}
               </div>
