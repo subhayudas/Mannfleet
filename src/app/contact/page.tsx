@@ -63,7 +63,7 @@ function IconLink({ size = 16 }: { size?: number }) {
 
 const BRANCH_CONTACTS = [
   {
-    name: "Amarjeet Singh Mann",
+    name: "Amarjeet Mann",
     designation: "President-Marketing",
     phone: "+91-9990222888",
     email: "amarjeet@manntours.com",

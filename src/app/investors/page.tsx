@@ -35,8 +35,8 @@ const PDF_CATEGORIES: PdfCategory[] = [
     docs: [
       { label: "Draft Red Herring Prospectus (DRHP)", file: "DRHP-Mann-Fleet-Partners-Limited.pdf" },
       { label: "Draft Abridged Prospectus", file: "Draft-Abridged-Prospectus_Mann.pdf" },
-      { label: "Audio/Video Recording (Hindi)", url: "https://drive.google.com/file/d/1B3Hi7qPTahf0z7_CGHYTBeQXgokYMg_a/view" },
-      { label: "Audio/Video Recording (English)", url: "https://drive.google.com/drive/folders/1k8Jl6U7-bOVepJcBHuTuzZpm6_mxIdUc" },
+      { label: "Audio/Video Recording (Hindi)", url: "https://www.youtube.com/watch?v=CXdiBw_Uhtk&feature=youtu.be" },
+      { label: "Audio/Video Recording (English)", url: "https://www.youtube.com/watch?v=qAOuHRBiA38&feature=youtu.be" },
     ],
   },
   {
@@ -119,6 +119,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
     docs: [
       { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Dec 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_December-2025.pdf" },
       { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Oct 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_October-2025.pdf" },
+      { label: "Leap Green Infra Pvt. Ltd. — Annual Return 2024-25", file: "Leap-Green-Infra_Annual-Return_2024-25.pdf" },
     ],
   },
   {
