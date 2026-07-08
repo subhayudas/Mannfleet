@@ -40,6 +40,16 @@ const PDF_CATEGORIES: PdfCategory[] = [
     ],
   },
   {
+    id: "newspaper-advertisement",
+    title: "Newspaper Advertisement",
+    icon: "📰",
+    docs: [
+      { label: "Financial Express — Delhi", file: "Newspaper-Advertisement_Financial-Express_Delhi.pdf" },
+      { label: "Jansatta — Delhi", file: "Newspaper-Advertisement_Jansatta_Delhi.pdf" },
+      { label: "Pratah Kiran — Delhi", file: "Newspaper-Advertisement_Pratah-Kiran_Delhi.pdf" },
+    ],
+  },
+  {
     id: "constitution",
     title: "Constitutive Documents",
     icon: "🏛️",
@@ -110,6 +120,16 @@ const PDF_CATEGORIES: PdfCategory[] = [
     icon: "📚",
     docs: [
       { label: "Annual Report 2024-25", file: "Annual-Report_2024-25.pdf" },
+    ],
+  },
+  {
+    id: "annual-return",
+    title: "Annual Return",
+    icon: "🗂️",
+    docs: [
+      { label: "Annual Return 2024-25 (Form MGT-7)", file: "Annual-Return_2024-25_Mann.pdf" },
+      { label: "Annual Return 2022-23 (Form MGT-7A)", file: "Annual-Return_2022-23_Mann.pdf" },
+      { label: "Annual Return 2021-22 (Form MGT-7A)", file: "Annual-Return_2021-22_Mann.pdf" },
     ],
   },
   {
