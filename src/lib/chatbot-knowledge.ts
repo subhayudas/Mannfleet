@@ -39,8 +39,8 @@ Direct people to /fleet for the full visual catalog with specs.
 - For exact phone and email, direct the user to /contact (do not invent numbers).
 
 ## Leadership (/meet-the-team)
-- **Amrit Pal Singh Mann** — Managing Director.
-- **Parmjeet Mann** — Executive Director.
+- **Mr. Amrit Pal Singh Mann** — Managing Director.
+- **Ms. Parmjeet Mann** — Executive Director.
 - Plus senior operations and partnerships leaders.
 
 ## Awards (/awards)

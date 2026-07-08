@@ -63,21 +63,21 @@ function IconLink({ size = 16 }: { size?: number }) {
 
 const BRANCH_CONTACTS = [
   {
-    name: "Amarjeet Mann",
+    name: "Ms. Amarjeet Mann",
     designation: "President-Marketing",
     phone: "+91-9990222888",
     email: "amarjeet@manntours.com",
     photo: "/teams/PHOTO-2026-04-20-18-02-49.jpg",
   },
   {
-    name: "Jagdeep Singh Mann",
+    name: "Mr. Jagdeep Singh Mann",
     designation: "President-Sales",
     phone: "+91-9540222888",
     email: "jagdeep@manntours.com",
     photo: "/teams/PHOTO-2026-04-20-18-02-49 2.jpg",
   },
   {
-    name: "Ashwani Kumar",
+    name: "Mr. Ashwani Kumar",
     designation: "Asst. Manager — Sales",
     phone: "+91-9891398914",
     email: "ashwani@manntours.com",

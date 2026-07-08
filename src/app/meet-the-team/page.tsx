@@ -28,14 +28,14 @@ interface Leader {
 const LEADERS: Leader[] = [
   {
     id: "amrit",
-    name: "Amrit Pal Singh Mann",
+    name: "Mr. Amrit Pal Singh Mann",
     title: "Managing Director",
     email: "amrit@manntours.com",
     photo: "/teams/amrit%20pal.jpeg",
     objectPosition: "top",
     teaser:
       "Promoter and Managing Director with over 33 years of experience — driving business expansion and service excellence with a disciplined, client-centric approach.",
-    bio: "Amrit Pal Singh Mann is the Promoter and Managing Director of our Company. He has also passed his first year of Bachelor of Commerce in 1985 from University of Delhi. He has been associated with the Company since August 07, 1992. He has over 33 years of experience in this sector. He has been a key leader, driving business expansion and service excellence. With extensive experience in managing high-profile events, corporate delegations and provided services to embassies, he has played a crucial role in strengthening our Company's market presence. He is known for his disciplined and client-centric approach, ensuring the highest standards of service delivery. He has been at the forefront of adopting the latest transport technology and luxury vehicles, reinforcing our Company's position as in luxury passenger transport in India. His strategic vision continues to propel our Company's growth.",
+    bio: "Mr. Amrit Pal Singh Mann is the Promoter and Managing Director of our Company. He has also passed his first year of Bachelor of Commerce in 1985 from University of Delhi. He has been associated with the Company since August 07, 1992. He has over 33 years of experience in this sector. He has been a key leader, driving business expansion and service excellence. With extensive experience in managing high-profile events, corporate delegations and provided services to embassies, he has played a crucial role in strengthening our Company's market presence. He is known for his disciplined and client-centric approach, ensuring the highest standards of service delivery. He has been at the forefront of adopting the latest transport technology and luxury vehicles, reinforcing our Company's position as in luxury passenger transport in India. His strategic vision continues to propel our Company's growth.",
     education: ["Bachelor of Commerce (First Year) — University of Delhi, 1985"],
     accolades: [
       "Associated with the Company since August 07, 1992",
@@ -45,14 +45,14 @@ const LEADERS: Leader[] = [
   },
   {
     id: "parmjeet",
-    name: "Parmjeet Mann",
+    name: "Ms. Parmjeet Mann",
     title: "Executive Director and Head of HR",
     email: "parmjeet@manntours.com",
     photo: "/teams/parmjeet-mann-new.jpeg",
     objectPosition: "top",
     teaser:
       "Executive Director and Head of Human Resources, instrumental in securing high-value contracts with embassies, MNCs, and prestigious events since 2005.",
-    bio: "Parmjeet Mann is the Promoter, Executive Director and Head of Human Resources Department of our Company. She has completed diploma in Fashion Design from JD Institute of Fashion Technology in the year 2001–02 and also completed her PG Diploma in microbiology and food technology from Punjabi University in the year 1994. She has also done Bachelor of Science (Honors) in Botany from Panjab University in the year 1993. She has been associated with our Company from August 2005. She has played a crucial role in driving the Company's growth. She has been instrumental in securing high-value contracts with embassies, multinational corporations and prestigious events. She has also developed and trained a team of 15 sales professionals, ensuring consistent business growth and client retention. Additionally, as Head of Human Resources, she manages a workforce of our employees, including chauffeurs and office staffs, streamlining business functions and ensuring operational efficiency.",
+    bio: "Ms. Parmjeet Mann is the Promoter, Executive Director and Head of Human Resources Department of our Company. She has completed diploma in Fashion Design from JD Institute of Fashion Technology in the year 2001–02 and also completed her PG Diploma in microbiology and food technology from Punjabi University in the year 1994. She has also done Bachelor of Science (Honors) in Botany from Panjab University in the year 1993. She has been associated with our Company from August 2005. She has played a crucial role in driving the Company's growth. She has been instrumental in securing high-value contracts with embassies, multinational corporations and prestigious events. She has also developed and trained a team of 15 sales professionals, ensuring consistent business growth and client retention. Additionally, as Head of Human Resources, she manages a workforce of our employees, including chauffeurs and office staffs, streamlining business functions and ensuring operational efficiency.",
     education: [
       "BSc (Hons) Botany — Panjab University, 1993",
       "PG Diploma in Microbiology and Food Technology — Punjabi University, 1994",
@@ -68,7 +68,7 @@ const LEADERS: Leader[] = [
     id: "robin",
     name: "Mr. Robin Singh Mann",
     title: "Executive Director and Head of Marketing",
-    email: "robin@mannfleetpartners.com",
+    email: "robin@manntours.com",
     photo: "/teams/Robin%20Mann%20Sir%20photo.png",
     objectPosition: "top",
     teaser:
@@ -88,13 +88,13 @@ const LEADERS: Leader[] = [
 const KMP_TEAM: Leader[] = [
   {
     id: "sanjay",
-    name: "Sanjay Arora",
+    name: "Mr. Sanjay Arora",
     title: "Chief Financial Officer",
-    email: "sanjay.arora@mannfleetpartners.com",
+    email: "sanjay@mannfleetpartners.com",
     photo: "/teams/sanjay-arora.jpg",
     objectPosition: "top",
     teaser: "Chartered Accountant with over 20 years of experience in finance and taxation, overseeing financial strategy, reporting, and operations.",
-    bio: "Sanjay Arora is our Chief Financial Officer and is responsible for overseeing financial strategy, reporting, operations and tax matters. He has been associated with our Company since April 15, 2026. He is an Associate Member of The Institute of Chartered Accountants of India since February 28, 2007. He has also done Bachelor's of Law from Chaudhary Charan Singh University in the year 2022. Prior to joining our Company, he was associated with Carzonrent as Head-Finance & Taxation. He has over 20 years of experience in accounts, finance & taxation matters.",
+    bio: "Mr. Sanjay Arora is our Chief Financial Officer and is responsible for overseeing financial strategy, reporting, operations and tax matters. He has been associated with our Company since April 15, 2026. He is an Associate Member of The Institute of Chartered Accountants of India since February 28, 2007. He has also done Bachelor's of Law from Chaudhary Charan Singh University in the year 2022. Prior to joining our Company, he was associated with Carzonrent as Head-Finance & Taxation. He has over 20 years of experience in accounts, finance & taxation matters.",
     education: [
       "Associate Member — Institute of Chartered Accountants of India, 2007",
       "Bachelor's of Law — Chaudhary Charan Singh University, 2022",
@@ -107,12 +107,12 @@ const KMP_TEAM: Leader[] = [
   },
   {
     id: "bhupin",
-    name: "Bhupin Khanna",
+    name: "Mr. Bhupin Khanna",
     title: "Company Secretary & Compliance Officer",
-    email: "bhupin.khanna@mannfleetpartners.com",
+    email: "cs@manntours.com",
     photo: "/teams/PHOTO-2026-06-25-14-35-00.jpg",
     teaser: "Company Secretary and Compliance Officer ensuring managerial, secretarial and regulatory compliances, with 4+ years of experience in the field.",
-    bio: "Bhupin Khanna is our Company Secretary and Compliance Officer and is responsible for ensuring managerial, secretarial and regulatory compliances of our Company. He has been associated with our Company since November 25, 2024. He is an Associate Member of The Institute of Company Secretaries of India since May 17, 2022. He has done Bachelor's degree in Commerce from University of Delhi in the year 2014 and also done Master of Commerce from Indira Gandhi National Open University in the year 2020. Prior to joining our Company, he was associated with Akira Pharma Private Limited, Subhlakshmi Finance Private Limited, A.K. Singh and Associates, and Ranjeet Kumar & Associates. He has over 4 years of experience in secretarial and regulatory compliances.",
+    bio: "Mr. Bhupin Khanna is our Company Secretary and Compliance Officer and is responsible for ensuring managerial, secretarial and regulatory compliances of our Company. He has been associated with our Company since November 25, 2024. He is an Associate Member of The Institute of Company Secretaries of India since May 17, 2022. He has done Bachelor's degree in Commerce from University of Delhi in the year 2014 and also done Master of Commerce from Indira Gandhi National Open University in the year 2020. Prior to joining our Company, he was associated with Akira Pharma Private Limited, Subhlakshmi Finance Private Limited, A.K. Singh and Associates, and Ranjeet Kumar & Associates. He has over 4 years of experience in secretarial and regulatory compliances.",
     education: [
       "BCom — University of Delhi, 2014",
       "MCom — Indira Gandhi National Open University, 2020",
@@ -142,7 +142,7 @@ const INDEPENDENT_DIRECTORS: IndependentDirector[] = [
     title: "Independent Director",
     photo: "/teams/Ashok jha.jpeg",
     objectPosition: "top",
-    bio: "Ashok Jha is an Independent Director of our Company. He has completed his Senior Secondary Examination (Class XII) from the Central Board of Secondary Education, New Delhi in the year 1981. He also held a Certificate of Competency as Master of a Foreign-Going Ship, issued under the Merchant Shipping Act, 1958 which is required to be renewed every five years in accordance with applicable maritime regulations. He has approximately 11 years of experience in the marine and offshore industry, having served in senior roles such as, Master of FPSO/FSO facilities and currently, as Offshore Installation Manager (OIM). His expertise includes evaluation simultaneous operations on the facility, assistance in the preparation of budgets and in the planning and co-ordination of campaign maintenance, conversions or other major activities.",
+    bio: "Mr. Ashok Jha is an Independent Director of our Company. He has completed his Senior Secondary Examination (Class XII) from the Central Board of Secondary Education, New Delhi in the year 1981. He also held a Certificate of Competency as Master of a Foreign-Going Ship, issued under the Merchant Shipping Act, 1958 which is required to be renewed every five years in accordance with applicable maritime regulations. He has approximately 11 years of experience in the marine and offshore industry, having served in senior roles such as, Master of FPSO/FSO facilities and currently, as Offshore Installation Manager (OIM). His expertise includes evaluation simultaneous operations on the facility, assistance in the preparation of budgets and in the planning and co-ordination of campaign maintenance, conversions or other major activities.",
   },
   {
     id: "averjit",
@@ -150,7 +150,7 @@ const INDEPENDENT_DIRECTORS: IndependentDirector[] = [
     title: "Independent Director",
     photo: "/teams/Avarjit Singh.jpeg",
     objectPosition: "top",
-    bio: "Avarjit Singh Birghi is an Independent Director of our Company. He has completed his Senior Secondary Examination (Class XII) from the St. Columbas School, New Delhi in 1985 along with this he has completed his Bachelor of Commerce (Honours), University of Delhi in 1989 and he is a member of the Institute of Charted Accountants of India since 1991. He has also professional experience in Information Technology industry where he has worked with IBM India Private Limited and thereafter with Tata Consultancy Services.",
+    bio: "Mr. Avarjit Singh Birghi is an Independent Director of our Company. He has completed his Senior Secondary Examination (Class XII) from the St. Columbas School, New Delhi in 1985 along with this he has completed his Bachelor of Commerce (Honours), University of Delhi in 1989 and he is a member of the Institute of Charted Accountants of India since 1991. He has also professional experience in Information Technology industry where he has worked with IBM India Private Limited and thereafter with Tata Consultancy Services.",
   },
   {
     id: "sami",
@@ -158,7 +158,7 @@ const INDEPENDENT_DIRECTORS: IndependentDirector[] = [
     title: "Independent Director",
     photo: "/teams/Mohd Sami.jpeg",
     objectPosition: "top",
-    bio: "Mohd Sami is an Independent Director of our Company. He has completed his Doctor of Philosophy (PhD) in Physics and Mathematical Sciences from Moscow State University in 1983. He qualified as Physicist at Patrice Lumumba Peoples’ Friendship University, Moscow Russia in 1978. He served as the director of the Centre for Theoretical Physics, Jamia Millia Islamia (A Central University) from January 12, 2007 to January 31, 2020. Currently he is working as director of Centre for Cosmology and Science popularisation at Shree Guru Gobind Singh Tricentenary University.",
+    bio: "Dr. Mohd Sami is an Independent Director of our Company. He has completed his Doctor of Philosophy (PhD) in Physics and Mathematical Sciences from Moscow State University in 1983. He qualified as Physicist at Patrice Lumumba Peoples’ Friendship University, Moscow Russia in 1978. He served as the director of the Centre for Theoretical Physics, Jamia Millia Islamia (A Central University) from January 12, 2007 to January 31, 2020. Currently he is working as director of Centre for Cosmology and Science popularisation at Shree Guru Gobind Singh Tricentenary University.",
   },
 ];
 
@@ -175,12 +175,12 @@ interface SalesMember {
 const SALES_TEAM: SalesMember[] = [
   {
     id: "amarjeet",
-    name: "Amarjeet Mann",
+    name: "Ms. Amarjeet Mann",
     title: "President-Marketing",
     email: "amarjeet@manntours.com",
     photo: "/teams/PHOTO-2026-04-20-18-02-49.jpg",
     objectPosition: "top",
-    bio: "Amarjeet Mann has been the President of Marketing Department of our Company since October 01, 2022. She has completed Bachelor's of Science (Home Science) from University of Delhi in the year 1993 and her Post Graduation Diploma in Business Management from Apeejay School of Marketing, New Delhi in the year 1995. She has been associated with our Company since October 01, 2022, as the President – Marketing. With over 25 years of experience as a General Manager in Response Department of Bennet, Coleman & Co. Ltd., she plays a key role in formulating sales strategies, driving business growth, and ensuring seamless coordination between sales and other departments.",
+    bio: "Ms. Amarjeet Mann has been the President of Marketing Department of our Company since October 01, 2022. She has completed Bachelor's of Science (Home Science) from University of Delhi in the year 1993 and her Post Graduation Diploma in Business Management from Apeejay School of Marketing, New Delhi in the year 1995. She has been associated with our Company since October 01, 2022, as the President – Marketing. With over 25 years of experience as a General Manager in Response Department of Bennet, Coleman & Co. Ltd., she plays a key role in formulating sales strategies, driving business growth, and ensuring seamless coordination between sales and other departments.",
   },
   {
     id: "jagdeep",
@@ -1425,7 +1425,7 @@ export default function MeetTheTeamPage() {
         <SectionHeader
           labelRef={dirLabelRef}
           divRef={dirDivRef}
-          label="Board of Directors"
+          label="Non-Executive Director"
           heading="Independent Directors"
           sub="Distinguished professionals bringing independent oversight and governance expertise to Mann Fleet Partners Limited."
         />

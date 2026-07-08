@@ -81,6 +81,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
       { label: "Policy on Materiality of Disclosures", file: "Policy-on-Determination-of-Materiality-for-Disclosure-of-Events-Information_Mann.pdf" },
       { label: "Succession Planning Policy", file: "Policy-on-Succession-Planning-of-Board-and-Senior-Management_Mann.pdf" },
       { label: "Familiarisation Programme — Independent Directors", file: "Familiarisation-Programme-for-Independent-Directors_Mann.pdf" },
+      { label: "Prevention of Sexual Harassment at Workplace", file: "Prevention-of-Sexual-Harassment-at-Workplace_Mann.pdf" },
     ],
   },
   {
@@ -102,6 +103,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
       { label: "Financial Statements 2023-24", file: "Financial-Statements_2023-24.pdf" },
       { label: "Financial Statements 2022-23", file: "Financial-Statements_2022-23.pdf" },
       { label: "Restated Financials 2024-25", file: "Restated-Financials_2024-25.pdf" },
+      { label: "Restated Report (as at 31 Dec 2025)", file: "Restated-Report_31-12-2025_Mann.pdf" },
       { label: "Special Purpose Financials 2024-25", file: "Special-Purpose-Financials_2024-25.pdf" },
     ],
   },
