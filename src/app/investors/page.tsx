@@ -59,19 +59,12 @@ const PDF_CATEGORIES: PdfCategory[] = [
     ],
   },
   {
-    id: "conduct",
-    title: "Codes of Conduct",
-    icon: "⚖️",
-    docs: [
-      { label: "Code of Conduct — Directors and SMP", file: "Code-of-Conduct-for-Directors-and-SMP_Mann.pdf" },
-      { label: "Code of Conduct — Prevention of Insider Trading", file: "Code-of-Conduct-for-Prevention-of-Insider-Trading_Mann.pdf" },
-    ],
-  },
-  {
     id: "policies",
     title: "Policies",
     icon: "📋",
     docs: [
+      { label: "Code of Conduct — Directors and SMP", file: "Code-of-Conduct-for-Directors-and-SMP_Mann.pdf" },
+      { label: "Code of Conduct — Prevention of Insider Trading", file: "Code-of-Conduct-for-Prevention-of-Insider-Trading_Mann.pdf" },
       { label: "Board Diversity Policy", file: "Board-Diversity-Policy_Mann.pdf" },
       { label: "Whistle-Blower Policy", file: "Whistle-Blower-Policy_Mann.pdf" },
       { label: "Nomination and Remuneration Policy", file: "Nomination-Remuneration-Policy_Mann.pdf" },
@@ -105,6 +98,15 @@ const PDF_CATEGORIES: PdfCategory[] = [
       { label: "Restated Financials 2024-25", file: "Restated-Financials_2024-25.pdf" },
       { label: "Restated Report (as at 31 Dec 2025)", file: "Restated-Report_31-12-2025_Mann.pdf" },
       { label: "Special Purpose Financials 2024-25", file: "Special-Purpose-Financials_2024-25.pdf" },
+    ],
+  },
+  {
+    id: "csr",
+    title: "CSR",
+    icon: "🤝",
+    docs: [
+      { label: "Utilization Certificate — Global Social (CSR 2024-25)", file: "Utilization-Certificate_CSR_Global-Social_2024-25.pdf" },
+      { label: "Utilization Certificate — Impact Paramedical (CSR 2023-24)", file: "Utilization-Certificate_Impact-Paramedical_2023-24.pdf" },
     ],
   },
   {

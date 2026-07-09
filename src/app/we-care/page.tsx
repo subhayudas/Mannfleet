@@ -228,7 +228,7 @@ function AccordionItem({ title, icon, children }: AccordionItemProps) {
    PDF MODAL
    (Consistent with Investors page)
 ══════════════════════════════════════════════════════════════ */
-const PDF_BASE = "/Mann%20Investors%20/";
+const PDF_BASE = "/investors/";
 
 function PdfModal({ file, label, onClose }: { file: string; label: string; onClose: () => void }) {
   const backdropRef = useRef<HTMLDivElement>(null);
