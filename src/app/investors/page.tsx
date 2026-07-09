@@ -86,7 +86,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
       { label: "Composition of Committee", file: "Composition-of-Committee.pdf" },
       { label: "Contact Details for Grievance Redressal and Other Requests", file: "Contact-Details-Grievance-Redressal.pdf" },
       { label: "Terms of Appointment — Independent Directors", file: "Terms-of-Appointment_Independent-Directors.pdf" },
-      { label: "Details of the KMPs Authorized to Determine Materiality", file: "Details-of-KMPs-authorized-to-determine-Materiality.pdf" },
+      { label: "Details of the Key Managerial Personnel (‘KMP’s) authorized to determine materiality of an event or information and make disclosures to the Stock Exchanges under Regulation 30 of the SEBI Listing Regulations, 2015", file: "Details-of-KMPs-authorized-to-determine-Materiality.pdf" },
     ],
   },
   {
