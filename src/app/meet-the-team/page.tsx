@@ -1406,7 +1406,7 @@ export default function MeetTheTeamPage() {
         <SectionHeader
           labelRef={leadLabelRef}
           divRef={leadDivRef}
-          label="Leadership"
+          label="Executive Directors"
           heading="The Leadership"
           sub="Decades of combined experience shaping the future of luxury passenger transport in India."
         />
