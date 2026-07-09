@@ -83,8 +83,10 @@ const PDF_CATEGORIES: PdfCategory[] = [
     icon: "🏢",
     docs: [
       { label: "Details of Business", file: "Details-of-Business.pdf" },
-      { label: "Details of KMPs", file: "Details-of-KMPs.pdf" },
-      { label: "Contact Details — Grievance Redressal", file: "Details-of-KMPs.pdf" },
+      { label: "Composition of Committee", file: "Composition-of-Committee.pdf" },
+      { label: "Contact Details for Grievance Redressal and Other Requests", file: "Contact-Details-Grievance-Redressal.pdf" },
+      { label: "Terms of Appointment — Independent Directors", file: "Terms-of-Appointment_Independent-Directors.pdf" },
+      { label: "Details of the KMPs Authorized to Determine Materiality", file: "Details-of-KMPs-authorized-to-determine-Materiality.pdf" },
     ],
   },
   {
@@ -138,7 +140,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
   },
   {
     id: "subsidiary-financials",
-    title: "Subsidiary Financials",
+    title: "Subsidiary Company",
     icon: "📊",
     docs: [
       { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Dec 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_December-2025.pdf" },
