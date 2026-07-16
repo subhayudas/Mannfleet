@@ -1425,7 +1425,7 @@ export default function MeetTheTeamPage() {
         <SectionHeader
           labelRef={dirLabelRef}
           divRef={dirDivRef}
-          label="Non-Executive Director"
+          label="Directors"
           heading="Independent Directors"
           sub="Distinguished professionals bringing independent oversight and governance expertise to Mann Fleet Partners Limited."
         />
@@ -1463,7 +1463,7 @@ export default function MeetTheTeamPage() {
         <SectionHeader
           labelRef={salesLabelRef}
           divRef={salesDivRef}
-          label="Our Team"
+          label="Senior Managerial Personnel (SMPs)"
           heading="Sales and Marketing"
           sub="The driving force behind our client relationships, partnerships, and revenue growth."
         />

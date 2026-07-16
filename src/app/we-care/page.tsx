@@ -353,6 +353,12 @@ function PdfModal({ file, label, onClose }: { file: string; label: string; onClo
 ══════════════════════════════════════════════════════════════ */
 export default function WeCarePage() {
   const [showPdf, setShowPdf] = useState(false);
+  const [activeCert, setActiveCert] = useState<{ file: string; label: string } | null>(null);
+
+  const CSR_CERTIFICATES = [
+    { label: "Utilization Certificate — Global Social (CSR 2024-25)", file: "Utilization-Certificate_CSR_Global-Social_2024-25.pdf" },
+    { label: "Utilization Certificate — Impact Paramedical (CSR 2023-24)", file: "Utilization-Certificate_Impact-Paramedical_2023-24.pdf" },
+  ];
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const focusRef = useRef<HTMLDivElement>(null);
@@ -943,6 +949,71 @@ export default function WeCarePage() {
           </div>
         </section>
 
+        {/* ── CSR Utilization Certificates ── */}
+        <section style={{ ...sectionWrap, paddingTop: 0 }}>
+          <span className="glass-badge" style={{ marginBottom: "0.75rem", display: "inline-block" }}>
+            CSR
+          </span>
+          <h2 className="font-serif" style={{
+            fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+            fontWeight: 400,
+            color: "var(--text-primary)",
+            margin: "0 0 0.5rem",
+          }}>
+            Utilization Certificates
+          </h2>
+          <p style={{ color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: 540, marginBottom: "2rem" }}>
+            Independent certificates confirming that CSR funds were deployed towards the intended
+            social initiatives, in line with the Companies Act, 2013.
+          </p>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "1.25rem",
+          }}>
+            {CSR_CERTIFICATES.map((cert) => (
+              <div
+                key={cert.file}
+                onClick={() => setActiveCert(cert)}
+                style={{
+                  background: "var(--glass-mid)",
+                  border: "1px solid var(--border-subtle)",
+                  borderRadius: 12,
+                  padding: "16px 18px",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 12,
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                  transition: "border-color 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+              >
+                <span style={{ color: "var(--accent)", flexShrink: 0, marginTop: 2 }}>
+                  <IconFile />
+                </span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <p style={{
+                    fontSize: 13.5, fontWeight: 600, color: "var(--text-primary)",
+                    margin: 0, lineHeight: 1.4,
+                  }}>
+                    {cert.label}
+                  </p>
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", gap: 4,
+                    marginTop: 8, fontSize: 11.5, fontWeight: 600,
+                    color: "var(--accent)", textTransform: "uppercase", letterSpacing: "0.06em",
+                  }}>
+                    View PDF <IconExternalLink />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* ── Our Vision ── */}
         <section style={sectionWrap} ref={visionRef}>
           <span className="glass-badge vision-card" style={{ marginBottom: "0.75rem", display: "inline-block" }}>
@@ -1042,6 +1113,14 @@ export default function WeCarePage() {
           file="CSR-Policy_Mann.pdf"
           label="CSR Policy — Mann Fleet Partners Limited"
           onClose={() => setShowPdf(false)}
+        />
+      )}
+
+      {activeCert && (
+        <PdfModal
+          file={activeCert.file}
+          label={activeCert.label}
+          onClose={() => setActiveCert(null)}
         />
       )}
     </div>

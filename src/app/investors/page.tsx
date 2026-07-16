@@ -103,15 +103,6 @@ const PDF_CATEGORIES: PdfCategory[] = [
     ],
   },
   {
-    id: "csr",
-    title: "CSR",
-    icon: "🤝",
-    docs: [
-      { label: "Utilization Certificate — Global Social (CSR 2024-25)", file: "Utilization-Certificate_CSR_Global-Social_2024-25.pdf" },
-      { label: "Utilization Certificate — Impact Paramedical (CSR 2023-24)", file: "Utilization-Certificate_Impact-Paramedical_2023-24.pdf" },
-    ],
-  },
-  {
     id: "board-report",
     title: "Board Report",
     icon: "📝",
@@ -134,6 +125,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
     icon: "🗂️",
     docs: [
       { label: "Annual Return 2024-25 (Form MGT-7)", file: "Annual-Return_2024-25_Mann.pdf" },
+      { label: "Annual Return 2023-24 (Form MGT-7A)", file: "Annual-Return_2023-24_Mann.pdf" },
       { label: "Annual Return 2022-23 (Form MGT-7A)", file: "Annual-Return_2022-23_Mann.pdf" },
       { label: "Annual Return 2021-22 (Form MGT-7A)", file: "Annual-Return_2021-22_Mann.pdf" },
     ],
