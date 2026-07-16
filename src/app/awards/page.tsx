@@ -98,6 +98,7 @@ const FEATURED_PAIR = {
 };
 
 const APPRECIATIONS = [
+  { label: "PHDCCI — Spiritual Tourism Conclave", file: "/Appreciation/Appreciation_Mann%20Fleet%20Partners.jpg", pdf: "/Appreciation/Appreciation_Letter_Mann Fleet Partners.pdf" },
   { label: "G20 Event Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_44_18%20PM.png", pdf: "/Appreciation/Appreciation_G20 Event.pdf" },
   { label: "US Embassy Appreciation", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_48%20PM.png", pdf: "/Appreciation/Appreciation_Embassy_USA.pdf" },
   { label: "Joe Biden — Vice President, USA", file: "/Mann%20awards%20images%20edited/ChatGPT%20Image%20May%204%2C%202026%2C%2007_37_53%20PM.png", pdf: "/Appreciation/Appreciation_Joe Biden_Vice President_USA.pdf" },
