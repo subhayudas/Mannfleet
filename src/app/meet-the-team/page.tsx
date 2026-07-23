@@ -1425,7 +1425,7 @@ export default function MeetTheTeamPage() {
         <SectionHeader
           labelRef={dirLabelRef}
           divRef={dirDivRef}
-          label="Directors"
+          label="Non Executive Directors"
           heading="Independent Directors"
           sub="Distinguished professionals bringing independent oversight and governance expertise to Mann Fleet Partners Limited."
         />

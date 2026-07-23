@@ -54,6 +54,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
     title: "Constitutive Documents",
     icon: "🏛️",
     docs: [
+      { label: "Certificate of Incorporation", file: "Certificate-of-Incorporation.pdf" },
       { label: "Articles of Association", file: "Articles-of-Association.pdf" },
       { label: "Memorandum of Association", file: "Memorandum-of-Association.pdf" },
     ],
@@ -97,9 +98,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
       { label: "Financial Statements 2024-25 (Audited)", file: "Financial-Statements_2024-25_Audited.pdf" },
       { label: "Financial Statements 2023-24", file: "Financial-Statements_2023-24.pdf" },
       { label: "Financial Statements 2022-23", file: "Financial-Statements_2022-23.pdf" },
-      { label: "Restated Financials 2024-25", file: "Restated-Financials_2024-25.pdf" },
       { label: "Restated Report (as at 31 Dec 2025)", file: "Restated-Report_31-12-2025_Mann.pdf" },
-      { label: "Special Purpose Financials 2024-25", file: "Special-Purpose-Financials_2024-25.pdf" },
     ],
   },
   {
