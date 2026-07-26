@@ -54,7 +54,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
     title: "Constitutive Documents",
     icon: "🏛️",
     docs: [
-      { label: "Certificate of Incorporation", file: "Certificate-of-Incorporation.pdf" },
+      { label: "Certificate of Incorporation", file: "Certificate-of-Incorporation_Change-of-Name-2025.pdf" },
       { label: "Articles of Association", file: "Articles-of-Association.pdf" },
       { label: "Memorandum of Association", file: "Memorandum-of-Association.pdf" },
     ],
@@ -83,6 +83,9 @@ const PDF_CATEGORIES: PdfCategory[] = [
     title: "Corporate Information",
     icon: "🏢",
     docs: [
+      { label: "Certificate of Incorporation — Original (Mann Tourist Transport Service Private Limited, 7 August 1992)", file: "Certificate-of-Incorporation_Original-1992.pdf" },
+      { label: "Certificate of Incorporation — Conversion to Public Company (Mann Tourist Transport Service Limited, 17 December 2024)", file: "Certificate-of-Incorporation_Conversion-to-Public-Company-2024.pdf" },
+      { label: "Certificate of Incorporation — Change of Name (Mann Fleet Partners Limited, 30 January 2025)", file: "Certificate-of-Incorporation_Change-of-Name-2025.pdf" },
       { label: "Details of Business", file: "Details-of-Business.pdf" },
       { label: "Composition of Committee", file: "Composition-of-Committee.pdf" },
       { label: "Contact Details for Grievance Redressal and Other Requests", file: "Contact-Details-Grievance-Redressal.pdf" },
