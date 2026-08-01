@@ -35,6 +35,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
     docs: [
       { label: "Draft Red Herring Prospectus (DRHP)", file: "DRHP-Mann-Fleet-Partners-Limited.pdf" },
       { label: "Draft Abridged Prospectus", file: "Draft-Abridged-Prospectus_Mann.pdf" },
+      { label: "Industry Assessment Report", file: "Industry-Assessment-Report_Mann.pdf" },
       { label: "Audio/Video Recording (Hindi)", url: "https://www.youtube.com/watch?v=CXdiBw_Uhtk&feature=youtu.be" },
       { label: "Audio/Video Recording (English)", url: "https://www.youtube.com/watch?v=qAOuHRBiA38&feature=youtu.be" },
     ],
