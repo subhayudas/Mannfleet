@@ -102,6 +102,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
       { label: "Financial Statements 2024-25 (Audited)", file: "Financial-Statements_2024-25_Audited.pdf" },
       { label: "Financial Statements 2023-24", file: "Financial-Statements_2023-24.pdf" },
       { label: "Financial Statements 2022-23", file: "Financial-Statements_2022-23.pdf" },
+      { label: "Financial Statements 2021-22", file: "Financial-Statements_2021-22.pdf" },
       { label: "Restated Report (as at 31 Dec 2025)", file: "Restated-Report_31-12-2025_Mann.pdf" },
     ],
   },
@@ -120,6 +121,8 @@ const PDF_CATEGORIES: PdfCategory[] = [
     icon: "📚",
     docs: [
       { label: "Annual Report 2024-25", file: "Annual-Report_2024-25.pdf" },
+      { label: "Annual Report 2022-23", file: "Annual-Report_2022-23.pdf" },
+      { label: "Annual Report 2021-22", file: "Annual-Report_2021-22.pdf" },
     ],
   },
   {
@@ -138,6 +141,7 @@ const PDF_CATEGORIES: PdfCategory[] = [
     title: "Subsidiary Company",
     icon: "📊",
     docs: [
+      { label: "Leap Green Infra Pvt. Ltd. — Financial Statements 2024-25", file: "Financial-Statements_Leap-Green-Infra_2024-25.pdf" },
       { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Dec 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_December-2025.pdf" },
       { label: "Leap Green Infra Pvt. Ltd. — Audited Balance Sheet (Oct 2025)", file: "Leap-Green-Infra-Audited-Balance-Sheet_October-2025.pdf" },
       { label: "Leap Green Infra Pvt. Ltd. — Annual Return 2024-25", file: "Leap-Green-Infra_Annual-Return_2024-25.pdf" },
@@ -148,10 +152,14 @@ const PDF_CATEGORIES: PdfCategory[] = [
     title: "Group Company",
     icon: "🏬",
     docs: [
-      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2024", file: "Financial-Statements_Mann-Tours_2024.pdf" },
-      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2023", file: "Financial-Statements_Mann-Tours_2023.pdf" },
-      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2022", file: "Financial-Statements_Mann-Tours_2022.pdf" },
-      { label: "Mann Tours India Pvt. Ltd. — Annual Return 2024-25", file: "Mann-Tours_Annual-Return_2024-25.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2024-25", file: "Financial-Statements_Mann-Tours_2024-25.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2023-24", file: "Financial-Statements_Mann-Tours_2024.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2022-23", file: "Financial-Statements_Mann-Tours_2023.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Financial Statements 2021-22", file: "Financial-Statements_Mann-Tours_2022.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Annual Return 2024-25 (Form MGT-7A)", file: "Mann-Tours_Annual-Return_2024-25.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Annual Return 2023-24 (Form MGT-7A)", file: "Mann-Tours_Annual-Return_2023-24.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Annual Return 2022-23 (Form MGT-7A)", file: "Mann-Tours_Annual-Return_2022-23.pdf" },
+      { label: "Mann Tours India Pvt. Ltd. — Annual Return 2021-22 (Form MGT-7A)", file: "Mann-Tours_Annual-Return_2021-22.pdf" },
     ],
   },
 ];
