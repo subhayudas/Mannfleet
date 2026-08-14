@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { fbTrack } from "@/lib/meta-pixel";
 
 function ArrowUpRight({ size = 14 }: { size?: number }) {
   return (
@@ -195,6 +196,15 @@ export default function ReservationPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Primary conversion. Guest name / phone / email are deliberately left out —
+    // Meta requires PII to be hashed via advanced matching, not sent as params.
+    fbTrack("Lead", {
+      content_name: "Reservation Request",
+      content_category: servicesRequired || undefined,
+      vehicle_preference: vehiclePreferences || undefined,
+      number_of_days: numberOfDays || undefined,
+      number_of_persons: noOfPersons || undefined,
+    });
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

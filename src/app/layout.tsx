@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
 import LogoIntro from "@/components/LogoIntro";
 import ContentReveal from "@/components/ContentReveal";
 import ChatWidget from "@/components/ChatWidget";
+import MetaPixel from "@/components/MetaPixel";
+import { metaPixelScript, metaPixelNoscriptSrc } from "@/lib/meta-pixel";
 export const metadata: Metadata = {
   title: "Mann Fleet Partners — Premium Car Rental",
   description: "Drive in style with Mann Fleet Partners. Premium vehicles for every journey.",
@@ -23,8 +26,16 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: hydrationFixScript }} suppressHydrationWarning />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} suppressHydrationWarning />
+        <script dangerouslySetInnerHTML={{ __html: metaPixelScript }} suppressHydrationWarning />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img height="1" width="1" style={{ display: "none" }} alt="" src={metaPixelNoscriptSrc} />
+        </noscript>
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         <LogoIntro />
         <ContentReveal>
           <ThemeProvider>{children}</ThemeProvider>

@@ -62,10 +62,12 @@ src/
     ContentReveal.tsx     # Fades in content after intro:done event fires
     IndiaMap.tsx          # Static map component
     IndiaMapLeaflet.tsx   # Leaflet-based interactive map
+    MetaPixel.tsx         # Meta Pixel PageView-on-route-change + contact-link tracking
     PillNav.css           # Pill nav styles
   lib/
     utils.ts              # cn() — clsx + tailwind-merge
     theme.tsx             # ThemeProvider + useTheme hook, localStorage key: 'mannfleet-theme'
+    meta-pixel.ts         # Meta Pixel ID, base snippet, fbTrack()/fbTrackCustom() helpers
 public/
   Maan Logo Animation_01.mp4   # Intro video
   Mann car pictures/           # Vehicle catalog images (200+ cars by model)
@@ -112,6 +114,7 @@ public/
 5. **Path alias:** `@/*` → `src/*`
 6. **Images:** Remote images from `unsplash.com` are allowed in next.config.ts. All local assets live in `public/`.
 7. **No API routes** — contact forms, reservations etc. are UI-only placeholders (no backend wired).
+8. **Analytics (Meta Pixel):** Base snippet is inlined in `<head>` from `src/lib/meta-pixel.ts` (same pattern as the theme script) so it initialises before hydration; `<noscript>` fallback sits at the top of `<body>`. Because the App Router navigates client-side, `MetaPixel.tsx` re-fires `PageView` on every route change — it uses `useSearchParams`, so it **must stay wrapped in `<Suspense>`** or the production build fails and pages drop out of static rendering. Fire conversions with `fbTrack()` from `@/lib/meta-pixel`; never pass PII (name, phone, email) in event params.
 
 ---
 
@@ -153,6 +156,10 @@ public/
 **ContentReveal:** Wraps page content. Listens for `intro:done`, then fades in. Prevents content flash during intro.
 
 **IndiaMapLeaflet:** Interactive Leaflet map showing office/service locations across India.
+
+**MetaPixel:** Renders nothing. Fires `PageView` on client-side route changes (skipping the mount pass, which the inline `<head>` snippet already covers), and a delegated document-level click listener fires `Contact` for any `tel:` / `mailto:` / `wa.me` link site-wide — so those links need no per-anchor `onClick`.
+
+**Tracked conversions:** `Lead` on reservation submit ([reservation/page.tsx](src/app/reservation/page.tsx)), `ViewContent` on opening a vehicle modal ([fleet/page.tsx](src/app/fleet/page.tsx)), `Contact` on phone/email/WhatsApp clicks (delegated, in MetaPixel).
 
 ---
 

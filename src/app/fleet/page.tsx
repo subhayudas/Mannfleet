@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { fbTrack } from "@/lib/meta-pixel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -749,6 +750,16 @@ function CategorySection({ category, vehicles }: { category: Category; vehicles:
   const [selected, setSelected] = useState<Vehicle | null>(null);
   const cfg = CATEGORY_CONFIG[category];
 
+  const handleSelect = (vehicle: Vehicle) => {
+    setSelected(vehicle);
+    fbTrack("ViewContent", {
+      content_type: "product",
+      content_ids: [vehicle.id],
+      content_name: vehicle.name,
+      content_category: vehicle.category,
+    });
+  };
+
   useEffect(() => {
     const header = headerRef.current;
     const grid = gridRef.current;
@@ -810,7 +821,7 @@ function CategorySection({ category, vehicles }: { category: Category; vehicles:
         }}
       >
         {vehicles.map((v) => (
-          <VehicleCard key={v.id} vehicle={v} onSelect={setSelected} />
+          <VehicleCard key={v.id} vehicle={v} onSelect={handleSelect} />
         ))}
       </div>
     </>
