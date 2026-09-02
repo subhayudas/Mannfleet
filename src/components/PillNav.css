@@ -167,6 +167,24 @@
   color: #ffffff;
 }
 
+/* Corporate link — text-only red action beside Book Now */
+.pill-corporate-link {
+  color: #ff2020;
+  font-family: var(--font-geist-sans, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.pill-corporate-link:hover {
+  color: #ff5a5a;
+  transform: translateY(-1px);
+}
+
 /* Book Now button */
 .pill-book-btn {
   display: inline-flex;
@@ -263,6 +281,10 @@
 .pill-mobile-link:hover {
   background: rgba(255, 32, 32, 0.15);
   color: #ffffff;
+}
+
+.pill-mobile-corporate-link {
+  color: #ff2020;
 }
 
 /* Mobile theme toggle row inside mobile menu */

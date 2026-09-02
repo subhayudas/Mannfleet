@@ -245,6 +245,14 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
             >
               {theme === "dark" ? <SunIcon size={14} /> : <MoonIcon size={14} />}
             </button>
+            <a
+              href="https://corporate.mannfleetpartners.com/"
+              className="pill-corporate-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Corporate
+            </a>
             <a href="/reservation" className="pill-book-btn" style={{ textDecoration: "none" }}>Book Now</a>
           </div>
         </div>
@@ -274,6 +282,17 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href="https://corporate.mannfleetpartners.com/"
+                className="pill-mobile-link pill-mobile-corporate-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+              >
+                Corporate
+              </a>
+            </li>
           </ul>
           {/* Theme toggle row */}
           <div className="pill-mobile-theme-row">
