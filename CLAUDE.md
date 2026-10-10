@@ -13,6 +13,7 @@
 **Purpose:** Premium chauffeur & car rental brand site with heavy visual storytelling
 **Live site:** https://www.mannfleetpartners.com (Vercel, deploys from `subhayudas/Mannfleet` `main`; `mannfleet.vercel.app` is the same deployment). Verify client-facing changes here.
 **Git workflow:** `origin` is the fork `CoffeeAurCode/Mannfleet_work`; `upstream` is `subhayudas/Mannfleet`. Branch from `upstream/main` after a `git fetch upstream`, because the fork's `main` lags behind. Then open the PR against `subhayudas/Mannfleet` for Subhayu to merge. Before saying a document is or isn't live, check the live URL, not local `main`.
+**Client requests:** `TODO.md` at the repo root tracks what the client asked, what's waiting on them, and what shipped. Read it before acting on a new WhatsApp message. The client often replies with a bare numbered list that answers the open questions there, in the same order, without quoting them. Map their numbers to `TODO.md` before treating the lines as new requests.
 
 ---
 
@@ -201,6 +202,8 @@ client-docs-pending/           # Client PDFs not on the site yet + README saying
 **IndiaMapLeaflet:** Interactive Leaflet map showing office/service locations across India.
 
 **MetaPixel:** Renders nothing. Fires `PageView` on client-side route changes (skipping the mount pass, which the inline `<head>` snippet already covers), and a delegated document-level click listener fires `Contact` for any `tel:` / `mailto:` / `wa.me` link site-wide — so those links need no per-anchor `onClick`.
+
+**Fleet photos:** vehicles live in the `VEHICLES` array in [fleet/page.tsx](src/app/fleet/page.tsx). `image[0]` is the card cover, and cards crop to 16:9 (`cover` unless `imageObjectFit: "contain"`). Most existing photos are AI studio renders on a grey tiled backdrop. Real client photos (WhatsApp JPEGs, outdoors) go in `public/Mann car pictures/<Model>/` with clean hyphenated names, like `Invicto/invicto-black-front-1.jpeg`. A model listed under several types (e.g. Invicto under Sedans and SUVs) has a separate image array per entry, so update every one.
 
 **Fleet → reservation:** the vehicle modal's Book Now is a `next/link` (never a plain `<a>` — that forces a full document load and re-runs the app shell) carrying `?vehicle=&category=`. The reservation page reads those with `useSyncExternalStore` over `window.location.search` rather than `useSearchParams`, which would force the route behind a Suspense boundary and drop the whole form out of the prerendered HTML.
 
