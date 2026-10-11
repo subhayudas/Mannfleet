@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useTheme } from "@/lib/theme";
+import { APP_STORE_URL, PLAY_STORE_URL, APP_QR } from "@/lib/app-links";
 import "./PillNav.css";
 
 function SunIcon({ size = 14 }: { size?: number }) {
@@ -32,6 +33,23 @@ function MoonIcon({ size = 14 }: { size?: number }) {
   );
 }
 
+function QrIcon({ size = 15 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3" />
+    </svg>
+  );
+}
+
+const APP_QR_TILES = [
+  { platform: "iPhone", store: "App Store", href: APP_STORE_URL, qr: APP_QR.ios },
+  { platform: "Android", store: "Google Play", href: PLAY_STORE_URL, qr: APP_QR.android },
+];
+
 const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Our Fleet", href: "/fleet" },
@@ -53,6 +71,9 @@ interface NavbarProps {
 export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1 }: NavbarProps) {
   const { theme, toggle } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [qrOpen, setQrOpen] = useState(false);
+  const qrBtnRef = useRef<HTMLButtonElement | null>(null);
+  const qrPanelRef = useRef<HTMLDivElement | null>(null);
 
   const circleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const tlRefs = useRef<Array<gsap.core.Timeline | null>>([]);
@@ -120,6 +141,27 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
 
     return () => window.removeEventListener("resize", layout);
   }, []);
+
+  // Close the app QR panel on an outside click or Escape.
+  useEffect(() => {
+    if (!qrOpen) return;
+    const onPointer = (e: PointerEvent) => {
+      const t = e.target as Node;
+      if (qrPanelRef.current?.contains(t) || qrBtnRef.current?.contains(t)) return;
+      setQrOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setQrOpen(false);
+      qrBtnRef.current?.focus();
+    };
+    document.addEventListener("pointerdown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [qrOpen]);
 
   const handleEnter = (i: number) => {
     const tl = tlRefs.current[i];
@@ -245,6 +287,19 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
             >
               {theme === "dark" ? <SunIcon size={14} /> : <MoonIcon size={14} />}
             </button>
+            {/* Client asked for the app QR code next to Contact and Corporate. */}
+            <button
+              ref={qrBtnRef}
+              className="pill-theme-btn"
+              onClick={() => setQrOpen(o => !o)}
+              aria-label="Get the Mann Fleet app — show QR codes"
+              aria-expanded={qrOpen}
+              aria-controls="nav-app-qr"
+              title="Get the app"
+              data-open={qrOpen || undefined}
+            >
+              <QrIcon />
+            </button>
             <a
               href="https://corporate.mannfleetpartners.com/"
               className="pill-corporate-link"
@@ -256,6 +311,28 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
             <a href="/reservation" className="pill-book-btn" style={{ textDecoration: "none" }}>Book Now</a>
           </div>
         </div>
+
+        {/* App QR panel. Lives outside .pill-nav-items, whose horizontal
+            scroll would clip a dropdown. Desktop only: the button is hidden
+            with the rest of the actions below 1180px. */}
+        {qrOpen && (
+          <div id="nav-app-qr" ref={qrPanelRef} className="pill-qr-panel" role="dialog" aria-label="Get the Mann Fleet app">
+            <p className="pill-qr-title">Get the Mann Fleet app</p>
+            <div className="pill-qr-grid">
+              {APP_QR_TILES.map(({ platform, store, href, qr }) => (
+                <a key={store} href={href} target="_blank" rel="noopener noreferrer" className="pill-qr-tile">
+                  <span className="pill-qr-code">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={qr} alt={`QR code for the ${store} listing`} width={112} height={112} />
+                  </span>
+                  <span className="pill-qr-label">{platform}</span>
+                  <span className="pill-qr-store">{store}</span>
+                </a>
+              ))}
+            </div>
+            <p className="pill-qr-hint">Scan with your phone camera</p>
+          </div>
+        )}
 
         {/* Hamburger (mobile) */}
         <button
@@ -289,6 +366,15 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
                 onClick={() => setMobileOpen(false)}
               >
                 Book Now
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/#app"
+                className="pill-mobile-link"
+                onClick={() => setMobileOpen(false)}
+              >
+                Get the App
               </Link>
             </li>
             <li>

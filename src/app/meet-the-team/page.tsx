@@ -69,7 +69,7 @@ const LEADERS: Leader[] = [
     name: "Mr. Robin Singh Mann",
     title: "Executive Director and Head of Marketing",
     email: "robin@manntours.com",
-    photo: "/teams/Robin%20Mann%20Sir%20photo.png",
+    photo: "/teams/robin-singh-mann.jpg",
     objectPosition: "top",
     teaser:
       "Columbia University honours graduate and former Evercore Investment Banking Analyst, now leading growth and marketing strategy at Mann Fleet.",

@@ -167,6 +167,106 @@
   color: #ffffff;
 }
 
+.pill-theme-btn[data-open] {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+/* App QR panel — dropdown under the nav, anchored to its right edge */
+.pill-qr-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 60;
+  width: 296px;
+  padding: 16px 16px 14px;
+  background: rgba(20, 17, 14, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  font-family: var(--font-geist-sans, sans-serif);
+  animation: pill-qr-in 0.18s ease-out;
+}
+
+@keyframes pill-qr-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill-qr-panel { animation: none; }
+}
+
+.pill-qr-title,
+.pill-qr-hint {
+  margin: 0;
+  text-align: center;
+}
+
+.pill-qr-title {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.pill-qr-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+.pill-qr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pill-qr-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 6px 4px 8px;
+  transition: background 0.2s ease;
+}
+
+.pill-qr-tile:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Solid white behind the code so scanners get contrast */
+.pill-qr-code {
+  display: block;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 6px;
+  line-height: 0;
+}
+
+.pill-qr-code img {
+  width: 112px;
+  height: 112px;
+  display: block;
+}
+
+.pill-qr-label {
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pill-qr-store {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+}
+
 /* Corporate link — text-only red action beside Book Now */
 .pill-corporate-link {
   color: #ff2020;
@@ -309,7 +409,24 @@
 }
 
 /* Responsive */
-@media (max-width: 1100px) {
+/* The full bar is ~1175px wide; on narrower desktops tighten the pills so
+   Book Now stays in view instead of scrolling off the end of the strip. */
+@media (max-width: 1400px) {
+  .pill-item {
+    padding: 0 12px;
+    letter-spacing: 0.10em;
+  }
+}
+
+@media (max-width: 1260px) {
+  .pill-item {
+    padding: 0 9px;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 1180px) {
   .pill-nav-items,
   .pill-nav-actions {
     display: none;
