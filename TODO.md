@@ -2,13 +2,13 @@
 
 On 10 Oct the client replied with a numbered list. The numbers match our four 8 Oct questions below, but the reply arrived without the questions quoted. Our 10 Oct WhatsApp therefore asked about points 2–4 as if they were new. If they come back confused, explain the mapping instead of re-asking.
 - **1. Chatbot name:** point 1 didn't come through. We asked them to resend it. Currently "MANN Concierge"; see ChatWidget in CLAUDE.md for every place it appears.
-- **2. Meet the Team background:** "You can do any colour background", so the choice is ours. Not built yet, because our 10 Oct message asked whether this meant the intro or the car photos. Confirm it means Meet the Team, then pick a colour that fits the design tokens.
 - **3. Vehicle pictures:** "sending more". The first batch shipped in PR #28; expect more photos.
-- **4. QR code placement:** "next to contact". That narrows it to beside contact details, but it still fits both options: the site-wide footer beside the address/phone/email block, or a third card on `/contact` after Registered Office and Call Us.
+- **Confirm the 11 Oct build:** we read point 2 as the team photo backgrounds and point 4 as the navbar (the only place where Contact sits next to Corporate). If the client meant the page background or the footer, redo those.
 - **From PR #28:** is Grand i10 Nios right under Sedans → Economy, and should the real Invicto photos lead its gallery or follow the studio renders? Both were asked on 10 Oct.
 
 ## Done
 
+- 11 Oct: Built the two answers from the client's 10 Oct reply (PR #30). For point 2, every team member photo is cut out and placed on one warm studio-grey backdrop, across Meet the Team, the contact cards and the chat avatars. Ashwani Kumar's photo is a tight face crop and stays as it was. For point 4, a QR button between Contact and Corporate in the navbar opens the App Store and Google Play codes, and the mobile menu gets "Get the App". The nav pills also tighten on laptop widths so Book Now stops scrolling off the bar.
 - 10 Oct: Intro now plays the client's `1s Logo.mp4` animation instead of the still ("Pls add this as the animation, don't fully remove it"). Real photos added: 2× black Invicto at the front of both Invicto galleries, and a new Hyundai Grand i10 Nios (white) card under Sedans → Economy (PR #28). Live files md5-verified, intro and cards checked in headless Chrome on the live site, and the client told on WhatsApp.
 - 9 Oct (urgent, due 11am): Annual Report 2025-26 replaced with the client's full 116-page version, up from 71 pages (PR #27). Live copy md5-verified against the client's file and confirmed with them on WhatsApp.
 - 8 Oct: Intro logo cut to 1 second, and an "Ask Us" box on `/faq` that sends the question to WhatsApp (PR #26, verified live).

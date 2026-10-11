@@ -177,7 +177,7 @@ client-docs-pending/           # Client PDFs not on the site yet + README saying
 
 ## Components — Quick Reference
 
-**Navbar:** Sticky, pill-shaped. GSAP animates a circle that follows cursor over nav links. Hamburger for mobile. Theme toggle button. Logo with hover effect. 9 nav links.
+**Navbar:** Sticky, pill-shaped. GSAP animates a circle that follows cursor over nav links. Logo with hover effect. 9 nav links, then theme toggle, app QR button, Corporate and Book Now. The QR button (client request: "next to contact") opens `#nav-app-qr`, a panel with both store QR codes from `app-links.ts`. It closes on outside click or Escape. The panel is rendered in `.pill-nav-wrapper`, not inside `.pill-nav-items`, because that strip has `overflow-x: auto` and would clip a dropdown. The full bar is about 1175px wide, so `PillNav.css` tightens the pills below 1400px and 1260px, and swaps to the hamburger below 1180px. Re-measure (`scrollWidth` vs `clientWidth` of `.pill-nav-items`) after adding anything to the bar. The mobile menu has "Get the App" → `/#app` instead of QR codes.
 
 **HeroSection:** Full-screen video background (dual gradient overlays). GSAP timeline staggers headline text, trust bullets (checkmarks), CTA buttons — "Browse Fleet" (`.btn-primary`) and "Book Now" (glass, straight to `/reservation`). Bottom strip shows stats and brand logos.
 
@@ -202,6 +202,8 @@ client-docs-pending/           # Client PDFs not on the site yet + README saying
 **IndiaMapLeaflet:** Interactive Leaflet map showing office/service locations across India.
 
 **MetaPixel:** Renders nothing. Fires `PageView` on client-side route changes (skipping the mount pass, which the inline `<head>` snippet already covers), and a delegated document-level click listener fires `Contact` for any `tel:` / `mailto:` / `wa.me` link site-wide — so those links need no per-anchor `onClick`.
+
+**Team photos:** `public/teams/`, used by Meet the Team, the contact-page cards (`BRANCH_CONTACTS`) and the chat avatars. Every photo except Ashwani Kumar's (a tight B/W face crop) is cut out and placed on one warm studio-grey backdrop (radial `#ECE6DC` → `#C8BFB2`). The cutouts used rembg's `isnet-general-use` model in a scratch venv; `birefnet-portrait` ran out of memory on this machine. After cutting out, keep only the largest mask region (drops stray background bits) and tighten the soft mask edge (removes a halo of the old background colour). Give a new member photo the same treatment so the set stays uniform, and overwrite files in place so all three uses stay in sync.
 
 **Fleet photos:** vehicles live in the `VEHICLES` array in [fleet/page.tsx](src/app/fleet/page.tsx). `image[0]` is the card cover, and cards crop to 16:9 (`cover` unless `imageObjectFit: "contain"`). Most existing photos are AI studio renders on a grey tiled backdrop. Real client photos (WhatsApp JPEGs, outdoors) go in `public/Mann car pictures/<Model>/` with clean hyphenated names, like `Invicto/invicto-black-front-1.jpeg`. A model listed under several types (e.g. Invicto under Sedans and SUVs) has a separate image array per entry, so update every one.
 
