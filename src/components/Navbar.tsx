@@ -314,25 +314,26 @@ export default function Navbar({ overlay = false, wrapperRef, initialOpacity = 1
 
         {/* App QR panel. Lives outside .pill-nav-items, whose horizontal
             scroll would clip a dropdown. Desktop only: the button is hidden
-            with the rest of the actions below 1180px. */}
-        {qrOpen && (
-          <div id="nav-app-qr" ref={qrPanelRef} className="pill-qr-panel" role="dialog" aria-label="Get the Mann Fleet app">
-            <p className="pill-qr-title">Get the Mann Fleet app</p>
-            <div className="pill-qr-grid">
-              {APP_QR_TILES.map(({ platform, store, href, qr }) => (
-                <a key={store} href={href} target="_blank" rel="noopener noreferrer" className="pill-qr-tile">
-                  <span className="pill-qr-code">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={qr} alt={`QR code for the ${store} listing`} width={112} height={112} />
-                  </span>
-                  <span className="pill-qr-label">{platform}</span>
-                  <span className="pill-qr-store">{store}</span>
-                </a>
-              ))}
-            </div>
-            <p className="pill-qr-hint">Scan with your phone camera</p>
+            with the rest of the actions below 1180px. Always rendered and
+            toggled with `hidden`, so the two small QR SVGs load with the page:
+            mounting it on click left the tiles blank for ~1.5s on the home
+            page, where the hero video is still downloading. */}
+        <div id="nav-app-qr" ref={qrPanelRef} className="pill-qr-panel" role="dialog" aria-label="Get the Mann Fleet app" hidden={!qrOpen}>
+          <p className="pill-qr-title">Get the Mann Fleet app</p>
+          <div className="pill-qr-grid">
+            {APP_QR_TILES.map(({ platform, store, href, qr }) => (
+              <a key={store} href={href} target="_blank" rel="noopener noreferrer" className="pill-qr-tile">
+                <span className="pill-qr-code">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={qr} alt={`QR code for the ${store} listing`} width={112} height={112} />
+                </span>
+                <span className="pill-qr-label">{platform}</span>
+                <span className="pill-qr-store">{store}</span>
+              </a>
+            ))}
           </div>
-        )}
+          <p className="pill-qr-hint">Scan with your phone camera</p>
+        </div>
 
         {/* Hamburger (mobile) */}
         <button
