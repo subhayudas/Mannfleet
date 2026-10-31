@@ -1,3 +1,14 @@
+## 31 Oct 2026 — booking email fixes (WhatsApp + marked-up email printout)
+
+1. **Bookings → info@ only**, not support@. Support@ is for complaints and other problems, like a client who can't make a booking. Built: the booking email goes to info@ alone; support@ stays on the footer's App support, the guest email's helpline row and signature, and a "Still stuck?" line on the failed-send screen.
+2. **No. of Days counts both ends**: 31 Oct → 1 Nov = 2 days. Built.
+3. **"Residence Address" → "Reporting Address"** on the form and in the email. Built.
+4. **Vehicle Type = the cars in that segment.** Their printout had "Economy (segment)" with "Dzire, Hyundai Aura, Hyundai Accent" written next to Vehicle Type. Built: Vehicle Type is now a dropdown of the cars in the chosen Vehicle Preference, from the fleet page plus Dzire and Accent, which aren't on the fleet page. Other segments' lists were made from the fleet page, so the client should check them.
+5. **WhatsApp for booking queries: 9810008008.** That was already the site's WhatsApp number; it's now shown on the form and in the guest email.
+6. **"Verify on mail also"**: after the merge deploys, submit a test booking and confirm it arrives at info@ only.
+- **Vercel env fix:** their printout's From line read `RESERVATION_FROM=MANN Fleet Partners <noreply@…>`, so the Vercel value includes its own key name. Change the value to `MANN Fleet Partners <noreply@mannfleetpartners.com>` and redeploy.
+- Their other questions (code sent to Mann Fleet? SEO updates? Google Ads?) are for Pranav to answer, not code.
+
 ## 28 Oct 2026 — reservation emails (WhatsApp)
 
 1. **Bookings → support@**, **guest gets a confirmation** in the format of their own "Reservation Confirmation Details" mail, and the booking details ("auto fetched": date of travel, end date, city, airport, hotel, residence, drop-off) **also go to info@**. Built: one booking email to support@ + info@, and the guest copy in their table format. Sent from `noreply@mannfleetpartners.com` via Resend. Their second sample (vehicle no., driver name/mobile) is sent after a car is allotted, so the website can't send it.

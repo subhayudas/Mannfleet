@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo, useSyncExternalStore } from "react";
+import { useState, useCallback, useMemo, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { fbTrack } from "@/lib/meta-pixel";
-import { BOOKING_EMAIL, WHATSAPP_NUMBER } from "@/lib/contact";
+import { BOOKING_EMAIL, SUPPORT_EMAIL, WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from "@/lib/contact";
 
 function ArrowUpRight({ size = 14 }: { size?: number }) {
   return (
@@ -85,14 +85,16 @@ function Input({ type = "text", placeholder, value, onChange, required, readOnly
   );
 }
 
-function Select({ value, onChange, required, children }: {
+function Select({ value, onChange, required, disabled, children }: {
   value: string; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  required?: boolean; children: React.ReactNode;
+  required?: boolean; disabled?: boolean; children: React.ReactNode;
 }) {
   const [focused, setFocused] = useState(false);
   return (
-    <select value={value} onChange={onChange} required={required} style={{
+    <select value={value} onChange={onChange} required={required} disabled={disabled} style={{
       ...inputBase,
+      opacity: disabled ? 0.6 : 1,
+      cursor: disabled ? "not-allowed" : "pointer",
       borderColor: focused ? "var(--accent)" : "var(--border-subtle)",
       appearance: "none",
       backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
@@ -159,15 +161,40 @@ const CATEGORY_TO_PREFERENCE: Record<string, string> = {
   "RANGE ROVER": "Range Rover",
 };
 
-const VEHICLE_TYPES = ["Sedan", "SUV / MUV", "Tempo Traveller", "Coach / Bus", "Vanity Van"];
-
-/** Fleet page passes ?type=SUVs — match it to a Vehicle Type option. */
-const FLEET_TYPE_TO_VEHICLE_TYPE: Record<string, string> = {
-  "Sedans": "Sedan",
-  "SUVs": "SUV / MUV",
-  "Coaches": "Coach / Bus",
-  "Vanity van": "Vanity Van",
+/** Vehicle Type options: the cars in each Vehicle Preference (segment).
+ *  Names match the fleet page so a clicked car pre-selects itself. Dzire and
+ *  Accent aren't on the fleet page; the client listed them for Economy. */
+const SEGMENT_VEHICLES: Record<string, string[]> = {
+  "Economy": [
+    "Maruti Suzuki Dzire", "Hyundai Aura", "Hyundai Accent", "Hyundai Grand i10 Nios",
+    "Maruti Suzuki Ertiga", "Kia Carens", "Toyota Urban Cruiser Hyryder", "Tempo Traveller",
+  ],
+  "Economy Plus": ["Honda City", "Toyota Innova Crysta"],
+  "Premium": [
+    "Toyota Camry Hybrid", "Maruti Suzuki Invicto", "Toyota Innova Hycross (Hybrid)",
+    "Force Urbania", "Force Urbania (Modified)",
+  ],
+  "Premium Plus": [
+    "Maruti Suzuki Invicto", "Toyota Innova Hycross", "Toyota Fortuner", "Ford Endeavour",
+    "Toyota Coaster", "Toyota Hiace",
+  ],
+  "Luxury": [
+    "Mercedes-Benz E-Class", "BMW 5 Series", "Audi Q7", "BMW X5", "Volvo XC90",
+    "Mercedes-Benz GLE", "Kia Carnival Limousine", "Toyota Vellfire", "Mercedes-Benz V-Class",
+    "Mercedes-Benz Sprinter", "Mercedes-Benz Sprinter Executive Lounge",
+    "Volvo Coach (Luxury)", "Volvo Coach with Washroom",
+  ],
+  "Super Luxury": [
+    "Mercedes-Benz S-Class", "BMW 7 Series", "Mercedes-Benz GLS 400 / 450", "BMW X7",
+    "Mercedes Sprinter with Washroom", '"Jet on Wheels" (Volvo 13.5m)',
+  ],
+  "Range Rover": ["Range Rover (Vogue / Autobiography / LWB)", "Range Rover Sport"],
+  "Self Drive": ["Honda City", "Toyota Innova Crysta", "Toyota Camry Hybrid", "Toyota Fortuner"],
+  "Tempo Traveller": ["Tempo Traveller", "Force Urbania", "Force Urbania (Modified)"],
 };
+
+const clickedIfInSegment = (segment: string, vehicle: string) =>
+  SEGMENT_VEHICLES[segment]?.includes(vehicle) ? vehicle : "";
 
 /* ── Query string, without useSearchParams ──────────────────
    useSearchParams() would force this route behind a Suspense boundary, which
@@ -181,6 +208,13 @@ const getSearch = () => window.location.search;
 const getSearchOnServer = () => "";
 
 type Booking = Record<string, string>;
+
+/** Days of hire, counting both ends: 31 Oct → 1 Nov is 2 days. */
+function tripDays(from: string, to: string) {
+  if (!from || !to) return "";
+  const diff = Math.round((new Date(to).getTime() - new Date(from).getTime()) / 86_400_000);
+  return diff >= 0 ? String(diff + 1) : "";
+}
 
 /** Plain-text body — renders identically in every mail client. */
 function buildMailBody(sections: { heading: string; fields: Booking }[]) {
@@ -215,10 +249,13 @@ export default function ReservationPage() {
 
   // Arrives from the fleet page: /reservation?vehicle=...&category=...
   const search = useSyncExternalStore(subscribeToSearch, getSearch, getSearchOnServer);
-  const searchParams = useMemo(() => new URLSearchParams(search), [search]);
-  const selectedVehicle = searchParams.get("vehicle") ?? "";
-  const selectedCategory = searchParams.get("category") ?? "";
-  const selectedType = searchParams.get("type") ?? "";
+  const { selectedVehicle, selectedCategory } = useMemo(() => {
+    const params = new URLSearchParams(search);
+    return {
+      selectedVehicle: params.get("vehicle") ?? "",
+      selectedCategory: params.get("category") ?? "",
+    };
+  }, [search]);
 
   // Guest Name
   const [title, setTitle] = useState("");
@@ -232,7 +269,6 @@ export default function ReservationPage() {
   // Trip Duration
   const [dateOfTravel, setDateOfTravel] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [numberOfDays, setNumberOfDays] = useState("");
 
   // Pick-up Details
   const [flightDetails, setFlightDetails] = useState("");
@@ -241,7 +277,7 @@ export default function ReservationPage() {
   const [airportName, setAirportName] = useState("");
   const [terminal, setTerminal] = useState("");
   const [hotelName, setHotelName] = useState("");
-  const [residenceAddress, setResidenceAddress] = useState("");
+  const [reportingAddress, setReportingAddress] = useState("");
 
   // Drop-off
   const [dropoffLocation, setDropoffLocation] = useState("");
@@ -253,22 +289,14 @@ export default function ReservationPage() {
   const [vehiclePreference, setVehiclePreference] = useState<string | null>(null);
   const vehiclePreferences =
     vehiclePreference ?? CATEGORY_TO_PREFERENCE[selectedCategory.toUpperCase()] ?? "";
-  // Same fallback as the preference: the type of the car they clicked.
+  // The cars in the chosen segment; defaults to the car they clicked if it's one.
+  // Changing the segment clears the choice, so a car from another segment can't stick.
+  const segmentVehicles = SEGMENT_VEHICLES[vehiclePreferences] ?? [];
   const [vehicleTypeChoice, setVehicleTypeChoice] = useState<string | null>(null);
-  const vehicleType = vehicleTypeChoice ?? FLEET_TYPE_TO_VEHICLE_TYPE[selectedType] ?? "";
+  const vehicleType = vehicleTypeChoice ?? clickedIfInSegment(vehiclePreferences, selectedVehicle);
   const [servicesRequired, setServicesRequired] = useState("");
 
-  // Auto-calculate days
-  useEffect(() => {
-    if (dateOfTravel && endDate) {
-      const start = new Date(dateOfTravel);
-      const end = new Date(endDate);
-      const diff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-      setNumberOfDays(diff > 0 ? String(diff) : "");
-    } else {
-      setNumberOfDays("");
-    }
-  }, [dateOfTravel, endDate]);
+  const numberOfDays = tripDays(dateOfTravel, endDate);
 
   const guestName = [title, firstName, lastName].filter(Boolean).join(" ").trim();
 
@@ -296,7 +324,7 @@ export default function ReservationPage() {
           "Airport / Residence": airportName,
           Terminal: terminal,
           Hotel: hotelName,
-          "Residence address": residenceAddress,
+          "Reporting address": reportingAddress,
         },
       },
       { heading: "DROP-OFF", fields: { Location: dropoffLocation } },
@@ -314,7 +342,7 @@ export default function ReservationPage() {
   }, [
     guestName, contactNumber, emailAddress, dateOfTravel, endDate, numberOfDays,
     pickupTime, cityName, flightDetails, airportName, terminal, hotelName,
-    residenceAddress, dropoffLocation, noOfPersons, selectedVehicle,
+    reportingAddress, dropoffLocation, noOfPersons, selectedVehicle,
     vehiclePreferences, vehicleType, servicesRequired,
   ]);
 
@@ -351,7 +379,7 @@ export default function ReservationPage() {
         body: JSON.stringify({
           guestName, contactNumber, emailAddress, dateOfTravel, endDate, numberOfDays,
           pickupTime, cityName, flightDetails, airportName, terminal, hotelName,
-          residenceAddress, dropoffLocation, noOfPersons, selectedVehicle,
+          reportingAddress, dropoffLocation, noOfPersons, selectedVehicle,
           vehiclePreferences, vehicleType, servicesRequired,
         }),
       });
@@ -426,7 +454,7 @@ export default function ReservationPage() {
                 <a href={`mailto:${BOOKING_EMAIL}`} style={{ color: "var(--text-55)" }}>{BOOKING_EMAIL}</a>{" "}
                 or{" "}
                 <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-55)" }}>
-                  message us on WhatsApp
+                  WhatsApp us on {WHATSAPP_DISPLAY}
                 </a>.
               </p>
             ) : (
@@ -493,7 +521,9 @@ export default function ReservationPage() {
               </div>
               <p className="font-sans" style={{ fontSize: "0.72rem", color: "var(--text-35)", margin: 0, textAlign: "center" }}>
                 Or email us directly at{" "}
-                <a href={`mailto:${BOOKING_EMAIL}`} style={{ color: "var(--text-55)" }}>{BOOKING_EMAIL}</a>
+                <a href={`mailto:${BOOKING_EMAIL}`} style={{ color: "var(--text-55)" }}>{BOOKING_EMAIL}</a>.
+                Still stuck? Write to{" "}
+                <a href={`mailto:${SUPPORT_EMAIL}`} style={{ color: "var(--text-55)" }}>{SUPPORT_EMAIL}</a>.
               </p>
             </div>
             )}
@@ -615,8 +645,8 @@ export default function ReservationPage() {
               <Input placeholder="e.g. The Leela Palace" value={hotelName} onChange={(e) => setHotelName(e.target.value)} />
             </Field>
             <div style={{ gridColumn: "1 / -1" }}>
-              <Field label="Residence Address">
-                <Input placeholder="Street, Area, City" value={residenceAddress} onChange={(e) => setResidenceAddress(e.target.value)} />
+              <Field label="Reporting Address">
+                <Input placeholder="Where the car should report — street, area, city" value={reportingAddress} onChange={(e) => setReportingAddress(e.target.value)} />
               </Field>
             </div>
           </SectionCard>
@@ -636,7 +666,7 @@ export default function ReservationPage() {
               <Input type="number" placeholder="e.g. 4" value={noOfPersons} onChange={(e) => setNoOfPersons(e.target.value)} required />
             </Field>
             <Field label="Vehicle Preferences">
-              <Select value={vehiclePreferences} onChange={(e) => setVehiclePreference(e.target.value)}>
+              <Select value={vehiclePreferences} onChange={(e) => { setVehiclePreference(e.target.value); setVehicleTypeChoice(null); }}>
                 <option value="">No preference</option>
                 <option value="Economy">Economy</option>
                 <option value="Economy Plus">Economy Plus</option>
@@ -650,9 +680,9 @@ export default function ReservationPage() {
               </Select>
             </Field>
             <Field label="Vehicle Type">
-              <Select value={vehicleType} onChange={(e) => setVehicleTypeChoice(e.target.value)}>
-                <option value="">No preference</option>
-                {VEHICLE_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+              <Select value={vehicleType} onChange={(e) => setVehicleTypeChoice(e.target.value)} disabled={!segmentVehicles.length}>
+                <option value="">{segmentVehicles.length ? "No preference" : "Choose a vehicle preference first"}</option>
+                {segmentVehicles.map((v) => <option key={v} value={v}>{v}</option>)}
               </Select>
             </Field>
             <div style={{ gridColumn: "1 / -1" }}>
@@ -674,7 +704,10 @@ export default function ReservationPage() {
           }}>
             <p className="font-sans" style={{ fontSize: "0.78rem", color: "var(--text-muted)", margin: 0, maxWidth: 420 }}>
               Your request goes straight to our team at <strong style={{ color: "var(--text-55)" }}>{BOOKING_EMAIL}</strong>,
-              and we&apos;ll email you a confirmation at the address above.
+              and we&apos;ll email you a confirmation at the address above. Booking queries:{" "}
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-55)" }}>
+                WhatsApp {WHATSAPP_DISPLAY}
+              </a>.
             </p>
             <button
               type="submit"

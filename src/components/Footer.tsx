@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/app-links";
-import { BOOKING_EMAIL } from "@/lib/contact";
+import { SUPPORT_EMAIL } from "@/lib/contact";
 
 const APP_SUPPORT_CONTACTS = [
   { name: "Tarun Sharma", display: "+91 99900 41026", tel: "+919990041026" },
@@ -511,7 +511,7 @@ export default function Footer() {
                   <p style={{ fontSize: "0.68rem", color: "var(--text-35)", margin: "0 0 0.4rem", fontWeight: 500 }}>
                     App support
                   </p>
-                  <a href={`mailto:${BOOKING_EMAIL}`} style={{
+                  <a href={`mailto:${SUPPORT_EMAIL}`} style={{
                     display: "block", fontSize: "0.78rem", fontWeight: 600,
                     color: "var(--text-80)", textDecoration: "none",
                     transition: "color 0.2s ease", marginBottom: "0.35rem",
@@ -519,7 +519,7 @@ export default function Footer() {
                     onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-80)"; }}
                   >
-                    {BOOKING_EMAIL}
+                    {SUPPORT_EMAIL}
                   </a>
                   {APP_SUPPORT_CONTACTS.map(({ name, display, tel }) => (
                     <p key={tel} style={{ fontSize: "0.75rem", color: "var(--text-46)", margin: "0 0 0.2rem", lineHeight: 1.5 }}>

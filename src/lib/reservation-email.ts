@@ -1,11 +1,11 @@
 /**
  * The two reservation emails, laid out like the client's own booking mails
  * (plain serif text, bordered two-column tables, their signature block):
- *  - teamEmail: the booking → support@ and info@
+ *  - teamEmail: the booking → info@
  *  - guestEmail: the "Reservation Confirmation Details" copy → the guest
  */
 
-import { BOOKING_EMAIL, GENERAL_EMAIL } from "@/lib/contact";
+import { BOOKING_EMAIL, SUPPORT_EMAIL, WHATSAPP_DISPLAY } from "@/lib/contact";
 import { escapeHtml } from "@/lib/mailer";
 
 export type Booking = Record<string, string>;
@@ -38,9 +38,9 @@ export function requestNumber(now = new Date()) {
 
 const join = (parts: string[], sep = ", ") => parts.filter(Boolean).join(sep);
 
-function reportingAddress(b: Booking) {
+function reportingPlace(b: Booking) {
   const airport = join([b.airportName, b.terminal]);
-  return join([airport, b.hotelName, b.residenceAddress], "; ");
+  return join([airport, b.hotelName, b.reportingAddress], "; ");
 }
 
 function reportingDateTime(b: Booking) {
@@ -85,7 +85,7 @@ const SIGNATURE_HTML =
   `24x7 Helpline-Ph: ${HELPLINE}<br>` +
   `Mob: ${MOBILE}<br>` +
   `Head Office: ${HEAD_OFFICE}<br>` +
-  `Email: ${link(`mailto:${BOOKING_EMAIL}`, BOOKING_EMAIL)}<br>` +
+  `Email: ${link(`mailto:${SUPPORT_EMAIL}`, SUPPORT_EMAIL)}<br>` +
   `Websites: ${link("https://www.manntours.com", "www.manntours.com")} | ${link(`https://${SITE}`, SITE)}</div>`;
 
 const SIGNATURE_TEXT = [
@@ -94,7 +94,7 @@ const SIGNATURE_TEXT = [
   `24x7 Helpline-Ph: ${HELPLINE}`,
   `Mob: ${MOBILE}`,
   `Head Office: ${HEAD_OFFICE}`,
-  `Email: ${BOOKING_EMAIL}`,
+  `Email: ${SUPPORT_EMAIL}`,
   `Websites: www.manntours.com | ${SITE}`,
 ].join("\n");
 
@@ -126,7 +126,7 @@ export function teamEmail(b: Booking, ref: string): Email {
         ["Terminal", b.terminal],
         ["Flight Details", b.flightDetails],
         ["Hotel Name", b.hotelName],
-        ["Residence Address", b.residenceAddress],
+        ["Reporting Address", b.reportingAddress],
         ["Drop-off Location", b.dropoffLocation],
       ],
     ],
@@ -163,7 +163,7 @@ export function guestEmail(b: Booking, ref: string): Email {
     ["Guest Name", b.guestName],
     ["Guest Contact Details", join([b.contactNumber, b.emailAddress])],
     ["Request No", ref],
-    ["Reporting Address", reportingAddress(b)],
+    ["Reporting Address", reportingPlace(b)],
     ["Reporting City", b.cityName],
     ["Reporting Date / Time", reportingDateTime(b)],
     ["End Date", formatDate(b.endDate)],
@@ -175,8 +175,9 @@ export function guestEmail(b: Booking, ref: string): Email {
     ["Vehicle Preference", b.vehiclePreferences],
     ["Vehicle Type", b.vehicleType],
     ["Special Requests", b.servicesRequired],
-    ["24X7 Mann Help Line", `+91 11 47202122, +919891919292, +919990222999\n${BOOKING_EMAIL}`],
-    ["Feedback", GENERAL_EMAIL],
+    ["24X7 Mann Help Line", `+91 11 47202122, +919891919292, +919990222999\n${SUPPORT_EMAIL}`],
+    ["WhatsApp (Booking Queries)", WHATSAPP_DISPLAY],
+    ["Feedback", BOOKING_EMAIL],
   ];
 
   return {

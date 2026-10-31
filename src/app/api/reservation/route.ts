@@ -1,4 +1,4 @@
-import { BOOKING_EMAIL, GENERAL_EMAIL } from "@/lib/contact";
+import { BOOKING_EMAIL } from "@/lib/contact";
 import { mailerConfigured, sendEmail } from "@/lib/mailer";
 import { guestEmail, requestNumber, teamEmail, type Booking } from "@/lib/reservation-email";
 
@@ -12,7 +12,7 @@ const EMAIL_RE = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
 const FIELDS = [
   "guestName", "contactNumber", "emailAddress",
   "dateOfTravel", "endDate", "numberOfDays",
-  "pickupTime", "cityName", "flightDetails", "airportName", "terminal", "hotelName", "residenceAddress",
+  "pickupTime", "cityName", "flightDetails", "airportName", "terminal", "hotelName", "reportingAddress",
   "dropoffLocation",
   "noOfPersons", "selectedVehicle", "vehiclePreferences", "vehicleType", "servicesRequired",
 ];
@@ -52,11 +52,11 @@ export async function POST(req: Request) {
 
   const ref = requestNumber();
 
-  // 1. The booking itself → support (bookings) and info (client asked for the
-  //    trip details there too). Reply goes straight to the guest. If this
-  //    fails the booking has not reached us, so the caller must know.
+  // 1. The booking itself → info@ only (support@ is for complaints). Reply
+  //    goes straight to the guest. If this fails the booking has not reached
+  //    us, so the caller must know.
   const teamSent = await sendEmail({
-    to: [BOOKING_EMAIL, GENERAL_EMAIL],
+    to: BOOKING_EMAIL,
     replyTo: booking.emailAddress,
     ...teamEmail(booking, ref),
   });
