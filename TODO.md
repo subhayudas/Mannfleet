@@ -5,9 +5,13 @@
 3. **"Residence Address" → "Reporting Address"** on the form and in the email. Built.
 4. **Vehicle Type = the cars in that segment.** Their printout had "Economy (segment)" with "Dzire, Hyundai Aura, Hyundai Accent" written next to Vehicle Type. Built: Vehicle Type is now a dropdown of the cars in the chosen Vehicle Preference, from the fleet page plus Dzire and Accent, which aren't on the fleet page. Other segments' lists were made from the fleet page, so the client should check them.
 5. **WhatsApp for booking queries: 9810008008.** That was already the site's WhatsApp number; it's now shown on the form and in the guest email.
-6. **"Verify on mail also"**: after the merge deploys, submit a test booking and confirm it arrives at info@ only.
-- **Vercel env fix:** their printout's From line read `RESERVATION_FROM=MANN Fleet Partners <noreply@…>`, so the Vercel value includes its own key name. Change the value to `MANN Fleet Partners <noreply@mannfleetpartners.com>` and redeploy.
-- Their other questions (code sent to Mann Fleet? SEO updates? Google Ads?) are for Pranav to answer, not code.
+6. **"Verify on mail also"**: asked the client to submit a test booking (see below). We haven't sent a real one; the live checks intercepted the request.
+- Points 1–5 shipped in PR #39, live 31 Oct.
+- Their other questions (code sent to Mann Fleet? SEO updates? Google Ads?) Pranav answered them on WhatsApp, 31 Oct.
+
+**Sent on WhatsApp, 31 Oct**, numbered like their message. Points 1–5 reported live. It asked them to (a) submit a test booking and confirm it arrives on info@ only, and (b) say if any car should be added to or removed from a segment.
+- **Waiting on:** their test-booking confirmation, and any segment list changes. A reply like "received on info" answers (a). Car names in their reply answer (b): edit `SEGMENT_VEHICLES` in `src/app/reservation/page.tsx`.
+- **Vercel env fix, before their test:** their printout's From line read `RESERVATION_FROM=MANN Fleet Partners <noreply@…>`, so the Vercel value includes its own key name. Change the value to `MANN Fleet Partners <noreply@mannfleetpartners.com>` and redeploy. Still not done as of 31 Oct: no deployment after `58f92b2`. If their test mail still shows `RESERVATION_FROM=`, this is why.
 
 ## 28 Oct 2026 — reservation emails (WhatsApp)
 
@@ -31,9 +35,17 @@ The 11 Oct message reported everything from PRs #28, #30 and #31 together and as
 - **2. Grand i10 Nios placement:** asked whether Sedans → Economy, next to the Aura, is right.
 - **3. Team background and QR placement:** asked them to check both and say if they wanted a different colour or spot. We read their "any colour background" as the team photo backgrounds, and "next to contact" as the navbar, the only place where Contact sits next to Corporate. If they meant the page background or the footer, redo those.
 - **Vehicle pictures:** they said "sending more". The first batch shipped in PR #28; add the rest when they arrive.
+  - **5 Nov batch (Google Drive folder `1qdNcyGTYRgfdjoGq1p1SuHD4KSHL2L9W`):** added on branch `fleet-photos-nov`, not merged yet. Real photos now lead the Hyundai Aura (5), both Invicto cards (4), Jet on Wheels (10) and Volvo Coach (Luxury) (9) galleries, with the AI renders kept after them. Folder names didn't match the contents, so photos were placed by what they show:
+    - `invicto/IMG_7376` is the Aura's rear (UP16 ST6051), so it went to the Aura.
+    - `aura/IMG_4914` is a byte-identical copy of a bus interior shot, so it was skipped.
+    - The "49 seater without washroom" folder has the Jet on Wheels plate (UP16 JT3973), recliners, a lounge and a washroom, so it went to Jet on Wheels.
+    - The "49 seater" folder (DL 1PD 8981, no washroom) went to Volvo Coach (Luxury), which lists 49/53 seaters.
+    - Skipped `invicto/IMG_7354`, the same photo as the live `invicto-black-front-2.jpeg`; near-duplicates IMG_4917 and IMG_4920; and IMG_4952 (wiring/DVR box).
+    - **Ask the client:** is that coach placement right, and should the real orange Jet on Wheels front replace the black studio cover?
 
 ## Done
 
+- 31 Oct: Booking email fixes live (PR #39). Bookings go to info@ only; inclusive day count; "Reporting Address"; Vehicle Type lists the cars in the chosen segment; WhatsApp 9810008008 for booking queries. Deployment of merge commit `58f92b2` reported `success`. On the live site, 20 form checks passed, plus the full flow (fleet card → Book Now → fill → submit, with the `/api/reservation` call intercepted so no email was sent). The page posted 2 days, the reporting address and the clicked car. All 15 routes return 200, no console errors.
 - 19 Oct: Client names live (PR #33). On the live home page: 25 names, no broken logos, no console errors or failed requests, no horizontal overflow; the "Our Clients" heading now reads in light mode. Deployment of merge commit `882893e` reported `success`.
 
 - 11 Oct: WhatsApp sent to the client reporting PRs #28, #30 and #31, with the three questions above. Live site re-checked after #31 first: all 14 routes clean, QR codes load before the panel opens (headless and real Chrome).

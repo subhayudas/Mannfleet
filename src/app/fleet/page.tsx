@@ -32,6 +32,8 @@ interface Vehicle {
   imageObjectFit?: "cover" | "contain";
   imageObjectPosition?: string;
   imageIndexObjectPositions?: (string | undefined)[];
+  /** Per-image fit override, by index — lets real photos fill the frame on a card whose renders use "contain". */
+  imageIndexObjectFits?: ("cover" | "contain" | undefined)[];
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -45,7 +47,8 @@ const VEHICLES: Vehicle[] = [
     id: "hyundai-aura", name: "Hyundai Aura", type: "Sedans", category: "ECONOMY",
     seating: "5 Seater Including Pilot", luggage: "402 Litres",
     imageObjectFit: "contain",
-    image: ["/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_33%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_57%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_39%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_50%20PM.png"],
+    imageIndexObjectFits: ["cover", "cover", "cover", "cover", "cover"],
+    image: ["/Mann car pictures/Aura white/aura-white-side.jpeg", "/Mann car pictures/Aura white/aura-white-rear.jpeg", "/Mann car pictures/Aura white/aura-white-front-seat.jpeg", "/Mann car pictures/Aura white/aura-white-rear-seat.jpeg", "/Mann car pictures/Aura white/aura-white-boot.jpeg", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_33%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_57%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_39%20PM.png", "/Mann car pictures/Aura%20white/ChatGPT%20Image%20May%2017%2C%202026%2C%2006_37_50%20PM.png"],
   },
 
   {
@@ -72,7 +75,7 @@ const VEHICLES: Vehicle[] = [
   {
     id: "invicto-sedan", name: "Maruti Suzuki Invicto", type: "Sedans", category: "PREMIUM PLUS",
     seating: "7–8 Seater Including Pilot", luggage: "690 Litres",
-    image: ["/Mann car pictures/Invicto/invicto-black-front-1.jpeg", "/Mann car pictures/Invicto/invicto-black-front-2.jpeg", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_33_03%20PM%20(2).png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_28_37%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_25_56%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_43_30%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_35%20AM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_38%20AM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_41%20AM.png"],
+    image: ["/Mann car pictures/Invicto/invicto-black-front-1.jpeg", "/Mann car pictures/Invicto/invicto-black-side.jpeg", "/Mann car pictures/Invicto/invicto-black-rear.jpeg", "/Mann car pictures/Invicto/invicto-black-middle-row.jpeg", "/Mann car pictures/Invicto/invicto-black-boot.jpeg", "/Mann car pictures/Invicto/invicto-black-front-2.jpeg", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_33_03%20PM%20(2).png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_28_37%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_25_56%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_43_30%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_35%20AM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_38%20AM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_41%20AM.png"],
   },
   {
     id: "hycross-sedan", name: "Toyota Innova Hycross", type: "Sedans", category: "PREMIUM PLUS",
@@ -141,7 +144,7 @@ const VEHICLES: Vehicle[] = [
   {
     id: "invicto-suv", name: "Maruti Suzuki Invicto", type: "SUVs", category: "PREMIUM",
     seating: "7–8 Seater Including Pilot", luggage: "239 Litres (all rows up)",
-    image: ["/Mann car pictures/Invicto/invicto-black-front-1.jpeg", "/Mann car pictures/Invicto/invicto-black-front-2.jpeg", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_33_03%20PM%20(2).png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_25_56%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_28_37%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_43_30%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_35%20AM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_38%20AM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_41%20AM.png"],
+    image: ["/Mann car pictures/Invicto/invicto-black-front-1.jpeg", "/Mann car pictures/Invicto/invicto-black-side.jpeg", "/Mann car pictures/Invicto/invicto-black-rear.jpeg", "/Mann car pictures/Invicto/invicto-black-middle-row.jpeg", "/Mann car pictures/Invicto/invicto-black-boot.jpeg", "/Mann car pictures/Invicto/invicto-black-front-2.jpeg", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_33_03%20PM%20(2).png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_25_56%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_28_37%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20Apr%2030%2C%202026%2C%2006_43_30%20PM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_35%20AM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_38%20AM.png", "/Mann car pictures/Invicto/ChatGPT%20Image%20May%208%2C%202026%2C%2011_42_41%20AM.png"],
   },
   {
     id: "hycross-suv", name: "Toyota Innova Hycross (Hybrid)", type: "SUVs", category: "PREMIUM",
@@ -292,7 +295,8 @@ const VEHICLES: Vehicle[] = [
     id: "volvo-luxury", name: "Volvo Coach (Luxury)", type: "Coaches", category: "LUXURY",
     seating: "41/45 Seater (12m) and 49/53 Seater (13.5m) Including Pilot", luggage: "Fits 35–40 and 50–55 large suitcases resp.",
     imageObjectFit: "contain",
-    image: ["/Mann car pictures/Volvo%2039%20seater/PHOTO-2026-05-15-23-07-59.jpg", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_29_00%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_50_51%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_35_35%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_38_30%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_55_20%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2004_16_06%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2004_45_09%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2004_59_59%20PM.png"],
+    imageIndexObjectFits: ["cover", "cover", "cover", "cover", "cover", "cover", "cover", "cover", "cover"],
+    image: ["/Mann car pictures/Volvo 49 seater/volvo-49-seater-side.jpeg", "/Mann car pictures/Volvo 49 seater/volvo-49-seater-front.jpeg", "/Mann car pictures/Volvo 49 seater/volvo-49-seater-aisle-1.jpeg", "/Mann car pictures/Volvo 49 seater/volvo-49-seater-seats.jpeg", "/Mann car pictures/Volvo 49 seater/volvo-49-seater-rear-row.jpeg", "/Mann car pictures/Volvo 49 seater/volvo-49-seater-aisle-2.jpeg", "/Mann car pictures/Volvo 49 seater/volvo-49-seater-aisle-3.jpeg", "/Mann car pictures/Volvo 49 seater/volvo-49-seater-fridge.jpeg", "/Mann car pictures/Volvo 49 seater/volvo-49-seater-driver-cabin.jpeg", "/Mann car pictures/Volvo%2039%20seater/PHOTO-2026-05-15-23-07-59.jpg", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_29_00%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_50_51%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_35_35%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_38_30%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_55_20%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2004_16_06%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2004_45_09%20PM.png", "/Mann car pictures/Volvo%2039%20seater/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2004_59_59%20PM.png"],
   },
   {
     id: "volvo-washroom", name: "Volvo Coach with Washroom", type: "Coaches", category: "LUXURY",
@@ -305,7 +309,7 @@ const VEHICLES: Vehicle[] = [
     id: "jet-on-wheels", name: '"Jet on Wheels" (Volvo 13.5m)', type: "Coaches", category: "SUPER LUXURY",
     seating: "23 Full Recliners Including Pilot", luggage: "Fits 40–50 large suitcases",
     imageObjectFit: "cover",
-    image: ["/Mann car pictures/Jet on wheels/jet on wheels front.jpeg", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_00_26%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_13_32%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_16_03%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_17_48%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_19_14%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_21_13%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_23_04%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_24_34%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_25_33%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_26_51%20PM.png"],
+    image: ["/Mann car pictures/Jet on wheels/jet on wheels front.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-recliners-1.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-cabin-screens.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-recliner-detail.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-recliners-2.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-cabin.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-lounge.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-pantry.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-washroom-basin.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-washroom.jpeg", "/Mann car pictures/Jet on wheels/jet-on-wheels-front-real.jpeg", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_00_26%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_13_32%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_16_03%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_17_48%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_19_14%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_21_13%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_23_04%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_24_34%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_25_33%20PM.png", "/Mann%20car%20pictures/Jet%20on%20wheels/ChatGPT%20Image%20Apr%2028%2C%202026%2C%2003_26_51%20PM.png"],
   },
 
   /* ── SELF DRIVING ────────────────────────────────────────── */
@@ -455,7 +459,7 @@ function IconCheck({ size = 13 }: { size?: number }) {
 /* ─────────────────────────────────────────────────────────────
    CAROUSEL
 ───────────────────────────────────────────────────────────── */
-function ImageCarousel({ images, alt, externalHover, objectFit = "cover", objectPosition, indexObjectPositions }: { images: string[]; alt: string; externalHover?: boolean; objectFit?: "cover" | "contain"; objectPosition?: string; indexObjectPositions?: (string | undefined)[] }) {
+function ImageCarousel({ images, alt, externalHover, objectFit = "cover", objectPosition, indexObjectPositions, indexObjectFits }: { images: string[]; alt: string; externalHover?: boolean; objectFit?: "cover" | "contain"; objectPosition?: string; indexObjectPositions?: (string | undefined)[]; indexObjectFits?: ("cover" | "contain" | undefined)[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [internalHover, setInternalHover] = useState(false);
   const isHovered = externalHover ?? internalHover;
@@ -488,7 +492,7 @@ function ImageCarousel({ images, alt, externalHover, objectFit = "cover", object
         src={images[currentIndex]}
         alt={`${alt} - Image ${currentIndex + 1}`}
         fill
-        style={{ objectFit: objectFit, objectPosition: indexObjectPositions?.[currentIndex] ?? objectPosition, transition: "transform 0.45s cubic-bezier(0.16,1,0.3,1)" }}
+        style={{ objectFit: indexObjectFits?.[currentIndex] ?? objectFit, objectPosition: indexObjectPositions?.[currentIndex] ?? objectPosition, transition: "transform 0.45s cubic-bezier(0.16,1,0.3,1)" }}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
         className="card-image"
       />
@@ -612,7 +616,7 @@ function VehicleModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: () => v
         {/* Car image */}
         <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: vehicle.imageObjectFit === "contain" ? "var(--bg-base)" : undefined }}>
           {Array.isArray(vehicle.image) ? (
-            <ImageCarousel images={vehicle.image} alt={vehicle.name} objectFit={vehicle.imageObjectFit} objectPosition={vehicle.imageObjectPosition} indexObjectPositions={vehicle.imageIndexObjectPositions} />
+            <ImageCarousel images={vehicle.image} alt={vehicle.name} objectFit={vehicle.imageObjectFit} objectPosition={vehicle.imageObjectPosition} indexObjectPositions={vehicle.imageIndexObjectPositions} indexObjectFits={vehicle.imageIndexObjectFits} />
           ) : (
             <Image
               src={vehicle.image}
@@ -713,7 +717,7 @@ function VehicleCard({ vehicle, onSelect }: { vehicle: Vehicle; onSelect: (v: Ve
       style={{ borderRadius: "1rem", overflow: "hidden", cursor: "pointer", position: "relative" }}
     >
       <div style={{ position: "relative", width: "100%", aspectRatio: "4/3", background: vehicle.imageObjectFit === "contain" ? "var(--bg-base)" : undefined }}>
-        <ImageCarousel images={images} alt={vehicle.name} externalHover={isHovered} objectFit={vehicle.imageObjectFit} objectPosition={vehicle.imageObjectPosition} indexObjectPositions={vehicle.imageIndexObjectPositions} />
+        <ImageCarousel images={images} alt={vehicle.name} externalHover={isHovered} objectFit={vehicle.imageObjectFit} objectPosition={vehicle.imageObjectPosition} indexObjectPositions={vehicle.imageIndexObjectPositions} indexObjectFits={vehicle.imageIndexObjectFits} />
         <div style={{
           position: "absolute", inset: 0,
           background: "linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.42) 100%)",
