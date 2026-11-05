@@ -5,9 +5,13 @@
 3. **"Residence Address" → "Reporting Address"** on the form and in the email. Built.
 4. **Vehicle Type = the cars in that segment.** Their printout had "Economy (segment)" with "Dzire, Hyundai Aura, Hyundai Accent" written next to Vehicle Type. Built: Vehicle Type is now a dropdown of the cars in the chosen Vehicle Preference, from the fleet page plus Dzire and Accent, which aren't on the fleet page. Other segments' lists were made from the fleet page, so the client should check them.
 5. **WhatsApp for booking queries: 9810008008.** That was already the site's WhatsApp number; it's now shown on the form and in the guest email.
-6. **"Verify on mail also"**: after the merge deploys, submit a test booking and confirm it arrives at info@ only.
-- **Vercel env fix:** their printout's From line read `RESERVATION_FROM=MANN Fleet Partners <noreply@…>`, so the Vercel value includes its own key name. Change the value to `MANN Fleet Partners <noreply@mannfleetpartners.com>` and redeploy.
-- Their other questions (code sent to Mann Fleet? SEO updates? Google Ads?) are for Pranav to answer, not code.
+6. **"Verify on mail also"**: asked the client to submit a test booking (see below). We haven't sent a real one; the live checks intercepted the request.
+- Points 1–5 shipped in PR #39, live 31 Oct.
+- Their other questions (code sent to Mann Fleet? SEO updates? Google Ads?) Pranav answered them on WhatsApp, 31 Oct.
+
+**Sent on WhatsApp, 31 Oct**, numbered like their message. Points 1–5 reported live. It asked them to (a) submit a test booking and confirm it arrives on info@ only, and (b) say if any car should be added to or removed from a segment.
+- **Waiting on:** their test-booking confirmation, and any segment list changes. A reply like "received on info" answers (a). Car names in their reply answer (b): edit `SEGMENT_VEHICLES` in `src/app/reservation/page.tsx`.
+- **Vercel env fix, before their test:** their printout's From line read `RESERVATION_FROM=MANN Fleet Partners <noreply@…>`, so the Vercel value includes its own key name. Change the value to `MANN Fleet Partners <noreply@mannfleetpartners.com>` and redeploy. Still not done as of 31 Oct: no deployment after `58f92b2`. If their test mail still shows `RESERVATION_FROM=`, this is why.
 
 ## 28 Oct 2026 — reservation emails (WhatsApp)
 
@@ -34,6 +38,7 @@ The 11 Oct message reported everything from PRs #28, #30 and #31 together and as
 
 ## Done
 
+- 31 Oct: Booking email fixes live (PR #39). Bookings go to info@ only; inclusive day count; "Reporting Address"; Vehicle Type lists the cars in the chosen segment; WhatsApp 9810008008 for booking queries. Deployment of merge commit `58f92b2` reported `success`. On the live site, 20 form checks passed, plus the full flow (fleet card → Book Now → fill → submit, with the `/api/reservation` call intercepted so no email was sent). The page posted 2 days, the reporting address and the clicked car. All 15 routes return 200, no console errors.
 - 19 Oct: Client names live (PR #33). On the live home page: 25 names, no broken logos, no console errors or failed requests, no horizontal overflow; the "Our Clients" heading now reads in light mode. Deployment of merge commit `882893e` reported `success`.
 
 - 11 Oct: WhatsApp sent to the client reporting PRs #28, #30 and #31, with the three questions above. Live site re-checked after #31 first: all 14 routes clean, QR codes load before the panel opens (headless and real Chrome).
