@@ -35,6 +35,13 @@ The 11 Oct message reported everything from PRs #28, #30 and #31 together and as
 - **2. Grand i10 Nios placement:** asked whether Sedans → Economy, next to the Aura, is right.
 - **3. Team background and QR placement:** asked them to check both and say if they wanted a different colour or spot. We read their "any colour background" as the team photo backgrounds, and "next to contact" as the navbar, the only place where Contact sits next to Corporate. If they meant the page background or the footer, redo those.
 - **Vehicle pictures:** they said "sending more". The first batch shipped in PR #28; add the rest when they arrive.
+  - **5 Nov batch (Google Drive folder `1qdNcyGTYRgfdjoGq1p1SuHD4KSHL2L9W`):** added on branch `fleet-photos-nov`, not merged yet. Real photos now lead the Hyundai Aura (5), both Invicto cards (4), Jet on Wheels (10) and Volvo Coach (Luxury) (9) galleries, with the AI renders kept after them. Folder names didn't match the contents, so photos were placed by what they show:
+    - `invicto/IMG_7376` is the Aura's rear (UP16 ST6051), so it went to the Aura.
+    - `aura/IMG_4914` is a byte-identical copy of a bus interior shot, so it was skipped.
+    - The "49 seater without washroom" folder has the Jet on Wheels plate (UP16 JT3973), recliners, a lounge and a washroom, so it went to Jet on Wheels.
+    - The "49 seater" folder (DL 1PD 8981, no washroom) went to Volvo Coach (Luxury), which lists 49/53 seaters.
+    - Skipped `invicto/IMG_7354`, the same photo as the live `invicto-black-front-2.jpeg`; near-duplicates IMG_4917 and IMG_4920; and IMG_4952 (wiring/DVR box).
+    - **Ask the client:** is that coach placement right, and should the real orange Jet on Wheels front replace the black studio cover?
 
 ## Done
 
