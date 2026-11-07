@@ -1,3 +1,21 @@
+## 7 Nov 2026 — reply to the 5 Nov photo questions, plus more photos (WhatsApp)
+
+Their reply "1) yes 2) yes 3) sending" answers the three questions from 5 Nov, in order. They also said "I have added new files onto the drive, please add them to the website by tonight".
+1. **Coach placement is right.** No change.
+2. **Jet on Wheels cover → their orange bus.** Built: `jet-on-wheels-front-real.jpeg` is now `image[0]` (`center 55%`, so the card keeps the TOURIST header, Mann logos and grille). The black studio front moved to its old slot, before the renders.
+3. **More real photos.** The same Drive folder (`1qdNcyGTYRgfdjoGq1p1SuHD4KSHL2L9W`) gained 9 folders dated 27 Oct. Built: 39 photos, sRGB JPEG, no EXIF, leading the galleries with the renders kept after them. Folder names didn't match the contents again, so photos were placed by number plate and shoot location:
+   - Honda City (HR55AN4642): 4, on both City cards.
+   - Innova Crysta (HR55BA1072): 5, on all five Crysta cards. Four of them were in the "fortune white" folder.
+   - Innova Hycross (HR55AN2287): 4, on all four Hycross cards. The boot and middle-row shots were in "innova crysta" but match the Hycross's plate, black bumper and paved shoot location, and sit between its other shots in the camera numbering.
+   - Fortuner: black (HR55AW7412) 5, then white (HR55AW0934) 5, on both Fortuner cards.
+   - E-Class (DL 1NA 4203, E 220d): 5, on both E-Class cards. The side, rear, rear seat and boot shots were in "s class"/"black fortune". All were shot on the same tiled forecourt, and the boot shot's full-width chrome bumper strip matches the E's.
+   - S-Class (DL 1NA 4067, S 450): 4, on both S-Class cards. The side, rear and rear seat shots were in "black fortune".
+   - BMW 7 Series (DL 1NA 4024): 3. IMG_8491 was in the folder twice; used once.
+   - GLS 450 (HR55BA4444): 4, ahead of the older real GLS photos already on both GLS cards.
+   - Portrait shots crop to 4:3 on cards and 16:9 in the modal, so fronts sit at `center 70%` (plate and grille in frame) and rears at `center 60%`.
+- Checked on a local production build in headless Chrome: every fleet tab renders, with no console errors, failed requests or broken images.
+- **Still no real photos for:** Tempo Traveller (they named it in point 3 of our ask), and the other cars that show only renders.
+
 ## 31 Oct 2026 — booking email fixes (WhatsApp + marked-up email printout)
 
 1. **Bookings → info@ only**, not support@. Support@ is for complaints and other problems, like a client who can't make a booking. Built: the booking email goes to info@ alone; support@ stays on the footer's App support, the guest email's helpline row and signature, and a "Still stuck?" line on the failed-send screen.
@@ -35,16 +53,21 @@ The 11 Oct message reported everything from PRs #28, #30 and #31 together and as
 - **2. Grand i10 Nios placement:** asked whether Sedans → Economy, next to the Aura, is right.
 - **3. Team background and QR placement:** asked them to check both and say if they wanted a different colour or spot. We read their "any colour background" as the team photo backgrounds, and "next to contact" as the navbar, the only place where Contact sits next to Corporate. If they meant the page background or the footer, redo those.
 - **Vehicle pictures:** they said "sending more". The first batch shipped in PR #28; add the rest when they arrive.
-  - **5 Nov batch (Google Drive folder `1qdNcyGTYRgfdjoGq1p1SuHD4KSHL2L9W`):** added on branch `fleet-photos-nov`, not merged yet. Real photos now lead the Hyundai Aura (5), both Invicto cards (4), Jet on Wheels (10) and Volvo Coach (Luxury) (9) galleries, with the AI renders kept after them. Folder names didn't match the contents, so photos were placed by what they show:
+  - **5 Nov batch (Google Drive folder `1qdNcyGTYRgfdjoGq1p1SuHD4KSHL2L9W`):** live 5 Nov (PR #40). Real photos now lead the Hyundai Aura (5), both Invicto cards (4), Jet on Wheels (10) and Volvo Coach (Luxury) (9) galleries, with the AI renders kept after them. Folder names didn't match the contents, so photos were placed by what they show:
     - `invicto/IMG_7376` is the Aura's rear (UP16 ST6051), so it went to the Aura.
     - `aura/IMG_4914` is a byte-identical copy of a bus interior shot, so it was skipped.
     - The "49 seater without washroom" folder has the Jet on Wheels plate (UP16 JT3973), recliners, a lounge and a washroom, so it went to Jet on Wheels.
     - The "49 seater" folder (DL 1PD 8981, no washroom) went to Volvo Coach (Luxury), which lists 49/53 seaters.
     - Skipped `invicto/IMG_7354`, the same photo as the live `invicto-black-front-2.jpeg`; near-duplicates IMG_4917 and IMG_4920; and IMG_4952 (wiring/DVR box).
     - **Ask the client:** is that coach placement right, and should the real orange Jet on Wheels front replace the black studio cover?
+  - **Sent on WhatsApp, 5 Nov**, in Pranav's own words, so the exact wording and numbering may differ from this draft. The draft reported the photos live and asked three questions. (1) Is the coach placement right? (2) Should the real orange Jet on Wheels front be the cover? (3) Real photos for the cars that still show only studio renders, most-booked first. Also nudge the open items: the test booking (31 Oct), Atom/Razorpay (19 Oct). The chatbot-name question (11 Oct) was left out on purpose. Point 1 never arrived, and the chatbot name was only our guess at what it was.
+    - "Yes"/"correct" to (1) needs no change.
+    - "Yes" to (2) means making `jet-on-wheels-front-real.jpeg` `image[0]` with an `imageIndexObjectPositions` entry, because it's portrait and needs its crop checked on the 4:3 card.
+    - A "no" to (1) means swapping the two image sets between the `jet-on-wheels` and `volvo-luxury` entries.
 
 ## Done
 
+- 5 Nov: Real fleet photos live (PR #40). Deployment of merge commit `47baf42` reported `success`. On the live site, all 28 new photos md5-match the repo, and the dropped duplicate (`invicto-black-front-3.jpeg`) returns 404. Every gallery slide of the Aura, both Invictos, Jet on Wheels and Volvo Coach (Luxury) was viewed in headless Chrome. All 19 routes return 200, with no console errors, failed requests or broken images. No nav overflow at 1440/1280/1200/1181px.
 - 31 Oct: Booking email fixes live (PR #39). Bookings go to info@ only; inclusive day count; "Reporting Address"; Vehicle Type lists the cars in the chosen segment; WhatsApp 9810008008 for booking queries. Deployment of merge commit `58f92b2` reported `success`. On the live site, 20 form checks passed, plus the full flow (fleet card → Book Now → fill → submit, with the `/api/reservation` call intercepted so no email was sent). The page posted 2 days, the reporting address and the clicked car. All 15 routes return 200, no console errors.
 - 19 Oct: Client names live (PR #33). On the live home page: 25 names, no broken logos, no console errors or failed requests, no horizontal overflow; the "Our Clients" heading now reads in light mode. Deployment of merge commit `882893e` reported `success`.
 
